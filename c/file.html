@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Info" href="info.html" />
+    <link rel="prev" title="Error handling" href="error.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/file.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file">
+<h1>File<a class="headerlink" href="#file" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_JADFindData” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_IdentifyFileFormat” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextFileFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetFolderListing” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextRootFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetFileAttributes” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetFilePart” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddFilePart” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SendFilePart” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetFileSystemStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_FileSystemStatus">
+<span class="target" id="structGSM__FileSystemStatus"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_FileSystemStatus</span></span></span><a class="headerlink" href="#c.GSM_FileSystemStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of filesystem. </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_FileType">
+<span class="target" id="group__File_1ga159df16b101896a0c263613a59ca739e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_FileType</span></span></span><a class="headerlink" href="#c.GSM_FileType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>File type identifier. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Other">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea8505a1062f3a7936964b60fd82af5e60"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Other</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Other" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Java_JAR">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739eaa2274ba01ee117546e2eb2e64481feff"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Java_JAR</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Java_JAR" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Image_JPG">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea2bf3639d4c781266ae0c92b05c557a44"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Image_JPG</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Image_JPG" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Image_BMP">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739eac1514598543d758dfe40142e66495002"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Image_BMP</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Image_BMP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Image_GIF">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea01a0287470f376bf807a710e03ea5892"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Image_GIF</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Image_GIF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Image_PNG">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea3e22dbc6f80b5c24ab0482d05205b9ee"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Image_PNG</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Image_PNG" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Image_WBMP">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea90b3b72c260323fd092224327cecbb54"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Image_WBMP</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Image_WBMP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Video_3GP">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea9f13fbd032b440099999698dfde1f87f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Video_3GP</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Video_3GP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Sound_AMR">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea05bd4d12e2929fe6850ba5c90eef8445"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Sound_AMR</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Sound_AMR" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Sound_NRT">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739eacab3eaa871e0c41868acc2b06203bdb0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Sound_NRT</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Sound_NRT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>DCT4 binary format </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_Sound_MIDI">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea5178b247f3815b075944c0e7b96635ab"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_Sound_MIDI</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_Sound_MIDI" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_MMS">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea66d53cff1841fa08a5ab1e66d6a9464b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_MMS</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_MMS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_FileType.GSM_File_INVALID">
+<span class="target" id="group__File_1gga159df16b101896a0c263613a59ca739ea8a986df0b81d99911d0ead77150a54fe"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File_INVALID</span></span></span><a class="headerlink" href="#c.GSM_FileType.GSM_File_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_File">
+<span class="target" id="structGSM__File"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_File</span></span></span><a class="headerlink" href="#c.GSM_File" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for holding file information and data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Used">
+<span class="target" id="structGSM__File_1a4e8a3092569ece9407955dcfdd39a3fb"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Used</span></span></span><a class="headerlink" href="#c.GSM_File.Used" title="Permalink to this definition"></a><br /></dt>
+<dd><p>How many bytes are used. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Name">
+<span class="target" id="structGSM__File_1a5e5f92c9174113ebf0cf25bee4c596e3"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_FILENAME_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_File.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Folder">
+<span class="target" id="structGSM__File_1ad69b958089a8f790dc12a1128bf8f791"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Folder</span></span></span><a class="headerlink" href="#c.GSM_File.Folder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>True, when folder </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Level">
+<span class="target" id="structGSM__File_1afedbb5af8ff7f7bcaddb5ac500c766f5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Level</span></span></span><a class="headerlink" href="#c.GSM_File.Level" title="Permalink to this definition"></a><br /></dt>
+<dd><p>How much file is nested on filesystem. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Type">
+<span class="target" id="structGSM__File_1a9b4f2bdaeddbdf55c520b8b943454295"></span><a class="reference internal" href="#c.GSM_FileType" title="GSM_FileType"><span class="n"><span class="pre">GSM_FileType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_File.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of file. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.ID_FullName">
+<span class="target" id="structGSM__File_1a8bc8da0d5dd545af3e4cfdbf602c024d"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ID_FullName</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_FILENAME_ID_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_File.ID_FullName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ID in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Buffer">
+<span class="target" id="structGSM__File_1a3226b1967d64138ff08b9a397b1309e6"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Buffer</span></span></span><a class="headerlink" href="#c.GSM_File.Buffer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pointer to file data. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Modified">
+<span class="target" id="structGSM__File_1af94ade6dda7602ca8b73d1a66096177a"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Modified</span></span></span><a class="headerlink" href="#c.GSM_File.Modified" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Last modification date. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.ModifiedEmpty">
+<span class="target" id="structGSM__File_1a19de6d492f0e20e6bae633447a3e7e97"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ModifiedEmpty</span></span></span><a class="headerlink" href="#c.GSM_File.ModifiedEmpty" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether modification date is empty. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Protected">
+<span class="target" id="structGSM__File_1a18b44aa81271e43c38a117608b66a713"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Protected</span></span></span><a class="headerlink" href="#c.GSM_File.Protected" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Protected file attribute. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.ReadOnly">
+<span class="target" id="structGSM__File_1abc404e41c321a89f5b932bfbc06858a5"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReadOnly</span></span></span><a class="headerlink" href="#c.GSM_File.ReadOnly" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Read only file attribute. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.Hidden">
+<span class="target" id="structGSM__File_1a855468e158da0417e52d11f14a3ff284"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Hidden</span></span></span><a class="headerlink" href="#c.GSM_File.Hidden" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Hidden file attribute. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_File.System">
+<span class="target" id="structGSM__File_1ab8d2cfef3baadb3108c9c0a4092f4a41"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">System</span></span></span><a class="headerlink" href="#c.GSM_File.System" title="Permalink to this definition"></a><br /></dt>
+<dd><p>System file attribute. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="error.html" class="btn btn-neutral float-left" title="Error handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="info.html" class="btn btn-neutral float-right" title="Info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

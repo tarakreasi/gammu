@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discovering protocol &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nokia protocols" href="nokia.html" />
+    <link rel="prev" title="Phone Protocols" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Discovering protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usb">USB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serial-port">Serial port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#infrared">Infrared</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">Discovering protocol</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/discovering.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="discovering-protocol">
+<span id="id1"></span><h1>Discovering protocol<a class="headerlink" href="#discovering-protocol" title="Permalink to this heading"></a></h1>
+<p>You need to get a communication dump to be able to understand protocol
+or discover new commands. As most vendors provide some software for
+Windows, all following sections assume you do the sniffing on Windows.</p>
+<section id="usb">
+<h2>USB<a class="headerlink" href="#usb" title="Permalink to this heading"></a></h2>
+<p>For USB there exist various tools to dump USB communication. The dumps
+can be later analyzed and used to discover protocol details or unknown
+commands. One of the best free tools available currently is <a class="reference external" href="http://www.pcausa.com/Utilities/UsbSnoop/">UsbSnoop</a>.</p>
+<p>In directory <code class="docutils literal notranslate"><span class="pre">contrib/usbsnoop</span></code> in Gammu sources you can find some tools to
+decode the output.</p>
+</section>
+<section id="serial-port">
+<h2>Serial port<a class="headerlink" href="#serial-port" title="Permalink to this heading"></a></h2>
+<p>Download <a class="reference external" href="http://technet.microsoft.com/en-us/sysinternals/bb896644.aspx">Portmon</a>, which allows one to capture bytes sent and received by
+ready binary software.</p>
+<p>If you have log saved by PortMon and protocol is the same to “old” Nokia
+protocols, can use Gammu to decode it. It’s simple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gammu</span> <span class="o">--</span><span class="n">decodesniff</span> <span class="n">MBUS2</span> <span class="n">file</span> <span class="mi">6210</span> <span class="o">&gt;</span> <span class="n">log</span>
+</pre></div>
+</div>
+<p>saves in log decoded MBUS2 dump session. There is used phone module for
+6210 and have you have debug info about 6210 specific frames (you don’t have
+to add model). Dump file for –decodesniff and MBUS should be specific:</p>
+<ol class="arabic simple">
+<li><p>without bytes sent to phone (in Portmon you set it here:
+“Edit”, “Filter/Highlight”)</p></li>
+<li><p>in Hex format (“Options”, “Show Hex”)</p></li>
+<li><p>without Date &amp; Time (“Options”, “Show Time” &amp; “Clock Time”)</p></li>
+</ol>
+</section>
+<section id="infrared">
+<h2>Infrared<a class="headerlink" href="#infrared" title="Permalink to this heading"></a></h2>
+<p>First of all you need two computers with IrDA. One running linux, that will
+sniff and one running windows, which will communicate with the phone and
+whatever software you want (Nokia, Logomanager, Oxygen Phone Manager).
+Then you have to get the software from
+<a class="reference external" href="http://www.dev-thomynet.de/nokworld/noktrace/">http://www.dev-thomynet.de/nokworld/noktrace/</a></p>
+<p>You have to disable IrDA services on the linux machine and eventually you
+have to change the default port the ‘irda_intercept’ program is sniffing
+from (default ttyS1). On the windows machine you should decrease the
+maximum transmission speed to 9600bps if possible, because the intercept
+program doesn’t seem to handle speed changes. (9600 is for searching
+devices in range and then the highest possible speed is chosen) If it isn’t
+possible you have to change the default bitrate in intercept source code,
+too. Then you won’t see anything until the windows machine and the phone
+start transmitting data, which isn’t too bad. At least here in my setup I
+could sniff the data coming from phone and sent to it in one go, like that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">win</span>    <span class="o">------------------&gt;</span>   <span class="n">Nokia</span>
+<span class="n">machine</span>  <span class="o">&lt;-----------------</span>    <span class="n">phone</span>
+                <span class="o">^^</span>
+                <span class="o">||</span>
+              <span class="n">sniffing</span>
+               <span class="n">device</span>
+</pre></div>
+</div>
+<p>You get a raw data file (.trc) from the intercept program, which you can
+then decode to hex with the second program from the above mentioned page.
+You should possibly be able to use Marcin’s magnokii for decoding the trc
+files, too, but it didn’t work for me so I just figured things out from the
+hex files. In the hex files you should look for primary frames with
+00 01 00 in it, because this is the FBUS header which is in every valuable
+frame sent to phone. It’s not really joy to do that, but if it brings
+support for a new phone it’s worth it :-)</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Phone Protocols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nokia.html" class="btn btn-neutral float-right" title="Nokia protocols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

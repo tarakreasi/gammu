@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nokia protocols &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nokia S40 filesystem SMS format" href="nokia-s40-sms.html" />
+    <link rel="prev" title="Discovering protocol" href="discovering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nokia protocols</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#frame-format-for-mbus-version-1">Frame format for MBUS version 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frame-format-for-fbus-version-1">Frame format for FBUS version 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frame-format-for-fbus-version-2-direct-irda">Frame format for FBUS version 2/Direct IRDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frame-format-for-mbus-version-2">Frame format for MBUS version 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#misc-about-mbus-version-2">Misc (about MBUS version 2)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#x4e-commands">0x4E commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#x78-0x79-commands">0x78 / 0x79 commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xd0-commands">0xD0 commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">Nokia protocols</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/nokia.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nokia-protocols">
+<h1>Nokia protocols<a class="headerlink" href="#nokia-protocols" title="Permalink to this heading"></a></h1>
+<p>Document describing protocol used in Nokia phones.</p>
+<p>The data provided is for information purposes only.
+Some of the frames might be hazardous to your phone. Be careful!!!
+We do not take any responsibility or liability for damages, etc.</p>
+<p>Last update 23.06.2003</p>
+<p>Assembled by
+Balazs Nagy          &lt;<a class="reference external" href="mailto:js&#37;&#52;&#48;iksz&#46;hu">js<span>&#64;</span>iksz<span>&#46;</span>hu</a>&gt;
+Alfred R. Nurnberger &lt;<a class="reference external" href="mailto:arnu&#37;&#52;&#48;flosys&#46;com">arnu<span>&#64;</span>flosys<span>&#46;</span>com</a>&gt;
+Hugh Blemings        &lt;<a class="reference external" href="mailto:Hugh&#46;Blemings&#37;&#52;&#48;vsb&#46;com&#46;au">Hugh<span>&#46;</span>Blemings<span>&#64;</span>vsb<span>&#46;</span>com<span>&#46;</span>au</a>&gt;
+Mike Bradley         &lt;<a class="reference external" href="mailto:mike&#37;&#52;&#48;trumpington&#46;st">mike<span>&#64;</span>trumpington<span>&#46;</span>st</a>&gt;
+Odinokov Serge       &lt;<a class="reference external" href="mailto:serge&#37;&#52;&#48;takas&#46;lt">serge<span>&#64;</span>takas<span>&#46;</span>lt</a>&gt;
+Pavel Janik          &lt;<a class="reference external" href="mailto:Pavel&#37;&#52;&#48;Janik&#46;cz">Pavel<span>&#64;</span>Janik<span>&#46;</span>cz</a>&gt;
+Pawel Kot            &lt;<a class="reference external" href="mailto:pkot&#37;&#52;&#48;linuxnews&#46;pl">pkot<span>&#64;</span>linuxnews<span>&#46;</span>pl</a>&gt;
+Marcin Wiacek        &lt;<a class="reference external" href="mailto:Marcin&#37;&#52;&#48;MWiacek&#46;com">Marcin<span>&#64;</span>MWiacek<span>&#46;</span>com</a>&gt;
+Jens Bennfors        &lt;<a class="reference external" href="mailto:jens&#46;bennfors&#37;&#52;&#48;ing&#46;hj&#46;se">jens<span>&#46;</span>bennfors<span>&#64;</span>ing<span>&#46;</span>hj<span>&#46;</span>se</a>&gt;
+Michael Hund         &lt;<a class="reference external" href="mailto:michael&#37;&#52;&#48;drhund&#46;de">michael<span>&#64;</span>drhund<span>&#46;</span>de</a>&gt;
+Jay Bertrand         &lt;<a class="reference external" href="mailto:jay&#46;bertrand&#37;&#52;&#48;libertysurf&#46;fr">jay<span>&#46;</span>bertrand<span>&#64;</span>libertysurf<span>&#46;</span>fr</a>&gt;
+&lt;<a class="reference external" href="mailto:arnu&#37;&#52;&#48;venia&#46;net">arnu<span>&#64;</span>venia<span>&#46;</span>net</a>&gt;
+Andrew Kozin
+Pavel Machek         &lt;<a class="reference external" href="mailto:pavel&#37;&#52;&#48;ucw&#46;cz">pavel<span>&#64;</span>ucw<span>&#46;</span>cz</a>&gt;
+Diego Betancor       &lt;<a class="reference external" href="mailto:dbetancor&#37;&#52;&#48;duocom&#46;net">dbetancor<span>&#64;</span>duocom<span>&#46;</span>net</a>&gt;
+… and other members of gnokii mailing list
+and authors of some WWW pages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this information isn’t (and can’t be) complete.  If you know anything
+about features not listed here or you noticed a bug in this list, please
+notify us via e-mail.  Thank you.</p>
+</div>
+<section id="frame-format-for-mbus-version-1">
+<h2>Frame format for MBUS version 1<a class="headerlink" href="#frame-format-for-mbus-version-1" title="Permalink to this heading"></a></h2>
+<p>Request from Computer/Answer from Phone:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">DestDEV</span><span class="p">,</span> <span class="n">SrcDEV</span><span class="p">,</span> <span class="n">FrameLength</span><span class="p">,</span> <span class="n">MsgType</span><span class="p">,</span> <span class="p">{</span><span class="n">block</span><span class="p">},</span> <span class="nb">id</span><span class="p">,</span> <span class="n">ChkSum</span> <span class="p">}</span>
+
+    <span class="n">where</span> <span class="n">DestDEV</span><span class="p">,</span> <span class="n">SrcDEV</span><span class="p">:</span>   <span class="mh">0x00</span><span class="p">:</span> <span class="n">phone</span>
+                             <span class="mh">0xf8</span><span class="p">:</span> <span class="n">PC</span> <span class="p">(</span><span class="n">wakeup</span> <span class="n">msg</span><span class="p">)</span>
+                             <span class="mh">0xe4</span><span class="p">:</span> <span class="n">PC</span> <span class="p">(</span><span class="n">normal</span> <span class="n">msg</span><span class="p">)</span>
+          <span class="n">FrameLength</span><span class="p">:</span>       <span class="n">length</span> <span class="n">of</span> <span class="n">data</span> <span class="n">frame</span><span class="o">.</span> <span class="n">Maximal</span> <span class="mh">0x78</span><span class="o">.</span> <span class="n">Longer</span>
+                             <span class="n">frames</span> <span class="n">are</span> <span class="n">divided</span> <span class="n">into</span> <span class="n">smaller</span><span class="o">.</span>
+          <span class="n">MsgType</span><span class="p">:</span>           <span class="n">see</span> <span class="n">List</span>
+          <span class="p">{</span><span class="n">block</span><span class="p">}:</span>           <span class="n">main</span> <span class="n">frame</span>
+          <span class="nb">id</span><span class="p">:</span>                <span class="n">request</span> <span class="n">identity</span> <span class="n">number</span> <span class="mf">1.</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">incremented</span> <span class="n">after</span>
+                             <span class="n">the</span> <span class="n">request</span> <span class="ow">is</span> <span class="n">accepted</span>
+          <span class="n">ChkSum</span><span class="p">:</span>            <span class="n">XOR</span> <span class="n">on</span> <span class="n">frame</span><span class="s1">&#39;s all numbers</span>
+</pre></div>
+</div>
+<p>Ack from Phone:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{ DestDEV, 0x00, FrameLength, MsgType, {block} , id, ChkSum }
+
+   where DestDEV:           taken from original request packet
+         FrameLength:       0x7f, when DestDEV = 0xe4
+                            0x7e, when DestDEV = 0xf8
+         MsgType:           see List. Present only, when DestDEV = 0xf8
+         {block}:           main frame. Present only, when DestDEV = 0xf8
+         id:                request identity number 1..?, corresponding
+                            to the original request packet id
+                            the request is accepted
+         ChkSum:            XOR on frame&#39;s all numbers
+</pre></div>
+</div>
+<p>Update: description above according to the
+<a class="reference external" href="http://www.gadgets.demon.co.uk/nokia21xx/protocol.html">http://www.gadgets.demon.co.uk/nokia21xx/protocol.html</a>.</p>
+<dl class="simple">
+<dt>Pavel Machek &lt;<a class="reference external" href="mailto:pavel&#37;&#52;&#48;ucw&#46;cz">pavel<span>&#64;</span>ucw<span>&#46;</span>cz</a>&gt; wrote:</dt><dd><p>0x7e is actually registration acknowledge. Both have nothing to do
+with DestDEV, except that special device needs to be used for
+registration.</p>
+</dd>
+</dl>
+<p>Ack from Computer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{ 0x00, SrcDEV, 0x7f, id, ChkSum }
+
+   where SrcDEV:            taken from response packet
+         id:                request identity number 1..?, corresponding
+                            to the response packet id
+                            the request is accepted
+         ChkSum:            XOR on frame&#39;s all numbers
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Port settings:</dt><dd><p>Speed 9600 bps, Bits 8, ParityOdd, Stop Bits 1, DTR and RTS logic 0</p>
+</dd>
+</dl>
+<p>In the MBUS bus, the phone has only one connector for transmission and
+reception.</p>
+<p>Because of this characteristics of the phone connector, every time that the
+PC writes into the phone it is writing as well into its own Rx. So every
+time the PC sends info into the phone it finds that same information in its
+own Rx buffers, like a mirror copy. This should be discarded.</p>
+<p>The communications is made like an old cb radio, only one
+talking at a time. Many transmission are made this way:</p>
+<ul class="simple">
+<li><p>&lt;computer sends request&gt;</p></li>
+<li><p>&lt;phone sends ack&gt;</p></li>
+<li><p>&lt;phone sends response&gt;</p></li>
+<li><p>&lt;computer sends ack&gt;</p></li>
+</ul>
+<p>Some frames are sent from phone without asking for them</p>
+<p>You have to implement collision protocol. IE. you should listen for
+what you are transmitting, and if it does not come back, you have
+collision.</p>
+<p>You should wait for bus to be free for 3 milliseconds before normal
+message, and for 2.5 milliseconds before acknowledge. You should wait
+for acknowledge for 200 milliseconds, then retransmit.</p>
+</section>
+<section id="frame-format-for-fbus-version-1">
+<h2>Frame format for FBUS version 1<a class="headerlink" href="#frame-format-for-fbus-version-1" title="Permalink to this heading"></a></h2>
+<p>All frames:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{ FrameID, FrameLength, MsgType, {block}, SeqNo, ChkSum }
+
+     where FrameID:         0x01 Command frame from computer to Nokia
+                            0x02 ??? - Data call frame from computer to Nokia - ???
+                            0x03 Data call frame from Nokia to computer
+                            0x04 Command frame from Nokia to computer
+           FrameLength:     {block} + 2
+           MsgType:         see List
+           SeqNum:          Sequence number of command in case where direction is
+                            from ME to computer, the sequence number is
+                            counting from 0x30 to 0x37 and resetting back to 0x30.
+                            When direction is from computer to ME,
+                            sequence number counts from 0x08 to 0x0f and resets back to 0x08.
+                            It may not be required to be this way.
+                            Sequence numbers are used in acknowledging commands.
+           ChkSum1:         CRC = 0;
+                            for (i = 0; i &lt; (2 + CMD_LEN); i++)
+                              CRC ^= frame[i];
+</pre></div>
+</div>
+</section>
+<section id="frame-format-for-fbus-version-2-direct-irda">
+<h2>Frame format for FBUS version 2/Direct IRDA<a class="headerlink" href="#frame-format-for-fbus-version-2-direct-irda" title="Permalink to this heading"></a></h2>
+<p>All frames:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{ FrameID, DestDEV, SrcDEV, MsgType, 0x00, FrameLength, {block}, FramesToGo,
+  SeqNo, PaddingByte?, ChkSum1, ChkSum2 }
+
+     where FrameID:         0x1c: IR / FBUS
+                            0x1e: Serial / FBUS
+           DestDev, SrcDev: 0x00: mobile phone
+                            0x0c: TE (FBUS) [eg. PC]
+           MsgType:         see List
+           FrameLength:     {block} + 2 (+ 1 if PaddingByte exists)
+           FramesToGo:      0x01 means the last frame
+           SeqNo:           [0xXY]
+                              X: 4: first block
+                                 0: continuing block
+                                 Y: sequence number
+           PaddingByte:     0x00 if FrameLength would be an odd number
+                            anyways it doesn&#39;t exists
+           ChkSum1:         XOR on frame&#39;s odd numbers
+           ChkSum2?:        XOR on frame&#39;s even numbers
+</pre></div>
+</div>
+</section>
+<section id="frame-format-for-mbus-version-2">
+<h2>Frame format for MBUS version 2<a class="headerlink" href="#frame-format-for-mbus-version-2" title="Permalink to this heading"></a></h2>
+<p>Cable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{ FrameID, DestDEV, SrcDEV, MsgType, FrameLengthLO, FrameLengthHI, {block},
+  SeqNo, ChkSum }
+
+     where FrameID:         0x1f: Serial / M2BUS
+           DestDev, SrcDev: 0x00: mobile phone
+                            0x1d: TE (M2BUS)
+                            0x10: TE (M2BUS) (Service Software ?)
+                            0x04: Carkit?
+                            0x48: DLR3 cable?
+                            0xF8: unknown target?
+                            0xFF: global target?
+           MsgType:         see List
+           FrameLength:     {block}
+           SeqNo:           sequence number
+           ChkSum:          XOR on frame&#39;s all numbers
+</pre></div>
+</div>
+<p>Please note that M2BUS has only one checksum: XOR on frame[FrameID..SeqNo]</p>
+<p>Ack:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">FrameID</span><span class="p">,</span> <span class="n">DestDEV</span><span class="p">,</span> <span class="n">SrcDEV</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="n">Id_SeqNo</span><span class="p">,</span> <span class="n">ChkSum</span> <span class="p">}</span>
+
+     <span class="n">where</span> <span class="n">Id_SeqNo</span><span class="p">:</span>        <span class="n">Is</span> <span class="n">the</span> <span class="n">sequence</span> <span class="n">number</span> <span class="n">that</span> <span class="n">you</span> <span class="n">are</span>
+                            <span class="n">acknowledging</span> <span class="p">(</span><span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">other</span> <span class="n">part</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Frame format for Infrared:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">FrameID</span><span class="p">,</span> <span class="n">DestDEV</span><span class="p">,</span> <span class="n">SrcDEV</span><span class="p">,</span> <span class="n">MsgType</span><span class="p">,</span> <span class="n">FrameLengthLo</span><span class="p">,</span> <span class="n">FrameLengthHi</span><span class="p">,</span> <span class="p">{</span><span class="n">block</span><span class="p">}}</span>
+
+     <span class="n">where</span> <span class="n">FrameID</span><span class="p">:</span>         <span class="mh">0x14</span>
+           <span class="n">DestDev</span><span class="p">,</span> <span class="n">SrcDev</span><span class="p">:</span> <span class="mh">0x00</span><span class="p">:</span> <span class="n">mobile</span> <span class="n">phone</span>
+                            <span class="mh">0x0c</span><span class="p">:</span> <span class="n">TE</span> <span class="p">[</span><span class="n">eg</span><span class="o">.</span> <span class="n">PC</span><span class="p">]</span>
+           <span class="n">MsgType</span><span class="p">:</span>         <span class="n">see</span> <span class="n">List</span>
+           <span class="n">FrameLength</span><span class="p">:</span>     <span class="p">{</span><span class="n">block</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Frame format for Bluetooth:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">FrameID</span><span class="p">,</span> <span class="n">DestDEV</span><span class="p">,</span> <span class="n">SrcDEV</span><span class="p">,</span> <span class="n">MsgType</span><span class="p">,</span> <span class="n">FrameLengthLo</span><span class="p">,</span> <span class="n">FrameLengthHi</span><span class="p">,</span> <span class="p">{</span><span class="n">block</span><span class="p">}</span> <span class="p">}</span>
+
+     <span class="n">where</span> <span class="n">FrameID</span><span class="p">:</span>         <span class="mh">0x19</span>
+           <span class="n">DestDev</span><span class="p">,</span> <span class="n">SrcDev</span><span class="p">:</span> <span class="mh">0x00</span><span class="p">:</span> <span class="n">mobile</span> <span class="n">phone</span>
+                            <span class="mh">0x10</span><span class="p">:</span> <span class="n">TE</span> <span class="p">[</span><span class="n">eg</span><span class="o">.</span> <span class="n">PC</span><span class="p">]</span>
+           <span class="n">MsgType</span><span class="p">:</span>         <span class="n">see</span> <span class="n">List</span>
+           <span class="n">FrameLength</span><span class="p">:</span>     <span class="p">{</span><span class="n">block</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Frames list format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">hex</span><span class="p">:</span> <span class="n">Short</span> <span class="n">description</span>
+   <span class="n">x</span> <span class="n">msg</span> <span class="n">desc</span>                <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+    <span class="mi">0</span><span class="n">xXX</span>   <span class="o">-&gt;</span> <span class="n">one</span> <span class="n">byte</span>
+    <span class="mi">0</span><span class="n">xXXYY</span> <span class="o">-&gt;</span> <span class="n">two</span> <span class="nb">bytes</span> <span class="p">(</span><span class="o">==</span> <span class="mi">0</span><span class="n">xXX</span><span class="p">,</span> <span class="mi">0</span><span class="n">xYY</span><span class="p">)</span>
+
+     <span class="n">where</span> <span class="nb">hex</span><span class="p">:</span>     <span class="n">message</span> <span class="nb">type</span>
+           <span class="n">x</span><span class="p">:</span>       <span class="n">s</span><span class="o">=</span><span class="n">send</span> <span class="p">(</span><span class="n">eg</span><span class="o">.</span> <span class="n">to</span> <span class="n">mobile</span><span class="p">),</span> <span class="n">r</span><span class="o">=</span><span class="n">receive</span>
+           <span class="p">{</span> <span class="o">...</span> <span class="p">}:</span> <span class="n">data</span> <span class="n">after</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x01</span> <span class="n">header</span>
+           <span class="p">{</span><span class="o">+...</span> <span class="p">}:</span> <span class="n">raw</span> <span class="n">data</span> <span class="p">(</span><span class="n">without</span> <span class="n">header</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="misc-about-mbus-version-2">
+<h2>Misc (about MBUS version 2)<a class="headerlink" href="#misc-about-mbus-version-2" title="Permalink to this heading"></a></h2>
+<section id="x4e-commands">
+<h3>0x4E commands<a class="headerlink" href="#x4e-commands" title="Permalink to this heading"></a></h3>
+<p>(sent from a 5160i TDMA / 6160i TDMA / 6185 CDMA or 7110 GSM
+phone to the uC in the DLR-3 cable)</p>
+<p>DLR-3 req:</p>
+<p>1F 48 00 4E 00 02 01 XX SQ CS</p>
+<blockquote>
+<div><p>frame sent from the phone to the DLR-3 cable
+(after 15kOhm resistor detected betw. XMIC (3) and DGND (9).)
+DSR,DCD,CTS flow control data is coded into the 2nd databyte</p>
+<p>XX:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bit.0=/CTS</p></li>
+<li><p>bit.1=/DCD</p></li>
+<li><p>bit.2=CMD/DATA</p></li>
+<li><p>bit.3=DSR</p></li>
+<li><p>bit.4-7=0</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="x78-0x79-commands">
+<h3>0x78 / 0x79 commands<a class="headerlink" href="#x78-0x79-commands" title="Permalink to this heading"></a></h3>
+<p>(used by handsfree carkit) Works also on GSM phones (5110 / 6110 / etc)</p>
+<p>These commands are used by the Nokia Carkits to switch the phone audio path to
+XMiC and XEAR , turn the phone on/off according to the car ignition, and
+control the PA loudspeaker amplifier in the carkit and the car radio mute
+output which silences the car radio during a call</p>
+<dl>
+<dt>mute status tone:</dt><dd><dl class="simple">
+<dt>1F 04 00 78 00 04 01 02 0E 00 SQ CS</dt><dd><p>status indication = disable carkit audio amplifier (no audio / no tone)</p>
+</dd>
+</dl>
+</dd>
+<dt>mute status tone:</dt><dd><dl class="simple">
+<dt>1F 04 00 78 00 04 01 02 0E 03 SQ CS</dt><dd><p>status indication = enable carkit audio amplifier (audio / tone present)</p>
+</dd>
+</dl>
+</dd>
+<dt>mute status call:</dt><dd><dl class="simple">
+<dt>1F 04 00 78 00 04 01 02 07 00 SQ CS</dt><dd><p>status indication = disable radio mute output (no call)</p>
+</dd>
+</dl>
+</dd>
+<dt>mute status call:</dt><dd><dl class="simple">
+<dt>1F 04 00 78 00 04 01 02 07 01 SQ CS</dt><dd><p>status indication = enable radio mute output (call active)</p>
+</dd>
+</dl>
+</dd>
+<dt>enable ???:</dt><dd><dl class="simple">
+<dt>1F 04 00 78 00 04 01 02 08 01 SQ CS</dt><dd><p>status indication = enable ???  sent to HFU-2 on power on
+byte 9 (07,08,0E) seems to be a pointer to a memory location,
+byte 10 is the data at this memory location.</p>
+</dd>
+</dl>
+</dd>
+<dt>response from HFU:</dt><dd><dl class="simple">
+<dt>1F 00 04 78 00 03 02 01 03 SQ CS</dt><dd><p>response message from HFU-2 (use unknown)</p>
+</dd>
+</dl>
+</dd>
+<dt>go HF and IGN on:</dt><dd><dl class="simple">
+<dt>1F 00 04 79 00 05 02 01 01 63 00 SQ CS</dt><dd><p>enables carkit mode + turns phone on + req. mute status</p>
+</dd>
+</dl>
+</dd>
+<dt>go HF and IGN off:</dt><dd><dl class="simple">
+<dt>1F 00 04 79 00 05 02 01 01 61 00 SQ CS</dt><dd><p>enables carkit mode + powers phone off (1 min delay) + req. mute status</p>
+</dd>
+</dl>
+</dd>
+<dt>ext. HS Offhk:</dt><dd><dl class="simple">
+<dt>1F 00 04 79 00 05 02 01 01 23 00 SQ CS</dt><dd><p>enables carkit mode + external handset lifted (OFF-Hook)</p>
+</dd>
+</dl>
+</dd>
+<dt>ext. HS Onhk:</dt><dd><dl>
+<dt>1F 00 04 79 00 05 02 01 01 63 00 SQ CS</dt><dd><p>enables carkit mode + external handset put back (ON-Hook)
+Ignition and Hook are coded into one byte</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bit.0 = 0:on power on 1:when in operation</p></li>
+<li><p>bit.1 = IGNITION STATUS</p></li>
+<li><p>bit.2 = x  can be 1 or 0</p></li>
+<li><p>bit.3 = 0</p></li>
+<li><p>bit.4 = 0</p></li>
+<li><p>bit.5 = 1</p></li>
+<li><p>bit.6 = Hook (inverted)</p></li>
+<li><p>bit.7 = 0</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+<dt>HFU-2 version:</dt><dd><p>1F 00 04 79 00 12 02 01 02 06 00 56 20 30 36 2E 30 30 0A 48 46 55 32 00 SQ CS</p>
+</dd>
+<dt>for HFU-2:</dt><dd><dl class="simple">
+<dt>1F 04 00 DA 00 02 00 02 SQ CS</dt><dd><p>function unknown - sent from Nokia phone to HFU-2mute output (call active )</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="xd0-commands">
+<h3>0xD0 commands<a class="headerlink" href="#xd0-commands" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>init:</dt><dd><dl class="simple">
+<dt>1F 00 1D D0 00 01 04 SQ CS</dt><dd><p>sent by the Service Software or HFU-2 on startup</p>
+</dd>
+</dl>
+</dd>
+<dt>init resp:</dt><dd><dl class="simple">
+<dt>1F 1D 00 D0 00 01 05 SQ CS</dt><dd><p>response from phone to above frame</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="discovering.html" class="btn btn-neutral float-left" title="Discovering protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nokia-s40-sms.html" class="btn btn-neutral float-right" title="Nokia S40 filesystem SMS format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

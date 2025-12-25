@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Category" href="category.html" />
+    <link rel="prev" title="Callback" href="callback.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Call</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/call.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="call">
+<h1>Call<a class="headerlink" href="#call" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DialVoice” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DialService” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AnswerCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_CancelCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_HoldCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_UnholdCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ConferenceCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SplitCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_TransferCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SwitchCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCallDivert” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetCallDivert” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_CancelAllDiverts” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetIncomingCall” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SendDTMF” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_CallStatus">
+<span class="target" id="group__Call_1ga5ef428cc233b52f83a63e80845bef597"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CallStatus</span></span></span><a class="headerlink" href="#c.GSM_CallStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum with status of call. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_IncomingCall">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a057f5d206bd61f1c534f2a1119786d27"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_IncomingCall</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_IncomingCall" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Somebody calls to us </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_OutgoingCall">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a2e80b9e6eb743e39f71e1976c3b0c113"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_OutgoingCall</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_OutgoingCall" title="Permalink to this definition"></a><br /></dt>
+<dd><p>We call somewhere </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallStart">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a478eab8f60b9927e543e22e7b2db45e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallStart</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallStart" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call started </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallEnd">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a373beacce2a0025f6007e476128002b8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallEnd</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallEnd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>End of call from unknown side </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallRemoteEnd">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a93d6d47183aeec3eac93cd1fd7fedbca"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallRemoteEnd</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallRemoteEnd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>End of call from remote side </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallLocalEnd">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a64a04d2577832f203545834c95011539"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallLocalEnd</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallLocalEnd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>End of call from our side </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallEstablished">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a5295b192ffcafdcc7561b2c7be9f88d7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallEstablished</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallEstablished" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call established. Waiting for answer or dropping </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallHeld">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a58c017e3f95684490d953fbb43876e92"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallHeld</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallHeld" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call held </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallResumed">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597a092b766f33b063b2b43d1c1afbbfadc3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallResumed</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallResumed" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call resumed </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallStatus.GSM_CALL_CallSwitched">
+<span class="target" id="group__Call_1gga5ef428cc233b52f83a63e80845bef597afb569311ea8e0de32e42421d80d4f365"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_CallSwitched</span></span></span><a class="headerlink" href="#c.GSM_CallStatus.GSM_CALL_CallSwitched" title="Permalink to this definition"></a><br /></dt>
+<dd><p>We switch to call </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Call">
+<span class="target" id="structGSM__Call"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Call</span></span></span><a class="headerlink" href="#c.GSM_Call" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call information. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Call.Status">
+<span class="target" id="structGSM__Call_1ac7e32610d162c21148b10596a0389025"></span><a class="reference internal" href="#c.GSM_CallStatus" title="GSM_CallStatus"><span class="n"><span class="pre">GSM_CallStatus</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Status</span></span></span><a class="headerlink" href="#c.GSM_Call.Status" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call status. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Call.CallID">
+<span class="target" id="structGSM__Call_1aa2eac04de8816f8ddd9b809fb0ed3774"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CallID</span></span></span><a class="headerlink" href="#c.GSM_Call.CallID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call ID </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Call.CallIDAvailable">
+<span class="target" id="structGSM__Call_1afc62d7eaf9a1bba2d66fd51b2eaab2d0"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CallIDAvailable</span></span></span><a class="headerlink" href="#c.GSM_Call.CallIDAvailable" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether Call ID is available. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Call.StatusCode">
+<span class="target" id="structGSM__Call_1a2eae7b7f5a3a7656b798fe4f3aac2a59"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StatusCode</span></span></span><a class="headerlink" href="#c.GSM_Call.StatusCode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status code. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Call.PhoneNumber">
+<span class="target" id="structGSM__Call_1a6a091cbd96b47269e79c27a99f40b5db"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneNumber</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Call.PhoneNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remote phone number. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Divert_DivertTypes">
+<span class="target" id="group__Divert_1gafaf68f202a25cd592d3797d01a57503a"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Divert_DivertTypes</span></span></span><a class="headerlink" href="#c.GSM_Divert_DivertTypes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Defines when diversion is active. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_DivertTypes.GSM_DIVERT_Busy">
+<span class="target" id="group__Divert_1ggafaf68f202a25cd592d3797d01a57503aabc18bbb57e9156f1045e76653dbf7e85"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_Busy</span></span></span><a class="headerlink" href="#c.GSM_Divert_DivertTypes.GSM_DIVERT_Busy" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Divert when busy. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_DivertTypes.GSM_DIVERT_NoAnswer">
+<span class="target" id="group__Divert_1ggafaf68f202a25cd592d3797d01a57503aaf2885dd3686d4106f01d196ecc786c08"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_NoAnswer</span></span></span><a class="headerlink" href="#c.GSM_Divert_DivertTypes.GSM_DIVERT_NoAnswer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Divert when not answered. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_DivertTypes.GSM_DIVERT_OutOfReach">
+<span class="target" id="group__Divert_1ggafaf68f202a25cd592d3797d01a57503aaa69911c27d4d73c3e45df3f42ee0245f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_OutOfReach</span></span></span><a class="headerlink" href="#c.GSM_Divert_DivertTypes.GSM_DIVERT_OutOfReach" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Divert when phone off or no coverage. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_DivertTypes.GSM_DIVERT_AllTypes">
+<span class="target" id="group__Divert_1ggafaf68f202a25cd592d3797d01a57503aa93185579f38665ef073edcfe19ae9b90"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_AllTypes</span></span></span><a class="headerlink" href="#c.GSM_Divert_DivertTypes.GSM_DIVERT_AllTypes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Divert all calls without ringing. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Divert_CallTypes">
+<span class="target" id="group__Divert_1ga278bf5f59b2f3f9d1d3906429f1c76e1"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Divert_CallTypes</span></span></span><a class="headerlink" href="#c.GSM_Divert_CallTypes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Which type of calls should be diverted. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_CallTypes.GSM_DIVERT_VoiceCalls">
+<span class="target" id="group__Divert_1gga278bf5f59b2f3f9d1d3906429f1c76e1aa8a90cc7e1f76879116e3e95d33deda5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_VoiceCalls</span></span></span><a class="headerlink" href="#c.GSM_Divert_CallTypes.GSM_DIVERT_VoiceCalls" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Voice calls. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_CallTypes.GSM_DIVERT_FaxCalls">
+<span class="target" id="group__Divert_1gga278bf5f59b2f3f9d1d3906429f1c76e1a21c39b6cd1d387863845266580a0e84f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_FaxCalls</span></span></span><a class="headerlink" href="#c.GSM_Divert_CallTypes.GSM_DIVERT_FaxCalls" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fax calls. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_CallTypes.GSM_DIVERT_DataCalls">
+<span class="target" id="group__Divert_1gga278bf5f59b2f3f9d1d3906429f1c76e1a2467d8c8d51e0abdb36c152569c0961e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_DataCalls</span></span></span><a class="headerlink" href="#c.GSM_Divert_CallTypes.GSM_DIVERT_DataCalls" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Data calls. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Divert_CallTypes.GSM_DIVERT_AllCalls">
+<span class="target" id="group__Divert_1gga278bf5f59b2f3f9d1d3906429f1c76e1ac1b57efa668b8bac3a4025701c96c161"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DIVERT_AllCalls</span></span></span><a class="headerlink" href="#c.GSM_Divert_CallTypes.GSM_DIVERT_AllCalls" title="Permalink to this definition"></a><br /></dt>
+<dd><p>All calls. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CallDivert">
+<span class="target" id="structGSM__CallDivert"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CallDivert</span></span></span><a class="headerlink" href="#c.GSM_CallDivert" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call diversion definition. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CallDivert.DivertType">
+<span class="target" id="structGSM__CallDivert_1a632c729a9a4b0f329728b6ea52c13be5"></span><a class="reference internal" href="#c.GSM_Divert_DivertTypes" title="GSM_Divert_DivertTypes"><span class="n"><span class="pre">GSM_Divert_DivertTypes</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DivertType</span></span></span><a class="headerlink" href="#c.GSM_CallDivert.DivertType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>When diversion is active. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CallDivert.CallType">
+<span class="target" id="structGSM__CallDivert_1a60ad807e5f09934fa8231868392f8d8f"></span><a class="reference internal" href="#c.GSM_Divert_CallTypes" title="GSM_Divert_CallTypes"><span class="n"><span class="pre">GSM_Divert_CallTypes</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CallType</span></span></span><a class="headerlink" href="#c.GSM_CallDivert.CallType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of call to divert. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CallDivert.Timeout">
+<span class="target" id="structGSM__CallDivert_1a33128ec25cab95468a74a6585ec40f32"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timeout</span></span></span><a class="headerlink" href="#c.GSM_CallDivert.Timeout" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Timeout for diversion. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CallDivert.Number">
+<span class="target" id="structGSM__CallDivert_1a8110d240179edbd12d844360e4e98027"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_CallDivert.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number where to divert. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MultiCallDivert">
+<span class="target" id="structGSM__MultiCallDivert"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MultiCallDivert</span></span></span><a class="headerlink" href="#c.GSM_MultiCallDivert" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Multiple call diversions. </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_CallShowNumber">
+<span class="target" id="group__Call_1ga0381df46871e8a5c0c26d74c88fc17a7"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CallShowNumber</span></span></span><a class="headerlink" href="#c.GSM_CallShowNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>How to handle number when initiating voice call. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallShowNumber.GSM_CALL_ShowNumber">
+<span class="target" id="group__Call_1gga0381df46871e8a5c0c26d74c88fc17a7ad0ee88bb2e6e49a4fc1525809f51ec07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_ShowNumber</span></span></span><a class="headerlink" href="#c.GSM_CallShowNumber.GSM_CALL_ShowNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Show number. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallShowNumber.GSM_CALL_HideNumber">
+<span class="target" id="group__Call_1gga0381df46871e8a5c0c26d74c88fc17a7a5a8f34ebb4bc985d0e83751a802cd926"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_HideNumber</span></span></span><a class="headerlink" href="#c.GSM_CallShowNumber.GSM_CALL_HideNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Hide number. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CallShowNumber.GSM_CALL_DefaultNumberPresence">
+<span class="target" id="group__Call_1gga0381df46871e8a5c0c26d74c88fc17a7a5b621ad50dfced0ba503f788eecf3680"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CALL_DefaultNumberPresence</span></span></span><a class="headerlink" href="#c.GSM_CallShowNumber.GSM_CALL_DefaultNumberPresence" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Keep phone default settings. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="callback.html" class="btn btn-neutral float-left" title="Callback" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="category.html" class="btn btn-neutral float-right" title="Category" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

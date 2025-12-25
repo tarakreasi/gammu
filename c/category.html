@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Category &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Date and time" href="datetime.html" />
+    <link rel="prev" title="Call" href="call.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Category</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/category.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="category">
+<h1>Category<a class="headerlink" href="#category" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCategory” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddCategory” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCategoryStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_CategoryType">
+<span class="target" id="group__Category_1ga97569a7a13e757eca81967c7c57f1dda"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CategoryType</span></span></span><a class="headerlink" href="#c.GSM_CategoryType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of category </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CategoryType.Category_ToDo">
+<span class="target" id="group__Category_1gga97569a7a13e757eca81967c7c57f1ddaa5dcc8a08707ca90da5e11f30205b7785"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Category_ToDo</span></span></span><a class="headerlink" href="#c.GSM_CategoryType.Category_ToDo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Todo entry category </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CategoryType.Category_Phonebook">
+<span class="target" id="group__Category_1gga97569a7a13e757eca81967c7c57f1ddaad51bece219136774dc6ec9572add840b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Category_Phonebook</span></span></span><a class="headerlink" href="#c.GSM_CategoryType.Category_Phonebook" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook entry category </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Category">
+<span class="target" id="structGSM__Category"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Category</span></span></span><a class="headerlink" href="#c.GSM_Category" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Category entry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Category.Type">
+<span class="target" id="structGSM__Category_1a099f54343ea08d3d948f638ce6af131d"></span><a class="reference internal" href="#c.GSM_CategoryType" title="GSM_CategoryType"><span class="n"><span class="pre">GSM_CategoryType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_Category.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of category </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Category.Location">
+<span class="target" id="structGSM__Category_1a9107d07d4d4b4113a42e6e2d7513c87d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_Category.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location of category </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Category.Name">
+<span class="target" id="structGSM__Category_1a8bae4c5a549e308256b56da2c1ca58d4"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_CATEGORY_NAME_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Category.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of category </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CategoryStatus">
+<span class="target" id="structGSM__CategoryStatus"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CategoryStatus</span></span></span><a class="headerlink" href="#c.GSM_CategoryStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of categories. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CategoryStatus.Type">
+<span class="target" id="structGSM__CategoryStatus_1a60a9cc16b541116cf764cea184112152"></span><a class="reference internal" href="#c.GSM_CategoryType" title="GSM_CategoryType"><span class="n"><span class="pre">GSM_CategoryType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_CategoryStatus.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of category. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CategoryStatus.Used">
+<span class="target" id="structGSM__CategoryStatus_1a02a3cc4e0c2765ead5427709f615509a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Used</span></span></span><a class="headerlink" href="#c.GSM_CategoryStatus.Used" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of used category names. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="call.html" class="btn btn-neutral float-left" title="Call" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="datetime.html" class="btn btn-neutral float-right" title="Date and time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

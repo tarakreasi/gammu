@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SMSD" href="smsd.html" />
+    <link rel="prev" title="Security" href="security.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Settings</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/settings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="settings">
+<h1>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h1>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetLocale">
+<span class="target" id="gammu-settings_8h_1a8cd1ee271325b79dcb75c457e8143a16"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetLocale</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Locale" title="GSM_Locale"><span class="n"><span class="pre">GSM_Locale</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">locale</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetLocale" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gets locale from phone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetLocale">
+<span class="target" id="gammu-settings_8h_1ab5459a2ef64a9960a1d09dc5cda68e0e"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetLocale</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Locale" title="GSM_Locale"><span class="n"><span class="pre">GSM_Locale</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">locale</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetLocale" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets locale of phone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetSyncMLSettings">
+<span class="target" id="gammu-settings_8h_1a246e827530514b020a668bd4626c0e8f"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetSyncMLSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_SyncMLSettings" title="GSM_SyncMLSettings"><span class="n"><span class="pre">GSM_SyncMLSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetSyncMLSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Acquires SyncML settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetSyncMLSettings">
+<span class="target" id="gammu-settings_8h_1aabf00ebdd3e7bddee8f6715ea76058d9"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetSyncMLSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_SyncMLSettings" title="GSM_SyncMLSettings"><span class="n"><span class="pre">GSM_SyncMLSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetSyncMLSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes SyncML settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetChatSettings">
+<span class="target" id="gammu-settings_8h_1a92145844137434b92856b75bb9778e25"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetChatSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_ChatSettings" title="GSM_ChatSettings"><span class="n"><span class="pre">GSM_ChatSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetChatSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Acquires chat/presence settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetChatSettings">
+<span class="target" id="gammu-settings_8h_1ad643835e5362504089e8930ef1afd3d7"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetChatSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_ChatSettings" title="GSM_ChatSettings"><span class="n"><span class="pre">GSM_ChatSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetChatSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes chat/presence settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetMMSSettings">
+<span class="target" id="gammu-settings_8h_1ab8ed015ab436c4d31fed00ccc9986833"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetMMSSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="wap.html#c.GSM_MultiWAPSettings" title="GSM_MultiWAPSettings"><span class="n"><span class="pre">GSM_MultiWAPSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetMMSSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Acquires MMS settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetMMSSettings">
+<span class="target" id="gammu-settings_8h_1a7e295fad4a0d54b6a186c492ec6b2c69"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetMMSSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="wap.html#c.GSM_MultiWAPSettings" title="GSM_MultiWAPSettings"><span class="n"><span class="pre">GSM_MultiWAPSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">settings</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetMMSSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes MMS settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetAutoNetworkLogin">
+<span class="target" id="gammu-settings_8h_1adf646d9027fe76c39f4d386d4fc9df22"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetAutoNetworkLogin</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetAutoNetworkLogin" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enables network auto login. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_Reset">
+<span class="target" id="gammu-settings_8h_1acafc7c12810d848b57ec6a0d3002682f"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Reset</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="n"><span class="pre">hard</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_Reset" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Performs phone reset. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_ResetPhoneSettings">
+<span class="target" id="gammu-settings_8h_1a621cd580899ee19d82806223cb76b2aa"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ResetPhoneSettings</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_ResetSettingsType" title="GSM_ResetSettingsType"><span class="n"><span class="pre">GSM_ResetSettingsType</span></span></a><span class="w"> </span><span class="n"><span class="pre">Type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_ResetPhoneSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets phone settings. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetProfile">
+<span class="target" id="gammu-settings_8h_1a1893d51f75400e1c661e1a5ce7d07518"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetProfile</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Profile" title="GSM_Profile"><span class="n"><span class="pre">GSM_Profile</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Profile</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetProfile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reads profile. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetProfile">
+<span class="target" id="gammu-settings_8h_1a50bd2265abf98496eaa3ac278b25fa59"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetProfile</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Profile" title="GSM_Profile"><span class="n"><span class="pre">GSM_Profile</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Profile</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetProfile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Updates profile. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetFMStation">
+<span class="target" id="gammu-settings_8h_1a25fe47d9b7f1b68e7100840a6d98c12e"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetFMStation</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_FMStation" title="GSM_FMStation"><span class="n"><span class="pre">GSM_FMStation</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">FMStation</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetFMStation" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reads FM station. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetFMStation">
+<span class="target" id="gammu-settings_8h_1acb9c4e8c250f4360f5a456c59ced5a1a"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetFMStation</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_FMStation" title="GSM_FMStation"><span class="n"><span class="pre">GSM_FMStation</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">FMStation</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetFMStation" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets FM station. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_ClearFMStations">
+<span class="target" id="gammu-settings_8h_1a24e0554a82df144f43da29fc36716295"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ClearFMStations</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_ClearFMStations" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Clears defined FM stations. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetGPRSAccessPoint">
+<span class="target" id="gammu-settings_8h_1a220f2861d634da87d8044de06bdd2daa"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetGPRSAccessPoint</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_GPRSAccessPoint" title="GSM_GPRSAccessPoint"><span class="n"><span class="pre">GSM_GPRSAccessPoint</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">point</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetGPRSAccessPoint" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gets GPRS access point. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetGPRSAccessPoint">
+<span class="target" id="gammu-settings_8h_1a8ba696aa53224edbc91cdb57fdf3e83f"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetGPRSAccessPoint</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_GPRSAccessPoint" title="GSM_GPRSAccessPoint"><span class="n"><span class="pre">GSM_GPRSAccessPoint</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">point</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetGPRSAccessPoint" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets GPRS access point. </p>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SyncMLSettings">
+<span class="target" id="structGSM__SyncMLSettings"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SyncMLSettings</span></span></span><a class="headerlink" href="#c.GSM_SyncMLSettings" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ResetSettingsType</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType.GSM_RESET_PHONESETTINGS">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0a3adf4781812cc0f84f300073b2995aec"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RESET_PHONESETTINGS</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType.GSM_RESET_PHONESETTINGS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType.GSM_RESET_USERINTERFACE">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0af0be74456c3d1b3053ce59bae5aba1a0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RESET_USERINTERFACE</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType.GSM_RESET_USERINTERFACE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType.GSM_RESET_USERINTERFACE_PHONESETTINGS">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0a912ee44633ae32d47d883d31b5d57542"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RESET_USERINTERFACE_PHONESETTINGS</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType.GSM_RESET_USERINTERFACE_PHONESETTINGS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType.GSM_RESET_DEVICE">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0a637f8ad4c768979e64a2f66157a8f8cb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RESET_DEVICE</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType.GSM_RESET_DEVICE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ResetSettingsType.GSM_RESET_FULLFACTORY">
+<span class="target" id="gammu-settings_8h_1aab1ab8e64706705a6a9a9b5c022e21c0aa27388a65789fe63e236af6fe9bbef5e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RESET_FULLFACTORY</span></span></span><a class="headerlink" href="#c.GSM_ResetSettingsType.GSM_RESET_FULLFACTORY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_ChatSettings">
+<span class="target" id="structGSM__ChatSettings"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ChatSettings</span></span></span><a class="headerlink" href="#c.GSM_ChatSettings" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Profile_Feat_Value</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL1">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a990e46a07496b3a673d828b7cd8550f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_KEYPAD_LEVEL1</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL1" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL2">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a96d9b9639c51dcaa6fffa60d7ed8868d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_KEYPAD_LEVEL2</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL3">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85afa87a07975ee3ffcd498e1c8143253c8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_KEYPAD_LEVEL3</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_LEVEL3" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a6222cccade7da6d83a7c5f7246bdc7ad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_KEYPAD_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_KEYPAD_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_RINGING">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ad3f05ec99058b63de191f04e771c19fa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_RINGING</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_RINGING" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_BEEPONCE">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85aeea655c2609ead4cce936891cd889e47"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_BEEPONCE</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_BEEPONCE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ae0be06c7ab7ee6470d48e0e84b23bf91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_RINGONCE">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a622c804ba36bb5f2852224236f2913ed"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_RINGONCE</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_RINGONCE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_ASCENDING">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ac4ab6531ce4690f3260de669559c7a3c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_ASCENDING</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_ASCENDING" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_CALLERGROUPS">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a83b8afcf235f958ad64a6812cd44b543"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_CALLALERT_CALLERGROUPS</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_CALLALERT_CALLERGROUPS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL1">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85aa2df04de56750b9d950c70db37b19b72"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VOLUME_LEVEL1</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL1" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL2">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a30e6d2b723b5b18a907fb12f4693e79a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VOLUME_LEVEL2</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL3">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85aea9d64f10ee937bcb10d4365801992d4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VOLUME_LEVEL3</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL3" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL4">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85accbc9e443303b9e34a2c49288ee96a72"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VOLUME_LEVEL4</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL4" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL5">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a962c368f3c41240cdbb242ed8803b3f4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VOLUME_LEVEL5</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VOLUME_LEVEL5" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_NOTONE">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a859bf4d1aec3c798d92de866c1d56ca9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_NOTONE</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_NOTONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_STANDARD">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a58f5e0d5bffcfa4de7acda86a6d7b959"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_STANDARD</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_STANDARD" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_SPECIAL">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a4fbc82ebe72739cf2393db7c5e9d3ea2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_SPECIAL</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_SPECIAL" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_BEEPONCE">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a6af26dcc020ef6e649b832a0fe1656c3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_BEEPONCE</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_BEEPONCE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_ASCENDING">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a3a493a4309a87c90c9e53a82f957eefa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_ASCENDING</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_ASCENDING" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_PERSONAL">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85aca47a473611b3a9a9be4debc76ea7d17"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_MESSAGE_PERSONAL</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_MESSAGE_PERSONAL" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85acbef2f6436d4204ae78b518d59cb23d9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VIBRATION_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_ON">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ab711db7fded16669356e63c15b876a29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VIBRATION_ON</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_ON" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_FIRST">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a1424ea36543b27310f3da6204d573a42"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_VIBRATION_FIRST</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_VIBRATION_FIRST" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_WARNING_ON">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ab4cc2343994ed5db2ccfd028f5f776ad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_WARNING_ON</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_WARNING_ON" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_WARNING_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a046ce087eecd24d02af88bcb0673bc08"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_WARNING_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_WARNING_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_AUTOANSWER_ON">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ada7931f4a17748d7f6dcc7bec663542a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_AUTOANSWER_ON</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_AUTOANSWER_ON" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_AUTOANSWER_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ad3cbeb790257161fb277929e2b1caf7d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_AUTOANSWER_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_AUTOANSWER_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_LIGHTS_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a85b1de9e64fc5fb9f484d86581f1f528"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_LIGHTS_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_LIGHTS_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_LIGHTS_AUTO">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a1c36153c8fe2eab25f4cbec79a264868"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_LIGHTS_AUTO</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_LIGHTS_AUTO" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_ON">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a72668520e1325587ccd30359507c1121"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_ON</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_ON" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_OFF">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85afcd6f8b2d527578e6ee708034e4bee34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_OFF</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_5SEC">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85aa369a2df0110cd90e3a44c360f6128b0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_5SEC</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_5SEC" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_20SEC">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ad19e3da2d174c954e20e73b5fe4a0089"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_20SEC</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_20SEC" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_1MIN">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a56f903f9de982023c68607315a56ffc1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_1MIN</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_1MIN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_2MIN">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a7b8ec61b965268d0d79bbd3758f2d908"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_2MIN</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_2MIN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_5MIN">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85a089fe58ddb9580627154c06bb4f39544"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_5MIN</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_5MIN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_10MIN">
+<span class="target" id="gammu-settings_8h_1a9edd35975b54abc8c2f3038539104c85ae2ca14442b4f6d5fde6e72e526cb41ef"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PROFILE_SAVER_TIMEOUT_10MIN</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_Value.PROFILE_SAVER_TIMEOUT_10MIN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Profile_Feat_ID</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_KeypadTone">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627ad4a6ea8e35bdc40f333d6a2d43e12347"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_KeypadTone</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_KeypadTone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_CallAlert">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a5ed8d1e67768afb032758c0ac3058b2d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_CallAlert</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_CallAlert" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_RingtoneVolume">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a9dd2b24785b1494bc04dc2e50bfbb7f0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_RingtoneVolume</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_RingtoneVolume" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_MessageTone">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a511cae100381dea3f64f0d6ac401a0f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_MessageTone</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_MessageTone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_Vibration">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a336767ef061621b7b29d15788032d368"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_Vibration</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_Vibration" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_WarningTone">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a3a213c89d9bc6c2986538664b0fc1975"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_WarningTone</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_WarningTone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_AutoAnswer">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a94e6f084229540401aa7a5293524c240"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_AutoAnswer</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_AutoAnswer" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_Lights">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a272f813998fbcb03230a38dd247fe5d3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_Lights</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_Lights" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_ScreenSaverTime">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627abd967ce91965f346a193a0f34b9f9cf0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_ScreenSaverTime</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_ScreenSaverTime" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_ScreenSaver">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a59436a394c3c2c208c2dd56bbfa5770f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_ScreenSaver</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_ScreenSaver" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_ScreenSaverNumber">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a8ca5e4907fd01c728183154867730767"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_ScreenSaverNumber</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_ScreenSaverNumber" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_RingtoneID">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627a4deda512b64a9a95a18310ad1741e436"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_RingtoneID</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_RingtoneID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_MessageToneID">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627afd6849bcfb4f4205987dd3aac960b02f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_MessageToneID</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_MessageToneID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Profile_Feat_ID.Profile_CallerGroups">
+<span class="target" id="gammu-settings_8h_1a5aaa9df39a5d030df927e86e090ae627ae4f6fc7197f696f3d8a7b49fbe4d099a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Profile_CallerGroups</span></span></span><a class="headerlink" href="#c.GSM_Profile_Feat_ID.Profile_CallerGroups" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Profile">
+<span class="target" id="structGSM__Profile"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Profile</span></span></span><a class="headerlink" href="#c.GSM_Profile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>It contains phone profiles </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Profile.Location">
+<span class="target" id="structGSM__Profile_1a5154ca789fcb30b46f8b0a80f7265bbf"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_Profile.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Profile number </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Profile.Name">
+<span class="target" id="structGSM__Profile_1a258b98e08f8c97e92ce305daa0ec84cb"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">40</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Profile.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Profile name </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Profile.DefaultName">
+<span class="target" id="structGSM__Profile_1a494733318d49ba59d0d937c9eb944a75"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefaultName</span></span></span><a class="headerlink" href="#c.GSM_Profile.DefaultName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Is it default name for profile ? </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_FMStation">
+<span class="target" id="structGSM__FMStation"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_FMStation</span></span></span><a class="headerlink" href="#c.GSM_FMStation" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_GPRSAccessPoint">
+<span class="target" id="structGSM__GPRSAccessPoint"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GPRSAccessPoint</span></span></span><a class="headerlink" href="#c.GSM_GPRSAccessPoint" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_DateFormat">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DateFormat</span></span></span><a class="headerlink" href="#c.GSM_DateFormat" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_DDMMYYYY">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73ac7b0c4bdf4367100fc3497d88488f77b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_DDMMYYYY</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_DDMMYYYY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_MMDDYYYY">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73a1e225f363435c8cc2f0b3d72d0845d32"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_MMDDYYYY</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_MMDDYYYY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_YYYYMMDD">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73ae64e17ceece1590ee971c52d0dc69064"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_YYYYMMDD</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_YYYYMMDD" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_DDMMMYY">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73a12955e23f92f2777bae6ca64903ec39f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_DDMMMYY</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_DDMMMYY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_MMDDYY">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73a1fee1de6955d443b838a0e2a35dcc678"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_MMDDYY</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_MMDDYY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_DDMMYY">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73a43a771fe19b29a76c6f4477dd46602fb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_DDMMYY</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_DDMMYY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_YYMMDD">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73ae0ce6c3abf6537d3edaaebf12e8152be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_YYMMDD</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_YYMMDD" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DateFormat.GSM_Date_OFF">
+<span class="target" id="gammu-settings_8h_1aed43035eb79eaccbaa330c2372270c73a7de721bc01bf7ef3642af8bfab3708fc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Date_OFF</span></span></span><a class="headerlink" href="#c.GSM_DateFormat.GSM_Date_OFF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Locale">
+<span class="target" id="structGSM__Locale"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Locale</span></span></span><a class="headerlink" href="#c.GSM_Locale" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Profile_PhoneTableValue">
+<span class="target" id="structGSM__Profile__PhoneTableValue"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Profile_PhoneTableValue</span></span></span><a class="headerlink" href="#c.GSM_Profile_PhoneTableValue" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="security.html" class="btn btn-neutral float-left" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smsd.html" class="btn btn-neutral float-right" title="SMSD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

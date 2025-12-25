@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gammu-smsd-inject &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammu-smsd-monitor" href="monitor.html" />
+    <link rel="prev" title="gammu-smsd" href="smsd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="manual.html">Program Manuals</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">gammu-smsd</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gammu-smsd-inject</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="monitor.html">gammu-smsd-monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">SMSD Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">RunOnReceive Directive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backends.html">Backend services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+          <li class="breadcrumb-item"><a href="manual.html">Program Manuals</a></li>
+      <li class="breadcrumb-item active">gammu-smsd-inject</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/inject.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gammu-smsd-inject">
+<span id="id1"></span><h1>gammu-smsd-inject<a class="headerlink" href="#gammu-smsd-inject" title="Permalink to this heading"></a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject [OPTION]... MESSAGETYPE RECIPIENT [MESSAGE_PARAMETER]...
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This manual page documents briefly the <strong class="program">gammu-smsd-inject</strong> command.</p>
+<p><strong class="program">gammu-smsd-inject</strong> is a program that enqueues message in Gammu SMS
+Daemon, which will be later sent by the daemon using connected GSM modem.</p>
+<p>Support for this program depends on features available in currently used SMSD
+service backend, however currently it is supported by all of them.</p>
+<p>Program accepts following options (please note that long options might be not
+accepted on some platforms):</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-inject-h">
+<span id="cmdoption-gammu-smsd-inject-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-inject-h" title="Permalink to this definition"></a></dt>
+<dd><p>Shows help.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-inject-v">
+<span id="cmdoption-gammu-smsd-inject-version"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-inject-v" title="Permalink to this definition"></a></dt>
+<dd><p>Shows version information and compiled in features.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-inject-c">
+<span id="cmdoption-gammu-smsd-inject-config"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--config</span></span><span class="sig-prename descclassname"><span class="pre">=file</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-inject-c" title="Permalink to this definition"></a></dt>
+<dd><p>Configuration file to use, default is /etc/gammu-smsdrc, on Windows there
+is no default and configuration file path has to be always specified.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-inject-l">
+<span id="cmdoption-gammu-smsd-inject-use-log"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--use-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-inject-l" title="Permalink to this definition"></a></dt>
+<dd><p>Use logging as configured in config file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-inject-L">
+<span id="cmdoption-gammu-smsd-inject-no-use-log"></span><span class="sig-name descname"><span class="pre">-L</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-use-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-inject-L" title="Permalink to this definition"></a></dt>
+<dd><p>Do not use logging as configured in config file (default).</p>
+</dd></dl>
+
+<p>For description of message types and their parameters, please check documentation
+for <code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">savesms</span></code>.</p>
+</section>
+<section id="examples">
+<span id="smsd-inject-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>To check it out, you need to have configuration file for SMSD, see
+<a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a> for more details about it.</p>
+<p>Inject text message up to standard 160 chars:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;All your base are belong to us&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gammu-smsd-inject<span class="w"> </span>TEXT<span class="w"> </span><span class="m">123456</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>TEXT<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;All your base are belong to us&quot;</span>
+</pre></div>
+</div>
+<p>Inject unicode text message:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>TEXT<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-unicode<span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;Zkouška sirén&quot;</span>
+</pre></div>
+</div>
+<p>Inject long text message:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;All your base are belong to us&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gammu-smsd-inject<span class="w"> </span>TEXT<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-len<span class="w"> </span><span class="m">400</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>TEXT<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-len<span class="w"> </span><span class="m">400</span><span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;All your base are belong to us&quot;</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>EMS<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;All your base are belong to us&quot;</span>
+</pre></div>
+</div>
+<p>Inject some funky message with predefined sound and animation from 2 bitmaps:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>EMS<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;Greetings&quot;</span><span class="w"> </span>-defsound<span class="w"> </span><span class="m">1</span><span class="w"> </span>-text<span class="w"> </span><span class="s2">&quot;from Gammu&quot;</span><span class="w"> </span>-tone10<span class="w"> </span>axelf.txt<span class="w"> </span>-animation<span class="w"> </span><span class="m">2</span><span class="w"> </span>file1.bmp<span class="w"> </span>file2.bmp
+</pre></div>
+</div>
+<p>Inject protected message with ringtone:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>EMS<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-protected<span class="w"> </span><span class="m">2</span><span class="w"> </span>-variablebitmaplong<span class="w"> </span>ala.bmp<span class="w"> </span>-toneSElong<span class="w"> </span>axelf.txt<span class="w"> </span>-toneSE<span class="w"> </span>ring.txt
+</pre></div>
+</div>
+<p>Inject USSD query:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd-inject<span class="w"> </span>USSD<span class="w"> </span><span class="s1">&#39;*101#&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="smsd.html" class="btn btn-neutral float-left" title="gammu-smsd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="monitor.html" class="btn btn-neutral float-right" title="gammu-smsd-monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

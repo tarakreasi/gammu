@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RunOnReceive Directive &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Backend services" href="backends.html" />
+    <link rel="prev" title="SMSD Configuration File" href="config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html">Program Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">SMSD Configuration File</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RunOnReceive Directive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment">Environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#global-variables">Global variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#per-message-variables">Per message variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#per-part-variables">Per part variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#activating-runonreceive">Activating RunOnReceive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processing-messages-from-the-files-backend">Processing messages from the files backend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invoking-commands-based-on-message-text">Invoking commands based on message text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passing-message-text-to-program">Passing message text to program</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passing-mms-indication-parameters-to-external-program">Passing MMS indication parameters to external program</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processing-message-text-in-python">Processing message text in Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backends.html">Backend services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+      <li class="breadcrumb-item active">RunOnReceive Directive</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/run.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="runonreceive-directive">
+<span id="gammu-smsd-run"></span><h1>RunOnReceive Directive<a class="headerlink" href="#runonreceive-directive" title="Permalink to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>Gammu SMSD can be configured by <span class="target" id="index-0"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> directive (see
+<a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a> for details) to run defined program after receiving
+every message. It can receive single message or more messages, which are parts
+of one multipart message.</p>
+<p>This parameter is executed through shell, so you might need to escape some
+special characters and you can include any number of parameters. Additionally
+parameters with identifiers of received messages are appended to the command
+line. The identifiers depend on used service backend, typically it is ID of
+inserted row for database backends or file name for file based backends.</p>
+<p>Gammu SMSD waits for the script to terminate. If you make some time consuming
+there, it will make SMSD not receive new messages. However to limit breakage
+from this situation, the waiting time is limited to two minutes. After this
+time SMSD will continue in normal operation and might execute your script
+again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All input and output file descriptors are closed when this program is
+invoked, so you have to ensure to open files on your own.</p>
+</div>
+</section>
+<section id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.0.</span></p>
+</div>
+<p>Program is executed with environment which contains lot of information about
+the message. You can use it together with NULL service (see
+<a class="reference internal" href="null.html#gammu-smsd-null"><span class="std std-ref">Null Backend</span></a>) to implement completely own processing of messages.</p>
+<section id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SMS_MESSAGES">
+<span class="sig-name descname"><span class="pre">SMS_MESSAGES</span></span><a class="headerlink" href="#envvar-SMS_MESSAGES" title="Permalink to this definition"></a></dt>
+<dd><p>Number of physical messages received.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_PARTS">
+<span class="sig-name descname"><span class="pre">DECODED_PARTS</span></span><a class="headerlink" href="#envvar-DECODED_PARTS" title="Permalink to this definition"></a></dt>
+<dd><p>Number of decoded message parts.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PHONE_ID">
+<span class="sig-name descname"><span class="pre">PHONE_ID</span></span><a class="headerlink" href="#envvar-PHONE_ID" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.2.</span></p>
+</div>
+<p>Value of <span class="target" id="index-1"></span><a class="reference internal" href="config.html#option-PhoneID"><code class="xref config config-option docutils literal notranslate"><span class="pre">PhoneID</span></code></a>. Useful when running multiple instances
+(see <a class="reference internal" href="config.html#smsd-multi"><span class="std std-ref">Multiple modems</span></a>).</p>
+</dd></dl>
+
+</section>
+<section id="per-message-variables">
+<h3>Per message variables<a class="headerlink" href="#per-message-variables" title="Permalink to this heading"></a></h3>
+<p>The variables further described as <code class="docutils literal notranslate"><span class="pre">SMS_1_...</span></code> are generated for each physical
+message, where 1 is replaced by current number of message.</p>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SMS_1_CLASS">
+<span class="sig-name descname"><span class="pre">SMS_1_CLASS</span></span><a class="headerlink" href="#envvar-SMS_1_CLASS" title="Permalink to this definition"></a></dt>
+<dd><p>Class of message.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SMS_1_NUMBER">
+<span class="sig-name descname"><span class="pre">SMS_1_NUMBER</span></span><a class="headerlink" href="#envvar-SMS_1_NUMBER" title="Permalink to this definition"></a></dt>
+<dd><p>Sender number.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SMS_1_TEXT">
+<span class="sig-name descname"><span class="pre">SMS_1_TEXT</span></span><a class="headerlink" href="#envvar-SMS_1_TEXT" title="Permalink to this definition"></a></dt>
+<dd><p>Message text. Text is not available for 8-bit binary messages.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SMS_1_REFERENCE">
+<span class="sig-name descname"><span class="pre">SMS_1_REFERENCE</span></span><a class="headerlink" href="#envvar-SMS_1_REFERENCE" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+<p>Message Reference. If delivery status received, this variable contains TPMR of original message</p>
+</dd></dl>
+
+</section>
+<section id="per-part-variables">
+<h3>Per part variables<a class="headerlink" href="#per-part-variables" title="Permalink to this heading"></a></h3>
+<p>The variables further described as <code class="docutils literal notranslate"><span class="pre">DECODED_1_...</span></code> are generated for each message
+part, where 1 is replaced by current number of part. Set are only those
+variables whose content is present in the message.</p>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_1_TEXT">
+<span class="sig-name descname"><span class="pre">DECODED_1_TEXT</span></span><a class="headerlink" href="#envvar-DECODED_1_TEXT" title="Permalink to this definition"></a></dt>
+<dd><p>Decoded long message text.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_1_MMS_SENDER">
+<span class="sig-name descname"><span class="pre">DECODED_1_MMS_SENDER</span></span><a class="headerlink" href="#envvar-DECODED_1_MMS_SENDER" title="Permalink to this definition"></a></dt>
+<dd><p>Sender of MMS indication message.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_1_MMS_TITLE">
+<span class="sig-name descname"><span class="pre">DECODED_1_MMS_TITLE</span></span><a class="headerlink" href="#envvar-DECODED_1_MMS_TITLE" title="Permalink to this definition"></a></dt>
+<dd><p>title of MMS indication message.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_1_MMS_ADDRESS">
+<span class="sig-name descname"><span class="pre">DECODED_1_MMS_ADDRESS</span></span><a class="headerlink" href="#envvar-DECODED_1_MMS_ADDRESS" title="Permalink to this definition"></a></dt>
+<dd><p>Address (URL) of MMS from MMS indication message.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../faq/general.html#faq-mms-download"><span class="std std-ref">Can I use Gammu to receive MMS?</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-DECODED_1_MMS_SIZE">
+<span class="sig-name descname"><span class="pre">DECODED_1_MMS_SIZE</span></span><a class="headerlink" href="#envvar-DECODED_1_MMS_SIZE" title="Permalink to this definition"></a></dt>
+<dd><p>Size of MMS as specified in MMS indication message.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="activating-runonreceive">
+<h3>Activating RunOnReceive<a class="headerlink" href="#activating-runonreceive" title="Permalink to this heading"></a></h3>
+<p>To activate this feature you need to set <span class="target" id="index-2"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> in
+the <a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a>.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">RunOnReceive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/path/to/script.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="processing-messages-from-the-files-backend">
+<h3>Processing messages from the files backend<a class="headerlink" href="#processing-messages-from-the-files-backend" title="Permalink to this heading"></a></h3>
+<p>Following script (if used as <span class="target" id="index-3"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> handler) passes
+message data to other program. This works only with the <a class="reference internal" href="files.html#gammu-smsd-files"><span class="std std-ref">Files backend</span></a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">INBOX</span><span class="o">=</span>/path/to/smsd/inbox
+<span class="nv">PROGRAM</span><span class="o">=</span>/bin/cat
+<span class="k">for</span><span class="w"> </span>ID<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">$PROGRAM</span><span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INBOX</span>/<span class="nv">$ID</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="invoking-commands-based-on-message-text">
+<h3>Invoking commands based on message text<a class="headerlink" href="#invoking-commands-based-on-message-text" title="Permalink to this heading"></a></h3>
+<p>Following script (if used as <span class="target" id="index-4"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> handler) executes
+given programs based on message text.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="c1"># Check for sender number</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SMS_1_NUMBER</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;+420123456789&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">exit</span>
+<span class="k">fi</span>
+
+<span class="c1"># Handle commands</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SMS_1_TEXT</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="s2">&quot;DMS A&quot;</span><span class="o">)</span>
+<span class="w">        </span>/usr/bin/dms-a
+<span class="w">        </span><span class="p">;;</span>
+<span class="w">    </span><span class="s2">&quot;DMS B&quot;</span><span class="o">)</span>
+<span class="w">        </span>/usr/bin/dms-b
+<span class="w">        </span><span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-message-text-to-program">
+<h3>Passing message text to program<a class="headerlink" href="#passing-message-text-to-program" title="Permalink to this heading"></a></h3>
+<p>Following script (if used as <span class="target" id="index-5"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> handler) passes
+message text and sender to external program.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">PROGRAM</span><span class="o">=</span>/bin/echo
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$SMS_MESSAGES</span><span class="sb">`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROGRAM</span><span class="s2"> \&quot;\${SMS_</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">_NUMBER}\&quot; \&quot;\${SMS_</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">_TEXT}\&quot;&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-mms-indication-parameters-to-external-program">
+<h3>Passing MMS indication parameters to external program<a class="headerlink" href="#passing-mms-indication-parameters-to-external-program" title="Permalink to this heading"></a></h3>
+<p>Following script (if used as <span class="target" id="index-6"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> handler) will write
+information about each received MMS indication to the log file. Just replace
+echo command with your own program to do custom processing.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$DECODED_PARTS</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="c1"># No decoded parts, nothing to process</span>
+<span class="w">    </span><span class="nb">exit</span>
+<span class="k">fi</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DECODED_1_MMS_ADDRESS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DECODED_1_MMS_ADDRESS</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DECODED_1_MMS_SENDER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DECODED_1_MMS_TITLE</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/tmp/smsd-mms.log
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+<section id="processing-message-text-in-python">
+<h3>Processing message text in Python<a class="headerlink" href="#processing-message-text-in-python" title="Permalink to this heading"></a></h3>
+<p>Following script (if used as <span class="target" id="index-7"></span><a class="reference internal" href="config.html#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a> handler) written
+in Python will concatenate all text from received message:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">numparts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DECODED_PARTS&quot;</span><span class="p">])</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="c1"># Are there any decoded parts?</span>
+<span class="k">if</span> <span class="n">numparts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SMS_1_TEXT&quot;</span><span class="p">]</span>
+<span class="c1"># Get all text parts</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numparts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">varname</span> <span class="o">=</span> <span class="s2">&quot;DECODED_</span><span class="si">%d</span><span class="s2">_TEXT&quot;</span> <span class="o">%</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="n">varname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span>
+
+<span class="c1"># Do something with the text</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number </span><span class="si">{}</span><span class="s2"> have sent text: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SMS_1_NUMBER&quot;</span><span class="p">],</span> <span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="config.html" class="btn btn-neutral float-left" title="SMSD Configuration File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="backends.html" class="btn btn-neutral float-right" title="Backend services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

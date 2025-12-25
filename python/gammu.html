@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gammu – Mobile phone access &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammu.smsd – SMSD access" href="smsd.html" />
+    <link rel="prev" title="python-gammu" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">python-gammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#a-taste-of-python-gammu">A taste of python-gammu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#api-documentation">API documentation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gammu-statemachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">gammu.StateMachine</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generic-functions">Generic functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging-configuration">Debugging configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-processing">Message processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encoding-and-decoding-entries">Encoding and decoding entries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backup-reading-and-writing">Backup reading and writing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#various-data">Various data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.data</span></code> – Generic data usable with Gammu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.worker</span></code> - Asynchronous communication to phone.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.exception</span></code> – Gammu exception handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-gammu-examples">python-gammu Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">python-gammu</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/gammu.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gammu">
+<span id="gammu-mobile-phone-access"></span><h1><a class="reference internal" href="#module-gammu" title="gammu: Provides access to mobile phones."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code></a> – Mobile phone access<a class="headerlink" href="#module-gammu" title="Permalink to this heading"></a></h1>
+<p>This module wraps all python-gammu functionality.</p>
+<section id="gammu-statemachine">
+<h2><a class="reference internal" href="#gammu.StateMachine" title="gammu.StateMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">gammu.StateMachine</span></code></a><a class="headerlink" href="#gammu-statemachine" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gammu.StateMachine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">StateMachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Locale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine" title="Permalink to this definition"></a></dt>
+<dd><p>StateMachine object, that is used for communication with phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Locale</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – What locales to use for gammu error messages, default is <code class="docutils literal notranslate"><span class="pre">auto</span></code> which does autodetection according to user locales</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddCalendar">
+<span class="sig-name descname"><span class="pre">AddCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Adds calendar entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Calendar entry data, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of newly created entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddCategory">
+<span class="sig-name descname"><span class="pre">AddCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddCategory" title="Permalink to this definition"></a></dt>
+<dd><p>Adds category to phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of category to read, one of <code class="docutils literal notranslate"><span class="pre">ToDo</span></code>, <code class="docutils literal notranslate"><span class="pre">Phonebook</span></code></p></li>
+<li><p><strong>Name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Category name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of created category</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddFilePart">
+<span class="sig-name descname"><span class="pre">AddFilePart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddFilePart" title="Permalink to this definition"></a></dt>
+<dd><p>Adds file part to filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>File</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – File data, see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>File data for subsequent calls (Finished indicates transfer has been completed)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddFolder">
+<span class="sig-name descname"><span class="pre">AddFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ParentFolderID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Adds folder to filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ParentFolderID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Folder where to create subfolder</p></li>
+<li><p><strong>Name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – New folder name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New folder ID.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddMemory">
+<span class="sig-name descname"><span class="pre">AddMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Adds memory (phonebooks or calls) entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Memory entry, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of created entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddSMS">
+<span class="sig-name descname"><span class="pre">AddSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Adds SMS to specified folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – SMS data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple for location and folder.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddSMSFolder">
+<span class="sig-name descname"><span class="pre">AddSMSFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddSMSFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Creates SMS folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of new folder</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AddToDo">
+<span class="sig-name descname"><span class="pre">AddToDo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AddToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Adds ToDo in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – ToDo data, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of created entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.AnswerCall">
+<span class="sig-name descname"><span class="pre">AnswerCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">All</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.AnswerCall" title="Permalink to this definition"></a></dt>
+<dd><p>Accept current incoming call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p></li>
+<li><p><strong>All</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Answer all calls? Defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.CancelAllDiverts">
+<span class="sig-name descname"><span class="pre">CancelAllDiverts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.CancelAllDiverts" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.31.90.</span></p>
+</div>
+<p>Cancels all call diverts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.CancelCall">
+<span class="sig-name descname"><span class="pre">CancelCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">All</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.CancelCall" title="Permalink to this definition"></a></dt>
+<dd><p>Deny current incoming call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p></li>
+<li><p><strong>All</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Cancel all calls? Defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.ConferenceCall">
+<span class="sig-name descname"><span class="pre">ConferenceCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.ConferenceCall" title="Permalink to this definition"></a></dt>
+<dd><p>Initiates conference call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteAllCalendar">
+<span class="sig-name descname"><span class="pre">DeleteAllCalendar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteAllCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes all calendar entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteAllMemory">
+<span class="sig-name descname"><span class="pre">DeleteAllMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteAllMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes all memory (phonebooks or calls) entries of specified type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Memory type, one of <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">ON</span></code>, <code class="docutils literal notranslate"><span class="pre">DC</span></code>, <code class="docutils literal notranslate"><span class="pre">RC</span></code>, <code class="docutils literal notranslate"><span class="pre">MC</span></code>, <code class="docutils literal notranslate"><span class="pre">MT</span></code>, <code class="docutils literal notranslate"><span class="pre">FD</span></code>, <code class="docutils literal notranslate"><span class="pre">VM</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteAllToDo">
+<span class="sig-name descname"><span class="pre">DeleteAllToDo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteAllToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes all todo entries in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteCalendar">
+<span class="sig-name descname"><span class="pre">DeleteCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes calendar entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Calendar entry to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteFile">
+<span class="sig-name descname"><span class="pre">DeleteFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FileID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteFile" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes file from filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FileID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteFolder">
+<span class="sig-name descname"><span class="pre">DeleteFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FolderID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes folder on filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FolderID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Folder to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteMemory">
+<span class="sig-name descname"><span class="pre">DeleteMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes memory (phonebooks or calls) entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Memory type, one of <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">ON</span></code>, <code class="docutils literal notranslate"><span class="pre">DC</span></code>, <code class="docutils literal notranslate"><span class="pre">RC</span></code>, <code class="docutils literal notranslate"><span class="pre">MC</span></code>, <code class="docutils literal notranslate"><span class="pre">MT</span></code>, <code class="docutils literal notranslate"><span class="pre">FD</span></code>, <code class="docutils literal notranslate"><span class="pre">VM</span></code></p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to delete</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteSMS">
+<span class="sig-name descname"><span class="pre">DeleteSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes SMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Folder where to read entry (0 is emulated flat memory)</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to delete</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In most cases you want to use Folder=0 as in this mode it will accept locations
+as GetNextSMS returns them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteSMSFolder">
+<span class="sig-name descname"><span class="pre">DeleteSMSFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteSMSFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes SMS folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Index of folder to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DeleteToDo">
+<span class="sig-name descname"><span class="pre">DeleteToDo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DeleteToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes ToDo entry in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DialService">
+<span class="sig-name descname"><span class="pre">DialService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DialService" title="Permalink to this definition"></a></dt>
+<dd><p>Dials number and starts voice call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Number</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Number to dial</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.DialVoice">
+<span class="sig-name descname"><span class="pre">DialVoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ShowNumber</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.DialVoice" title="Permalink to this definition"></a></dt>
+<dd><p>Dials number and starts voice call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Number</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Number to dial</p></li>
+<li><p><strong>ShowNumber</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><em>None</em>) – Identifies whether to enable CLIR (None = keep default phone settings). Default is None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.EnterSecurityCode">
+<span class="sig-name descname"><span class="pre">EnterSecurityCode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">NewPIN</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.EnterSecurityCode" title="Permalink to this definition"></a></dt>
+<dd><p>Enters security code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – What code to enter, one of <code class="docutils literal notranslate"><span class="pre">PIN</span></code>, <code class="docutils literal notranslate"><span class="pre">PUK</span></code>, <code class="docutils literal notranslate"><span class="pre">PIN2</span></code>, <code class="docutils literal notranslate"><span class="pre">PUK2</span></code>, <code class="docutils literal notranslate"><span class="pre">Phone</span></code>.</p></li>
+<li><p><strong>Code</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Code value</p></li>
+<li><p><strong>NewPIN</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – New PIN value in case entering PUK</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetAlarm">
+<span class="sig-name descname"><span class="pre">GetAlarm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetAlarm" title="Permalink to this definition"></a></dt>
+<dd><p>Reads alarm set in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Which alarm to read. Many phone support only one alarm. Default is 1.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Alarm dict</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetBatteryCharge">
+<span class="sig-name descname"><span class="pre">GetBatteryCharge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetBatteryCharge" title="Permalink to this definition"></a></dt>
+<dd><p>Gets information about battery charge and phone charging state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing information about battery state (BatteryPercent and ChargeState)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetCalendar">
+<span class="sig-name descname"><span class="pre">GetCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves calendar entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Calendar entry to read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with calendar values, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetCalendarStatus">
+<span class="sig-name descname"><span class="pre">GetCalendarStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetCalendarStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves calendar status (number of used entries).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with calendar status (Used)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetCallDivert">
+<span class="sig-name descname"><span class="pre">GetCallDivert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Divert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllTypes'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'All'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetCallDivert" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.31.90.</span></p>
+</div>
+<p>Gets call diverts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Divert</strong> (<a class="reference internal" href="objects.html#divert-type"><span class="std std-ref">Divert Type</span></a>) – When to do the divert.</p></li>
+<li><p><strong>Type</strong> (<a class="reference internal" href="objects.html#divert-call"><span class="std std-ref">Call Type</span></a>) – What call types to divert.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of call diverts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="objects.html#divert-entry"><span class="std std-ref">Call Divert Objects</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetCategory">
+<span class="sig-name descname"><span class="pre">GetCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetCategory" title="Permalink to this definition"></a></dt>
+<dd><p>Reads category from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of category to read, one of <code class="docutils literal notranslate"><span class="pre">ToDo</span></code>, <code class="docutils literal notranslate"><span class="pre">Phonebook</span></code></p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of category to read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Category name as str</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetCategoryStatus">
+<span class="sig-name descname"><span class="pre">GetCategoryStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetCategoryStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Reads category status (number of used entries) from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of category to read, one of <code class="docutils literal notranslate"><span class="pre">ToDo</span></code>, <code class="docutils literal notranslate"><span class="pre">Phonebook</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing information about category status (Used)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetConfig">
+<span class="sig-name descname"><span class="pre">GetConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Section</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetConfig" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Gets specified config section. Configuration consists of all params which can be defined in gammurc config file:</dt><dd><ul class="simple">
+<li><p>Model</p></li>
+<li><p>DebugLevel</p></li>
+<li><p>Device</p></li>
+<li><p>Connection</p></li>
+<li><p>SyncTime</p></li>
+<li><p>LockDevice</p></li>
+<li><p>DebugFile</p></li>
+<li><p>StartInfo</p></li>
+<li><p>UseGlobalDebugFile</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Section</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Index of config section to read. Defaults to 0.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing configuration</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetDateTime">
+<span class="sig-name descname"><span class="pre">GetDateTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetDateTime" title="Permalink to this definition"></a></dt>
+<dd><p>Reads date and time from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date and time from phone as datetime.datetime object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/datetime.html#datetime.datetime" title="(in Python v3.9)">datetime.datetime</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetDisplayStatus">
+<span class="sig-name descname"><span class="pre">GetDisplayStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetDisplayStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Acquired display status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of indicators displayed on display</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetFilePart">
+<span class="sig-name descname"><span class="pre">GetFilePart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetFilePart" title="Permalink to this definition"></a></dt>
+<dd><p>Gets file part from filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>File</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – File data, see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>File data for subsequent calls (Finished indicates transfer has been completed), see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetFileSystemStatus">
+<span class="sig-name descname"><span class="pre">GetFileSystemStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetFileSystemStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Acquires filesystem status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing filesystem status (Used and Free)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetFirmware">
+<span class="sig-name descname"><span class="pre">GetFirmware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetFirmware" title="Permalink to this definition"></a></dt>
+<dd><p>Reads firmware information from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple from version, date and numeric version.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetFolderListing">
+<span class="sig-name descname"><span class="pre">GetFolderListing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Start</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetFolderListing" title="Permalink to this definition"></a></dt>
+<dd><p>Gets next filename from filesystem folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Folder to list</p></li>
+<li><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether we’re starting listing. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>File data as dict, see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetHardware">
+<span class="sig-name descname"><span class="pre">GetHardware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetHardware" title="Permalink to this definition"></a></dt>
+<dd><p>Gets hardware information about device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hardware information as str.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetIMEI">
+<span class="sig-name descname"><span class="pre">GetIMEI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetIMEI" title="Permalink to this definition"></a></dt>
+<dd><p>Reads IMEI/serial number from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>IMEI of phone as str.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetLocale">
+<span class="sig-name descname"><span class="pre">GetLocale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetLocale" title="Permalink to this definition"></a></dt>
+<dd><p>Gets locale information from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of locale settings. <a class="reference internal" href="#gammu.StateMachine.SetLocale" title="gammu.StateMachine.SetLocale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetLocale()</span></code></a> lists them all.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetManufactureMonth">
+<span class="sig-name descname"><span class="pre">GetManufactureMonth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetManufactureMonth" title="Permalink to this definition"></a></dt>
+<dd><p>Gets month when device was manufactured.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Month of manufacture as str.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetManufacturer">
+<span class="sig-name descname"><span class="pre">GetManufacturer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetManufacturer" title="Permalink to this definition"></a></dt>
+<dd><p>Reads manufacturer from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String with manufacturer name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetMemory">
+<span class="sig-name descname"><span class="pre">GetMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Reads entry from memory (phonebooks or calls). Which entry should be read is defined in entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Memory type, one of <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">ON</span></code>, <code class="docutils literal notranslate"><span class="pre">DC</span></code>, <code class="docutils literal notranslate"><span class="pre">RC</span></code>, <code class="docutils literal notranslate"><span class="pre">MC</span></code>, <code class="docutils literal notranslate"><span class="pre">MT</span></code>, <code class="docutils literal notranslate"><span class="pre">FD</span></code>, <code class="docutils literal notranslate"><span class="pre">VM</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Memory entry as dict, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetMemoryStatus">
+<span class="sig-name descname"><span class="pre">GetMemoryStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetMemoryStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Gets memory (phonebooks or calls) status (eg. number of used and free entries).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Memory type, one of <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">ON</span></code>, <code class="docutils literal notranslate"><span class="pre">DC</span></code>, <code class="docutils literal notranslate"><span class="pre">RC</span></code>, <code class="docutils literal notranslate"><span class="pre">MC</span></code>, <code class="docutils literal notranslate"><span class="pre">MT</span></code>, <code class="docutils literal notranslate"><span class="pre">FD</span></code>, <code class="docutils literal notranslate"><span class="pre">VM</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with information about memory (Used and Free)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetModel">
+<span class="sig-name descname"><span class="pre">GetModel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetModel" title="Permalink to this definition"></a></dt>
+<dd><p>Reads model from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple containing gammu identification and real model returned by phone.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNetworkInfo">
+<span class="sig-name descname"><span class="pre">GetNetworkInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNetworkInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Gets network information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with information about network (NetworkName, State, NetworkCode, CID and LAC)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextCalendar">
+<span class="sig-name descname"><span class="pre">GetNextCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves calendar entry. This is useful for continuous reading of all calendar entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to start. This can not be used together with Location</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Last read location. This can not be used together with Start</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with calendar values, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextFileFolder">
+<span class="sig-name descname"><span class="pre">GetNextFileFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Start</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextFileFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Gets next filename from filesystem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether we’re starting listing. Defaults to False.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>File data as dict, see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextMemory">
+<span class="sig-name descname"><span class="pre">GetNextMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Reads entry from memory (phonebooks or calls). Which entry should be read is defined in entry. This can be easily used for reading all entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Memory type, one of <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">ON</span></code>, <code class="docutils literal notranslate"><span class="pre">DC</span></code>, <code class="docutils literal notranslate"><span class="pre">RC</span></code>, <code class="docutils literal notranslate"><span class="pre">MC</span></code>, <code class="docutils literal notranslate"><span class="pre">MT</span></code>, <code class="docutils literal notranslate"><span class="pre">FD</span></code>, <code class="docutils literal notranslate"><span class="pre">VM</span></code></p></li>
+<li><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to start. This can not be used together with Location</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Last read location. This can not be used together with Start</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Memory entry as dict, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextRootFolder">
+<span class="sig-name descname"><span class="pre">GetNextRootFolder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextRootFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Gets next root folder from filesystem. Start with empty folder name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Previous read folder. Start with empty folder name.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Structure with folder information</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextSMS">
+<span class="sig-name descname"><span class="pre">GetNextSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Reads next (or first if start set) SMS message. This might be faster for some phones than using <a class="reference internal" href="#gammu.StateMachine.GetSMS" title="gammu.StateMachine.GetSMS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetSMS()</span></code></a> for each message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Folder where to read entry (0 is emulated flat memory)</p></li>
+<li><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to start. This can not be used together with Location</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location last read entry. This can not be used together with Start</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with SMS data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetNextToDo">
+<span class="sig-name descname"><span class="pre">GetNextToDo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetNextToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Reads ToDo from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Start</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to start. This can not be used together with Location</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Last read location. This can not be used together with Start</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ToDo values, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetOriginalIMEI">
+<span class="sig-name descname"><span class="pre">GetOriginalIMEI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetOriginalIMEI" title="Permalink to this definition"></a></dt>
+<dd><p>Gets original IMEI from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Original IMEI of phone as string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetPPM">
+<span class="sig-name descname"><span class="pre">GetPPM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetPPM" title="Permalink to this definition"></a></dt>
+<dd><p>Gets PPM (Post Programmable Memory) from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PPM as string</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetProductCode">
+<span class="sig-name descname"><span class="pre">GetProductCode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetProductCode" title="Permalink to this definition"></a></dt>
+<dd><p>Gets product code of device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Product code as string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSIMIMSI">
+<span class="sig-name descname"><span class="pre">GetSIMIMSI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSIMIMSI" title="Permalink to this definition"></a></dt>
+<dd><p>Gets SIM IMSI from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SIM IMSI as string</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSMS">
+<span class="sig-name descname"><span class="pre">GetSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Reads SMS message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Folder where to read entry (0 is emulated flat memory)</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with SMS data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSMSC">
+<span class="sig-name descname"><span class="pre">GetSMSC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSMSC" title="Permalink to this definition"></a></dt>
+<dd><p>Gets SMS Service Center number and SMS settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to read. Defaults to 1</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with SMSC information, see <a class="reference internal" href="objects.html#smsc-obj"><span class="std std-ref">SMSC Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSMSFolders">
+<span class="sig-name descname"><span class="pre">GetSMSFolders</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSMSFolders" title="Permalink to this definition"></a></dt>
+<dd><p>Returns SMS folders information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of SMS folders.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSMSStatus">
+<span class="sig-name descname"><span class="pre">GetSMSStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSMSStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Gets information about SMS memory (read/unread/size of memory for both SIM and phone).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with information about phone memory (SIMUnRead, SIMUsed, SIMSize, PhoneUnRead, PhoneUsed, PhoneSize and TemplatesUsed)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSecurityStatus">
+<span class="sig-name descname"><span class="pre">GetSecurityStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSecurityStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Queries whether some security code needs to be entered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String indicating which code needs to be entered or None if none is needed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSignalQuality">
+<span class="sig-name descname"><span class="pre">GetSignalQuality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSignalQuality" title="Permalink to this definition"></a></dt>
+<dd><p>Reads signal quality (strength and error rate).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing information about signal state (SignalStrength, SignalPercent and BitErrorRate)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetSpeedDial">
+<span class="sig-name descname"><span class="pre">GetSpeedDial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetSpeedDial" title="Permalink to this definition"></a></dt>
+<dd><p>Gets speed dial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with speed dial (Location, MemoryLocation, MemoryNumberID, MemoryType)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetToDo">
+<span class="sig-name descname"><span class="pre">GetToDo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Reads ToDo from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ToDo values, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.GetToDoStatus">
+<span class="sig-name descname"><span class="pre">GetToDoStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.GetToDoStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Gets status of ToDos (count of used entries).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of status (Used)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.HoldCall">
+<span class="sig-name descname"><span class="pre">HoldCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.HoldCall" title="Permalink to this definition"></a></dt>
+<dd><p>Holds call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.Init">
+<span class="sig-name descname"><span class="pre">Init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Replies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.Init" title="Permalink to this definition"></a></dt>
+<dd><p>Initialises the connection with phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Replies</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of replies to wait for on each request. Defaults to 1. Higher value makes sense only on unreliable links.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.PressKey">
+<span class="sig-name descname"><span class="pre">PressKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Press</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.PressKey" title="Permalink to this definition"></a></dt>
+<dd><p>Emulates key press.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Key</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – What key to press</p></li>
+<li><p><strong>Press</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to emulate press or release.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.ReadConfig">
+<span class="sig-name descname"><span class="pre">ReadConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.ReadConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Reads specified section of gammurc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Section</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Index of config section to read. Defaults to 0.</p></li>
+<li><p><strong>Configuration</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Index where config section will be stored. Defaults to Section.</p></li>
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to configuration file (otherwise it is autodetected).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.ReadDevice">
+<span class="sig-name descname"><span class="pre">ReadDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Wait</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.ReadDevice" title="Permalink to this definition"></a></dt>
+<dd><p>Reads data from device. This should be used in busy wait loop in case you
+are waiting for incoming events on the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Wait</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to wait, default is not to wait.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of bytes read</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.Reset">
+<span class="sig-name descname"><span class="pre">Reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Hard</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.Reset" title="Permalink to this definition"></a></dt>
+<dd><p>Performs phone reset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Hard</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to make hard reset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.ResetPhoneSettings">
+<span class="sig-name descname"><span class="pre">ResetPhoneSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.ResetPhoneSettings" title="Permalink to this definition"></a></dt>
+<dd><p>Resets phone settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – What to reset, one of <code class="docutils literal notranslate"><span class="pre">PHONE</span></code>, <code class="docutils literal notranslate"><span class="pre">UIF</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">DEV</span></code>, <code class="docutils literal notranslate"><span class="pre">FACTORY</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SendDTMF">
+<span class="sig-name descname"><span class="pre">SendDTMF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SendDTMF" title="Permalink to this definition"></a></dt>
+<dd><p>Sends DTMF (Dual Tone Multi Frequency) tone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Number</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Number to dial</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SendFilePart">
+<span class="sig-name descname"><span class="pre">SendFilePart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SendFilePart" title="Permalink to this definition"></a></dt>
+<dd><p>Sends file part to phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>File</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – File data, see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>File data for subsequent calls (Finished indicates transfer has been completed), see <a class="reference internal" href="objects.html#file-obj"><span class="std std-ref">File Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SendSMS">
+<span class="sig-name descname"><span class="pre">SendSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SendSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Sends SMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – SMS data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Message reference as int</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SendSavedSMS">
+<span class="sig-name descname"><span class="pre">SendSavedSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SendSavedSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Sends SMS saved in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Folder</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Folder where to read entry (0 is emulated flat memory)</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of entry to send</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Message reference as int</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetAlarm">
+<span class="sig-name descname"><span class="pre">SetAlarm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DateTime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Repeating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetAlarm" title="Permalink to this definition"></a></dt>
+<dd><p>Sets alarm in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DateTime</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><em>datetime.datetime</em></a>) – When should alarm happen.</p></li>
+<li><p><strong>Location</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Location of alarm to set. Defaults to 1.</p></li>
+<li><p><strong>Repeating</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether alarm should be repeating. Defaults to True.</p></li>
+<li><p><strong>Text</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Text to be displayed on alarm. Defaults to empty.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetAutoNetworkLogin">
+<span class="sig-name descname"><span class="pre">SetAutoNetworkLogin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetAutoNetworkLogin" title="Permalink to this definition"></a></dt>
+<dd><p>Enables network auto login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetCalendar">
+<span class="sig-name descname"><span class="pre">SetCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetCalendar" title="Permalink to this definition"></a></dt>
+<dd><p>Sets calendar entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Calendar entry data, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of set entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetConfig">
+<span class="sig-name descname"><span class="pre">SetConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Sets specified config section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Section</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Index of config section to modify</p></li>
+<li><p><strong>Values</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Config values, see <a class="reference internal" href="#gammu.StateMachine.GetConfig" title="gammu.StateMachine.GetConfig"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetConfig()</span></code></a> for description of accepted</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetCallDivert">
+<span class="sig-name descname"><span class="pre">SetCallDivert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Divert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetCallDivert" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.31.90.</span></p>
+</div>
+<p>Sets call divert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Divert</strong> (<a class="reference internal" href="objects.html#divert-type"><span class="std std-ref">Divert Type</span></a>) – When to do the divert.</p></li>
+<li><p><strong>Type</strong> (<a class="reference internal" href="objects.html#divert-call"><span class="std std-ref">Call Type</span></a>) – What call types to divert.</p></li>
+<li><p><strong>Number</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Phone number where to divert.</p></li>
+<li><p><strong>Timeout</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Optional timeout when divert happens.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetDateTime">
+<span class="sig-name descname"><span class="pre">SetDateTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetDateTime" title="Permalink to this definition"></a></dt>
+<dd><p>Sets date and time in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Date</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><em>datetime.datetime</em></a>) – Date to set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetDebugFile">
+<span class="sig-name descname"><span class="pre">SetDebugFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Global</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetDebugFile" title="Permalink to this definition"></a></dt>
+<dd><p>Sets state machine debug file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>File</strong> (<em>mixed</em>) – File where to write debug stuff (as configured by <a class="reference internal" href="#gammu.SetDebugLevel" title="gammu.SetDebugLevel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetDebugLevel()</span></code></a>). Can be either None for no file, Python file object or filename.</p></li>
+<li><p><strong>Global</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to use global debug structure (overrides File)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetDebugLevel">
+<span class="sig-name descname"><span class="pre">SetDebugLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetDebugLevel" title="Permalink to this definition"></a></dt>
+<dd><p>Sets state machine debug level according to passed string. You need to configure output file using <a class="reference internal" href="#gammu.SetDebugFile" title="gammu.SetDebugFile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetDebugFile()</span></code></a> to activate it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Level</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of debug level to use, currently one of:
+- nothing
+- text
+- textall
+- binary
+- errors
+- textdate
+- textalldate
+- errorsdate</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetFileAttributes">
+<span class="sig-name descname"><span class="pre">SetFileAttributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ReadOnly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Protected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">System</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Hidden</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetFileAttributes" title="Permalink to this definition"></a></dt>
+<dd><p>Sets file attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File to modify</p></li>
+<li><p><strong>ReadOnly</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether file is read only. Default to False.</p></li>
+<li><p><strong>Protected</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether file is protected. Default to False.</p></li>
+<li><p><strong>System</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether file is system. Default to False.</p></li>
+<li><p><strong>Hidden</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether file is hidden. Default to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetIncomingCB">
+<span class="sig-name descname"><span class="pre">SetIncomingCB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetIncomingCB" title="Permalink to this definition"></a></dt>
+<dd><p>Gets network information from phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enable</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to enable notifications, default is True</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetIncomingCall">
+<span class="sig-name descname"><span class="pre">SetIncomingCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetIncomingCall" title="Permalink to this definition"></a></dt>
+<dd><p>Activates/deactivates noticing about incoming calls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enable</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to enable notifications, default is True</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetIncomingCallback">
+<span class="sig-name descname"><span class="pre">SetIncomingCallback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetIncomingCallback" title="Permalink to this definition"></a></dt>
+<dd><p>Sets callback function which is called whenever any (enabled) incoming event appears. Please note that you have to enable each event type by calling SetIncoming* functions.</p>
+<p>The callback function needs to accept three parameters: StateMachine object, event type and it’s data in dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Callback</strong> (<em>function</em>) – callback function or None for disabling</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetIncomingSMS">
+<span class="sig-name descname"><span class="pre">SetIncomingSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetIncomingSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Enable/disable notification on incoming SMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enable</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to enable notifications, default is True</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetIncomingUSSD">
+<span class="sig-name descname"><span class="pre">SetIncomingUSSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetIncomingUSSD" title="Permalink to this definition"></a></dt>
+<dd><p>Activates/deactivates noticing about incoming USSDs (UnStructured Supplementary Services).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enable</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to enable notifications, default is True</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetLocale">
+<span class="sig-name descname"><span class="pre">SetLocale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DateSeparator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateFormat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AMPMTime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetLocale" title="Permalink to this definition"></a></dt>
+<dd><p>Sets locale of phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DateSeparator</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Date separator.</p></li>
+<li><p><strong>DateFormat</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Date format, one of <code class="docutils literal notranslate"><span class="pre">DDMMYYYY</span></code>, <code class="docutils literal notranslate"><span class="pre">MMDDYYYY</span></code>, <code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code></p></li>
+<li><p><strong>AMPMTime</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to use AM/PM time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetMemory">
+<span class="sig-name descname"><span class="pre">SetMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetMemory" title="Permalink to this definition"></a></dt>
+<dd><p>Sets memory (phonebooks or calls) entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Memory entry, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of created entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetSMS">
+<span class="sig-name descname"><span class="pre">SetSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Sets SMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – SMS data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple for location and folder.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetSMSC">
+<span class="sig-name descname"><span class="pre">SetSMSC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetSMSC" title="Permalink to this definition"></a></dt>
+<dd><p>Sets SMS Service Center number and SMS settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – SMSC information, see <a class="reference internal" href="objects.html#smsc-obj"><span class="std std-ref">SMSC Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetSpeedDial">
+<span class="sig-name descname"><span class="pre">SetSpeedDial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetSpeedDial" title="Permalink to this definition"></a></dt>
+<dd><p>Sets speed dial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Speed dial data, see <a class="reference internal" href="#gammu.StateMachine.GetSpeedDial" title="gammu.StateMachine.GetSpeedDial"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetSpeedDial()</span></code></a> for listing.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SetToDo">
+<span class="sig-name descname"><span class="pre">SetToDo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SetToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Sets ToDo in phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Value</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – ToDo data, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Location of created entry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SplitCall">
+<span class="sig-name descname"><span class="pre">SplitCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SplitCall" title="Permalink to this definition"></a></dt>
+<dd><p>Splits call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.SwitchCall">
+<span class="sig-name descname"><span class="pre">SwitchCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Next</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.SwitchCall" title="Permalink to this definition"></a></dt>
+<dd><p>Switches call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.Terminate">
+<span class="sig-name descname"><span class="pre">Terminate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.Terminate" title="Permalink to this definition"></a></dt>
+<dd><p>Terminates the connection with phone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.Abort">
+<span class="sig-name descname"><span class="pre">Abort</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.Abort" title="Permalink to this definition"></a></dt>
+<dd><p>Aborts current operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.TransferCall">
+<span class="sig-name descname"><span class="pre">TransferCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Next</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.TransferCall" title="Permalink to this definition"></a></dt>
+<dd><p>Transfers call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.StateMachine.UnholdCall">
+<span class="sig-name descname"><span class="pre">UnholdCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.StateMachine.UnholdCall" title="Permalink to this definition"></a></dt>
+<dd><p>Unholds call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ID of call</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="generic-functions">
+<h2>Generic functions<a class="headerlink" href="#generic-functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.Version">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">Version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.Version" title="Permalink to this definition"></a></dt>
+<dd><p>Get version information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of version information - Gammu runtime version, python-gammu version, build time Gammu version.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="debugging-configuration">
+<h2>Debugging configuration<a class="headerlink" href="#debugging-configuration" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SetDebugFile">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SetDebugFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SetDebugFile" title="Permalink to this definition"></a></dt>
+<dd><p>Sets global debug file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>File</strong> (<em>mixed</em>) – File where to write debug stuff (as configured by <a class="reference internal" href="#gammu.SetDebugLevel" title="gammu.SetDebugLevel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetDebugLevel()</span></code></a>). Can be either None for no file, Python file object or filename.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SetDebugLevel">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SetDebugLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SetDebugLevel" title="Permalink to this definition"></a></dt>
+<dd><p>Sets global debug level according to passed string. You need to configure output file using <a class="reference internal" href="#gammu.SetDebugFile" title="gammu.SetDebugFile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetDebugFile()</span></code></a> to activate it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Level</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>name of debug level to use, currently one of:</p>
+<ul class="simple">
+<li><p>nothing</p></li>
+<li><p>text</p></li>
+<li><p>textall</p></li>
+<li><p>binary</p></li>
+<li><p>errors</p></li>
+<li><p>textdate</p></li>
+<li><p>textalldate</p></li>
+<li><p>errorsdate</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="message-processing">
+<h2>Message processing<a class="headerlink" href="#message-processing" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.LinkSMS">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">LinkSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Messages</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EMS</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.LinkSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Links multi part SMS messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Messages</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of messages to link, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p></li>
+<li><p><strong>EMS</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to detect ems, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of linked messages, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SMSCounter">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SMSCounter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">UDH</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NoUDH'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Coding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SMSCounter" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates number of SMS and free chars in SMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Text</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Message text</p></li>
+<li><p><strong>UDH</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Message UDH</p></li>
+<li><p><strong>Coding</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Message coding (eg. Unicode or Default)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of messages and number of free chars</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.29.90.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.DecodeSMS">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">DecodeSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Messages</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EMS</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.DecodeSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Decodes multi part SMS message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Messages</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Nessages to decode, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p></li>
+<li><p><strong>EMS</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to use EMS, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Multi part message information, see <a class="reference internal" href="objects.html#sms-info-obj"><span class="std std-ref">SMS Info Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeSMS">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MessageInfo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes multi part SMS message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>MessageInfo</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Description of message, see <a class="reference internal" href="objects.html#sms-info-obj"><span class="std std-ref">SMS Info Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of dictionaries with raw message, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.DecodePDU">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">DecodePDU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SMSC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.DecodePDU" title="Permalink to this definition"></a></dt>
+<dd><p>Parses PDU packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Data</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – PDU data, need to be binary not hex encoded</p></li>
+<li><p><strong>SMSC</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether PDU includes SMSC.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Message data, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gammu</span><span class="o">.</span><span class="n">DecodePDU</span><span class="p">(</span>
+    <span class="s2">&quot;0681678968986811000a8152564557550010ff0d3bf67aed5ebbddeb1d7bed06&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;hex&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodePDU">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodePDU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SMS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Submit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodePDU" title="Permalink to this definition"></a></dt>
+<dd><p>Creates PDU packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SMS</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – SMS dictionary, see <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a></p></li>
+<li><p><strong>Layout</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Layout (one of Submit, Deliver, StatusReport), Submit is default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Message data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.27.93.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="encoding-and-decoding-entries">
+<h2>Encoding and decoding entries<a class="headerlink" href="#encoding-and-decoding-entries" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.DecodeVCARD">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">DecodeVCARD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.DecodeVCARD" title="Permalink to this definition"></a></dt>
+<dd><p>Decodes memory entry v from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Text</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – String to decode</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Memory entry, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeVCARD">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeVCARD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeVCARD" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes memory entry to a vCard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Entry</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Memory entry, see <a class="reference internal" href="objects.html#pbk-obj"><span class="std std-ref">Phonebook Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with vCard</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.DecodeVCS">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">DecodeVCS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.DecodeVCS" title="Permalink to this definition"></a></dt>
+<dd><p>Decodes todo/calendar entry v from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Text</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – String to decode</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Calendar or todo entry (whatever one was included in string), see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a>, <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.DecodeICS">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">DecodeICS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.DecodeICS" title="Permalink to this definition"></a></dt>
+<dd><p>Decodes todo/calendar entry v from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Text</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – String to decode</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Calendar or todo entry (whatever one was included in string), see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a>, <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeVCALENDAR">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeVCALENDAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeVCALENDAR" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes calendar entry to a vCalendar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Entry</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Calendar entry, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with vCalendar</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeICALENDAR">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeICALENDAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeICALENDAR" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes calendar entry to a iCalendar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Entry</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Calendar entry, see <a class="reference internal" href="objects.html#cal-obj"><span class="std std-ref">Calendar Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with iCalendar</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeVTODO">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeVTODO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeVTODO" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes todo entry to a vTodo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Entry</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Todo entry, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with vTodo</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.EncodeITODO">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">EncodeITODO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.EncodeITODO" title="Permalink to this definition"></a></dt>
+<dd><p>Encodes todo entry to a iTodo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Entry</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Todo entry, see <a class="reference internal" href="objects.html#todo-obj"><span class="std std-ref">Todo Object</span></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with vCard</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="backup-reading-and-writing">
+<h2>Backup reading and writing<a class="headerlink" href="#backup-reading-and-writing" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SaveRingtone">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SaveRingtone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ringtone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SaveRingtone" title="Permalink to this definition"></a></dt>
+<dd><p>Saves ringtone into file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of file where ringote will be saved</p></li>
+<li><p><strong>Ringtone</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Ringtone to save</p></li>
+<li><p><strong>Format</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – One of <code class="docutils literal notranslate"><span class="pre">ott</span></code>, <code class="docutils literal notranslate"><span class="pre">mid</span></code>, <code class="docutils literal notranslate"><span class="pre">rng</span></code>, <code class="docutils literal notranslate"><span class="pre">imy</span></code>, <code class="docutils literal notranslate"><span class="pre">wav</span></code>, <code class="docutils literal notranslate"><span class="pre">rttl</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SaveBackup">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SaveBackup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Backup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SaveBackup" title="Permalink to this definition"></a></dt>
+<dd><p>Saves backup into file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of file to read backup from</p></li>
+<li><p><strong>Backup</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Backup data, see <a class="reference internal" href="#gammu.ReadBackup" title="gammu.ReadBackup"><code class="xref py py-func docutils literal notranslate"><span class="pre">ReadBackup()</span></code></a> for description</p></li>
+<li><p><strong>Format</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File format to use (<code class="docutils literal notranslate"><span class="pre">Auto</span></code>, <code class="docutils literal notranslate"><span class="pre">AutoUnicode</span></code>, <code class="docutils literal notranslate"><span class="pre">LMB</span></code>, <code class="docutils literal notranslate"><span class="pre">VCalendar</span></code>, <code class="docutils literal notranslate"><span class="pre">VCard</span></code>, <code class="docutils literal notranslate"><span class="pre">LDIF</span></code>, <code class="docutils literal notranslate"><span class="pre">ICS</span></code>, <code class="docutils literal notranslate"><span class="pre">Gammu</span></code>, <code class="docutils literal notranslate"><span class="pre">GammuUnicode</span></code>, the default is <code class="docutils literal notranslate"><span class="pre">AutoUnicode</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.ReadBackup">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">ReadBackup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.ReadBackup" title="Permalink to this definition"></a></dt>
+<dd><p>Reads backup into file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of file where backup is stored</p></li>
+<li><p><strong>Format</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File format to use (<code class="docutils literal notranslate"><span class="pre">Auto</span></code>, <code class="docutils literal notranslate"><span class="pre">AutoUnicode</span></code>, <code class="docutils literal notranslate"><span class="pre">LMB</span></code>, <code class="docutils literal notranslate"><span class="pre">VCalendar</span></code>, <code class="docutils literal notranslate"><span class="pre">VCard</span></code>, <code class="docutils literal notranslate"><span class="pre">LDIF</span></code>, <code class="docutils literal notranslate"><span class="pre">ICS</span></code>, <code class="docutils literal notranslate"><span class="pre">Gammu</span></code>, <code class="docutils literal notranslate"><span class="pre">GammuUnicode</span></code>, the default is <code class="docutils literal notranslate"><span class="pre">AutoUnicode</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary of read entries, it contains following keys, each might be empty:</p>
+<ul class="simple">
+<li><p>IMEI</p></li>
+<li><p>Model</p></li>
+<li><p>Creator</p></li>
+<li><p>PhonePhonebook</p></li>
+<li><p>SIMPhonebook</p></li>
+<li><p>Calendar</p></li>
+<li><p>ToDo</p></li>
+<li><p>DateTime</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.SaveSMSBackup">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">SaveSMSBackup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Backup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.SaveSMSBackup" title="Permalink to this definition"></a></dt>
+<dd><p>Saves SMS backup into file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of file where to save SMS backup</p></li>
+<li><p><strong>Backup</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of messages to store</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gammu.ReadSMSBackup">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">ReadSMSBackup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.ReadSMSBackup" title="Permalink to this definition"></a></dt>
+<dd><p>Reads SMS backup into file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Filename</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of file where SMS backup is stored</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of messages read from file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="various-data">
+<h2>Various data<a class="headerlink" href="#various-data" title="Permalink to this heading"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="gammu.GSMNetworks">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">GSMNetworks</span></span><a class="headerlink" href="#gammu.GSMNetworks" title="Permalink to this definition"></a></dt>
+<dd><p>Dictionary with GSM network codes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gammu.GSMCountries">
+<span class="sig-prename descclassname"><span class="pre">gammu.</span></span><span class="sig-name descname"><span class="pre">GSMCountries</span></span><a class="headerlink" href="#gammu.GSMCountries" title="Permalink to this definition"></a></dt>
+<dd><p>Dictionary with GSM country codes.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="python-gammu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smsd.html" class="btn btn-neutral float-right" title="gammu.smsd – SMSD access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

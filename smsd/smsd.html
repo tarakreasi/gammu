@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gammu-smsd &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammu-smsd-inject" href="inject.html" />
+    <link rel="prev" title="Program Manuals" href="manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="manual.html">Program Manuals</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gammu-smsd</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#signals">Signals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-limitations">Known Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inject.html">gammu-smsd-inject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitor.html">gammu-smsd-monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">SMSD Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">RunOnReceive Directive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backends.html">Backend services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+          <li class="breadcrumb-item"><a href="manual.html">Program Manuals</a></li>
+      <li class="breadcrumb-item active">gammu-smsd</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/smsd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gammu-smsd">
+<span id="id1"></span><h1>gammu-smsd<a class="headerlink" href="#gammu-smsd" title="Permalink to this heading"></a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gammu-smsd [OPTION]...
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This manual page documents briefly the <strong class="program">gammu-smsd</strong> command.</p>
+<p><strong class="program">gammu-smsd</strong> is a program that periodically scans GSM modem for
+received messages, stores them in defined storage and also sends messages
+enqueued in this storage.</p>
+<p>The daemon can reload configuration file after sending hangup signal (SIGHUP)
+and properly terminates itself on SIGINT and SIGTERM.</p>
+<p>Program accepts following options (please note that long options might be not
+accepted on some platforms):</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-h">
+<span id="cmdoption-gammu-smsd-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-h" title="Permalink to this definition"></a></dt>
+<dd><p>Shows help.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-v">
+<span id="cmdoption-gammu-smsd-version"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-v" title="Permalink to this definition"></a></dt>
+<dd><p>Shows version information and compiled in features.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-c">
+<span id="cmdoption-gammu-smsd-config"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--config</span></span><span class="sig-prename descclassname"><span class="pre">=file</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-c" title="Permalink to this definition"></a></dt>
+<dd><p>Configuration file to use, default is /etc/gammu-smsdrc, on Windows there
+is no default and configuration file path has to be always specified.</p>
+<p>If you run SMSD as a system daemon (or service), it is recommended to use
+absolute path to configuration file as startup directory might be
+different than you expect.</p>
+<p>See <a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a> for configuration file documentation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-p">
+<span id="cmdoption-gammu-smsd-pid"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--pid</span></span><span class="sig-prename descclassname"><span class="pre">=file</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-p" title="Permalink to this definition"></a></dt>
+<dd><p>Lock file for storing pid, empty for no locking. Not supported on Windows.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-U">
+<span id="cmdoption-gammu-smsd-u"></span><span id="cmdoption-gammu-smsd-user"></span><span class="sig-name descname"><span class="pre">-U</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--user</span></span><span class="sig-prename descclassname"><span class="pre">=user</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-U" title="Permalink to this definition"></a></dt>
+<dd><p>Drop daemon privileges to chosen user after starting.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-G">
+<span id="cmdoption-gammu-smsd-g"></span><span id="cmdoption-gammu-smsd-group"></span><span class="sig-name descname"><span class="pre">-G</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--group</span></span><span class="sig-prename descclassname"><span class="pre">=group</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-G" title="Permalink to this definition"></a></dt>
+<dd><p>Drop daemon privileges to chosen group after starting.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-d">
+<span id="cmdoption-gammu-smsd-daemon"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--daemon</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-d" title="Permalink to this definition"></a></dt>
+<dd><p>Daemonize program on startup. Not supported on Windows.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-i">
+<span id="cmdoption-gammu-smsd-install-service"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--install-service</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-i" title="Permalink to this definition"></a></dt>
+<dd><p>Installs SMSD as a Windows service.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-0">
+<span id="cmdoption-gammu-smsd-uninstall-service"></span><span class="sig-name descname"><span class="pre">-u</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--uninstall-service</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-0" title="Permalink to this definition"></a></dt>
+<dd><p>Uninstalls SMSD as a Windows service.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-s">
+<span id="cmdoption-gammu-smsd-start-service"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--start-service</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-s" title="Permalink to this definition"></a></dt>
+<dd><p>Starts SMSD Windows service.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-k">
+<span id="cmdoption-gammu-smsd-stop-service"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--stop-service</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-k" title="Permalink to this definition"></a></dt>
+<dd><p>Stops SMSD Windows service.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-f">
+<span id="cmdoption-gammu-smsd-max-failures"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max-failures</span></span><span class="sig-prename descclassname"><span class="pre">=count</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-f" title="Permalink to this definition"></a></dt>
+<dd><p>Terminate after defined number of failures. Use 0 to not terminate (this is default).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-X">
+<span id="cmdoption-gammu-smsd-x"></span><span id="cmdoption-gammu-smsd-suicide"></span><span class="sig-name descname"><span class="pre">-X</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--suicide</span></span><span class="sig-prename descclassname"><span class="pre">=seconds</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-X" title="Permalink to this definition"></a></dt>
+<dd><p>Kills itself after number of seconds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-S">
+<span id="cmdoption-gammu-smsd-run-service"></span><span class="sig-name descname"><span class="pre">-S</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--run-service</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-S" title="Permalink to this definition"></a></dt>
+<dd><p>Runs pogram as SMSD Windows service. This should not be used manually, but
+only Windows Service manager should use this command.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-n">
+<span id="cmdoption-gammu-smsd-service-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--service-name</span></span><span class="sig-prename descclassname"><span class="pre">=name</span></span><a class="headerlink" href="#cmdoption-gammu-smsd-n" title="Permalink to this definition"></a></dt>
+<dd><p>Defines name of a Windows service. Each service requires an unique name,
+so if you want to run several SMSD instances, you have to name each
+service differently. Default is “GammuSMSD”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-l">
+<span id="cmdoption-gammu-smsd-use-log"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--use-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-l" title="Permalink to this definition"></a></dt>
+<dd><p>Use logging as configured in config file (default).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-L">
+<span id="cmdoption-gammu-smsd-no-use-log"></span><span class="sig-name descname"><span class="pre">-L</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-use-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-L" title="Permalink to this definition"></a></dt>
+<dd><p>Do not use logging as configured in config file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-e">
+<span id="cmdoption-gammu-smsd-install-event-log"></span><span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--install-event-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-e" title="Permalink to this definition"></a></dt>
+<dd><p>Installs Windows EventLog description to registry.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.31.90.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gammu-smsd-E">
+<span id="cmdoption-gammu-smsd-uninstall-event-log"></span><span class="sig-name descname"><span class="pre">-E</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--uninstall-event-log</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gammu-smsd-E" title="Permalink to this definition"></a></dt>
+<dd><p>Uninstalls Windows EventLog description to registry.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.31.90.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="signals">
+<span id="gammu-smsd-signals"></span><h2>Signals<a class="headerlink" href="#signals" title="Permalink to this heading"></a></h2>
+<p>SMSD can be controlled using following POSIX signals (if your platform supports this):</p>
+<dl class="simple">
+<dt>SIGHUP</dt><dd><p>Reload configuration and reconnect to phone.</p>
+</dd>
+<dt>SIGINT, SIGTERM</dt><dd><p>Gracefully shutdown the daemon.</p>
+</dd>
+<dt>SIGALRM</dt><dd><p>Used internally for <a class="reference external" href="https://docs.python.org/3.9/using/cmdline.html#id5" title="(in Python v3.9)"><code class="xref std std-option docutils literal notranslate"><span class="pre">gammu-smsd</span> <span class="pre">-X</span></code></a></p>
+</dd>
+<dt>SIGUSR1</dt><dd><p>Suspends SMSD operation, closing connection to phone and database.</p>
+</dd>
+<dt>SIGUSR2</dt><dd><p>Resumes SMSD operation (after previous suspend).</p>
+</dd>
+</dl>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.22.91: </span>Added support for SIGHUP.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.22.95: </span>Added support for SIGALRM.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.31.90: </span>Added support for SIGUSR1 and SIGUSR2.</p>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="linux-unix-examples">
+<h3>Linux/Unix Examples<a class="headerlink" href="#linux-unix-examples" title="Permalink to this heading"></a></h3>
+<p>Start SMSD as a daemon on Linux:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd<span class="w"> </span>--config<span class="w"> </span>/etc/gammu-smsdrc<span class="w"> </span>--pid<span class="w"> </span>/var/run/gammu-smsd.pid<span class="w"> </span>--daemon
+</pre></div>
+</div>
+<p>Start SMSD as a daemon on Linux with reduced privileges:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd<span class="w"> </span>--config<span class="w"> </span>/etc/gammu-smsdrc<span class="w"> </span>--pid<span class="w"> </span>/var/run/gammu-smsd.pid<span class="w"> </span>--daemon<span class="w"> </span>--user<span class="w"> </span>gammu<span class="w"> </span>--group<span class="w"> </span>gammu
+</pre></div>
+</div>
+</section>
+<section id="smsd-as-a-system-wide-daemon">
+<h3>SMSD as a system wide daemon<a class="headerlink" href="#smsd-as-a-system-wide-daemon" title="Permalink to this heading"></a></h3>
+<p>To use SMSD as a daemon, you might want to use init script which is shipped
+with Gammu in contrib/init directory. It is not installed by default, either
+install it manually or check INSTALL file for instructions.</p>
+<p>Under Windows 7 you might need to disable UAC (user account control) before
+you will be able to install SMSD service.</p>
+</section>
+<section id="windows-service-examples">
+<h3>Windows Service Examples<a class="headerlink" href="#windows-service-examples" title="Permalink to this heading"></a></h3>
+<p>Install Gammu SMSD Windows service:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd.exe<span class="w"> </span>-c<span class="w"> </span>c:<span class="se">\G</span>ammu<span class="se">\s</span>msdrc<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>Install two instances of SMSD Windows service:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd.exe<span class="w"> </span>-c<span class="w"> </span>c:<span class="se">\G</span>ammu<span class="se">\s</span>msdrc-1<span class="w"> </span>-n<span class="w"> </span>Gammu-first-phone<span class="w"> </span>-i
+
+gammu-smsd.exe<span class="w"> </span>-c<span class="w"> </span>c:<span class="se">\G</span>ammu<span class="se">\s</span>msdrc-2<span class="w"> </span>-n<span class="w"> </span>Gammu-second-phone<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>To uninstall a Windows service:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd.exe<span class="w"> </span>-u
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-windows-service">
+<h3>Troubleshooting Windows Service<a class="headerlink" href="#troubleshooting-windows-service" title="Permalink to this heading"></a></h3>
+<p>If Gammu fails to start as a Windows service (you will usually get “Error
+1053: The service did not respond to the start or control request in a timely
+fashion”), first check your SMSD logs. If they do not contain any useful hint,
+try starting SMSD manually with exactly same parameters as you installed the
+service (without -i).</p>
+<p>For example the command line can look like:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd.exe<span class="w"> </span>-c<span class="w"> </span>smsdrc
+</pre></div>
+</div>
+<p>You now should be able to get errors from SMSD even if it fails to start as a
+service.</p>
+</section>
+<section id="invoking-gammu-and-suspending-smsd">
+<span id="gammu-smsd-suspend"></span><h3>Invoking Gammu and suspending SMSD<a class="headerlink" href="#invoking-gammu-and-suspending-smsd" title="Permalink to this heading"></a></h3>
+<p>As you can not run Gammu and Gammu SMSD at same time on single device, you can
+workaround this limitation by suspending SMSD temporarily using <cite>SIGUSR1</cite> and
+<cite>SIGUSR2</cite> signals (see also <a class="reference internal" href="#gammu-smsd-signals"><span class="std std-ref">Signals</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">SMSD_PID</span><span class="o">=</span><span class="sb">`</span>pidof<span class="w"> </span>gammu-smsd<span class="sb">`</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SMSD_PID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to figure out SMSD PID!&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">kill</span><span class="w"> </span>-SIGUSR1<span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="w">    </span>gammu<span class="w"> </span>identify
+<span class="w">    </span><span class="nb">kill</span><span class="w"> </span>-SIGUSR2<span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>Or even create a <cite>gammu-safe</cite> script:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nv">SMSD_PID</span><span class="o">=</span><span class="sb">`</span>pidof<span class="w"> </span>gammu-smsd<span class="sb">`</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SMSD_PID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>gammu<span class="w"> </span><span class="nv">$@</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nv">tty</span><span class="o">=</span><span class="k">$(</span>lsof<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;gammu-sms\s+</span><span class="nv">$SMSD_PID</span><span class="s2">\s+.*/dev/tty*&quot;</span><span class="p">|</span>awk<span class="w"> </span><span class="o">{</span><span class="s1">&#39;print $NF&#39;</span><span class="o">}</span><span class="k">)</span>
+<span class="w">  </span><span class="nb">kill</span><span class="w"> </span>-SIGUSR1<span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>fuser<span class="w"> </span><span class="nv">$ttyfuser</span><span class="w"> </span><span class="nv">$tty</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="p">|</span>xargs<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="w">  </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>gammu<span class="w"> </span><span class="nv">$@</span>
+<span class="w">  </span><span class="nb">kill</span><span class="w"> </span>-SIGUSR2<span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>fuser<span class="w"> </span><span class="nv">$ttyfuser</span><span class="w"> </span><span class="nv">$tty</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="p">|</span>xargs<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="nv">$SMSD_PID</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="w">  </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this heading"></a></h2>
+<p>You can not use same phone by more programs in same time. However in case you
+did not enable locking in <span class="target" id="index-0"></span><a class="reference internal" href="../config/index.html#section-[gammu]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[gammu]</span></code></a> section, it might be able
+to start the communication with phone from more programs. In this case neither
+of the programs will probably work, see <a class="reference internal" href="#gammu-smsd-suspend"><span class="std std-ref">Invoking Gammu and suspending SMSD</span></a> for
+workaround.</p>
+<p>There is no way to detect that SMS message is reply to another by looking at
+message headers. The only way to achieve this is to add some token to the
+message and let the user include it in the message on reply.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual.html" class="btn btn-neutral float-left" title="Program Manuals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inject.html" class="btn btn-neutral float-right" title="gammu-smsd-inject" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

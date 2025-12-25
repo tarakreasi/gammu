@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="INI files" href="inifile.html" />
+    <link rel="prev" title="File" href="file.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Info</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/info.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="info">
+<h1>Info<a class="headerlink" href="#info" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNetworkName” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCountryName” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FeatureToString” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FeatureFromString” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_IsPhoneFeatureAvailable” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddPhoneFeature” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetManufacturer” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetModel” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetModelInfo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetFirmware” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetIMEI” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetOriginalIMEI” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetManufactureMonth” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetProductCode” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetHardware” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetPPM” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSIMIMSI” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetBatteryCharge” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSignalQuality” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNetworkInfo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetDisplayStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State">
+<span class="target" id="group__Info_1ga0acd672b5acb224c87653b5f118220c4"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NetworkInfo_State</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of network logging </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_HomeNetwork">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4aecb1694038f695769a8eed7b5b38a36e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_HomeNetwork</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_HomeNetwork" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Home network for used SIM card. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_NoNetwork">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4ad72cd404a173d56a6fcf3b4dfb998d75"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NoNetwork</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_NoNetwork" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No network available for used SIM card. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_RoamingNetwork">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4aee1baa75bc9f2b920af1276c3cd3649c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RoamingNetwork</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_RoamingNetwork" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SIM card uses roaming. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_RegistrationDenied">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4a2181ac11ac0e2d1a762f5af7054efc5f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RegistrationDenied</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_RegistrationDenied" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Network registration denied - card blocked or expired or disabled. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_NetworkStatusUnknown">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4abe3cf3d66b8bae3e4dd933612e5a4d14"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NetworkStatusUnknown</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_NetworkStatusUnknown" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown network status. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo_State.GSM_RequestingNetwork">
+<span class="target" id="group__Info_1gga0acd672b5acb224c87653b5f118220c4a3dff70cbee65b675ccb109f0b5aa4d51"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RequestingNetwork</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo_State.GSM_RequestingNetwork" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Network explicitely requested by user. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_GPRS_State">
+<span class="target" id="group__Info_1ga37939c36eff1af896c8e96d8e8cedf4c"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GPRS_State</span></span></span><a class="headerlink" href="#c.GSM_GPRS_State" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of GPRS connection. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_GPRS_State.GSM_GPRS_Detached">
+<span class="target" id="group__Info_1gga37939c36eff1af896c8e96d8e8cedf4cab86892152faaae1acb7c617e9596bdab"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GPRS_Detached</span></span></span><a class="headerlink" href="#c.GSM_GPRS_State.GSM_GPRS_Detached" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GRPS is detached. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_GPRS_State.GSM_GPRS_Attached">
+<span class="target" id="group__Info_1gga37939c36eff1af896c8e96d8e8cedf4ca6dfdae2e0397325d140ad04164dee7dd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GPRS_Attached</span></span></span><a class="headerlink" href="#c.GSM_GPRS_State.GSM_GPRS_Attached" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GRPS is attached. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo">
+<span class="target" id="structGSM__NetworkInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NetworkInfo</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for getting the current network info. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.CID">
+<span class="target" id="structGSM__NetworkInfo_1afd367d4c2d746888c550dffb9e3da3e6"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CID</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.CID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cell ID (CID) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.NetworkCode">
+<span class="target" id="structGSM__NetworkInfo_1a58950730655d0a0093594e45fe9e3ad5"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NetworkCode</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.NetworkCode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GSM network code. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.State">
+<span class="target" id="structGSM__NetworkInfo_1add4714717d22e310ff848269bf48646b"></span><a class="reference internal" href="#c.GSM_NetworkInfo_State" title="GSM_NetworkInfo_State"><span class="n"><span class="pre">GSM_NetworkInfo_State</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">State</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo.State" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of network logging. If phone is not logged into any network, some values are not filled </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.LAC">
+<span class="target" id="structGSM__NetworkInfo_1add24a86267896766265f31b8fce6b5af"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LAC</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.LAC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>LAC (Local Area Code). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.NetworkName">
+<span class="target" id="structGSM__NetworkInfo_1a533ac3ea3dd91d85e37514d84ed499ee"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NetworkName</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">20</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.NetworkName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of current network returned from phone (or empty). The buffer needs to have twice the capacity of the longest supported network name to account for decoding. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.GPRS">
+<span class="target" id="structGSM__NetworkInfo_1abf97e353fe1d707645a8db74e45e4d09"></span><a class="reference internal" href="#c.GSM_GPRS_State" title="GSM_GPRS_State"><span class="n"><span class="pre">GSM_GPRS_State</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GPRS</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo.GPRS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GPRS state. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.PacketCID">
+<span class="target" id="structGSM__NetworkInfo_1a2d1b2ac0deb4704d5a6ada0ab9afe329"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PacketCID</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.PacketCID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cell ID (CID) for packet network </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.PacketState">
+<span class="target" id="structGSM__NetworkInfo_1acce766cd503c4a421adf7d1e501d6a60"></span><a class="reference internal" href="#c.GSM_NetworkInfo_State" title="GSM_NetworkInfo_State"><span class="n"><span class="pre">GSM_NetworkInfo_State</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PacketState</span></span></span><a class="headerlink" href="#c.GSM_NetworkInfo.PacketState" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of network logging for packet data. If phone is not logged into any network, some values are not filled </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NetworkInfo.PacketLAC">
+<span class="target" id="structGSM__NetworkInfo_1a39f8ba1773771212004d723c02e88c4b"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PacketLAC</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NetworkInfo.PacketLAC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>LAC (Local Area Code) for packet data. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SignalQuality">
+<span class="target" id="structGSM__SignalQuality"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SignalQuality</span></span></span><a class="headerlink" href="#c.GSM_SignalQuality" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Information about signal quality, all these should be -1 when unknown. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SignalQuality.SignalPercent">
+<span class="target" id="structGSM__SignalQuality_1a762071c039adfc213ebf1d7670bfb152"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SignalPercent</span></span></span><a class="headerlink" href="#c.GSM_SignalQuality.SignalPercent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Signal strength in percent. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SignalQuality.BitErrorRate">
+<span class="target" id="structGSM__SignalQuality_1ae39bb5d311f30aa5d09afdecb6698f0f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BitErrorRate</span></span></span><a class="headerlink" href="#c.GSM_SignalQuality.BitErrorRate" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bit error rate in percent. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ChargeState">
+<span class="target" id="group__Info_1gac97c6491ed8c80eb46d2e16bded19178"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ChargeState</span></span></span><a class="headerlink" href="#c.GSM_ChargeState" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Power source </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_BatteryPowered">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178a4c975821bdc8585ff10db733213e95ee"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryPowered</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_BatteryPowered" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Powered from battery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_BatteryConnected">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178a4ef9de881fdc1919a3cac34204eb2d33"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryConnected</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_BatteryConnected" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Powered from AC, battery connected </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_BatteryCharging">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178aaec217220b261de2a1c59f8bc5dd99bb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryCharging</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_BatteryCharging" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Powered from AC, battery is charging </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_BatteryNotConnected">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178a3f4db99028474b2d9db5af014d43d65b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryNotConnected</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_BatteryNotConnected" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Powered from AC, no battery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_BatteryFull">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178af96803e74f46f8c9678b4e48159ed42a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryFull</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_BatteryFull" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Powered from AC, battery is fully charged </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ChargeState.GSM_PowerFault">
+<span class="target" id="group__Info_1ggac97c6491ed8c80eb46d2e16bded19178a496e45e1f38c106219fe10419ff705f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_PowerFault</span></span></span><a class="headerlink" href="#c.GSM_ChargeState.GSM_PowerFault" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Power failure </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_BatteryType">
+<span class="target" id="group__Info_1ga3112bb4a5bd012b55023c440fa2d3837"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryType</span></span></span><a class="headerlink" href="#c.GSM_BatteryType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Power source </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BatteryType.GSM_BatteryUnknown">
+<span class="target" id="group__Info_1gga3112bb4a5bd012b55023c440fa2d3837aaf2c6f1aceb7229b1f2bcf615d7d69f0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryUnknown</span></span></span><a class="headerlink" href="#c.GSM_BatteryType.GSM_BatteryUnknown" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown battery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BatteryType.GSM_BatteryNiMH">
+<span class="target" id="group__Info_1gga3112bb4a5bd012b55023c440fa2d3837aeface4e382563cdecb47a26f996786ba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryNiMH</span></span></span><a class="headerlink" href="#c.GSM_BatteryType.GSM_BatteryNiMH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NiMH battery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BatteryType.GSM_BatteryLiIon">
+<span class="target" id="group__Info_1gga3112bb4a5bd012b55023c440fa2d3837a3edeafb7117026233a5441c289728641"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryLiIon</span></span></span><a class="headerlink" href="#c.GSM_BatteryType.GSM_BatteryLiIon" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Lithium Ion battery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BatteryType.GSM_BatteryLiPol">
+<span class="target" id="group__Info_1gga3112bb4a5bd012b55023c440fa2d3837a9338d5cecfbabd23144415b5f39b918e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryLiPol</span></span></span><a class="headerlink" href="#c.GSM_BatteryType.GSM_BatteryLiPol" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Lithium Polymer battery </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge">
+<span class="target" id="structGSM__BatteryCharge"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BatteryCharge</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Battery status </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.BatteryPercent">
+<span class="target" id="structGSM__BatteryCharge_1a9ccb1c9a52ab93af33f659083e8c2404"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BatteryPercent</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.BatteryPercent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Signal strength in percent, -1 = unknown </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.ChargeState">
+<span class="target" id="structGSM__BatteryCharge_1a6ea15ce6e37379fc98173496773cb4df"></span><a class="reference internal" href="#c.GSM_ChargeState" title="GSM_ChargeState"><span class="n"><span class="pre">GSM_ChargeState</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChargeState</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.ChargeState" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Charge state </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.BatteryVoltage">
+<span class="target" id="structGSM__BatteryCharge_1ade6101a0c14c9f5e37e73d77c7b0c8d9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BatteryVoltage</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.BatteryVoltage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Current battery voltage (in mV). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.ChargeVoltage">
+<span class="target" id="structGSM__BatteryCharge_1af4bae9b50bc8582231879451c78e0bcf"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChargeVoltage</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.ChargeVoltage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Voltage from charger (in mV) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.ChargeCurrent">
+<span class="target" id="structGSM__BatteryCharge_1aea94795ef83600ba414a6e4de2bca1fd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChargeCurrent</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.ChargeCurrent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Current from charger (in mA) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.PhoneCurrent">
+<span class="target" id="structGSM__BatteryCharge_1acfbb442238226b6270f1a194fd03cb41"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneCurrent</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.PhoneCurrent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone current consumption (in mA) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.BatteryTemperature">
+<span class="target" id="structGSM__BatteryCharge_1a5e5f3405aed2db394a98cdb00d0c3957"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BatteryTemperature</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.BatteryTemperature" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Battery temperature (in degrees Celsius) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.PhoneTemperature">
+<span class="target" id="structGSM__BatteryCharge_1ae0b321816e4d7081b3795ed8a5675854"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneTemperature</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.PhoneTemperature" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone temperature (in degrees Celsius) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.BatteryCapacity">
+<span class="target" id="structGSM__BatteryCharge_1a368cd8450a6805de29c1d2e50f7b18b9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BatteryCapacity</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.BatteryCapacity" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remaining battery capacity (in mAh) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_BatteryCharge.BatteryType">
+<span class="target" id="structGSM__BatteryCharge_1a4187827a29b0b6f5bfb08226d546fc09"></span><a class="reference internal" href="#c.GSM_BatteryType" title="GSM_BatteryType"><span class="n"><span class="pre">GSM_BatteryType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BatteryType</span></span></span><a class="headerlink" href="#c.GSM_BatteryCharge.BatteryType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Battery type </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature">
+<span class="target" id="group__Info_1gac8664536b75db8ede6bc559ba25642cb"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DisplayFeature</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Display feature </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_CallActive">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba7cf563c3b9036d28fc2947baaaa1b56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CallActive</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_CallActive" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_SMSMemoryFull">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba30d50512ddc2172bc5049ca9b6926e9f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSMemoryFull</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_SMSMemoryFull" title="Permalink to this definition"></a><br /></dt>
+<dd><p>blinking envelope </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_FaxCall">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba37977f017f6776f40c2365e2e8365faa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_FaxCall</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_FaxCall" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_UnreadSMS">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba02a1a4e518fc39c1d00a8ce68a5d0e8b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_UnreadSMS</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_UnreadSMS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_DataCall">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba458480d46469e97748643f53fec696a7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DataCall</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_DataCall" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_VoiceCall">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cba3eb25297080d7e0579de4e69dd684d68"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_VoiceCall</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_VoiceCall" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeature.GSM_KeypadLocked">
+<span class="target" id="group__Info_1ggac8664536b75db8ede6bc559ba25642cbac5f6b603d3d6ecfff73a772b0f0de258"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KeypadLocked</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeature.GSM_KeypadLocked" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_DisplayFeatures">
+<span class="target" id="structGSM__DisplayFeatures"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DisplayFeatures</span></span></span><a class="headerlink" href="#c.GSM_DisplayFeatures" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Display features </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Feature">
+<span class="target" id="group__Info_1ga248c8c59528a3999747d20b302f376c7"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Feature</span></span></span><a class="headerlink" href="#c.GSM_Feature" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone features definition. This is usually used for things, which can not be determined on run time. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL33">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a725b6bb9073064d39869c72b2f1718a9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL33</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL33" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,3310 style - 10 reminders, Unicode, 3 coding types </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL52">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aab26ce8802f5bf7545b4d2a02a009fee"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL52</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL52" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,5210 style - full Unicode, etc. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL82">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ac91bc52f947054e0ab06cf209dd64cda"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL82</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL82" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,8250 style - “normal”, but with Unicode </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_RING_SM">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a944c98f10aad57a768f598d6a71ac55f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_RING_SM</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_RING_SM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtones returned in SM format - 33xx </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NORING">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a7eb3853393406ec609842c5260d29f64"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NORING</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NORING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No ringtones </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOPBKUNICODE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a99b95db6c5d916dd5900ae8be8db4c48"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOPBKUNICODE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOPBKUNICODE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No phonebook in Unicode </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOWAP">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a10ad70f008723de3bb7456d7b19c0820"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOWAP</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOWAP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No WAP </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOCALLER">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a4e6ed16b0d814835fa192fe5313aa6a7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOCALLER</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOCALLER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No caller groups </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOPICTURE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a59344102c91f8e06137d05ebb2e70f20"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOPICTURE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOPICTURE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No Picture Images </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOPICTUREUNI">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a08ee1920811cee28ac66d1cac55bf61a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOPICTUREUNI</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOPICTUREUNI" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No Picture Images text in Unicode </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOSTARTUP">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a06f9fee287360b2ff6b56aa022b99c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOSTARTUP</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOSTARTUP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No startup logo </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOCALENDAR">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a2a69e6c573a8acaf4fea80177a77dd80"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOCALENDAR</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOCALENDAR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No calendar </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOSTARTANI">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ac1f355b3fc4ed889380f413b230ecb3b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOSTARTANI</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOSTARTANI" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Startup logo is not animated </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_POWER_BATT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aeb630ad70398376b060b41f2733fea34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_POWER_BATT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_POWER_BATT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Network and battery level get from netmonitor </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PROFILES33">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af0816a6ae92f1a5676738dbd413046c5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PROFILES33</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PROFILES33" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone profiles in 3310 style </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PROFILES51">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af78079f80152248456b1efb1e485bb54"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PROFILES51</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PROFILES51" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone profiles in 5110 style </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_MAGICBYTES">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ac3e6b4a26c1b1e71b2cdce330ebae4e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_MAGICBYTES</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_MAGICBYTES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone can make authentication with magic bytes </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NODTMF">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a084522fccad9fbde434e6331ee6d018e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NODTMF</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NODTMF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone can’t send DTMF </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_DISPSTATUS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a7b87ad5a85ab7dc8ee7784b77a68b54d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_DISPSTATUS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_DISPSTATUS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone return display status </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOCALLINFO">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7adbb9e73d8a55a206b3dc684dbcad7d73"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOCALLINFO</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOCALLINFO" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not return call info </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_DAYMONTH">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a801aa0aaf2800669f907424d65f412a3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_DAYMONTH</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_DAYMONTH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Day and month reversed in pbk, when compare to GSM models </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBK35">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aa6886262493824f2ef95000b14001b36"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBK35</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBK35" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook in 3510 style with ringtones ID </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKIMG">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a552e9a8effd049d08cf7a464f32d12ca"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKIMG</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKIMG" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook in 7250 style with picture ID </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKTONEGAL">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a21b4810221b842028474e574b819f983"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKTONEGAL</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKTONEGAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook with selecting ringtones from gallery </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKSMSLIST">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a4891db8c50a9b615031e19d93f89eaa4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKSMSLIST</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKSMSLIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook with SMS list </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKUSER">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a55eec6e573e4c0ffbeda9554e1ae3cd6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKUSER</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKUSER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook with user ID </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_6230iCALLER">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a13b5607f013b1c0d5128cad10f12651d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_6230iCALLER</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_6230iCALLER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Caller groups like in 6230i </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_RADIO">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ab8a51e9f431261049aded3e4f2d2f9fd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_RADIO</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_RADIO" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone with FM radio </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_TODO63">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aae2b6ecf01dc32ca7be609996f16133b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_TODO63</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_TODO63" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ToDo in 6310 style - 0x55 msg type </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_TODO66">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a30216717534e0a78cc1913f39d9e7e24"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_TODO66</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_TODO66" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ToDo in 6610 style - like calendar, with date and other </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOMIDI">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a85a5f8e1c481d9213a7a37fa70c7cdfc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOMIDI</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOMIDI" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No ringtones in MIDI </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_BLUETOOTH">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a81e2cf44fcb73affd18aaf05c362967c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_BLUETOOTH</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_BLUETOOTH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bluetooth support </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOFILESYSTEM">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a9940ad385578c4615c992e65ec7d6231"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOFILESYSTEM</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOFILESYSTEM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No images, ringtones, java saved in special filesystem </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOMMS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a29a85fec18807230486db8e29292c890"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOMMS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOMMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No MMS sets in phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOGPRSPOINT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ad657b93555679742f0c90cf6dc83a228"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOGPRSPOINT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOGPRSPOINT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GPRS point are not useable </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL35">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a0e42ed979560daf0fd739ee5c2a798d8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL35</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL35" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,3510 style - Reminder,Call,Birthday </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL65">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af00388c3c939e00d93c6f2ced72e75d3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL65</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL65" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,6510 style - CBMM, method 3 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_WAPMMSPROXY">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a42cca26d1878c67818eaaa1b3767fc0f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_WAPMMSPROXY</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_WAPMMSPROXY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>WAP &amp; MMS settings contains first &amp; second proxy </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CHAT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a33bb6b3836750ed230df9a0d15cfa80e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CHAT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CHAT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone with Chat settings </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SYNCML">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a354fa4a42fdc057b4c98183de04f21d7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SYNCML</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SYNCML" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone with SyncML settings </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_FILES2">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7acb4c1e90dbead388ea2202787b0aef2b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_FILES2</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_FILES2" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Filesystem version 2 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOFILE1">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a59609e812869b70b995ec3a42b2b3b1a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOFILE1</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOFILE1" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No filesystem version 1 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_6230iWAP">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a3821a48fe350d43bf83fa994f806ab7e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_6230iWAP</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_6230iWAP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>WAP, MMS, etc. settings like in 6230i - unknown now </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PROFILES">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aad210ce87bfac23f29fae481e47cac8e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PROFILES</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PROFILES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Profiles support available </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SERIES40_30">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aa222d57e79634de68f2fbc448a9bfe8e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SERIES40_30</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SERIES40_30" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Series 40 3.0 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_FILES">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a76af7977a629aac95bff8e71fe0cf9ab"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_FILES</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_FILES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS are read from filesystem files like in Series 40 3.0 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_3220_MMS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a98770039be825734ca679a1124dac042"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_3220_MMS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_3220_MMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS storage as in 3320 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_VOICETAGS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a0530f0bda0667ae9b8d36d895e31b533"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_VOICETAGS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_VOICETAGS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Voice tags available </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CAL62">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ae533b0ccbca7060e803a212f456c7f1d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CAL62</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CAL62" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar,6210 style - Call,Birthday,Memo,Meeting </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NOTES">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a0fa8cdb7845d9078b2b2c46e68f4d828"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NOTES</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NOTES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Notes supported </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMSONLYSENT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a956c268ba55a6ddc4973a0f6e1faa943"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMSONLYSENT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMSONLYSENT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports only sent/unsent messages </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_BROKENCPBS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8a5cc0bb6cf8803c4f5788dd0822db94"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_BROKENCPBS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_BROKENCPBS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CPBS on some memories can hang phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_M20SMS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ab60c601e26a4438f182568b9e8521880"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_M20SMS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_M20SMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Siemens M20 like SMS handling </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SLOWWRITE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a6ba49678b8694e6d840e80a11c9fd7c9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SLOWWRITE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SLOWWRITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use slower writing which some phone need </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMSME900">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ac93a4c5746fb7a00f731911343a58280"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMSME900</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMSME900" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS in ME start from location 900 - case of Sagem </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_ALCATEL">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8bc93b7dcf48784a89cb64a0e0aaf8da"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_ALCATEL</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_ALCATEL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports Alcatel protocol </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_OBEX">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a86111ec5bdaeac02cec0b736947a1133"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_OBEX</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_OBEX" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone can switch to OBEX protocol from AT mode </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_IRMC_LEVEL_2">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a4d6af0015bc2f50435b35b6b5ec5c2d2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_IRMC_LEVEL_2</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_IRMC_LEVEL_2" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports IrMC level 2 even if it doesn’t report it </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_MODE22">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a9e63950f8bbdd7e80fb536b40572a722"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_MODE22</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_MODE22" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switching to OBEX mode is done using AT+MODE=22 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_LOCATION_0">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ae7d93382d796e1792a11258f55b73ac5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_LOCATION_0</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_LOCATION_0" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Locations of SMS memories start from 0 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_UCS2">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a37bb0724d64ae43fdea23218bb7fc3fa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_UCS2</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_UCS2" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not support UCS2 even if it reports it. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_FORCE_UTF8">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a957fbf736b7dcbccf10cbadc8b2d0303"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_FORCE_UTF8</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_FORCE_UTF8" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone returns strings in utf-8 even if it reports GSM. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_SM">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ad35cacbedd8e8aa27f323dd58b7197e1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_SM</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_SM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports SM storage for SMS even if it does not report so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_ME">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aac180aee9e6f6e41c393a00cc0bc2fd4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_ME</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_ME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports ME storage for SMS even if it does not report so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_XLNK">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ad54a817867c1e60d86202d44270c6291"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_XLNK</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_XLNK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switching to OBEX mode is done using AT+XLNK. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SUBMIT_SIM_ONLY">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aa086f7fbadab7bbf0cdae3b06d5a6e3b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SUBMIT_SIM_ONLY</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SUBMIT_SIM_ONLY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Submit messages can be saved on SM memory only. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBK_UNICODE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a28acd1084f3265485310a3db3b37d381"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBK_UNICODE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBK_UNICODE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Prefer Unicode for phone book manipulations. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SQWE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a669de78a4f8a01f4182576fd90af3aba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SQWE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SQWE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switching to OBEX mode using AT^SQWE=3. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_ATOBEX">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af3a003d0ef6f593b1be2aed812141a68"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_ATOBEX</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_ATOBEX" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Do not use OBEX/AT switching even if available. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_LENGTH_BYTES">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a97ba8c8b3f3414fabd9f98d9e16743c7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_LENGTH_BYTES</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_LENGTH_BYTES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Length of text for contact is in bytes and not chars. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_BROKEN_CMGL">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a9340c31f8c6077b943d617da5757b211"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_BROKEN_CMGL</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_BROKEN_CMGL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CMGL does not list real locations for CMGR, these should be sequential. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_EXTRA_PBK_FIELD">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a51b457b965a0c300a6abb1a7ac5c0fbd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_EXTRA_PBK_FIELD</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_EXTRA_PBK_FIELD" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook has extra numeric field at the end. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CKPD_NO_UNICODE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a9a4c1f8c07e6c23dc2bc3182f73b24bb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CKPD_NO_UNICODE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CKPD_NO_UNICODE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Key presses can not be in unicode. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CPROT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ab95df52b38cb2111383d951f53925024"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CPROT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CPROT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>OBEX switching using AT+CPROT even if phone does not report it properly. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKFAVORITEMESSAGE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8afe9064367ca79b7b926deca19971dd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKFAVORITEMESSAGE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKFAVORITEMESSAGE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phonebook with favorite messaging numbers </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBKNOPOSTAL">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aee6bc505c58745bb799a21aef57f5a78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBKNOPOSTAL</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBKNOPOSTAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No support for postal entry in phonebook. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_PBK_ENCODENUMBER">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7ae118bfcad6288d30ca7f0041488302be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_PBK_ENCODENUMBER</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_PBK_ENCODENUMBER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Encode number in HEX charset. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_CLIP">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a5b5d1a04742d0a4e9a1a0170187a4777"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_CLIP</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_CLIP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Do not use CLIP (phone hangs on it). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_ENCODED_USSD">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a0a0439ac97308ec09eeae1f1b6500f65"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_ENCODED_USSD</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_ENCODED_USSD" title="Permalink to this definition"></a><br /></dt>
+<dd><p>USSD propmts and responses are encoded like PDU in SMS (packed 7-bit GSM encoding). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_USE_SMSTEXTMODE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aa47c6ad5a46f72d58bfbde8abc4e203e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_USE_SMSTEXTMODE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_USE_SMSTEXTMODE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone has better support for SMS text mode (rather than PDU mode) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_CPIN_NO_OK">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a1f54e308080bc8a64aef35256157bda1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_CPIN_NO_OK</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_CPIN_NO_OK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not end CPIN reply with OK/ERROR. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_FOUR_DIGIT_YEAR">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a67855c069fa95e317a072557e314f7e7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_FOUR_DIGIT_YEAR</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_FOUR_DIGIT_YEAR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone require four digit year in time. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_NO_ME">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af9be77636b141cc92e804a4f910afeaa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_NO_ME</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_NO_ME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not have a phone SMS memory even if it reports so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_NO_SM">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8c520d61730ab7f05de9cf5db26e299f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_NO_SM</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_NO_SM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not have a SIM SMS memory even if it reports so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SIEMENS_PBK">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a62137b3d2026e613d2f3b18bd1239d4f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SIEMENS_PBK</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SIEMENS_PBK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports Siemens style phonebook even if it does not tell so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_ATSYNCML">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7acc4fcaf46cbedb9f0199218962a0ce16"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_ATSYNCML</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_ATSYNCML" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disable AT+SYNCML probing. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_MOBEX">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aa8553b5df37c86a3eab18b858975208d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_MOBEX</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_MOBEX" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports m-obex (usually Samsung phones). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_TSSPCSW">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7acef64df9bffb2744076a81095f8c37e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_TSSPCSW</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_TSSPCSW" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports m-obex (usually Samsung phones) using AT$TSSPCSW=1. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_DISABLE_GETNEXT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7af2d133b3eb43a7fe65d448e146dd0f8b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_DISABLE_GETNEXT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_DISABLE_GETNEXT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disable GetNext* operations on the dummy phone. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_DISABLE_GETNEXTSMS">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a29710e44d49ba466d0e97008cc264bf1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_DISABLE_GETNEXTSMS</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_DISABLE_GETNEXTSMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disable GetNextSMS operations on the dummy phone. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_DISABLE_CMGL">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a0673cdc8913e1bd8f9feeabd1680f1a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_DISABLE_CMGL</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_DISABLE_CMGL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CMGL hangs, so should not be used. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_UTF8">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a575989566933f812f694c9ae8c6f4e2e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_UTF8</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_UTF8" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not support UTF8 even if it reports it. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SAMSUNG_UTF8">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a51b11dc7a511fa000be6fb9b6ef25d9d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SAMSUNG_UTF8</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SAMSUNG_UTF8" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Samsung B2100 in UCS-2 mode provides a garbled UTF-8 instead. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_UTF8_ENCODED">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8f44d7495c15ddc1cec8c61e985a5842"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_UTF8_ENCODED</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_UTF8_ENCODED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS text is always UTF-8 encoded. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_NO_STOP_CUSD">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a337f0b586a31e59b9424f8056c6c82c0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_NO_STOP_CUSD</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_NO_STOP_CUSD" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Avoid forcibly stopping CUSD session. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_READ_SMSTEXTMODE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a86a232fbf2f93042b31f04421ff8cabc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_READ_SMSTEXTMODE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_READ_SMSTEXTMODE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reading og SMSes in text mode. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_RESET_AFTER_TIMEOUT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7acdc8c8eeddde772bb8984d842265528b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_RESET_AFTER_TIMEOUT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_RESET_AFTER_TIMEOUT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reset phone after timeout. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_HUAWEI_INIT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a8bdd6604bdb9bced56f137d92c3c91d3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_HUAWEI_INIT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_HUAWEI_INIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Huawei style init. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_ZTE_INIT">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a2c3551e3c9a5144bf80a70bcf8c4e54b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_ZTE_INIT</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_ZTE_INIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ZTE style init. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_USSD_GSM_CHARSET">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7aef623aa2a51438feb7d1efd3d3f20679"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_USSD_GSM_CHARSET</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_USSD_GSM_CHARSET" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Prefer GSM charset for USSD (default is unicode). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_SR">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a02e2d25e17e2def4507d0e8ffbf6f4c3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_SR</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_SR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone supports SR storage even if it does not report so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_SMS_NO_SR">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7a88c5af398293c36e991f27424a10ffd4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_SMS_NO_SR</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_SMS_NO_SR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone does not have a SR memory even if it reports so. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Feature.F_LAST_VALUE">
+<span class="target" id="group__Info_1gga248c8c59528a3999747d20b302f376c7abf77baaff8a5d41afd0eb54032449be7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_LAST_VALUE</span></span></span><a class="headerlink" href="#c.GSM_Feature.F_LAST_VALUE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Just marker of highest feature code, should not be used. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_PhoneModel">
+<span class="target" id="structGSM__PhoneModel"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_PhoneModel</span></span></span><a class="headerlink" href="#c.GSM_PhoneModel" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Model identification, used for finding phone features. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_PhoneModel.model">
+<span class="target" id="structGSM__PhoneModel_1ab55b8352c3fe82d8cb026d6380e288a1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">model</span></span></span><a class="headerlink" href="#c.GSM_PhoneModel.model" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Model as returned by phone </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_PhoneModel.number">
+<span class="target" id="structGSM__PhoneModel_1a4bc70e74850c0ecfae47b73ba655d13e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">number</span></span></span><a class="headerlink" href="#c.GSM_PhoneModel.number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Identification by Gammu </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_PhoneModel.irdamodel">
+<span class="target" id="structGSM__PhoneModel_1aa3cb4fdd83731c365c2552ff364ce864"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">irdamodel</span></span></span><a class="headerlink" href="#c.GSM_PhoneModel.irdamodel" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Model as used over IrDA </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_PhoneModel.features">
+<span class="target" id="structGSM__PhoneModel_1a096c72c2019442c686dd24aba8edb163"></span><a class="reference internal" href="#c.GSM_Feature" title="GSM_Feature"><span class="n"><span class="pre">GSM_Feature</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">features</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_PHONE_FEATURES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_PhoneModel.features" title="Permalink to this definition"></a><br /></dt>
+<dd><p>List of supported features </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file.html" class="btn btn-neutral float-left" title="File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inifile.html" class="btn btn-neutral float-right" title="INI files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

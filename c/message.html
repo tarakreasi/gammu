@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="Memory" href="memory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Messages</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/message.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="messages">
+<h1>Messages<a class="headerlink" href="#messages" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodePDUFrame” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeSMSFrame” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetMessageCoding">
+<span class="target" id="gammu-message_8h_1a8194dbe14b042f449d0b33dc3c7217f5"></span><a class="reference internal" href="#c.GSM_Coding_Type" title="GSM_Coding_Type"><span class="n"><span class="pre">GSM_Coding_Type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetMessageCoding</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="debug.html#c.GSM_Debug_Info" title="GSM_Debug_Info"><span class="n"><span class="pre">GSM_Debug_Info</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">di</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="n"><span class="pre">TPDCS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetMessageCoding" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Finds out coding type based on TPDCS header byte as defined by GSM 03.38. </p>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeSMSFrame” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeSMSFrameStatusReportData” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeSMSFrameText” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeUDHHeader” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeUDHHeader” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetDefaultReceivedSMSData” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetDefaultSMSData” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeSiemensOTASMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “PHONE_EncodeSMSFrame” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeMultiPartSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeMultiPartSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearMultiPartSMSInfo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FreeMultiPartSMSInfo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_LinkSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeMMSFileToMultiPart” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearMMSMultiPart” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSMSC” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetSMSC” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSMSStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SendSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SendSavedSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetFastSMSSending” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetIncomingSMS” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetIncomingCB” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetSMSFolders” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddSMSFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteSMSFolder” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetMMSFolders” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextMMSFileInfo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetIncomingUSSD” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SMSCounter” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_Class</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS message class. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_None">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40eaa452ac6fd85191c4b73287a1f2572c46"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_None</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_None" title="Permalink to this definition"></a><br /></dt>
+<dd><p>None class specified. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_Personal">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40eaead5535895cbcd8142e359632e51a7c8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_Personal</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_Personal" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Personal message. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_Advertisement">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40ead8007e26affdc0a13e1fb7309001e561"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_Advertisement</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_Advertisement" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Advertisement message. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_Info">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40eac42a884b917d83498ed06f7d82ba3664"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_Info</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_Info" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Informational message. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_Auto">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40ea865456fb8ebdcdbf7919951ddfe4498e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_Auto</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_Auto" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Automatic message class. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_MMS_Class.GSM_MMS_INVALID">
+<span class="target" id="gammu-message_8h_1a78992fa0989ae1d9443d408ef291b40ea9fb864139b4ca67111249a5f501a69bc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMS_INVALID</span></span></span><a class="headerlink" href="#c.GSM_MMS_Class.GSM_MMS_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator">
+<span class="target" id="structGSM__MMSIndicator"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMSIndicator</span></span></span><a class="headerlink" href="#c.GSM_MMSIndicator" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS indicator data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator.Address">
+<span class="target" id="structGSM__MMSIndicator_1a00886bf18a0fe29faf362cf185f0d049"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Address</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">500</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MMSIndicator.Address" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message address (URL for download). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator.Title">
+<span class="target" id="structGSM__MMSIndicator_1a7bc9b6e81fda54213de2083992a46f84"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Title</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MMSIndicator.Title" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message title (subject). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator.Sender">
+<span class="target" id="structGSM__MMSIndicator_1a4aeefccac7e7ce951511d846a5baa8e5"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Sender</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MMSIndicator.Sender" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message sender. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator.MessageSize">
+<span class="target" id="structGSM__MMSIndicator_1a9098bac1b5de7cae1b5f5e1e1cca930e"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MessageSize</span></span></span><a class="headerlink" href="#c.GSM_MMSIndicator.MessageSize" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message size, if 0 it won’t be decoded or was not decoded. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSIndicator.Class">
+<span class="target" id="structGSM__MMSIndicator_1a034a3960b25895663d4e935cca3fad90"></span><a class="reference internal" href="#c.GSM_MMS_Class" title="GSM_MMS_Class"><span class="n"><span class="pre">GSM_MMS_Class</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Class</span></span></span><a class="headerlink" href="#c.GSM_MMSIndicator.Class" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Class of a message. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CBMessage">
+<span class="target" id="structGSM__CBMessage"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CBMessage</span></span></span><a class="headerlink" href="#c.GSM_CBMessage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for Cell Broadcast messages. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CBMessage.Channel">
+<span class="target" id="structGSM__CBMessage_1aa069721507e612fe6177086a24ed0067"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Channel</span></span></span><a class="headerlink" href="#c.GSM_CBMessage.Channel" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Channel number. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CBMessage.Text">
+<span class="target" id="structGSM__CBMessage_1a7690683ea8779fc5161a5951f75c3b22"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">300</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_CBMessage.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message text. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus">
+<span class="target" id="group__USSD_1gab777654fb7260c4305c6d6c0fd448436"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_USSDStatus</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of USSD message. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_Unknown">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436ae39b2bd55415bb66149ca20ef8436473"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_Unknown</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_Unknown" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown status </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_NoActionNeeded">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436ab8eb7de60b423bf823bb8613cf49bee5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_NoActionNeeded</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_NoActionNeeded" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No action is needed, maybe network initiated USSD </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_ActionNeeded">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436a0e1acfc03a1db0741f49739d6e4bc262"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_ActionNeeded</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_ActionNeeded" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reply is expected </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_Terminated">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436a95bc7d45c1f08a83c29e4358398347d3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_Terminated</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_Terminated" title="Permalink to this definition"></a><br /></dt>
+<dd><p>USSD dialog terminated </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_AnotherClient">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436ad887d8d70530a14eaf05d0acee3d443c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_AnotherClient</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_AnotherClient" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Another client replied </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_NotSupported">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436ab9f527ce6c55d6815d847736f929194d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_NotSupported</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_NotSupported" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operation not supported </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_USSDStatus.USSD_Timeout">
+<span class="target" id="group__USSD_1ggab777654fb7260c4305c6d6c0fd448436af1979981ef9fab72bf5707c5b8a106c0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">USSD_Timeout</span></span></span><a class="headerlink" href="#c.GSM_USSDStatus.USSD_Timeout" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Network timeout </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_USSDMessage">
+<span class="target" id="structGSM__USSDMessage"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_USSDMessage</span></span></span><a class="headerlink" href="#c.GSM_USSDMessage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for USSD messages. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_USSDMessage.Text">
+<span class="target" id="structGSM__USSDMessage_1a9f4b6fd20341acdc3d57acc7f92104c1"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_USSD_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_USSDMessage.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message text. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_USSDMessage.Status">
+<span class="target" id="structGSM__USSDMessage_1a93a6d6c00854d111a3ddd22739584a4d"></span><a class="reference internal" href="#c.GSM_USSDStatus" title="GSM_USSDStatus"><span class="n"><span class="pre">GSM_USSDStatus</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Status</span></span></span><a class="headerlink" href="#c.GSM_USSDMessage.Status" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message status. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus">
+<span class="target" id="structGSM__SMSMemoryStatus"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSMemoryStatus</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of SMS memory. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.SIMUnRead">
+<span class="target" id="structGSM__SMSMemoryStatus_1a7d49de04e7cda0ce9f6a0bcdf19c9bcb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SIMUnRead</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.SIMUnRead" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of unread messages on SIM. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.SIMUsed">
+<span class="target" id="structGSM__SMSMemoryStatus_1a73b7059f6a3194e3417e028d8348b881"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SIMUsed</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.SIMUsed" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of all saved messages (including unread) on SIM. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.SIMSize">
+<span class="target" id="structGSM__SMSMemoryStatus_1a23d6279c9623f014d4dbc68f68444be6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SIMSize</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.SIMSize" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of all possible messages on SIM. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.TemplatesUsed">
+<span class="target" id="structGSM__SMSMemoryStatus_1add1c0195a6b9491df67febb38a275003"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TemplatesUsed</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.TemplatesUsed" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of used templates (62xx/63xx/7110/etc.). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.PhoneUnRead">
+<span class="target" id="structGSM__SMSMemoryStatus_1a840feddea11bdaca618051f6585fb9c4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneUnRead</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.PhoneUnRead" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of unread messages in phone. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.PhoneUsed">
+<span class="target" id="structGSM__SMSMemoryStatus_1aeb86dccbc9ccfb093105996900738cc1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneUsed</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.PhoneUsed" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of all saved messages in phone. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMemoryStatus.PhoneSize">
+<span class="target" id="structGSM__SMSMemoryStatus_1aca63cf8bb15d9e10c399ed19c12a33bc"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneSize</span></span></span><a class="headerlink" href="#c.GSM_SMSMemoryStatus.PhoneSize" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of all possible messages on phone. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_SMSFormat">
+<span class="target" id="group__SMS_1gafd963720fb76902a96568d28c2d7983f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSFormat</span></span></span><a class="headerlink" href="#c.GSM_SMSFormat" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum defines format of SMS messages. See GSM 03.40 section 9.2.3.9 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSFormat.SMS_FORMAT_Pager">
+<span class="target" id="group__SMS_1ggafd963720fb76902a96568d28c2d7983fa7a402922c148bb4b6fa5b5b2d5d22579"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_FORMAT_Pager</span></span></span><a class="headerlink" href="#c.GSM_SMSFormat.SMS_FORMAT_Pager" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSFormat.SMS_FORMAT_Fax">
+<span class="target" id="group__SMS_1ggafd963720fb76902a96568d28c2d7983fad9e3cd0bf9fca2efc7e1e58c6ed7c030"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_FORMAT_Fax</span></span></span><a class="headerlink" href="#c.GSM_SMSFormat.SMS_FORMAT_Fax" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSFormat.SMS_FORMAT_Email">
+<span class="target" id="group__SMS_1ggafd963720fb76902a96568d28c2d7983fa5085fd357644f67976f80686c8afb05d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_FORMAT_Email</span></span></span><a class="headerlink" href="#c.GSM_SMSFormat.SMS_FORMAT_Email" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSFormat.SMS_FORMAT_Text">
+<span class="target" id="group__SMS_1ggafd963720fb76902a96568d28c2d7983fa2ebcbc6ec3feb25d56d1447ce8737d38"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_FORMAT_Text</span></span></span><a class="headerlink" href="#c.GSM_SMSFormat.SMS_FORMAT_Text" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod">
+<span class="target" id="group__SMS_1gad90b3c7cabba7117c29f5874c696ed05"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ValidityPeriod</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum defines some the most often used validity lengths for SMS messages for relative validity format. See GSM 03.40 section 9.2.3.12.1 - it gives more values. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_1_Hour">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a7b93c2a3cab68d7e203e0bae0ec19e2e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_1_Hour</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_1_Hour" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_6_Hours">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a2e658f55afda8fe2044b45b1f7b8d3c1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_6_Hours</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_6_Hours" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_1_Day">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a2cc8fd2df87ae4cdd9c6e4749cd573ed"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_1_Day</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_1_Day" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_3_Days">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a8777a4435578bb52f77cc547a1984795"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_3_Days</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_3_Days" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_1_Week">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a2ab3db9dff2dc1e211bd2faa87f070eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_1_Week</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_1_Week" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriod.SMS_VALID_Max_Time">
+<span class="target" id="group__SMS_1ggad90b3c7cabba7117c29f5874c696ed05a60a3327bd706f6b69dbabd7f757accb2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VALID_Max_Time</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriod.SMS_VALID_Max_Time" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriodFormat">
+<span class="target" id="group__SMS_1ga3d5a5107e0db4e096171144e8a82e204"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ValidityPeriodFormat</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriodFormat" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum defines format of validity period for SMS messages. See GSM 03.40 section 9.2.3.12 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriodFormat.SMS_Validity_NotAvailable">
+<span class="target" id="group__SMS_1gga3d5a5107e0db4e096171144e8a82e204a49db542fbeb6fbd4bbf7ace2cff143a6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Validity_NotAvailable</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriodFormat.SMS_Validity_NotAvailable" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ValidityPeriodFormat.SMS_Validity_RelativeFormat">
+<span class="target" id="group__SMS_1gga3d5a5107e0db4e096171144e8a82e204aff1cdf2d3f01036c6d9377c89d91b331"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Validity_RelativeFormat</span></span></span><a class="headerlink" href="#c.GSM_ValidityPeriodFormat.SMS_Validity_RelativeFormat" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSValidity">
+<span class="target" id="structGSM__SMSValidity"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSValidity</span></span></span><a class="headerlink" href="#c.GSM_SMSValidity" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for validity of SMS messages </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSValidity.Relative">
+<span class="target" id="structGSM__SMSValidity_1a098c342ff190144c1ae68b4774e84bad"></span><a class="reference internal" href="#c.GSM_ValidityPeriod" title="GSM_ValidityPeriod"><span class="n"><span class="pre">GSM_ValidityPeriod</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Relative</span></span></span><a class="headerlink" href="#c.GSM_SMSValidity.Relative" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Value defines period for relative format </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSC">
+<span class="target" id="structGSM__SMSC"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSC</span></span></span><a class="headerlink" href="#c.GSM_SMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for SMSC (SMS Center) information. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.Location">
+<span class="target" id="structGSM__SMSC_1a8e32e031dd977d9abca244cb54ed1e9e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_SMSC.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of the SMSC on SIM </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.Name">
+<span class="target" id="structGSM__SMSC_1a5dd34a2a7ed928f93a8de20f479d8a01"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_SMSC_NAME_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSC.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of the SMSC </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.Number">
+<span class="target" id="structGSM__SMSC_1a610e3c0267941d1ad3091af878988e06"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSC.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMSC phone number. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.Validity">
+<span class="target" id="structGSM__SMSC_1ab1aca671d3fa2a0bc1d9d418b9a1f06f"></span><a class="reference internal" href="#c.GSM_SMSValidity" title="GSM_SMSValidity"><span class="n"><span class="pre">GSM_SMSValidity</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Validity</span></span></span><a class="headerlink" href="#c.GSM_SMSC.Validity" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Validity of SMS messages. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.Format">
+<span class="target" id="structGSM__SMSC_1a85f875c651e502d4fc3e828758a942d6"></span><a class="reference internal" href="#c.GSM_SMSFormat" title="GSM_SMSFormat"><span class="n"><span class="pre">GSM_SMSFormat</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Format</span></span></span><a class="headerlink" href="#c.GSM_SMSC.Format" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format of sent SMS messages. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSC.DefaultNumber">
+<span class="target" id="structGSM__SMSC_1a3f333a90926ad318c9f667d1c5818d3d"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefaultNumber</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSC.DefaultNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default recipient number. In old DCT3 ignored </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_SMS_State">
+<span class="target" id="group__SMS_1gaf27a2b7e3221604e10b66173d21562cb"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMS_State</span></span></span><a class="headerlink" href="#c.GSM_SMS_State" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of SMS message. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMS_State.SMS_Sent">
+<span class="target" id="group__SMS_1ggaf27a2b7e3221604e10b66173d21562cbae9a4fa8082d98a53d23513f92319c4d8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Sent</span></span></span><a class="headerlink" href="#c.GSM_SMS_State.SMS_Sent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMS_State.SMS_UnSent">
+<span class="target" id="group__SMS_1ggaf27a2b7e3221604e10b66173d21562cbad1cf5009003759aadac5443b9e8558c5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_UnSent</span></span></span><a class="headerlink" href="#c.GSM_SMS_State.SMS_UnSent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMS_State.SMS_Read">
+<span class="target" id="group__SMS_1ggaf27a2b7e3221604e10b66173d21562cba86b33fa8b850a75e569ebb5c0f7c683b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Read</span></span></span><a class="headerlink" href="#c.GSM_SMS_State.SMS_Read" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMS_State.SMS_UnRead">
+<span class="target" id="group__SMS_1ggaf27a2b7e3221604e10b66173d21562cba4203f62f81eaf806988908647387e982"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_UnRead</span></span></span><a class="headerlink" href="#c.GSM_SMS_State.SMS_UnRead" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type">
+<span class="target" id="group__SMS_1gac34c998695c30ac843c01868d3a7a283"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Coding_Type</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Coding type of SMS. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type.SMS_Coding_Unicode_No_Compression">
+<span class="target" id="group__SMS_1ggac34c998695c30ac843c01868d3a7a283a77748da283bb54730cdc75e2b9361f68"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Coding_Unicode_No_Compression</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type.SMS_Coding_Unicode_No_Compression" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unicode </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type.SMS_Coding_Unicode_Compression">
+<span class="target" id="group__SMS_1ggac34c998695c30ac843c01868d3a7a283a09639d018e02afcf61994c2122d3cd33"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Coding_Unicode_Compression</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type.SMS_Coding_Unicode_Compression" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type.SMS_Coding_Default_No_Compression">
+<span class="target" id="group__SMS_1ggac34c998695c30ac843c01868d3a7a283aef24d9a13588824eb20504618e5c5eec"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Coding_Default_No_Compression</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type.SMS_Coding_Default_No_Compression" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default GSM alphabet. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type.SMS_Coding_Default_Compression">
+<span class="target" id="group__SMS_1ggac34c998695c30ac843c01868d3a7a283a9134a19f41fbbd8922debef9548018af"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Coding_Default_Compression</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type.SMS_Coding_Default_Compression" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Coding_Type.SMS_Coding_8bit">
+<span class="target" id="group__SMS_1ggac34c998695c30ac843c01868d3a7a283a78580fa454048b37ec5a056075ae03f0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Coding_8bit</span></span></span><a class="headerlink" href="#c.GSM_Coding_Type.SMS_Coding_8bit" title="Permalink to this definition"></a><br /></dt>
+<dd><p>8-bit. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_UDH">
+<span class="target" id="group__SMS_1ga590e4af6a4ebe55e41e2304eeffcb0c3"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_UDH</span></span></span><a class="headerlink" href="#c.GSM_UDH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Types of UDH (User Data Header). </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NoUDH">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3af314412de733a7b4117d96ba66ddace2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NoUDH</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NoUDH" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_ConcatenatedMessages">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a0dc06a86c4b45950e6c76b626ce88638"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_ConcatenatedMessages</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_ConcatenatedMessages" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Linked SMS. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_ConcatenatedMessages16bit">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3aa10eaf156711c1528f5b33d5e51dabae"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_ConcatenatedMessages16bit</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_ConcatenatedMessages16bit" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Linked SMS with 16 bit reference. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_DisableVoice">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a01af8e2a928512458daaa2dcc37431ef"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_DisableVoice</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_DisableVoice" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_DisableFax">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a8f713b627a5b4bf1a45107e192ef9745"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_DisableFax</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_DisableFax" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_DisableEmail">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3ae97ed8db0814dffffd1149bfb14706e6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_DisableEmail</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_DisableEmail" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_EnableVoice">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a56b6302ebe0713dc6609a53d570ba60f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_EnableVoice</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_EnableVoice" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_EnableFax">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a50b8c89c034f022c7963a3e16e88c68d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_EnableFax</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_EnableFax" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_EnableEmail">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a4564d90d7cf08eb3b5cd9459837b81aa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_EnableEmail</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_EnableEmail" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_VoidSMS">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a3cf8bde3cb7eb96bced583675e68447b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_VoidSMS</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_VoidSMS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaRingtone">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a3ef2cfbcae1278bf5527c19fe2f47bcf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaRingtone</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaRingtoneLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a80f79dbec70d204419b7473ce641f908"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaRingtoneLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaRingtoneLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaOperatorLogo">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a9747d1ef487f9ef5b88a8cec40d71dd6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaOperatorLogo</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaOperatorLogo" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaOperatorLogoLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a762b8777e5e9243145cdab070af6d444"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaOperatorLogoLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaOperatorLogoLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaCallerLogo">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a60efc642b46d08580c14d6895d9d9f1d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaCallerLogo</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaCallerLogo" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaWAP">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3aff5d228f9039e9e712c683cf0149df5e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaWAP</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaWAP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaWAPLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a1b69b9296b41e75acb673b83435dc76d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaWAPLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaWAPLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaCalendarLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a4cad5dc37cb2aad59d7b343de6ee8ba8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaCalendarLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaCalendarLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaProfileLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3abc288cba11e73e66cec35efb108ab09f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaProfileLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaProfileLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_NokiaPhonebookLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a6211b08b3e86b2c94d7f9ce0037d0875"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_NokiaPhonebookLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_NokiaPhonebookLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_UserUDH">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3acf70f96083536dfcec0afdc51c5d55d5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_UserUDH</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_UserUDH" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_UDH.UDH_MMSIndicatorLong">
+<span class="target" id="group__SMS_1gga590e4af6a4ebe55e41e2304eeffcb0c3a2b681a8aad0b700658ae08f96bf51666"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH_MMSIndicatorLong</span></span></span><a class="headerlink" href="#c.GSM_UDH.UDH_MMSIndicatorLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader">
+<span class="target" id="structGSM__UDHHeader"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_UDHHeader</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for User Data Header. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.Type">
+<span class="target" id="structGSM__UDHHeader_1af80b45468e75afe2d322c9f0e7352828"></span><a class="reference internal" href="#c.GSM_UDH" title="GSM_UDH"><span class="n"><span class="pre">GSM_UDH</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>UDH type. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.Length">
+<span class="target" id="structGSM__UDHHeader_1a3bb4d8b8882333bbe8770f4912bd0d2d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Length</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.Length" title="Permalink to this definition"></a><br /></dt>
+<dd><p>UDH length. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.Text">
+<span class="target" id="structGSM__UDHHeader_1ace5365df0c57f61bee7136c68ea15279"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_UDH_LENGTH</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_UDHHeader.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>UDH text. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.ID8bit">
+<span class="target" id="structGSM__UDHHeader_1a7b4db4e4ee38a21defc96c0c2bc4daec"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ID8bit</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.ID8bit" title="Permalink to this definition"></a><br /></dt>
+<dd><p>8-bit ID, when required (-1 otherwise). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.ID16bit">
+<span class="target" id="structGSM__UDHHeader_1a477d1a7489b4788b529bb448673f4dae"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ID16bit</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.ID16bit" title="Permalink to this definition"></a><br /></dt>
+<dd><p>16-bit ID, when required (-1 otherwise). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.PartNumber">
+<span class="target" id="structGSM__UDHHeader_1aa74d925611bf3ba70c43ee1b312ac6e6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PartNumber</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.PartNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of current part. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_UDHHeader.AllParts">
+<span class="target" id="structGSM__UDHHeader_1a0a272a07abb0236f88f0b54bea1ba921"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AllParts</span></span></span><a class="headerlink" href="#c.GSM_UDHHeader.AllParts" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Total number of parts. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageType">
+<span class="target" id="group__SMS_1ga88d1e8ef11d65e366524321a95fb8305"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSMessageType</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Message-Type-Indicator. See GSM 03.40 section 9.2.3.1. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageType.SMS_Deliver">
+<span class="target" id="group__SMS_1gga88d1e8ef11d65e366524321a95fb8305ac5eca40dd8d69fea45ff92146e1f42ec"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Deliver</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageType.SMS_Deliver" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS in Inbox. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageType.SMS_Status_Report">
+<span class="target" id="group__SMS_1gga88d1e8ef11d65e366524321a95fb8305a975c635ac6883724cb4cec1b62401d5c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Status_Report</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageType.SMS_Status_Report" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Delivery Report </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageType.SMS_Submit">
+<span class="target" id="group__SMS_1gga88d1e8ef11d65e366524321a95fb8305aa1124b8e216b34ef41b427f4a1602359"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Submit</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageType.SMS_Submit" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS for sending or in Outbox </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage">
+<span class="target" id="structGSM__SMSMessage"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSMessage</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS message data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.ReplaceMessage">
+<span class="target" id="structGSM__SMSMessage_1a833b6f1b5d805d2532069eec36c0f5aa"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReplaceMessage</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.ReplaceMessage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message to be replaced. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.RejectDuplicates">
+<span class="target" id="structGSM__SMSMessage_1a104c86cf9091510fa454f27ee2cbecdb"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RejectDuplicates</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.RejectDuplicates" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether to reject duplicates. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.UDH">
+<span class="target" id="structGSM__SMSMessage_1a55144823f43af5492c8a244f44b3d770"></span><a class="reference internal" href="#c.GSM_UDHHeader" title="GSM_UDHHeader"><span class="n"><span class="pre">GSM_UDHHeader</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UDH</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.UDH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>UDH (User Data Header) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Number">
+<span class="target" id="structGSM__SMSMessage_1a62397e5802cee4524b9482e471b89b1a"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSMessage.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sender or recipient number. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.SMSC">
+<span class="target" id="structGSM__SMSMessage_1a52424a4bfad97ea42e028d0698046074"></span><a class="reference internal" href="#c.GSM_SMSC" title="GSM_SMSC"><span class="n"><span class="pre">GSM_SMSC</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMSC</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.SMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMSC (SMS Center) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Memory">
+<span class="target" id="structGSM__SMSMessage_1aa8fb1e622150a26cb7fc9c2204892ad1"></span><a class="reference internal" href="memory.html#c.GSM_MemoryType" title="GSM_MemoryType"><span class="n"><span class="pre">GSM_MemoryType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Memory</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Memory" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For saved SMS: where exactly it’s saved (SIM/phone) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Location">
+<span class="target" id="structGSM__SMSMessage_1ab9c35429be5a1648d399f7ab90ba8c15"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For saved SMS: location of SMS in memory. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Folder">
+<span class="target" id="structGSM__SMSMessage_1ad1098072c73148bdffbe7f26753079b3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Folder</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Folder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For saved SMS: number of folder, where SMS is saved </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.InboxFolder">
+<span class="target" id="structGSM__SMSMessage_1a3ebf054b12d1b073ebf7bdd752b18292"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InboxFolder</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.InboxFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For saved SMS: whether SMS is really in Inbox. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Length">
+<span class="target" id="structGSM__SMSMessage_1ad84b6c604cd57e8b6017f06c0186de53"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Length</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Length" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Length of the SMS message. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.State">
+<span class="target" id="structGSM__SMSMessage_1acb98684eb8eac82497f5184b8e4c44d2"></span><a class="reference internal" href="#c.GSM_SMS_State" title="GSM_SMS_State"><span class="n"><span class="pre">GSM_SMS_State</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">State</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.State" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status (read/unread/…) of SMS message. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Name">
+<span class="target" id="structGSM__SMSMessage_1a8f37d90b422af9ae471234356f43200b"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_SMS_NAME_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSMessage.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name in Nokia with SMS memory (6210/7110, etc.) Ignored in other. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Text">
+<span class="target" id="structGSM__SMSMessage_1a786d47809af52879a96299ebcfc8b5c8"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_SMS_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSMessage.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for SMS. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.PDU">
+<span class="target" id="structGSM__SMSMessage_1aadade699b6bc8a95b1fa6d6e1de86f8d"></span><a class="reference internal" href="#c.GSM_SMSMessageType" title="GSM_SMSMessageType"><span class="n"><span class="pre">GSM_SMSMessageType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PDU</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.PDU" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of message. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Coding">
+<span class="target" id="structGSM__SMSMessage_1a7075a76d2da8d92a815ea328549a3a90"></span><a class="reference internal" href="#c.GSM_Coding_Type" title="GSM_Coding_Type"><span class="n"><span class="pre">GSM_Coding_Type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Coding</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Coding" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of coding. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.DateTime">
+<span class="target" id="structGSM__SMSMessage_1ab2510c93979a851b0e477f70cf49dda7"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTime</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.DateTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time, when SMS was saved or sent </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.SMSCTime">
+<span class="target" id="structGSM__SMSMessage_1add5d2a6f3b20340558194c6697206e77"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMSCTime</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.SMSCTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date of SMSC response in DeliveryReport messages. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.DeliveryStatus">
+<span class="target" id="structGSM__SMSMessage_1a1db273076fb34ba3875061ad7cc40d01"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DeliveryStatus</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.DeliveryStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>In delivery reports: status. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.ReplyViaSameSMSC">
+<span class="target" id="structGSM__SMSMessage_1a460d4aab541d47bd47eb8e45906f3dff"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReplyViaSameSMSC</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.ReplyViaSameSMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Indicates whether “Reply via same center” is set. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.Class">
+<span class="target" id="structGSM__SMSMessage_1aab4ca7a05d25c7fa92fdfaf9f1f3f2c3"></span><span class="kt"><span class="pre">signed</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Class</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.Class" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS class (0 is flash SMS, 1 is normal one). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessage.MessageReference">
+<span class="target" id="structGSM__SMSMessage_1ab3b18d1984991b966e350214c6b4f614"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MessageReference</span></span></span><a class="headerlink" href="#c.GSM_SMSMessage.MessageReference" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Message reference. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout">
+<span class="target" id="structGSM__SMSMessageLayout"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSMessageLayout</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.Text">
+<span class="target" id="structGSM__SMSMessageLayout_1a292a457284695be31f9b80574d7b7f15"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-User-Data. GSM 03.40 section 9.2.3.24. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.Number">
+<span class="target" id="structGSM__SMSMessageLayout_1a41af345ac54607eba6d6d1f8cbcebbc5"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p><ul class="simple">
+<li><p>In SMS-Deliver: TP-Originating-Address. GSM 03.40 section 9.2.3.7.</p></li>
+<li><p>In SMS-Submit: TP-Destination-Address. GSM 03.40 section 9.2.3.8.</p></li>
+<li><p>In SMS-Status-Report: TP-Recipient-Address. GSM 03.40 section 9.2.3.14. </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.SMSCNumber">
+<span class="target" id="structGSM__SMSMessageLayout_1a50bf0cc630d5fc1611afa15608417134"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMSCNumber</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.SMSCNumber" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMSC number </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPDCS">
+<span class="target" id="structGSM__SMSMessageLayout_1a8d6838558fbabfe1912d1ea18c63865c"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPDCS</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPDCS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Data-Coding-Scheme. GSM 03.40 section 9.2.3.10. Contains alphabet type, SMS class (and some others) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.DateTime">
+<span class="target" id="structGSM__SMSMessageLayout_1a1ba18658cb04805ca26f5dc40ca51617"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTime</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.DateTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p><ul class="simple">
+<li><p>For SMS-Submit: TP-Validity-Period. GSM 03.40 section 9.2.3.12.</p></li>
+<li><p>For SMS-Status-Report: TP-Discharge Time. GSM 03.40 section 9.2.3.13. </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.SMSCTime">
+<span class="target" id="structGSM__SMSMessageLayout_1a9cb43fce81327281e6d61d80b1aded8f"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMSCTime</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.SMSCTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Service-Centre-Time-Stamp in SMS-Status-Report. GSM 03.40 section 9.2.3.11. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPStatus">
+<span class="target" id="structGSM__SMSMessageLayout_1a2b9a462b642511e6a02f164c3eab67ed"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPStatus</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Status in SMS-Status-Report. GSM 03.40 section 9.2.3.15. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPUDL">
+<span class="target" id="structGSM__SMSMessageLayout_1a98526e5f4bb1d61d9a19aa9250369e7a"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPUDL</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPUDL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-User-Data-Length. GSM 03.40 section 9.2.3.16. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPVP">
+<span class="target" id="structGSM__SMSMessageLayout_1af8c9e6620cfe20014dbd7784129bcd2e"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPVP</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPVP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Validity Period in SMS-Submit. GSM 03.40 section 9.2.3.12. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.firstbyte">
+<span class="target" id="structGSM__SMSMessageLayout_1a4dbcf168b7617104355fac953d8e8e97"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">firstbyte</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.firstbyte" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Byte contains in SMS-Deliver:<ul class="simple">
+<li><p>TP-Message-Type-Indicator (2 bits) GSM 03.40 section 9.2.3.1</p></li>
+<li><p>TP-More-Messages-To-Send (1 bit). GSM 03.40 section 9.2.3.2</p></li>
+<li><p>TP-Reply-Path (1 bit). GSM 03.40 section 9.2.3.17</p></li>
+<li><p>TP-User-Data-Header-Indicator (1 bit). GSM 03.40 section 9.2.3.23</p></li>
+<li><p>TP-Status-Report-Indicator (1 bit). GSM 03.40 section 9.2.3.4</p></li>
+</ul>
+</p>
+<p>Byte contains in SMS-Submit:<ul class="simple">
+<li><p>TP-Message-Type-Indicator (2 bits) GSM 03.40 section 9.2.3.1</p></li>
+<li><p>TP-Reject-Duplicates (1 bit). GSM 03.40 section</p></li>
+<li><p>TP-Validity-Period-Format (2 bits).GSM 03.40 section 9.2.3.3</p></li>
+<li><p>TP-Reply-Path (1 bit). GSM 03.40 section 9.2.3.17</p></li>
+<li><p>TP-User-Data-Header-Indicator (1 bit). GSM 03.40 section 9.2.3.23</p></li>
+<li><p>TP-Status-Report-Request (1 bit). GSM 03.40 section 9.2.3.5 </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPMR">
+<span class="target" id="structGSM__SMSMessageLayout_1a08cfd9e908e17f1c4414dbe4d5853396"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPMR</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPMR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Message Reference in SMS-Submit. GSM 03.40 section 9.2.3.6 </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSMessageLayout.TPPID">
+<span class="target" id="structGSM__SMSMessageLayout_1aadaed81014488e144bf2f41dc5f794f3"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TPPID</span></span></span><a class="headerlink" href="#c.GSM_SMSMessageLayout.TPPID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TP-Protocol-Identifier. GSM 03.40 section 9.2.3.9 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_OneSMSFolder">
+<span class="target" id="structGSM__OneSMSFolder"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_OneSMSFolder</span></span></span><a class="headerlink" href="#c.GSM_OneSMSFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Information about SMS folder. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneSMSFolder.InboxFolder">
+<span class="target" id="structGSM__OneSMSFolder_1a32cc3c11bceccf992735172dfff3eec5"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InboxFolder</span></span></span><a class="headerlink" href="#c.GSM_OneSMSFolder.InboxFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether it is inbox. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneSMSFolder.OutboxFolder">
+<span class="target" id="structGSM__OneSMSFolder_1a905ecdb21d504808da9df3e7548044b6"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OutboxFolder</span></span></span><a class="headerlink" href="#c.GSM_OneSMSFolder.OutboxFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether it is outbox. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneSMSFolder.Memory">
+<span class="target" id="structGSM__OneSMSFolder_1aefc8ea26972d00925db3cbdc0583d648"></span><a class="reference internal" href="memory.html#c.GSM_MemoryType" title="GSM_MemoryType"><span class="n"><span class="pre">GSM_MemoryType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Memory</span></span></span><a class="headerlink" href="#c.GSM_OneSMSFolder.Memory" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Where exactly it’s saved. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneSMSFolder.Name">
+<span class="target" id="structGSM__OneSMSFolder_1a65d63707d940c015814510eb364c9bbc"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_SMS_FOLDER_NAME_LEN</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_OneSMSFolder.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of the folder </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMSFolders">
+<span class="target" id="structGSM__SMSFolders"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMSFolders</span></span></span><a class="headerlink" href="#c.GSM_SMSFolders" title="Permalink to this definition"></a><br /></dt>
+<dd><p>List of SMS folders. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSFolders.Folder">
+<span class="target" id="structGSM__SMSFolders_1a356d137c3ee2edc14a45a22fec29ff95"></span><a class="reference internal" href="#c.GSM_OneSMSFolder" title="GSM_OneSMSFolder"><span class="n"><span class="pre">GSM_OneSMSFolder</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Folder</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_SMS_FOLDERS</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMSFolders.Folder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Array of structures holding information about each folder. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMSFolders.Number">
+<span class="target" id="structGSM__SMSFolders_1a27dee9857fa934853f7bd84af8e973fa"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_SMSFolders.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of SMS folders. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SiemensOTASMSInfo">
+<span class="target" id="structGSM__SiemensOTASMSInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SiemensOTASMSInfo</span></span></span><a class="headerlink" href="#c.GSM_SiemensOTASMSInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Siemens OTA data. </p>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MultiSMSMessage">
+<span class="target" id="structGSM__MultiSMSMessage"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MultiSMSMessage</span></span></span><a class="headerlink" href="#c.GSM_MultiSMSMessage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Multiple SMS messages, used for Smart Messaging 3.0/EMS. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MultiSMSMessage.Number">
+<span class="target" id="structGSM__MultiSMSMessage_1a60bd3fa796ebe7c3489906a7502e6869"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_MultiSMSMessage.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of messages. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MultiSMSMessage.SMS">
+<span class="target" id="structGSM__MultiSMSMessage_1a0e8bdc46de9cd160e6edc22785573bf9"></span><a class="reference internal" href="#c.GSM_SMSMessage" title="GSM_SMSMessage"><span class="n"><span class="pre">GSM_SMSMessage</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_MULTI_SMS</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MultiSMSMessage.SMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Array of SMSes. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MultiSMSMessage.Processed">
+<span class="target" id="structGSM__MultiSMSMessage_1abc8d61dcdde4681fcdfe011ec0601a53"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Processed</span></span></span><a class="headerlink" href="#c.GSM_MultiSMSMessage.Processed" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Boolean flag for processing </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_OneMMSFolder">
+<span class="target" id="structGSM__OneMMSFolder"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_OneMMSFolder</span></span></span><a class="headerlink" href="#c.GSM_OneMMSFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Information about MMS folder. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneMMSFolder.InboxFolder">
+<span class="target" id="structGSM__OneMMSFolder_1af605fd0545363cec1ed62e2c64ce043c"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InboxFolder</span></span></span><a class="headerlink" href="#c.GSM_OneMMSFolder.InboxFolder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether it is really inbox. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_OneMMSFolder.Name">
+<span class="target" id="structGSM__OneMMSFolder_1a8896f3e4350736c257f2995e12fc89e9"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_MMS_FOLDER_NAME_LEN</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_OneMMSFolder.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name for MMS folder. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MMSFolders">
+<span class="target" id="structGSM__MMSFolders"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MMSFolders</span></span></span><a class="headerlink" href="#c.GSM_MMSFolders" title="Permalink to this definition"></a><br /></dt>
+<dd><p>List of MMS folders. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSFolders.Number">
+<span class="target" id="structGSM__MMSFolders_1aa6e2a24ada27b4f48c799bbaeb22279b"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_MMSFolders.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of MMS folders. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MMSFolders.Folder">
+<span class="target" id="structGSM__MMSFolders_1ae5c795155e1f4db7dd7a28af164c9d82"></span><a class="reference internal" href="#c.GSM_OneMMSFolder" title="GSM_OneMMSFolder"><span class="n"><span class="pre">GSM_OneMMSFolder</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Folder</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_MMS_FOLDERS</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MMSFolders.Folder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Array of structures holding information about each folder. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID">
+<span class="target" id="group__SMS_1gac9c60aeac44b97d7f6ee021562830105"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EncodeMultiPartSMSID</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ID during packing SMS for Smart Messaging 3.0, EMS and other </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_Text">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105aa56c6d7ca12f7514cf23af1e18d0a0ee"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_Text</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>1 text SMS. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_ConcatenatedTextLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ad350dd22e00b2b03bceac432ea7aa261"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_ConcatenatedTextLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_ConcatenatedTextLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Contacenated SMS, when longer than 1 SMS. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_ConcatenatedAutoTextLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a0cf262f966583482218b3661ffe45c6d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_ConcatenatedAutoTextLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_ConcatenatedAutoTextLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Contacenated SMS, auto Default/Unicode coding. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_ConcatenatedTextLong16bit">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105aa25de7626c77ec809e32aa30f67eb5a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_ConcatenatedTextLong16bit</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_ConcatenatedTextLong16bit" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_ConcatenatedAutoTextLong16bit">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a214c836614157d78662ff39de276d8b9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_ConcatenatedAutoTextLong16bit</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_ConcatenatedAutoTextLong16bit" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaProfileLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a1f47137b96d242b45f5846545c7136c3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaProfileLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaProfileLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia profile = Name, Ringtone, ScreenSaver </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaPictureImageLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a03ae52db6a2263dfbfdcc03131805329"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaPictureImageLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaPictureImageLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia Picture Image + (text) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaScreenSaverLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a0301cc1e8e0398961cf087e6624358ef"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaScreenSaverLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaScreenSaverLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia screen saver + (text) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaRingtone">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a519109431cb0142e27a5d57fe3f8df94"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaRingtone</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia ringtone - old SM2.0 format, 1 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaRingtoneLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a8b006142ddd8997e628f78dbbb5555b9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaRingtoneLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaRingtoneLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia ringtone contacenated, when very long </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaOperatorLogo">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a876999515093d995954f12243c81a014"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaOperatorLogo</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaOperatorLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia 72x14 operator logo, 1 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaOperatorLogoLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a93549b5c0f444515d09bb77f5386a1d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaOperatorLogoLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaOperatorLogoLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia 72x14 op logo or 78x21 in 2 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaCallerLogo">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a50e5ed9885c6bc1b59962f484db9dfca"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaCallerLogo</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaCallerLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia 72x14 caller logo, 1 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaWAPBookmarkLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105adcab8385d218b877e07627213e23df0d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaWAPBookmarkLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaWAPBookmarkLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia WAP bookmark in 1 or 2 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaWAPSettingsLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a8c5645465eda85a7cc392e3bdf083b07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaWAPSettingsLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaWAPSettingsLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia WAP settings in 2 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaMMSSettingsLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105abecce765bfff37e963c3910f48e0464a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaMMSSettingsLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaMMSSettingsLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia MMS settings in 2 SMS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaVCARD10Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105abac150f05979f0e19973c6dc168a835f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaVCARD10Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaVCARD10Long" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia VCARD 1.0 - only name and default number </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaVCARD21Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a46fa9cda34bf62fa8a1c373b7548c461"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaVCARD21Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaVCARD21Long" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia VCARD 2.1 - all numbers + text </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaVCALENDAR10Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ae6c18acf16e6ba8bd2a5f38e57c36a8f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaVCALENDAR10Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaVCALENDAR10Long" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia VCALENDAR 1.0 - can be in few sms </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_NokiaVTODOLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a84fdf69cb1642550f99e74352b854543"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_NokiaVTODOLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_NokiaVTODOLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_VCARD10Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a75ce2b0e4c8ed2847aeda8d80492d735"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VCARD10Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_VCARD10Long" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_VCARD21Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a7a06550acc4c9bd07affd8ce305791b7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VCARD21Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_VCARD21Long" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_DisableVoice">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105afb4201ec509283b16c15be74af2d6f44"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_DisableVoice</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_DisableVoice" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_DisableFax">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a9066ca13b3c39b8b93bc3d6ace2d4349"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_DisableFax</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_DisableFax" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_DisableEmail">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ac6c36a274b40b2cb99d2d4a5f0d7614e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_DisableEmail</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_DisableEmail" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EnableVoice">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a9ac717e3bb4aba290e5db218792132ed"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EnableVoice</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EnableVoice" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EnableFax">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a8dd4962d890719c178fed7fc78468288"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EnableFax</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EnableFax" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EnableEmail">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a764b063d7b87ba0ff1fce16b27ea1b8e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EnableEmail</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EnableEmail" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_VoidSMS">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ab1433a78484aad4524e9bf29a2ea2f76"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_VoidSMS</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_VoidSMS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSound10">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a53d75118b47a567dce4f76b26f6d624b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSound10</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSound10" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody 1.0 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSound12">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a5cfa02635fdb802e169a6e1f527d5f34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSound12</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSound12" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody 1.2 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSonyEricssonSound">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a504ff5e990db6bfd026f4c275e7404fe"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSonyEricssonSound</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSonyEricssonSound" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody without header - SonyEricsson extension </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSound10Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a37f33e5cebfe7190969ce0761c6bfa0f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSound10Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSound10Long" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody 1.0 with UPI. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSound12Long">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ad6ee68725a36f6a76ba8a862098eebb8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSound12Long</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSound12Long" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody 1.2 with UPI. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSSonyEricssonSoundLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ace729a8f62f688a4efc70ea4410f429f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSSonyEricssonSoundLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSSonyEricssonSoundLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMelody without header with UPI. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSPredefinedSound">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105aeed04b5bd23c3bc0e0d45a40137b186b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSPredefinedSound</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSPredefinedSound" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSPredefinedAnimation">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a4c98141543d30f9d49a321783d426e79"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSPredefinedAnimation</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSPredefinedAnimation" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSAnimation">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ac6d45f411d0ce379688ef137bb73a61a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSAnimation</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSAnimation" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSFixedBitmap">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a94dd672f6f977da16780fe0e7775c3ab"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSFixedBitmap</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSFixedBitmap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fixed bitmap of size 16x16 or 32x32. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSVariableBitmap">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a16af5f54f07d6dbc61563f9f8594ef48"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSVariableBitmap</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSVariableBitmap" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_EMSVariableBitmapLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ab9a8f3b28f6b2e4908fadf4a5e66c374"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_EMSVariableBitmapLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_EMSVariableBitmapLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_MMSIndicatorLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ae643218dd7e282dcef6cbaa9535273db"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_MMSIndicatorLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_MMSIndicatorLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS message indicator. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_WAPIndicatorLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a499ab6ee31b29024943e65f94259a6ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_WAPIndicatorLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_WAPIndicatorLong" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_AlcatelMonoBitmapLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ae770d9101e542688388237d98e81a684"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_AlcatelMonoBitmapLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_AlcatelMonoBitmapLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Variable bitmap with black and white colors </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_AlcatelMonoAnimationLong">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a5052d1c8f5b2ebb9914e3423979cf01e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_AlcatelMonoAnimationLong</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_AlcatelMonoAnimationLong" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Variable animation with black and white colors </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_AlcatelSMSTemplateName">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a8ab8c45e398d2473190a845ad22c7b5e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_AlcatelSMSTemplateName</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_AlcatelSMSTemplateName" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_SiemensFile">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105ac6e01b4f8c22a4bc42f1065f83a6e9a8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_SiemensFile</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_SiemensFile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Siemens OTA </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.EncodeMultiPartSMSID.SMS_USSD">
+<span class="target" id="group__SMS_1ggac9c60aeac44b97d7f6ee021562830105a065fbbd8cf07516eeaaf675e83061e25"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMS_USSD</span></span></span><a class="headerlink" href="#c.EncodeMultiPartSMSID.SMS_USSD" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MultiPartSMSEntry">
+<span class="target" id="structGSM__MultiPartSMSEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MultiPartSMSEntry</span></span></span><a class="headerlink" href="#c.GSM_MultiPartSMSEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Entry of multipart SMS. </p>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MultiPartSMSInfo">
+<span class="target" id="structGSM__MultiPartSMSInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MultiPartSMSInfo</span></span></span><a class="headerlink" href="#c.GSM_MultiPartSMSInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Multipart SMS information. </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.MMSAddressType">
+<span class="target" id="group__MMS_1ga5f102a945c9bc570966b7e0b0b4dc4b6"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MMSAddressType</span></span></span><a class="headerlink" href="#c.MMSAddressType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS address type. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.MMSAddressType.MMSADDRESS_PHONE">
+<span class="target" id="group__MMS_1gga5f102a945c9bc570966b7e0b0b4dc4b6a78a88c6053e164637cf7ff2a0030edb5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MMSADDRESS_PHONE</span></span></span><a class="headerlink" href="#c.MMSAddressType.MMSADDRESS_PHONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.MMSAddressType.MMSADDRESS_UNKNOWN">
+<span class="target" id="group__MMS_1gga5f102a945c9bc570966b7e0b0b4dc4b6a2a0b6b10d10bd7cf74a5b24b442265e6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MMSADDRESS_UNKNOWN</span></span></span><a class="headerlink" href="#c.MMSAddressType.MMSADDRESS_UNKNOWN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSEntry">
+<span class="target" id="structGSM__EncodedMultiPartMMSEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_EncodedMultiPartMMSEntry</span></span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS entry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSEntry.ContentType">
+<span class="target" id="structGSM__EncodedMultiPartMMSEntry_1a5a9a9d55f6c35275af88ea938423c091"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContentType</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">400</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSEntry.ContentType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CT in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSEntry.SMIL">
+<span class="target" id="structGSM__EncodedMultiPartMMSEntry_1a5585a6528011a1446c93b0e4c1957b4b"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMIL</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">400</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSEntry.SMIL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Smil ID in Unicode </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_EncodedMultiPartMMSInfo</span></span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS part. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.Source">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a35c8114c943edc532fa462342a8e47f3"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Source</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.Source" title="Permalink to this definition"></a><br /></dt>
+<dd><p>in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.Destination">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a66ac4459937114c318a3c7c53630307a"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Destination</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.Destination" title="Permalink to this definition"></a><br /></dt>
+<dd><p>in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.CC">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a7cf2bed1fd267a65e90341b7e4e7cf4e"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CC</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.CC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.Subject">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a9b053767f2142d4b24bec30df52bf1ab"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Subject</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">200</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.Subject" title="Permalink to this definition"></a><br /></dt>
+<dd><p>in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.ContentType">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a0f341820f2df3af8cf2eee6bc3b65dd0"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContentType</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">400</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.ContentType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CT in Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.MSGType">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1a95bd818ea3b923de182bd5afb95d87bf"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MSGType</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">50</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.MSGType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>no Unicode </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_EncodedMultiPartMMSInfo.Entries">
+<span class="target" id="structGSM__EncodedMultiPartMMSInfo_1aaeab0a1205c5bf71c7c9eaee5cd1afcb"></span><a class="reference internal" href="#c.GSM_EncodedMultiPartMMSEntry" title="GSM_EncodedMultiPartMMSEntry"><span class="n"><span class="pre">GSM_EncodedMultiPartMMSEntry</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Entries</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_MULTI_MMS</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_EncodedMultiPartMMSInfo.Entries" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Subparts. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="memory.html" class="btn btn-neutral float-left" title="Memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="misc.html" class="btn btn-neutral float-right" title="Miscellaneous" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

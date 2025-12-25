@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Files backend &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SQL Service" href="sql.html" />
+    <link rel="prev" title="Backend services" href="backends.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html">Program Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">SMSD Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">RunOnReceive Directive</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="backends.html">Backend services</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Files backend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#receiving-of-messages">Receiving of messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transmitting-of-messages">Transmitting of messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html">SQL Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mysql.html">MySQL Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pgsql.html">PostgreSQL Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbi.html">DBI Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html">ODBC Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="null.html">Null Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tables.html">SMSD Database Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+          <li class="breadcrumb-item"><a href="backends.html">Backend services</a></li>
+      <li class="breadcrumb-item active">Files backend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="files-backend">
+<span id="gammu-smsd-files"></span><h1>Files backend<a class="headerlink" href="#files-backend" title="Permalink to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>FILES backend stores all data on a filesystem in folders defined by
+configuration (see <a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a> for description of configuration options).</p>
+</section>
+<section id="receiving-of-messages">
+<h2>Receiving of messages<a class="headerlink" href="#receiving-of-messages" title="Permalink to this heading"></a></h2>
+<p>Received messages are stored in a folder defined by configuration. The
+filename will be <code class="docutils literal notranslate"><span class="pre">IN&lt;date&gt;_&lt;time&gt;_&lt;serial&gt;_&lt;sender&gt;_&lt;sequence&gt;.&lt;ext&gt;</span></code>,
+for example <code class="docutils literal notranslate"><span class="pre">IN20021130_021531_00_+45409000931640979_00.txt</span></code>.</p>
+<p>Explanation of fields:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;date&gt;</span></code></dt><dd><p>date in format <code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;time&gt;</span></code></dt><dd><p>time in format <code class="docutils literal notranslate"><span class="pre">HHMMSS</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;sender&gt;</span></code></dt><dd><p>sender number</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;serial&gt;</span></code></dt><dd><p>order of a message (in case more messages were received at same time), in format <code class="docutils literal notranslate"><span class="pre">NN</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;sequence&gt;</span></code></dt><dd><p>part of the message for multipart messages, in format <code class="docutils literal notranslate"><span class="pre">NN</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;ext&gt;</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">txt</span></code> for text message, 8-bit messages are stored with <code class="docutils literal notranslate"><span class="pre">bin</span></code> extension, <code class="docutils literal notranslate"><span class="pre">smsbackup</span></code> for <a class="reference internal" href="../formats/smsbackup.html#gammu-smsbackup"><span class="std std-ref">SMS Backup Format</span></a></p>
+</dd>
+</dl>
+<p>The content of the file is content of the message and the format is defined by
+configuration directive <span class="target" id="index-0"></span><a class="reference internal" href="config.html#option-InboxFormat"><code class="xref config config-option docutils literal notranslate"><span class="pre">InboxFormat</span></code></a> (see <a class="reference internal" href="config.html#gammu-smsdrc"><span class="std std-ref">SMSD Configuration File</span></a>).</p>
+</section>
+<section id="transmitting-of-messages">
+<h2>Transmitting of messages<a class="headerlink" href="#transmitting-of-messages" title="Permalink to this heading"></a></h2>
+<p>Transmitted messages are read from a folder defined by configuration. The
+filename should be one of the following formats:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OUT&lt;recipient&gt;.&lt;ext&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OUT&lt;priority&gt;_&lt;recipient&gt;_&lt;serial&gt;.&lt;ext&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OUT&lt;priority&gt;&lt;date&gt;_&lt;time&gt;_&lt;serial&gt;_&lt;recipient&gt;_&lt;note&gt;.&lt;ext&gt;</span></code></p></li>
+</ul>
+<p>Explanation of fields:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;recipient&gt;</span></code></dt><dd><p>recipient number where to send message</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;priority&gt;</span></code></dt><dd><p>an alphabetic character (A-Z) A = highest priority</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;ext&gt;</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">txt</span></code> for normal text SMS, <code class="docutils literal notranslate"><span class="pre">smsbackup</span></code> for <a class="reference internal" href="../formats/smsbackup.html#gammu-smsbackup"><span class="std std-ref">SMS Backup Format</span></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;note&gt;</span></code></dt><dd><p>any arbitrary text which is ignored</p>
+</dd>
+</dl>
+<p>For text messages, you can additionally append flags to extension:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">d</span></code></dt><dd><p>delivery report requested</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">f</span></code></dt><dd><p>flash SMS</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">b</span></code></dt><dd><p>WAP bookmark as name,URL</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Other fields are same as for received messages.</p>
+<p>For example OUTG20040620_193810_123_+4512345678_xpq.txtdf is a flash text SMS
+requesting delivery reports.</p>
+<p>SMSes will be transmitted sequentially based on the file name. The contents of
+the file is the SMS to be transmitted (in Unicode or standard character set).</p>
+<p>The contents of the file is the SMS to be transmitted (in Unicode or standard
+character set), for WAP bookmarks it is split on as Name,URL, for text
+messages whole file content is used.</p>
+<p>Please note that if file is not in Unicode, encoding is detected based on
+locales, which do not have to be configured if SMSD is running from init
+script. If this is your case, please add locales definition to init script.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="backends.html" class="btn btn-neutral float-left" title="Backend services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sql.html" class="btn btn-neutral float-right" title="SQL Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

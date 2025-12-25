@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bitmap &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Calendar" href="calendar.html" />
+    <link rel="prev" title="Backup" href="backup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Bitmap</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/bitmap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bitmap">
+<h1>Bitmap<a class="headerlink" href="#bitmap" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_PrintBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SaveBitmapFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadBitmapFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_IsPointBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetPointBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearPointBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearBitmap” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types">
+<span class="target" id="group__Bitmap_1gac4f00b0e86a7483036478dff8fa37f4b"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BinaryPicture_Types</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Binary picture types. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types.PICTURE_BMP">
+<span class="target" id="group__Bitmap_1ggac4f00b0e86a7483036478dff8fa37f4ba927a9fd2125a4ae46c18500eb5a7a3c0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PICTURE_BMP</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types.PICTURE_BMP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types.PICTURE_GIF">
+<span class="target" id="group__Bitmap_1ggac4f00b0e86a7483036478dff8fa37f4bac4abaaba7e5c7584d8038b4ed9a33049"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PICTURE_GIF</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types.PICTURE_GIF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types.PICTURE_JPG">
+<span class="target" id="group__Bitmap_1ggac4f00b0e86a7483036478dff8fa37f4ba80a92fe3d3003e26f1a7d316c05ea0e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PICTURE_JPG</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types.PICTURE_JPG" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types.PICTURE_ICN">
+<span class="target" id="group__Bitmap_1ggac4f00b0e86a7483036478dff8fa37f4bad026fde17ed90f29a40cba223cf5f148"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PICTURE_ICN</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types.PICTURE_ICN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture_Types.PICTURE_PNG">
+<span class="target" id="group__Bitmap_1ggac4f00b0e86a7483036478dff8fa37f4ba50cb538792c7ac4d758b133288ad3f36"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PICTURE_PNG</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture_Types.PICTURE_PNG" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_BinaryPicture">
+<span class="target" id="structGSM__BinaryPicture"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BinaryPicture</span></span></span><a class="headerlink" href="#c.GSM_BinaryPicture" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Binary picture data. </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types">
+<span class="target" id="group__Bitmap_1ga72bd4b205c7a0ae46113ea3e500306a0"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Bitmap_Types</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum to handle all possible bitmaps, which are not saved in various filesystems. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_None">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0a34929dde05ab6858f9e349e8ee34fe3b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_None</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_None" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_ColourStartupLogo_ID">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0afd19d04e76b75262aa911c8684d7de22"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ColourStartupLogo_ID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_ColourStartupLogo_ID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ID of static file in filesystem displayed during startup </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_StartupLogo">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0af6d0ae5c7e840d456f41d0cb6f049cd2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_StartupLogo</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_StartupLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Static mono bitmap/ID of animated mono bitmap displayed during startup </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_ColourOperatorLogo_ID">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0a09eaf08f528d8ff8ff7bda142c25e961"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ColourOperatorLogo_ID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_ColourOperatorLogo_ID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ID of static file in filesystem displayed instead of operator name </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_OperatorLogo">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0aa69394d2382d6aa22e32ba32d4b7cd07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_OperatorLogo</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_OperatorLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Mono bitmap displayed instead of operator name </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_ColourWallPaper_ID">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0ad5b11152928092bc450e6e7a5b4efbd8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ColourWallPaper_ID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_ColourWallPaper_ID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ID of static file in filesystem displayed as wallpaper </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_CallerGroupLogo">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0a8b9c2c214c08ba52c80666d354c8b530"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CallerGroupLogo</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_CallerGroupLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Mono bitmap assigned to caller group </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_DealerNote_Text">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0af30faa0147db4dbc679c5f3a2154231e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DealerNote_Text</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_DealerNote_Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text displayed during startup, which can’t be removed from phone menu </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_WelcomeNote_Text">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0ad7d8def4cd337b582130128110c7826b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_WelcomeNote_Text</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_WelcomeNote_Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text displayed during startup </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_PictureImage">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0a0fa1aa9ff7102b8bd23e5a1d5d05431f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_PictureImage</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_PictureImage" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Image defined in Smart Messaging specification </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Bitmap_Types.GSM_PictureBinary">
+<span class="target" id="group__Bitmap_1gga72bd4b205c7a0ae46113ea3e500306a0a68b9f5b091777be94da51a5b38ff57f1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_PictureBinary</span></span></span><a class="headerlink" href="#c.GSM_Bitmap_Types.GSM_PictureBinary" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Binary picture (BMP, GIF, etc.) </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Bitmap">
+<span class="target" id="structGSM__Bitmap"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Bitmap</span></span></span><a class="headerlink" href="#c.GSM_Bitmap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for all possible bitmaps, which are not saved in various filesystems </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.Type">
+<span class="target" id="structGSM__Bitmap_1aae6cad8d41857059df17f63240e45f8e"></span><a class="reference internal" href="#c.GSM_Bitmap_Types" title="GSM_Bitmap_Types"><span class="n"><span class="pre">GSM_Bitmap_Types</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For all: bitmap type </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.Location">
+<span class="target" id="structGSM__Bitmap_1a8129455d2422917c95f1fcaed6f96225"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logos: number of group For startup logos: number of animated bitmap </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.Text">
+<span class="target" id="structGSM__Bitmap_1a180d7d5c088d9e5038d858e69aea24dc"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_BITMAP_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Bitmap.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For dealer/welcome note text: text For caller group logo: name of group For picture images: text assigned to it </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.BitmapEnabled">
+<span class="target" id="structGSM__Bitmap_1a7e0b605d788d53d27cb9f63d6c54b1e6"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BitmapEnabled</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.BitmapEnabled" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: TRUE, when logo is enabled in group </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.DefaultName">
+<span class="target" id="structGSM__Bitmap_1a5ee6122a8eaa1158edbbc9a1b9fbe963"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefaultName</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.DefaultName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: TRUE, when group has default name </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.DefaultBitmap">
+<span class="target" id="structGSM__Bitmap_1aa1d3824743613c1fbaaeb0d24296a38a"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefaultBitmap</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.DefaultBitmap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: TRUE, when group has default bitmap </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.DefaultRingtone">
+<span class="target" id="structGSM__Bitmap_1a8f0b00496e81ae19cb64a0ad617419f8"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefaultRingtone</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.DefaultRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: TRUE, when group has default ringtone </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.RingtoneID">
+<span class="target" id="structGSM__Bitmap_1ad61a1817d8e6dade6260195f27f64333"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RingtoneID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.RingtoneID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: ringtone ID. Phone model specific </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.PictureID">
+<span class="target" id="structGSM__Bitmap_1a3c93fc0d4027c9e6b65398bccbe480ce"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PictureID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.PictureID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For caller group logo: picture ID. Phone model specific </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.BitmapPoints">
+<span class="target" id="structGSM__Bitmap_1ad8e1e147ef434b4182fc5c72cc4b330b"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BitmapPoints</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BITMAP_SIZE</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Bitmap.BitmapPoints" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For mono bitmaps: body of bitmap </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.BitmapHeight">
+<span class="target" id="structGSM__Bitmap_1a3fd358f9aa520abb3c276908e3cf9ff8"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BitmapHeight</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.BitmapHeight" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For mono bitmaps: height specified in pixels </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.BitmapWidth">
+<span class="target" id="structGSM__Bitmap_1a6b2947992c4aeacc91e3dc6a7beb8ced"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BitmapWidth</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.BitmapWidth" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For mono bitmaps: width specified in pixels </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.NetworkCode">
+<span class="target" id="structGSM__Bitmap_1a39ca554f63179b057315e0a1923d06ae"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NetworkCode</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">10</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Bitmap.NetworkCode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For operator logos: Network operator code </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.Sender">
+<span class="target" id="structGSM__Bitmap_1ac10ccb6a60886becd5815d97b2230fdb"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Sender</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NUMBER_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Bitmap.Sender" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For picture images: number of sender </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.ID">
+<span class="target" id="structGSM__Bitmap_1a7eaefc952b649d218a163439bf6194a6"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ID</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.ID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For colour bitmaps: ID </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.BinaryPic">
+<span class="target" id="structGSM__Bitmap_1ae3965f1094abe7a776f3f4f357406f9a"></span><a class="reference internal" href="#c.GSM_BinaryPicture" title="GSM_BinaryPicture"><span class="n"><span class="pre">GSM_BinaryPicture</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BinaryPic</span></span></span><a class="headerlink" href="#c.GSM_Bitmap.BinaryPic" title="Permalink to this definition"></a><br /></dt>
+<dd><p>For binary pictures (GIF, BMP, etc.): frame and length </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Bitmap.Name">
+<span class="target" id="structGSM__Bitmap_1a18c9509108d10c3b218b4604d45d2940"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_BITMAP_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Bitmap.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bitmap name </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_MultiBitmap">
+<span class="target" id="structGSM__MultiBitmap"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_MultiBitmap</span></span></span><a class="headerlink" href="#c.GSM_MultiBitmap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure to handle more than one bitmap </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MultiBitmap.Number">
+<span class="target" id="structGSM__MultiBitmap_1a6da6e6798f5a2d30c3bd074553327e57"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_MultiBitmap.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of bitmaps </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_MultiBitmap.Bitmap">
+<span class="target" id="structGSM__MultiBitmap_1ad775f403c852a342b8a7d568dd277dcf"></span><a class="reference internal" href="#c.GSM_Bitmap" title="GSM_Bitmap"><span class="n"><span class="pre">GSM_Bitmap</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Bitmap</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_MULTI_BITMAP</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_MultiBitmap.Bitmap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>All bitmaps </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetScreenshot” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="backup.html" class="btn btn-neutral float-left" title="Backup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="calendar.html" class="btn btn-neutral float-right" title="Calendar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

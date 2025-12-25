@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Directory structure &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Roadmap for Gammu" href="roadmap.html" />
+    <link rel="prev" title="Project Documentation" href="documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gammu project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about.html">About Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motivation.html">Motivation to fork Gnokii</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installing Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-style.html">Coding Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versioning.html">Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Project Documentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Directory structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#libgammu-directory">libgammu directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gammu-directory">gammu directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smsd-directory">smsd directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-directory">helper directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docs-directory">docs directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#admin-directory">admin directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-directory">cmake directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#include-directory">include directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locale-directory">locale directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tests-directory">tests directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#utils-directory">utils directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contrib-directory">contrib directory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bash-completion">bash-completion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conversion">conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#init">init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#media">media</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perl">perl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#php">php</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sms">sms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sms-gammu2android">sms-gammu2android</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smscgi">smscgi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sql">sql</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing">testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sqlreply">sqlreply</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#symbian">symbian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#s60">s60</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#win32">win32</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="roadmap.html">Roadmap for Gammu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gammu project</a></li>
+      <li class="breadcrumb-item active">Directory structure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project/directories.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="directory-structure">
+<h1>Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading"></a></h1>
+<section id="libgammu-directory">
+<h2>libgammu directory<a class="headerlink" href="#libgammu-directory" title="Permalink to this heading"></a></h2>
+<p>This directory contains sources of Gammu library. You can find all phone
+communication and data encoding functionality here.</p>
+<p>There are following subdirectories:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">device</span></code></dt><dd><p>drivers for devices such serial ports or irda</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">device/serial</span></code></dt><dd><p>drivers for serial ports</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">device/irda</span></code></dt><dd><p>drivers for infrared over sockets</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">protocol</span></code></dt><dd><p>protocol drivers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">protocol/nokia</span></code></dt><dd><p>Nokia specific protocols</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">phone</span></code></dt><dd><p>phone modules</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">phone/nokia</span></code></dt><dd><p>modules for different Nokia phones</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">misc</span></code></dt><dd><p>different services. They can be used for any project</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">service</span></code></dt><dd><p>different gsm services for logos, ringtones, etc.</p>
+</dd>
+</dl>
+</section>
+<section id="gammu-directory">
+<h2>gammu directory<a class="headerlink" href="#gammu-directory" title="Permalink to this heading"></a></h2>
+<p>Sources of Gammu command line utility. It contains interface to libGammu
+and some additional functionality as well.</p>
+</section>
+<section id="smsd-directory">
+<h2>smsd directory<a class="headerlink" href="#smsd-directory" title="Permalink to this heading"></a></h2>
+<p>Sources of SMS Daemon as well as all it’s service backends.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">services</span></code> subdirectory contains source code for <a class="reference internal" href="../smsd/backends.html#smsd-services"><span class="std std-ref">Backend services</span></a>.</p>
+</section>
+<section id="helper-directory">
+<h2>helper directory<a class="headerlink" href="#helper-directory" title="Permalink to this heading"></a></h2>
+<p>These are some helper functions used either as replacement for
+functionality missing on some platforms (eg. strptime) or used in more
+places (message command line processing which is shared between SMSD and
+Gammu utility).</p>
+</section>
+<section id="docs-directory">
+<h2>docs directory<a class="headerlink" href="#docs-directory" title="Permalink to this heading"></a></h2>
+<p>Documentation for both end users and developers as well as SQL scripts
+for creating SMSD database.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">config</span></code></dt><dd><p>configuration file samples</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">examples</span></code></dt><dd><p>examples using libGammu</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">manual</span></code></dt><dd><p>sources of The Gammu Manual which you are reading</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sql</span></code></dt><dd><p>SQL scripts to create table structures for <a class="reference internal" href="../smsd/index.html#smsd"><span class="std std-ref">SMS Daemon</span></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">user</span></code></dt><dd><p>user documentation like man pages</p>
+</dd>
+</dl>
+</section>
+<section id="admin-directory">
+<h2>admin directory<a class="headerlink" href="#admin-directory" title="Permalink to this heading"></a></h2>
+<p>Administrative scripts for updating locales, making release etc.</p>
+</section>
+<section id="cmake-directory">
+<h2>cmake directory<a class="headerlink" href="#cmake-directory" title="Permalink to this heading"></a></h2>
+<p>CMake include files and templates for generated files.</p>
+</section>
+<section id="include-directory">
+<h2>include directory<a class="headerlink" href="#include-directory" title="Permalink to this heading"></a></h2>
+<p>Public headers for libGammu.</p>
+</section>
+<section id="locale-directory">
+<h2>locale directory<a class="headerlink" href="#locale-directory" title="Permalink to this heading"></a></h2>
+<p>Gettext po files for translating Gammu, libGammu and user documentation.
+See <a class="reference internal" href="localization.html"><span class="doc">Localization</span></a> for more information.</p>
+</section>
+<section id="tests-directory">
+<h2>tests directory<a class="headerlink" href="#tests-directory" title="Permalink to this heading"></a></h2>
+<p>CTest based test suite for libGammu.
+See <a class="reference internal" href="testing.html"><span class="doc">Testing</span></a> for more information.</p>
+</section>
+<section id="utils-directory">
+<h2>utils directory<a class="headerlink" href="#utils-directory" title="Permalink to this heading"></a></h2>
+<p>Various utilities usable with Gammu.</p>
+</section>
+<section id="contrib-directory">
+<h2>contrib directory<a class="headerlink" href="#contrib-directory" title="Permalink to this heading"></a></h2>
+<p>This directory contains various things which might be useful with Gammu.
+Most of them were contributed by Gammu users.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that that code here might have different license terms than
+Gammu itself.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Most of scripts provided here are not actively maintained and might
+be broken.</p>
+</div>
+<section id="bash-completion">
+<h3>bash-completion<a class="headerlink" href="#bash-completion" title="Permalink to this heading"></a></h3>
+<p>Completion script for bash.</p>
+</section>
+<section id="conversion">
+<h3>conversion<a class="headerlink" href="#conversion" title="Permalink to this heading"></a></h3>
+<p>Various scripts for converting data.</p>
+</section>
+<section id="init">
+<h3>init<a class="headerlink" href="#init" title="Permalink to this heading"></a></h3>
+<p>Init scripts for Gammu SMSD.</p>
+</section>
+<section id="media">
+<h3>media<a class="headerlink" href="#media" title="Permalink to this heading"></a></h3>
+<p>Sample media files which can be used with Gammu.</p>
+</section>
+<section id="perl">
+<h3>perl<a class="headerlink" href="#perl" title="Permalink to this heading"></a></h3>
+<p>Various perl scripts which interface to Gammu or SMSD.</p>
+</section>
+<section id="php">
+<h3>php<a class="headerlink" href="#php" title="Permalink to this heading"></a></h3>
+<p>Various PHP frontends to SMSD or Gammu directly.</p>
+</section>
+<section id="sms">
+<h3>sms<a class="headerlink" href="#sms" title="Permalink to this heading"></a></h3>
+<p>This directory contains SMS default alphabet saved in Unicode text file
+(<code class="file docutils literal notranslate"><span class="pre">charset.txt</span></code>) and table used for converting chars during saving
+SMS with default alphabet (<code class="file docutils literal notranslate"><span class="pre">convert.txt</span></code>).</p>
+</section>
+<section id="sms-gammu2android">
+<h3>sms-gammu2android<a class="headerlink" href="#sms-gammu2android" title="Permalink to this heading"></a></h3>
+<p>Perl script to convert <a class="reference internal" href="../formats/smsbackup.html#gammu-smsbackup"><span class="std std-ref">SMS Backup Format</span></a> into XML suitable for
+Android SMS Backup &amp; Restore application.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="http://blog.ginkel.com/2009/12/transferring-sms-from-nokia-to-android/">http://blog.ginkel.com/2009/12/transferring-sms-from-nokia-to-android/</a></p>
+</div>
+</section>
+<section id="smscgi">
+<h3>smscgi<a class="headerlink" href="#smscgi" title="Permalink to this heading"></a></h3>
+<p>Simple cgi application gor handling SMS messages (a bit lighter version
+of SMSD).</p>
+</section>
+<section id="sql">
+<h3>sql<a class="headerlink" href="#sql" title="Permalink to this heading"></a></h3>
+<p>Various SQL snippets and triggers useful with SMSD.</p>
+</section>
+<section id="testing">
+<h3>testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h3>
+<p>Helper scripts for automatic testing or git bisect.</p>
+</section>
+<section id="sqlreply">
+<h3>sqlreply<a class="headerlink" href="#sqlreply" title="Permalink to this heading"></a></h3>
+<p>System for automatic replying to SMS messages.</p>
+</section>
+<section id="symbian">
+<h3>symbian<a class="headerlink" href="#symbian" title="Permalink to this heading"></a></h3>
+<p>GNapplet sources and binaries. This comes from Gnokii project, but Gammu
+includes slightly modified version.</p>
+</section>
+<section id="s60">
+<h3>s60<a class="headerlink" href="#s60" title="Permalink to this heading"></a></h3>
+<p>Series60 applet to use with recent Symbian phones.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../protocol/s60.html#s60"><span class="std std-ref">Series60 Remote Protocol</span></a></p>
+</div>
+</section>
+<section id="win32">
+<h3>win32<a class="headerlink" href="#win32" title="Permalink to this heading"></a></h3>
+<p>Unsupported applications built on top of libGammu.dll on Windows.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation.html" class="btn btn-neutral float-left" title="Project Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="roadmap.html" class="btn btn-neutral float-right" title="Roadmap for Gammu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

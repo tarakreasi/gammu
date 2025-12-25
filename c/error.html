@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error handling &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="File" href="file.html" />
+    <link rel="prev" title="Debug" href="debug.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Error handling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/error.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="error-handling">
+<h1>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ErrorString” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ErrorName” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_Error">
+<span class="target" id="group__Error_1ga2c447f4f55c989b3aa5e41cadd9fb7c3"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Error</span></span></span><a class="headerlink" href="#c.GSM_Error" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error types. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NONE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a5203071ca85e00df6bf2526855b6df0d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NONE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NONE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No error </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEOPENERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a4b2fc42c404049d04184f349792a617f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEOPENERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEOPENERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error during opening device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICELOCKED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a5f6d14549e04834c6b074b4045c57ce4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICELOCKED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICELOCKED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Device locked </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICENOTEXIST">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aef5e25dbf3bbb020dab248d81d092a9d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICENOTEXIST</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICENOTEXIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Device does not exits </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEBUSY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3acd08a0afe7402afa52485e361dc4cafc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEBUSY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEBUSY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Device is busy </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICENOPERMISSION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ae63dde51412626e8e0d188ca12784d04"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICENOPERMISSION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICENOPERMISSION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No permissions to open device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICENODRIVER">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3adba1f4847c13ac5f0e23fa2e46b69b2b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICENODRIVER</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICENODRIVER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No driver installed for a device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICENOTWORK">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a2451ac60a4f86fdebbfe0b6b6cf1943b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICENOTWORK</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICENOTWORK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Device doesn’t seem to be working </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEDTRRTSERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a76a3986db1f0809eed80dc1ec4478252"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEDTRRTSERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEDTRRTSERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error during setting DTR/RTS in device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICECHANGESPEEDERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a724ae810367d49c2d697dd5445317384"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICECHANGESPEEDERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICECHANGESPEEDERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>10 Error during changing speed in device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEWRITEERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a19bf0ef0ef32391cf10fa6288c23a7db"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEWRITEERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEWRITEERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error during writing device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEREADERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3af3bc73b312e451d0f2d9d363fc873f62"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEREADERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEREADERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error during reading device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DEVICEPARITYERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a7c21492409b1585ab4b52828641da3f0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DEVICEPARITYERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DEVICEPARITYERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Can’t set parity on device </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_TIMEOUT">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ac568baeb6407ef5e2630084ccbc34be8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_TIMEOUT</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_TIMEOUT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Command timed out </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FRAMENOTREQUESTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ab3d140bbb1f28c359d76dd562fd037e0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FRAMENOTREQUESTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FRAMENOTREQUESTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Frame handled, but not requested in this moment </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNKNOWNRESPONSE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ae6cf4ff007f7be08ca1bfeb48c13248a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNKNOWNRESPONSE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNKNOWNRESPONSE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Response not handled by gammu </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNKNOWNFRAME">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a16cf444211ae791606f61700775b0e90"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNKNOWNFRAME</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNKNOWNFRAME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Frame not handled by gammu </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNKNOWNCONNECTIONTYPESTRING">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a30c84b2d9d3e5eaf99f259fda8a2b5d2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNKNOWNCONNECTIONTYPESTRING</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNKNOWNCONNECTIONTYPESTRING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown connection type given by user </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNKNOWNMODELSTRING">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a56743ef54709a5fcbbb8d8800fc80c6f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNKNOWNMODELSTRING</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNKNOWNMODELSTRING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown model given by user </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SOURCENOTAVAILABLE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ae0104ee3726a96b0e1a6aca7eca71237"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SOURCENOTAVAILABLE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SOURCENOTAVAILABLE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>20 Some functions not compiled in your OS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOTSUPPORTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ac8a1e58c85b139707e259599bb9c6995"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOTSUPPORTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOTSUPPORTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Not supported by phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_EMPTY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3acdc3171f597e4c1349717464b452dc1e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_EMPTY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_EMPTY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Empty entry or transfer end. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SECURITYERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ab7fba3a3780bd0045ebef8abf1c8abf1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SECURITYERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SECURITYERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Not allowed </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INVALIDLOCATION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3afd9f032b28cad19b3c0d9e852aa913ef"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INVALIDLOCATION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INVALIDLOCATION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Too high or too low location… </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOTIMPLEMENTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a05c3b5ca5dea52d2b14ce2b379a60d0c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOTIMPLEMENTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOTIMPLEMENTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Function not implemented </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FULL">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a1b3dce8cc51ded12758528a5f0579b39"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FULL</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FULL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Memory is full </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNKNOWN">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a5c708decdcbd7d8c9fddd8d9e75828a1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNKNOWN</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNKNOWN" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Unknown response from phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_CANTOPENFILE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ae8b805dfa791caffacb9b238a81a51c2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_CANTOPENFILE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_CANTOPENFILE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error during opening file </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_MOREMEMORY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ad224e8bc9e17597b907c6690e4bb71c7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_MOREMEMORY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_MOREMEMORY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>More memory required </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_PERMISSION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a3e8360e555ca7aa4330f20eede8fc079"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_PERMISSION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_PERMISSION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>30 No permission </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_EMPTYSMSC">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a424ee801239828d9649b0366657670f3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_EMPTYSMSC</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_EMPTYSMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMSC number is empty </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INSIDEPHONEMENU">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aa25e448e637eece2ccf2ad5ddb05bc47"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INSIDEPHONEMENU</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INSIDEPHONEMENU" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Inside phone menu - can’t make something </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOTCONNECTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aaa1c10c62c9bb0b3345f82f21caeb473"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOTCONNECTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOTCONNECTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone NOT connected - can’t make something </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_WORKINPROGRESS">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aabff317224bb31543124f388a0c19d54"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_WORKINPROGRESS</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_WORKINPROGRESS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Work in progress </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_PHONEOFF">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ac1fb1d416a0a7f4575e9171a20547668"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_PHONEOFF</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_PHONEOFF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone is disabled and connected to charger </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FILENOTSUPPORTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a3b9385e40408426d54c5659b8d44ac2a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FILENOTSUPPORTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FILENOTSUPPORTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>File format not supported by Gammu </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_BUG">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a84c0afd8850c7e6221a6712a7eef7f0b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_BUG</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_BUG" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Found bug in implementation or phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_CANCELED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ac8ff9ba54c916389ac66bbd6a4d81383"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_CANCELED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_CANCELED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Action was canceled by user </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NEEDANOTHERANSWER">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a717ce022fcb2d374fb1161fc3e2ed710"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NEEDANOTHERANSWER</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NEEDANOTHERANSWER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Inside Gammu: phone module need to send another answer frame </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_OTHERCONNECTIONREQUIRED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a1512328fb17c48279365f26a02037c7c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_OTHERCONNECTIONREQUIRED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_OTHERCONNECTIONREQUIRED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>40 You need other connectin for this operation. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_WRONGCRC">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a24eb8c943526e8d57fa965937c0abf19"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_WRONGCRC</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_WRONGCRC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Wrong CRC </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INVALIDDATETIME">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a9938b028f8cd926ab26dbb41c89fdfd7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INVALIDDATETIME</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INVALIDDATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Invalid date/time </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_MEMORY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3afb88c5fa6e7d51074ec36bd4578e03a0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_MEMORY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_MEMORY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone memory error, maybe it is read only </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INVALIDDATA">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aa5d0447f8b21bd9293329975de80a58a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INVALIDDATA</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INVALIDDATA" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Invalid data given to phone </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FILEALREADYEXIST">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a590dfffaa8f87373a980ad5daed2f34b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FILEALREADYEXIST</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FILEALREADYEXIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>File with specified name already exist </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FILENOTEXIST">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3acbb1aa418cce8c7041c8cb50186c9396"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FILENOTEXIST</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FILENOTEXIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>File with specified name doesn’t exist </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SHOULDBEFOLDER">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a65502545a5c2f2ac10ce795c4971397e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SHOULDBEFOLDER</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SHOULDBEFOLDER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>You have to give folder (not file) name </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SHOULDBEFILE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a60073fc6d70966a84500622bcc61f1d7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SHOULDBEFILE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SHOULDBEFILE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>You have to give file (not folder) name </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOSIM">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ac1b6500db1f74c75823786b4af97c2a6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOSIM</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOSIM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Can not access SIM card </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_GNAPPLETWRONG">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a3983839ea962388cc20fa45b2edf4f27"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_GNAPPLETWRONG</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_GNAPPLETWRONG" title="Permalink to this definition"></a><br /></dt>
+<dd><p>50 Invalid gnapplet version </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FOLDERPART">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a9b41e265a9515e2f4abd4badc809155a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FOLDERPART</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FOLDERPART" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Only part of folders listed </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_FOLDERNOTEMPTY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a7ceda1a2b8aeba5d0060cdc840c5161d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_FOLDERNOTEMPTY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_FOLDERNOTEMPTY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Folder is not empty </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DATACONVERTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3adb87515740d1fe3cc31f4ea156bd95c9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DATACONVERTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DATACONVERTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Data were converted </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_UNCONFIGURED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3acbac956f8ad24d82839207db30fb8994"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_UNCONFIGURED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_UNCONFIGURED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gammu is not configured. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_WRONGFOLDER">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a4f2a83ff12e3e6fdcec92fc31379bb77"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_WRONGFOLDER</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_WRONGFOLDER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Wrong folder selected (eg. for SMS). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_PHONE_INTERNAL">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a8452abfbfd2c25d936e211c163927c6a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_PHONE_INTERNAL</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_PHONE_INTERNAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Internal phone error (phone got crazy). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_WRITING_FILE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a3265e907b0ff12badaa436fda1aded02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_WRITING_FILE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_WRITING_FILE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Could not write to a file (on local filesystem). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NONE_SECTION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a111260748898c6abc4140983d215bbc3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NONE_SECTION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NONE_SECTION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>No such section exists. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_USING_DEFAULTS">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a3593c4c45d0b4aa39f67d7ec051a51d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_USING_DEFAULTS</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_USING_DEFAULTS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Using default values. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_CORRUPTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a0041d00f74bfd61258710bb6d1e1ac0c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_CORRUPTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_CORRUPTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>60 Corrupted data returned by phone. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_BADFEATURE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ad78fcaa8c6ab9035303162e331c1490b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_BADFEATURE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_BADFEATURE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bad feature string. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DISABLED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aa2b26941aff0de4db365193e1db2619e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DISABLED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DISABLED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Some functions not compiled in your OS </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SPECIFYCHANNEL">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a1c86f15e33f3acaf849de57b7a1c08cd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SPECIFYCHANNEL</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SPECIFYCHANNEL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bluetooth configuration requires channel option. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOTRUNNING">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a5b5778f54394358fe2a35375f2b01d4f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOTRUNNING</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOTRUNNING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Service is not running. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NOSERVICE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aaf63e1baa219df0f8771ca56ecea4d20"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NOSERVICE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NOSERVICE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Service setup is missing. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_BUSY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a8d4f409eda53a10f049dc6d5a833ccba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_BUSY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_BUSY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Command failed. Try again. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_COULDNT_CONNECT">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a8dc61e28ee3a0169dc60f428e0c6cf07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_COULDNT_CONNECT</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_COULDNT_CONNECT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Can not connect to server. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_COULDNT_RESOLVE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a024e9ee14ce49082201f82c2d0f7b9eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_COULDNT_RESOLVE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_COULDNT_RESOLVE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Can not resolve host name. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_GETTING_SMSC">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a1e98e5c6052694b648e33124bae30574"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_GETTING_SMSC</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_GETTING_SMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Failed to get SMSC number from phone. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_ABORTED">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ad80429db7c51c5d6738b3e87131043d0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_ABORTED</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_ABORTED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>70 Operation aborted. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INSTALL_NOT_FOUND">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aaa1fa799e9c2000e78e95481860ecf20"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INSTALL_NOT_FOUND</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INSTALL_NOT_FOUND" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Installation data not found. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_READ_ONLY">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a036ac124017a0a2763114e1d505d5316"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_READ_ONLY</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_READ_ONLY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Entry is read only. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_NETWORK_ERROR">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a240ae8db8785590bb53840522458696e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_NETWORK_ERROR</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_NETWORK_ERROR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Network error. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DB_VERSION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a71139e36a07cb63f8c88008f85cd729a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DB_VERSION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DB_VERSION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Invalid database version. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DB_DRIVER">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3ad56ac75fb6d6f58b1ca0f2fb65906014"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DB_DRIVER</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DB_DRIVER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Failed to initialize DB driver. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DB_CONFIG">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a4ff1101524582fc09a7f0780a82451b8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DB_CONFIG</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DB_CONFIG" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Failed to configure DB driver. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DB_CONNECT">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a25eeda7bf051099c23a59934b16df1db"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DB_CONNECT</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DB_CONNECT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Failed to connect to database. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_DB_TIMEOUT">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a9c950854ffe7b12c69035df0fbd343e0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_DB_TIMEOUT</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_DB_TIMEOUT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Database connection timeout. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_SQL">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3aac4edd0b2f3f71ac2bd55b3f573f1483"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_SQL</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_SQL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error in executing SQL query. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_INVALID_OPERATION">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a991f48066fec8800274aa87a9c5f50a8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_INVALID_OPERATION</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_INVALID_OPERATION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The operation cannot be performed. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_MEMORY_NOT_AVAILABLE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a39a86c687cbf64056a2dea6a13caf970"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_MEMORY_NOT_AVAILABLE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_MEMORY_NOT_AVAILABLE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The type of memory is not available or has been disabled. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_Error.ERR_LAST_VALUE">
+<span class="target" id="group__Error_1gga2c447f4f55c989b3aa5e41cadd9fb7c3a17c40e0e44ea43d17867056e93ac1bdc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ERR_LAST_VALUE</span></span></span><a class="headerlink" href="#c.GSM_Error.ERR_LAST_VALUE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Just marker of highest error code, should not be used. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debug.html" class="btn btn-neutral float-left" title="Debug" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file.html" class="btn btn-neutral float-right" title="File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

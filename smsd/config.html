@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMSD Configuration File &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RunOnReceive Directive" href="run.html" />
+    <link rel="prev" title="gammu-smsd-monitor" href="monitor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html">Program Manuals</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SMSD Configuration File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-parameters-of-sms-daemon">General parameters of SMS daemon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-backends-options">Database backends options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#files-backend-options">Files backend options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#message-filtering">Message filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#files-service">Files service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mysql-service">MySQL service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dbi-service-using-sqlite">DBI service using SQLite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#odbc-service-using-mysql">ODBC service using MySQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numbers-filtering">Numbers filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-modems">Multiple modems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">RunOnReceive Directive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backends.html">Backend services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+      <li class="breadcrumb-item active">SMSD Configuration File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/config.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="smsd-configuration-file">
+<span id="gammu-smsdrc"></span><h1>SMSD Configuration File<a class="headerlink" href="#smsd-configuration-file" title="Permalink to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>gammu-smsd reads configuration from a config file. It’s location can be
+specified on command line, otherwise default path <code class="docutils literal notranslate"><span class="pre">/etc/gammu-smsdrc</span></code>
+is used.</p>
+<p>This file use ini file syntax, see <a class="reference internal" href="../formats/ini.html#ini"><span class="std std-ref">INI file format</span></a>.</p>
+<p>Configuration file of gammu-smsd consists of at least two sections -
+<span class="target" id="index-0"></span><a class="reference internal" href="../config/index.html#section-[gammu]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[gammu]</span></code></a> and <span class="target" id="index-1"></span><a class="reference internal" href="#section-[smsd]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[smsd]</span></code></a>. For <a class="reference internal" href="sql.html#gammu-smsd-sql"><span class="std std-ref">SQL Service</span></a>
+you can also use <span class="target" id="index-2"></span><a class="reference internal" href="#section-[sql]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[sql]</span></code></a> and <span class="target" id="index-3"></span><a class="reference internal" href="#section-[tables]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[tables]</span></code></a>.</p>
+<p>The <span class="target" id="index-4"></span><a class="reference internal" href="../config/index.html#section-[gammu]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[gammu]</span></code></a> section is configuration of a phone connection
+and is same as described in <a class="reference internal" href="../config/index.html#gammurc"><span class="std std-ref">Gammu Configuration File</span></a> with the only exception that
+<span class="target" id="index-5"></span><a class="reference internal" href="#option-LogFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">LogFile</span></code></a> is ignored and common logging for gammu library and
+SMS daemon is used. However the <span class="target" id="index-6"></span><a class="reference internal" href="../config/index.html#option-LogFormat"><code class="xref config config-option docutils literal notranslate"><span class="pre">LogFormat</span></code></a> directive still
+configures how much messages gammu emits.</p>
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[smsd]">
+<span class="sig-name descname"><span class="pre">[smsd]</span></span><a class="headerlink" href="#section-[smsd]" title="Permalink to this definition"></a></dt>
+<dd><p>The <span class="target" id="index-7"></span><a class="reference internal" href="#section-[smsd]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[smsd]</span></code></a> section configures SMS daemon itself, which are described in
+following subsections. First general parameters of SMS daemon are listed and
+then specific parameters for storage backends.</p>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[include_numbers]">
+<span class="sig-name descname"><span class="pre">[include_numbers]</span></span><a class="headerlink" href="#section-[include_numbers]" title="Permalink to this definition"></a></dt>
+<dd><p>List of numbers from which accept messages, see <a class="reference internal" href="#message-filtering"><span class="std std-ref">Message filtering</span></a>.</p>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[exclude_numbers]">
+<span class="sig-name descname"><span class="pre">[exclude_numbers]</span></span><a class="headerlink" href="#section-[exclude_numbers]" title="Permalink to this definition"></a></dt>
+<dd><p>List of numbers from which reject messages, see <a class="reference internal" href="#message-filtering"><span class="std std-ref">Message filtering</span></a>.</p>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[include_smsc]">
+<span class="sig-name descname"><span class="pre">[include_smsc]</span></span><a class="headerlink" href="#section-[include_smsc]" title="Permalink to this definition"></a></dt>
+<dd><p>List of SMSC numbers from which accept messages, see <a class="reference internal" href="#message-filtering"><span class="std std-ref">Message filtering</span></a>.</p>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[exclude_smsc]">
+<span class="sig-name descname"><span class="pre">[exclude_smsc]</span></span><a class="headerlink" href="#section-[exclude_smsc]" title="Permalink to this definition"></a></dt>
+<dd><p>List of SMSC numbers from which reject messages, see <a class="reference internal" href="#message-filtering"><span class="std std-ref">Message filtering</span></a>.</p>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[sql]">
+<span class="sig-name descname"><span class="pre">[sql]</span></span><a class="headerlink" href="#section-[sql]" title="Permalink to this definition"></a></dt>
+<dd><p>Configure SQL queries used by <a class="reference internal" href="sql.html#gammu-smsd-sql"><span class="std std-ref">SQL Service</span></a>, you usually don’t have to modify them.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="sql.html#configurable-queries"><span class="std std-ref">Configurable queries</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[tables]">
+<span class="sig-name descname"><span class="pre">[tables]</span></span><a class="headerlink" href="#section-[tables]" title="Permalink to this definition"></a></dt>
+<dd><p>Configure SQL table names used by <a class="reference internal" href="sql.html#gammu-smsd-sql"><span class="std std-ref">SQL Service</span></a>, you usually don’t have to modify them.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="sql.html#configurable-tables"><span class="std std-ref">Tables</span></a></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="general-parameters-of-sms-daemon">
+<h2>General parameters of SMS daemon<a class="headerlink" href="#general-parameters-of-sms-daemon" title="Permalink to this heading"></a></h2>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Service">
+<span class="sig-name descname"><span class="pre">Service</span></span><a class="headerlink" href="#option-Service" title="Permalink to this definition"></a></dt>
+<dd><p>SMSD service to use, one of following choices:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">FILES</span></code></dt><dd><p>Stores messages in files, see <a class="reference internal" href="files.html#gammu-smsd-files"><span class="std std-ref">Files backend</span></a> for details.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">NULL</span></code></dt><dd><p>Does not store messages at all, see <a class="reference internal" href="null.html#gammu-smsd-null"><span class="std std-ref">Null Backend</span></a> for details.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SQL</span></code></dt><dd><p>Stores messages in SQL database, see <a class="reference internal" href="sql.html#gammu-smsd-sql"><span class="std std-ref">SQL Service</span></a> for details,
+choose database type to use by <span class="target" id="index-8"></span><a class="reference internal" href="#option-Driver"><code class="xref config config-option docutils literal notranslate"><span class="pre">Driver</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.93.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL</span></code></dt><dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.28.93: </span>Use <span class="target" id="index-9"></span><a class="reference internal" href="#option-Service"><code class="xref config config-option docutils literal notranslate"><span class="pre">Service</span></code></a> = <code class="docutils literal notranslate"><span class="pre">SQL</span></code> and <span class="target" id="index-10"></span><a class="reference internal" href="#option-Driver"><code class="xref config config-option docutils literal notranslate"><span class="pre">Driver</span></code></a> = <code class="docutils literal notranslate"><span class="pre">native_mysql</span></code> instead.</p>
+</div>
+<p>Compatibility option for older configuration files, stores messages in
+MySQL database, see <a class="reference internal" href="mysql.html#gammu-smsd-mysql"><span class="std std-ref">MySQL Backend</span></a> for details.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PGSQL</span></code></dt><dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.28.93: </span>Use <span class="target" id="index-11"></span><a class="reference internal" href="#option-Service"><code class="xref config config-option docutils literal notranslate"><span class="pre">Service</span></code></a> = <code class="docutils literal notranslate"><span class="pre">SQL</span></code> and <span class="target" id="index-12"></span><a class="reference internal" href="#option-Driver"><code class="xref config config-option docutils literal notranslate"><span class="pre">Driver</span></code></a> = <code class="docutils literal notranslate"><span class="pre">native_pgsql</span></code> instead.</p>
+</div>
+<p>Compatibility option for older configuration files, stores messages in
+PostgreSQL database, see <a class="reference internal" href="pgsql.html#gammu-smsd-pgsql"><span class="std std-ref">PostgreSQL Backend</span></a> for details.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DBI</span></code></dt><dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.28.93: </span>Use <span class="target" id="index-13"></span><a class="reference internal" href="#option-Service"><code class="xref config config-option docutils literal notranslate"><span class="pre">Service</span></code></a> = <code class="docutils literal notranslate"><span class="pre">SQL</span></code> and <span class="target" id="index-14"></span><a class="reference internal" href="#option-Driver"><code class="xref config config-option docutils literal notranslate"><span class="pre">Driver</span></code></a> = DBI driver instead.</p>
+</div>
+<p>Compatibility option for older configuration files, stores messages in
+any database supported by libdbi, see <a class="reference internal" href="dbi.html#gammu-smsd-dbi"><span class="std std-ref">DBI Backend</span></a> for details.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Availability of backends depends on platform and compile time configuration.</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-PIN">
+<span class="sig-name descname"><span class="pre">PIN</span></span><a class="headerlink" href="#option-PIN" title="Permalink to this definition"></a></dt>
+<dd><p>PIN for SIM card. This is optional, but you should set it if your phone after
+power on requires PIN.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-NetworkCode">
+<span class="sig-name descname"><span class="pre">NetworkCode</span></span><a class="headerlink" href="#option-NetworkCode" title="Permalink to this definition"></a></dt>
+<dd><p>Network personalisation password. This is optional, but some phones require it
+after power on.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-PhoneCode">
+<span class="sig-name descname"><span class="pre">PhoneCode</span></span><a class="headerlink" href="#option-PhoneCode" title="Permalink to this definition"></a></dt>
+<dd><p>Phone lock password. This is optional, but some phones require it after power
+on.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-LogFile">
+<span class="sig-name descname"><span class="pre">LogFile</span></span><a class="headerlink" href="#option-LogFile" title="Permalink to this definition"></a></dt>
+<dd><p>File where SMSD actions are being logged. You can also use special value
+<code class="docutils literal notranslate"><span class="pre">syslog</span></code> which will send all messages to syslog daemon. On Windows another
+special value <code class="docutils literal notranslate"><span class="pre">eventlog</span></code> exists, which will send logs to Windows Event Log.</p>
+<p>If you run SMSD as a system daemon (or service), it is recommended to use
+absolute path to log file as startup directory might be different than you
+expect.</p>
+<p>Default is to provide no logging.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For logging to Windows Event Log, it is recommended to install Event Log
+source by invoking <code class="xref std std-option docutils literal notranslate"><span class="pre">gammu-smsd</span> <span class="pre">-e</span></code> (this is automatically done during
+installation of Gammu).</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-LogFacility">
+<span class="sig-name descname"><span class="pre">LogFacility</span></span><a class="headerlink" href="#option-LogFacility" title="Permalink to this definition"></a></dt>
+<dd><p>Facility to use on logging backends which support it (currently only
+syslog). One of following chouces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DAEMON</span></code> (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCAL7</span></code></p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.30.91.</span></p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DebugLevel">
+<span class="sig-name descname"><span class="pre">DebugLevel</span></span><a class="headerlink" href="#option-DebugLevel" title="Permalink to this definition"></a></dt>
+<dd><p>Debug level for SMSD. The integer value should be sum of all flags you
+want to enable.</p>
+<dl class="simple">
+<dt>1</dt><dd><p>enables basic debugging information</p>
+</dd>
+<dt>2</dt><dd><p>enables logging of SQL queries of service backends</p>
+</dd>
+<dt>4</dt><dd><p>enables logging of gammu debug information</p>
+</dd>
+</dl>
+<p>Generally to get as much debug information as possible, use 255.</p>
+<p>Default is 0, what should mean no extra information.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-CommTimeout">
+<span class="sig-name descname"><span class="pre">CommTimeout</span></span><a class="headerlink" href="#option-CommTimeout" title="Permalink to this definition"></a></dt>
+<dd><p>How many seconds should SMSD wait after there is no message in outbox
+before scanning it again.</p>
+<p>Default is 30.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SendTimeout">
+<span class="sig-name descname"><span class="pre">SendTimeout</span></span><a class="headerlink" href="#option-SendTimeout" title="Permalink to this definition"></a></dt>
+<dd><p>Shows how many seconds SMSD should wait for network answer during sending
+sms. If nothing happen during this time, sms will be resent.</p>
+<p>Default is 30.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-MaxRetries">
+<span class="sig-name descname"><span class="pre">MaxRetries</span></span><a class="headerlink" href="#option-MaxRetries" title="Permalink to this definition"></a></dt>
+<dd><p>How many times will SMSD try to resend message if sending fails. This
+is tracked per message and currently supported only with SQL backends.</p>
+<p>Default is 1.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-RetryTimeout">
+<span class="sig-name descname"><span class="pre">RetryTimeout</span></span><a class="headerlink" href="#option-RetryTimeout" title="Permalink to this definition"></a></dt>
+<dd><p>How long to wait before resending failed message (needs to be enabled by
+<span class="target" id="index-15"></span><a class="reference internal" href="#option-MaxRetries"><code class="xref config config-option docutils literal notranslate"><span class="pre">MaxRetries</span></code></a>).</p>
+<p>Is used in <span class="target" id="index-16"></span><a class="reference internal" href="sql.html#option-update_retries"><code class="xref config config-option docutils literal notranslate"><span class="pre">update_retries</span></code></a>.</p>
+<p>Default is 600.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-ReceiveFrequency">
+<span class="sig-name descname"><span class="pre">ReceiveFrequency</span></span><a class="headerlink" href="#option-ReceiveFrequency" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds between testing for received SMSes, when the phone is
+busy sending SMSes. Normally a test for received SMSes is done every
+<span class="target" id="index-17"></span><a class="reference internal" href="#option-CommTimeout"><code class="xref config config-option docutils literal notranslate"><span class="pre">CommTimeout</span></code></a> seconds and after each sent SMS.</p>
+<p>Default is 15.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-StatusFrequency">
+<span class="sig-name descname"><span class="pre">StatusFrequency</span></span><a class="headerlink" href="#option-StatusFrequency" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds between refreshing phone status (battery, signal) stored
+in shared memory and possibly in service backends. Use 0 to disable.</p>
+<p>You might want to increase this for higher throughput.</p>
+<p>Default is 60.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-LoopSleep">
+<span class="sig-name descname"><span class="pre">LoopSleep</span></span><a class="headerlink" href="#option-LoopSleep" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds how long will SMSD sleep before checking for some
+activity. Please note that setting this to higher value than 1 will have
+effects to other time based configurations, because they will be effectively
+rounded to multiply of this value.</p>
+<p>Setting this to 0 disables sleeping. Please note this might cause Gammu to
+consume quite a lot of CPU power as it will effectively do busy loop.</p>
+<p>This sleep is utilized only if the main loop (sending and receiving
+messages) takes less than defined time. For example if you set LoopSleep to
+5 seconds and sending messages take 10 seconds, no sleep will be done in
+the iteration which is sending messages. Also the sleep time is lowered by
+the already processed time.</p>
+<p>Default is 1.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-MultipartTimeout">
+<span class="sig-name descname"><span class="pre">MultipartTimeout</span></span><a class="headerlink" href="#option-MultipartTimeout" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds how long will SMSD wait for all parts of multipart
+message. If all parts won’t arrive in time, parts will be processed as separate
+messages.</p>
+<p>Default is 600 (10 minutes).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-CheckSecurity">
+<span class="sig-name descname"><span class="pre">CheckSecurity</span></span><a class="headerlink" href="#option-CheckSecurity" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to check if phone wants to enter PIN.</p>
+<p>Default is 1 (enabled).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-HangupCalls">
+<span class="sig-name descname"><span class="pre">HangupCalls</span></span><a class="headerlink" href="#option-HangupCalls" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.34.0.</span></p>
+</div>
+<p>Whether to automatically hangup any incoming calls.</p>
+<p>Default is 0 (disabled).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-CheckBattery">
+<span class="sig-name descname"><span class="pre">CheckBattery</span></span><a class="headerlink" href="#option-CheckBattery" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to check phone battery state periodically.</p>
+<p>Default is 1 (enabled).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-CheckSignal">
+<span class="sig-name descname"><span class="pre">CheckSignal</span></span><a class="headerlink" href="#option-CheckSignal" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to check signal level periodically.</p>
+<p>Default is 1 (enabled).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-CheckNetwork">
+<span class="sig-name descname"><span class="pre">CheckNetwork</span></span><a class="headerlink" href="#option-CheckNetwork" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.37.90.</span></p>
+</div>
+<p>Whether to check network status periodically.</p>
+<p>If phone is reported to be not on the network, SMSD
+tries to power it on.</p>
+<p>Default is 1 (enabled).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-ResetFrequency">
+<span class="sig-name descname"><span class="pre">ResetFrequency</span></span><a class="headerlink" href="#option-ResetFrequency" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds between performing a preventive soft reset in order to
+minimize the cases of hanging phones e.g. Nokia 5110 will sometimes freeze to
+a state when only after unmounting the battery the phone will be functional
+again.</p>
+<p>Default is 0 (not used).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-HardResetFrequency">
+<span class="sig-name descname"><span class="pre">HardResetFrequency</span></span><a class="headerlink" href="#option-HardResetFrequency" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.92.</span></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For some phones hard reset means deleting all data in it. Use
+<span class="target" id="index-18"></span><a class="reference internal" href="#option-ResetFrequency"><code class="xref config config-option docutils literal notranslate"><span class="pre">ResetFrequency</span></code></a> instead, unless you know what you are
+doing.</p>
+</div>
+<p>The number of seconds between performing a preventive hard reset in order to
+minimize the cases of hanging phones.</p>
+<p>Default is 0 (not used).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DeliveryReport">
+<span class="sig-name descname"><span class="pre">DeliveryReport</span></span><a class="headerlink" href="#option-DeliveryReport" title="Permalink to this definition"></a></dt>
+<dd><p>Whether delivery reports should be used, one of <code class="docutils literal notranslate"><span class="pre">no</span></code>, <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">sms</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">log</span></code></dt><dd><p>one line log entry,</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sms</span></code></dt><dd><p>store in inbox as a received SMS</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">no</span></code></dt><dd><p>no delivery reports</p>
+</dd>
+</dl>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">no</span></code>.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DeliveryReportDelay">
+<span class="sig-name descname"><span class="pre">DeliveryReportDelay</span></span><a class="headerlink" href="#option-DeliveryReportDelay" title="Permalink to this definition"></a></dt>
+<dd><p>Delay in seconds how long is still delivery report considered valid. This
+depends on brokenness of your network (delivery report should have same
+timestamp as sent message). Increase this if delivery reports are not paired
+with sent messages.</p>
+<p>Default is 600 (10 minutes).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-PhoneID">
+<span class="sig-name descname"><span class="pre">PhoneID</span></span><a class="headerlink" href="#option-PhoneID" title="Permalink to this definition"></a></dt>
+<dd><p>String with info about phone used for sending/receiving. This can be useful if
+you want to run several SMS daemons (see <a class="reference internal" href="#smsd-multi"><span class="std std-ref">Multiple modems</span></a>).</p>
+<p>When you set PhoneID, all messages (including injected ones) will be marked
+by this string (stored as SenderID in the database) and it allows more SMS
+daemons to share a single database.</p>
+<p>SMSD daemon will in such case send <a class="reference internal" href="tables.html#outbox"><span class="std std-ref">outbox</span></a> messages only with
+matching or empty SenderID.</p>
+<p>This option has actually no effect with <a class="reference internal" href="files.html#gammu-smsd-files"><span class="std std-ref">Files backend</span></a>.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SMSC">
+<span class="sig-name descname"><span class="pre">SMSC</span></span><a class="headerlink" href="#option-SMSC" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.36.2.</span></p>
+</div>
+<p>SMSC number to use for sending messages if not specified in the message
+(see options of <a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a>).</p>
+<p>In most cases you don’t need this settings as Gammu tries to read correct
+SMSC from phone, but sometimes this fails (try <code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">getsmsc</span></code>).</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-RunOnReceive">
+<span class="sig-name descname"><span class="pre">RunOnReceive</span></span><a class="headerlink" href="#option-RunOnReceive" title="Permalink to this definition"></a></dt>
+<dd><p>Executes a program after receiving message.</p>
+<p>This parameter is executed through shell, so you might need to escape some
+special characters and you can include any number of parameters. Additionally
+parameters with identifiers of received messages are appended to the command
+line. The identifiers depend on used service backend, typically it is ID of
+inserted row for database backends or file name for file based backends.</p>
+<p>Gammu SMSD waits for the script to terminate. If you make some time consuming
+there, it will make SMSD not receive new messages. However to limit breakage
+from this situation, the waiting time is limited to two minutes. After this
+time SMSD will continue in normal operation and might execute your script
+again.</p>
+<p>The process has available lot of information about received message in
+environment, check <a class="reference internal" href="run.html#gammu-smsd-run"><span class="std std-ref">RunOnReceive Directive</span></a> for more details.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-RunOnFailure">
+<span class="sig-name descname"><span class="pre">RunOnFailure</span></span><a class="headerlink" href="#option-RunOnFailure" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.93.</span></p>
+</div>
+<p>Executes a program on failure.</p>
+<p>This can be used to proactively react on some failures or to interactively
+detect failure of sending message.</p>
+<p>The program will receive optional parameter, which can currently be either
+<code class="docutils literal notranslate"><span class="pre">INIT</span></code> (meaning failure during phone initialization) or message ID,
+which would indicate error while sending the message.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The environment with message (as is in <span class="target" id="index-19"></span><a class="reference internal" href="#option-RunOnReceive"><code class="xref config config-option docutils literal notranslate"><span class="pre">RunOnReceive</span></code></a>) is not passed to the command.</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-RunOnSent">
+<span class="sig-name descname"><span class="pre">RunOnSent</span></span><a class="headerlink" href="#option-RunOnSent" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.36.4.</span></p>
+</div>
+<p>Executes a program after sending message.</p>
+<p>The program will receive optional parameter a message ID and environment
+with message details as described in <a class="reference internal" href="run.html#gammu-smsd-run"><span class="std std-ref">RunOnReceive Directive</span></a>.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-RunOnIncomingCall">
+<span class="sig-name descname"><span class="pre">RunOnIncomingCall</span></span><a class="headerlink" href="#option-RunOnIncomingCall" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+<p>Executes a program after cancelling incoming call.</p>
+<p>The program will receive a parameter with a phone number of the call.
+This requires <span class="target" id="index-20"></span><a class="reference internal" href="#option-HangupCalls"><code class="xref config config-option docutils literal notranslate"><span class="pre">HangupCalls</span></code></a> to be enabled.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-IncludeNumbersFile">
+<span class="sig-name descname"><span class="pre">IncludeNumbersFile</span></span><a class="headerlink" href="#option-IncludeNumbersFile" title="Permalink to this definition"></a></dt>
+<dd><p>File with list of numbers which are accepted by SMSD. The file contains one
+number per line, blank lines are ignored. The file is read at startup and is
+reread only when configuration is being reread. See Message filtering for
+details.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-ExcludeNumbersFile">
+<span class="sig-name descname"><span class="pre">ExcludeNumbersFile</span></span><a class="headerlink" href="#option-ExcludeNumbersFile" title="Permalink to this definition"></a></dt>
+<dd><p>File with list of numbers which are not accepted by SMSD. The file contains
+one number per line, blank lines are ignored. The file is read at startup and
+is reread only when configuration is being reread. See Message filtering for
+details.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-IncludeSMSCFile">
+<span class="sig-name descname"><span class="pre">IncludeSMSCFile</span></span><a class="headerlink" href="#option-IncludeSMSCFile" title="Permalink to this definition"></a></dt>
+<dd><p>File with list of SMSC numbers which are accepted by SMSD. The file contains
+one number per line, blank lines are ignored. The file is read at startup and
+is reread only when configuration is being reread. See Message filtering for
+details.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-ExcludeSMSCFile">
+<span class="sig-name descname"><span class="pre">ExcludeSMSCFile</span></span><a class="headerlink" href="#option-ExcludeSMSCFile" title="Permalink to this definition"></a></dt>
+<dd><p>File with list of SMSC numbers which are not accepted by SMSD. The file
+contains one number per line, blank lines are ignored. The file is read at
+startup and is reread only when configuration is being reread. See Message
+filtering for details.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-BackendRetries">
+<span class="sig-name descname"><span class="pre">BackendRetries</span></span><a class="headerlink" href="#option-BackendRetries" title="Permalink to this definition"></a></dt>
+<dd><p>How many times will SMSD backend retry operation.</p>
+<p>The implementation on different backends is different, for database backends
+it generally means how many times it will try to reconnect to the server.</p>
+<p>Default is 10.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Send">
+<span class="sig-name descname"><span class="pre">Send</span></span><a class="headerlink" href="#option-Send" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.91.</span></p>
+</div>
+<p>Whether to enable sending of messages.</p>
+<p>Default is True.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Receive">
+<span class="sig-name descname"><span class="pre">Receive</span></span><a class="headerlink" href="#option-Receive" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.91.</span></p>
+</div>
+<p>Whether to enable receiving of messages.</p>
+<p>Default is True.</p>
+</dd></dl>
+
+</section>
+<section id="database-backends-options">
+<h2>Database backends options<a class="headerlink" href="#database-backends-options" title="Permalink to this heading"></a></h2>
+<p>All DBI, ODBC, MYSQL and PGSQL backends (see <a class="reference internal" href="mysql.html#gammu-smsd-mysql"><span class="std std-ref">MySQL Backend</span></a>,
+<a class="reference internal" href="odbc.html#gammu-smsd-odbc"><span class="std std-ref">ODBC Backend</span></a>, <a class="reference internal" href="pgsql.html#gammu-smsd-pgsql"><span class="std std-ref">PostgreSQL Backend</span></a>, <a class="reference internal" href="dbi.html#gammu-smsd-dbi"><span class="std std-ref">DBI Backend</span></a> for
+their documentation) supports same options for configuring connection to a
+database:</p>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-User">
+<span class="sig-name descname"><span class="pre">User</span></span><a class="headerlink" href="#option-User" title="Permalink to this definition"></a></dt>
+<dd><p>User name used for connection to a database.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Password">
+<span class="sig-name descname"><span class="pre">Password</span></span><a class="headerlink" href="#option-Password" title="Permalink to this definition"></a></dt>
+<dd><p>Password used for connection to a database.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Host">
+<span class="sig-name descname"><span class="pre">Host</span></span><a class="headerlink" href="#option-Host" title="Permalink to this definition"></a></dt>
+<dd><p>Database server address. It can also contain port or socket path after
+semicolon, for example <code class="docutils literal notranslate"><span class="pre">localhost:/path/to/socket</span></code> or
+<code class="docutils literal notranslate"><span class="pre">192.168.1.1:8000</span></code>.</p>
+<p>For ODBC this is used as Data source name.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some database servers differentiate usage of <code class="docutils literal notranslate"><span class="pre">localhost</span></code> (to use
+local socket) and <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> (to use locat TCP/IP connection).
+Please make sure your SMSD settings match the database server ones.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.92.</span></p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-PC">
+<span class="sig-name descname"><span class="pre">PC</span></span><a class="headerlink" href="#option-PC" title="Permalink to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.28.92: </span>Please use <span class="target" id="index-21"></span><a class="reference internal" href="#option-Host"><code class="xref config config-option docutils literal notranslate"><span class="pre">Host</span></code></a> instead.</p>
+</div>
+<p>Synonym for <span class="target" id="index-22"></span><a class="reference internal" href="#option-Host"><code class="xref config config-option docutils literal notranslate"><span class="pre">Host</span></code></a>, kept for backwards compatibility.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Database">
+<span class="sig-name descname"><span class="pre">Database</span></span><a class="headerlink" href="#option-Database" title="Permalink to this definition"></a></dt>
+<dd><p>Name of database (or schema) to use and where SMSD can find it’s tables.</p>
+<p>Please note that you should create tables in this database before using
+gammu-smsd. SQL files for creating needed tables are included in
+documentation for individual database backends: <a class="reference internal" href="mysql.html#gammu-smsd-mysql"><span class="std std-ref">MySQL Backend</span></a>,
+<a class="reference internal" href="odbc.html#gammu-smsd-odbc"><span class="std std-ref">ODBC Backend</span></a>, <a class="reference internal" href="pgsql.html#gammu-smsd-pgsql"><span class="std std-ref">PostgreSQL Backend</span></a>, <a class="reference internal" href="dbi.html#gammu-smsd-dbi"><span class="std std-ref">DBI Backend</span></a></p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SkipSMSCNumber">
+<span class="sig-name descname"><span class="pre">SkipSMSCNumber</span></span><a class="headerlink" href="#option-SkipSMSCNumber" title="Permalink to this definition"></a></dt>
+<dd><p>When you send sms from some SMS centers you can have delivery reports from
+other SMSC number. You can set here number of this SMSC used by you and Gammu
+will not check it’s number during assigning reports to sent SMS.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Driver">
+<span class="sig-name descname"><span class="pre">Driver</span></span><a class="headerlink" href="#option-Driver" title="Permalink to this definition"></a></dt>
+<dd><p>SQL driver to use, Gammu supports several native drivers and generic
+interface using ODBC and DBI. Availability of the backends depends on
+compile time options.</p>
+<p>Available drivers:</p>
+<p><code class="docutils literal notranslate"><span class="pre">odbc</span></code></p>
+<blockquote>
+<div><p>Connects to the database using ODBC, see <a class="reference internal" href="odbc.html#gammu-smsd-odbc"><span class="std std-ref">ODBC Backend</span></a>.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">native_mysql</span></code></p>
+<blockquote>
+<div><p>Stores messages in MySQL database, see <a class="reference internal" href="mysql.html#gammu-smsd-mysql"><span class="std std-ref">MySQL Backend</span></a> for
+details.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">native_pgsql</span></code></p>
+<blockquote>
+<div><p>Stores messages in PostgreSQL database, see <a class="reference internal" href="pgsql.html#gammu-smsd-pgsql"><span class="std std-ref">PostgreSQL Backend</span></a> for
+details.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">db2</span></code>, <code class="docutils literal notranslate"><span class="pre">firebird</span></code>, <code class="docutils literal notranslate"><span class="pre">freetds</span></code>, <code class="docutils literal notranslate"><span class="pre">ingres</span></code>, <code class="docutils literal notranslate"><span class="pre">msql</span></code>, <code class="docutils literal notranslate"><span class="pre">mysql</span></code>, <code class="docutils literal notranslate"><span class="pre">oracle</span></code>, <code class="docutils literal notranslate"><span class="pre">pgsql</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code></p>
+<blockquote>
+<div><p>Stores messages using DBI library in given backend. You need to have
+installed appropriate DBI driver to make it work. See
+<a class="reference internal" href="dbi.html#gammu-smsd-dbi"><span class="std std-ref">DBI Backend</span></a> for details.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SQL">
+<span class="sig-name descname"><span class="pre">SQL</span></span><a class="headerlink" href="#option-SQL" title="Permalink to this definition"></a></dt>
+<dd><p>SQL dialect to use. This is specially useful with <a class="reference internal" href="odbc.html#gammu-smsd-odbc"><span class="std std-ref">ODBC Backend</span></a> where SMSD
+does not know which server it is actually talking to.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mysql</span></code> - MySQL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pgsql</span></code> - PostgreSQL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sqlite</span></code> - SQLite</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mssql</span></code> - Microsoft SQL Server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sybase</span></code> - Sybase</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access</span></code> - Microsoft Access</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oracle</span></code> - Oracle</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">odbc</span></code> - Generic ODBC</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.28.93.</span></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>You can also completely customize SQL queries used as described in <a class="reference internal" href="sql.html#sql-queries"><span class="std std-ref">SQL Queries</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DriversPath">
+<span class="sig-name descname"><span class="pre">DriversPath</span></span><a class="headerlink" href="#option-DriversPath" title="Permalink to this definition"></a></dt>
+<dd><p>Path, where DBI drivers are stored, this usually does not have to be set if
+you have properly installed drivers.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DBDir">
+<span class="sig-name descname"><span class="pre">DBDir</span></span><a class="headerlink" href="#option-DBDir" title="Permalink to this definition"></a></dt>
+<dd><p>Database directory for some (currently only sqlite) DBI drivers. Set here path
+where sqlite database files are stored.</p>
+</dd></dl>
+
+<section id="files-backend-options">
+<h3>Files backend options<a class="headerlink" href="#files-backend-options" title="Permalink to this heading"></a></h3>
+<p>The FILES backend accepts following configuration options. See
+<a class="reference internal" href="files.html#gammu-smsd-files"><span class="std std-ref">Files backend</span></a> for more detailed service backend description. Please note
+that all path should contain trailing path separator (/ on Unix systems):</p>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-InboxPath">
+<span class="sig-name descname"><span class="pre">InboxPath</span></span><a class="headerlink" href="#option-InboxPath" title="Permalink to this definition"></a></dt>
+<dd><p>Where the received SMSes are stored.</p>
+<p>Default is current directory.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-OutboxPath">
+<span class="sig-name descname"><span class="pre">OutboxPath</span></span><a class="headerlink" href="#option-OutboxPath" title="Permalink to this definition"></a></dt>
+<dd><p>Where SMSes to be sent should be placed.</p>
+<p>Default is current directory.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SentSMSPath">
+<span class="sig-name descname"><span class="pre">SentSMSPath</span></span><a class="headerlink" href="#option-SentSMSPath" title="Permalink to this definition"></a></dt>
+<dd><p>Where the transmitted SMSes are placed, if same as <span class="target" id="index-23"></span><a class="reference internal" href="#option-OutboxPath"><code class="xref config config-option docutils literal notranslate"><span class="pre">OutboxPath</span></code></a> transmitted
+messages are deleted.</p>
+<p>Default is to delete transmitted messages.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-ErrorSMSPath">
+<span class="sig-name descname"><span class="pre">ErrorSMSPath</span></span><a class="headerlink" href="#option-ErrorSMSPath" title="Permalink to this definition"></a></dt>
+<dd><p>Where SMSes with error in transmission is placed.</p>
+<p>Default is same as <span class="target" id="index-24"></span><a class="reference internal" href="#option-SentSMSPath"><code class="xref config config-option docutils literal notranslate"><span class="pre">SentSMSPath</span></code></a>.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-InboxFormat">
+<span class="sig-name descname"><span class="pre">InboxFormat</span></span><a class="headerlink" href="#option-InboxFormat" title="Permalink to this definition"></a></dt>
+<dd><p>The format in which the SMS will be stored: <code class="docutils literal notranslate"><span class="pre">detail</span></code>, <code class="docutils literal notranslate"><span class="pre">unicode</span></code>, <code class="docutils literal notranslate"><span class="pre">standard</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">detail</span></code></dt><dd><p>format used for message backup by <a class="reference internal" href="../gammu/index.html#gammu"><span class="std std-ref">Gammu Utility</span></a>, see <a class="reference internal" href="../formats/smsbackup.html#gammu-smsbackup"><span class="std std-ref">SMS Backup Format</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">unicode</span></code></dt><dd><p>message text stored in unicode (UTF-16)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">standard</span></code></dt><dd><p>message text stored in system charset</p>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">standard</span></code> and <code class="docutils literal notranslate"><span class="pre">unicode</span></code> settings do not apply for 8-bit messages, which
+are always written raw as they are received with extension .bin.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">unicode</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">detail</span></code> format, all message parts are stored into single file,
+for all others each message part is saved separately.</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-OutboxFormat">
+<span class="sig-name descname"><span class="pre">OutboxFormat</span></span><a class="headerlink" href="#option-OutboxFormat" title="Permalink to this definition"></a></dt>
+<dd><p>The format in which messages created by <a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a> will be stored,
+it accepts same values as InboxFormat.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">detail</span></code> if Gammu is compiled in with backup functions, <code class="docutils literal notranslate"><span class="pre">unicode</span></code>
+otherwise.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-TransmitFormat">
+<span class="sig-name descname"><span class="pre">TransmitFormat</span></span><a class="headerlink" href="#option-TransmitFormat" title="Permalink to this definition"></a></dt>
+<dd><p>The format for transmitting the SMS: <code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">unicode</span></code>, <code class="docutils literal notranslate"><span class="pre">7bit</span></code>.</p>
+<p>This option is used only if <span class="target" id="index-25"></span><a class="reference internal" href="#option-OutboxFormat"><code class="xref config config-option docutils literal notranslate"><span class="pre">OutboxFormat</span></code></a> is not set to
+<code class="docutils literal notranslate"><span class="pre">detail</span></code>. In such case encoding specified in the message is used (you can
+specify it to <a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a>).</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">auto</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="message-filtering">
+<span id="id1"></span><h2>Message filtering<a class="headerlink" href="#message-filtering" title="Permalink to this heading"></a></h2>
+<p>SMSD allows one to process only limited subset of incoming messages. You can define
+filters for sender number in <span class="target" id="index-26"></span><a class="reference internal" href="#section-[include_numbers]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[include_numbers]</span></code></a> and
+<span class="target" id="index-27"></span><a class="reference internal" href="#section-[exclude_numbers]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[exclude_numbers]</span></code></a> sections or using
+<span class="target" id="index-28"></span><a class="reference internal" href="#option-IncludeNumbersFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">IncludeNumbersFile</span></code></a> and <span class="target" id="index-29"></span><a class="reference internal" href="#option-ExcludeNumbersFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">ExcludeNumbersFile</span></code></a>
+directives.</p>
+<p>If <span class="target" id="index-30"></span><a class="reference internal" href="#section-[include_numbers]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[include_numbers]</span></code></a> section exists, all values (keys are
+ignored) from it are used as allowed phone numbers and no other message is
+processed. On the other side, in <span class="target" id="index-31"></span><a class="reference internal" href="#section-[exclude_numbers]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[exclude_numbers]</span></code></a> you can
+specify numbers which you want to skip.</p>
+<p>Lists from both sources are merged together. If there is any number in include
+list, only include list is used and only messages in this list are being
+accepted. If include list is empty, exclude list can be used to ignore
+messages from some numbers. If both lists are empty, all messages are
+accepted.</p>
+<p>Similar filtering rules can be used for SMSC number filtering, they just use
+different set of configuration options - <span class="target" id="index-32"></span><a class="reference internal" href="#section-[include_smsc]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[include_smsc]</span></code></a> and
+<span class="target" id="index-33"></span><a class="reference internal" href="#section-[exclude_smsc]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[exclude_smsc]</span></code></a> sections or <span class="target" id="index-34"></span><a class="reference internal" href="#option-IncludeSMSCFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">IncludeSMSCFile</span></code></a>
+and <span class="target" id="index-35"></span><a class="reference internal" href="#option-ExcludeSMSCFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">ExcludeSMSCFile</span></code></a> directives.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>There is more complete example available in Gammu documentation. Please note
+that for simplicity following examples do not include <span class="target" id="index-36"></span><a class="reference internal" href="../config/index.html#section-[gammu]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[gammu]</span></code></a>
+section, you can look into <a class="reference internal" href="../config/index.html#gammurc"><span class="std std-ref">Gammu Configuration File</span></a> for some examples how it can look like.</p>
+<section id="files-service">
+<h3>Files service<a class="headerlink" href="#files-service" title="Permalink to this heading"></a></h3>
+<p>SMSD configuration file for FILES backend could look like:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">files</span>
+<span class="na">PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1234</span>
+<span class="na">LogFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">syslog</span>
+<span class="na">InboxPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/spool/sms/inbox/</span>
+<span class="na">OutboxPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/spool/sms/outbox/</span>
+<span class="na">SentSMSPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/spool/sms/sent/</span>
+<span class="na">ErrorSMSPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/spool/sms/error/</span>
+</pre></div>
+</div>
+</section>
+<section id="mysql-service">
+<h3>MySQL service<a class="headerlink" href="#mysql-service" title="Permalink to this heading"></a></h3>
+<p>If you want to use MYSQL backend, you will need something like this:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sql</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">native_mysql</span>
+<span class="na">PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1234</span>
+<span class="na">LogFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">syslog</span>
+<span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+</pre></div>
+</div>
+</section>
+<section id="dbi-service-using-sqlite">
+<h3>DBI service using SQLite<a class="headerlink" href="#dbi-service-using-sqlite" title="Permalink to this heading"></a></h3>
+<p>For <a class="reference internal" href="dbi.html#gammu-smsd-dbi"><span class="std std-ref">DBI Backend</span></a> backend, in this particular case SQLite:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sql</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sqlite3</span>
+<span class="na">DBDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/lib/sqlite3</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd.db</span>
+</pre></div>
+</div>
+</section>
+<section id="odbc-service-using-mysql">
+<h3>ODBC service using MySQL<a class="headerlink" href="#odbc-service-using-mysql" title="Permalink to this heading"></a></h3>
+<p>For <a class="reference internal" href="odbc.html#gammu-smsd-odbc"><span class="std std-ref">ODBC Backend</span></a> backend, in this particular case using DSN <code class="docutils literal notranslate"><span class="pre">smsd</span></code> server:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sql</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">odbc</span>
+<span class="na">Host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+</pre></div>
+</div>
+<p>The DSN definition (in <code class="file docutils literal notranslate"><span class="pre">~/.odbc.ini</span></code> on UNIX) for using MySQL server would look like:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">Description</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s">MySQL</span>
+<span class="na">Driver</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">MySQL</span>
+<span class="na">Server</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span>
+<span class="na">Database</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">Port</span><span class="w">                </span><span class="o">=</span>
+<span class="na">Socket</span><span class="w">              </span><span class="o">=</span>
+<span class="na">Option</span><span class="w">              </span><span class="o">=</span>
+<span class="na">Stmt</span><span class="w">                </span><span class="o">=</span>
+
+<span class="k">[smsdsuse]</span>
+<span class="na">Driver</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">MySQL ODBC 3.51.27r695 Driver</span>
+<span class="na">DATABASE</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">SERVER</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span>
+</pre></div>
+</div>
+</section>
+<section id="numbers-filtering">
+<h3>Numbers filtering<a class="headerlink" href="#numbers-filtering" title="Permalink to this heading"></a></h3>
+<p>Process only messages from 123456 number:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[include_numbers]</span>
+<span class="na">number1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">123456</span>
+</pre></div>
+</div>
+<p>Do not process messages from evil number 666:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[exclude_numbers]</span>
+<span class="na">number1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">666</span>
+</pre></div>
+</div>
+</section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h3>
+<p>Enabling debugging:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[smsd]</span>
+<span class="na">debuglevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">255</span>
+<span class="na">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd.log</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-modems">
+<span id="smsd-multi"></span><h3>Multiple modems<a class="headerlink" href="#multiple-modems" title="Permalink to this heading"></a></h3>
+<p>You can run any number of SMSD instances and they can even share same backend
+database. For routing the messages, you need to set different
+<span class="target" id="index-37"></span><a class="reference internal" href="#option-PhoneID"><code class="xref config config-option docutils literal notranslate"><span class="pre">PhoneID</span></code></a> for each instance and set <code class="docutils literal notranslate"><span class="pre">SenderID</span></code> column in
+<a class="reference internal" href="tables.html#outbox"><span class="std std-ref">outbox</span></a> table.</p>
+<p>Following example shows configuration for two modems, but you can have any
+number of SMSD instances. The only limitation is performance of your hardware,
+especially if all modems are connected using USB.</p>
+<p>Configuration for first SMSD:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyACM0</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+
+<span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sql</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">native_mysql</span>
+<span class="na">PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1234</span>
+<span class="na">LogFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">syslog</span>
+<span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">PhoneID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">first</span>
+</pre></div>
+</div>
+<p>Configuration for second SMSD:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyACM1</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+
+<span class="k">[smsd]</span>
+<span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sql</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">native_mysql</span>
+<span class="na">PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1234</span>
+<span class="na">LogFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">syslog</span>
+<span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smsd</span>
+<span class="na">PhoneID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">second</span>
+</pre></div>
+</div>
+<p>You can then start two separate instances of SMSD:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gammu-smsd<span class="w"> </span>-c<span class="w"> </span>/path/to/first-smsdrc
+gammu-smsd<span class="w"> </span>-c<span class="w"> </span>/path/to/second-smsdrc
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="monitor.html" class="btn btn-neutral float-left" title="gammu-smsd-monitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run.html" class="btn btn-neutral float-right" title="RunOnReceive Directive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

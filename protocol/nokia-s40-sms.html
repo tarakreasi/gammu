@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nokia S40 filesystem SMS format &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nokia 6110" href="n6110.html" />
+    <link rel="prev" title="Nokia protocols" href="nokia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nokia S40 filesystem SMS format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blocks">Blocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">Nokia S40 filesystem SMS format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/nokia-s40-sms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nokia-s40-filesystem-sms-format">
+<h1>Nokia S40 filesystem SMS format<a class="headerlink" href="#nokia-s40-filesystem-sms-format" title="Permalink to this heading"></a></h1>
+<p>This text is work in progress and does not claim to be correct or accurate. It
+is solely based on Gammu dumps received from users. Analysed by Michal Cihar
+&lt;<a class="reference external" href="mailto:michal&#37;&#52;&#48;cihar&#46;com">michal<span>&#64;</span>cihar<span>&#46;</span>com</a>&gt;.</p>
+<section id="file-structure">
+<h2>File structure<a class="headerlink" href="#file-structure" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>176 bytes header</dt><dd><ul>
+<li><p>at offset 7 is length of PDU data</p></li>
+<li><p>at offset 94 is stored remote number in unicode</p></li>
+<li><p>rest is not known</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PDU data (without SMSC)</dt><dd><ul>
+<li><p>here can be sometimes also some failure block, which is not known yet</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>structured data header: 0x01 0x00 &lt;LEN&gt;, where &lt;LEN&gt; is length of rest</p></li>
+<li><p>structured blocks:</p></li>
+</ul>
+<p>Block: &lt;TYPE = byte&gt; &lt;LENGTH = word&gt; &lt;DATA …&gt;</p>
+</section>
+<section id="blocks">
+<h2>Blocks<a class="headerlink" href="#blocks" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>0x01</dt><dd><p>Unknown x00 / x01 (maybe received / sent)</p>
+</dd>
+<dt>0x02</dt><dd><p>SMSC number, ASCII</p>
+</dd>
+<dt>0x03</dt><dd><p>Text, unicode</p>
+</dd>
+<dt>0x04</dt><dd><p>Sender, unicode</p>
+</dd>
+<dt>0x05</dt><dd><p>Recipient, unicode</p>
+</dd>
+<dt>0x06</dt><dd><p>Unknown x00x00x00x00</p>
+</dd>
+<dt>0x07</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x08</dt><dd><p>Unknown x02 / x00</p>
+</dd>
+<dt>0x09</dt><dd><p>Unknown x00x00x00x00</p>
+</dd>
+<dt>0x0a</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x0b</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x0c</dt><dd><p>Unknown, several values (maybe message reference per number)</p>
+</dd>
+<dt>0x0d</dt><dd><p>Unknown x00x00</p>
+</dd>
+<dt>0x0e</dt><dd><p>Unknown x00x00</p>
+</dd>
+<dt>0x0f</dt><dd><p>Unknown x00x00</p>
+</dd>
+<dt>0x22</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x23</dt><dd><p>Unknown x00x00x00x00</p>
+</dd>
+<dt>0x24</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x26</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x27</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x2a</dt><dd><p>Unknown x00</p>
+</dd>
+<dt>0x2b</dt><dd><p>some text (Sender?), unicode</p>
+</dd>
+<dt>To test:</dt><dd><ul class="simple">
+<li><p>multiple recipients sms</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nokia.html" class="btn btn-neutral float-left" title="Nokia protocols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="n6110.html" class="btn btn-neutral float-right" title="Nokia 6110" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

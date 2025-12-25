@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gammu Configuration File &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gammu Utility" href="../gammu/index.html" />
+    <link rel="prev" title="Backup Format" href="../formats/backup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gammu Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#device-connection-parameters">Device connection parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connection-options">Connection options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-options">Debugging options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locales-and-character-set-options">Locales and character set options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-options">Advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-options">Other options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connection-examples">Connection examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-multiple-phones">Working with multiple phones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-remote-phone">Connecting to remote phone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fully-documented-example">Fully documented example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Gammu Configuration File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/config/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gammu-configuration-file">
+<span id="gammurc"></span><h1>Gammu Configuration File<a class="headerlink" href="#gammu-configuration-file" title="Permalink to this heading"></a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<p>On Linux, MacOS X, BSD and other Unix-like systems, the config file is
+searched in following order:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/gammu/config</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.config/gammu/config</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.gammurc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/gammurc</span></code></p></li>
+</ol>
+<p>On Microsoft Windows:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%PROFILE%\Application</span> <span class="pre">Data\gammurc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.\gammurc</span></code></p></li>
+</ol>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>Gammu requires configuration to be able to properly talk to your phone.
+<a class="reference internal" href="../gammu/index.html#gammu"><span class="std std-ref">Gammu Utility</span></a> reads configuration from a config file. It’s location is determined
+on runtime, see above for search paths.</p>
+<p>You can use <a class="reference internal" href="../utils/gammu-config.html#gammu-config"><span class="std std-ref">gammu-config</span></a> or <a class="reference internal" href="../utils/gammu-detect.html#gammu-detect"><span class="std std-ref">gammu-detect</span></a> to generate
+configuration file or start from <a class="reference internal" href="#fully-documented-example"><span class="std std-ref">Fully documented example</span></a>.</p>
+<p>For hints about configuring your phone, you can check Gammu Phone
+Database &lt;<a class="reference external" href="https://wammu.eu/phones/">https://wammu.eu/phones/</a>&gt; to see what user users
+experienced.</p>
+<p>This file use ini file syntax, see <a class="reference internal" href="../formats/ini.html#ini"><span class="std std-ref">INI file format</span></a>.</p>
+<p>Configuration file for gammu can contain several sections - <code class="docutils literal notranslate"><span class="pre">[gammu]</span></code>, <code class="docutils literal notranslate"><span class="pre">[gammu1]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">[gammuN]</span></code>, … Each section configures one connection setup and in default mode
+gammu tries all of them in numerical order. You can also specify which
+configuration section to use by giving it’s number (<span class="target" id="index-0"></span><a class="reference internal" href="#section-[gammu]"><code class="xref config config-section docutils literal notranslate"><span class="pre">[gammu]</span></code></a> has number 0) as a
+parameter to <a class="reference internal" href="../gammu/index.html#gammu"><span class="std std-ref">Gammu Utility</span></a> and it will then use only this section.</p>
+<dl class="config section">
+<dt class="sig sig-object config" id="section-[gammu]">
+<span class="sig-name descname"><span class="pre">[gammu]</span></span><a class="headerlink" href="#section-[gammu]" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>This section is read by default unless you specify other on command line.</p>
+<section id="device-connection-parameters">
+<h3>Device connection parameters<a class="headerlink" href="#device-connection-parameters" title="Permalink to this heading"></a></h3>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Connection">
+<span class="sig-name descname"><span class="pre">Connection</span></span><a class="headerlink" href="#option-Connection" title="Permalink to this definition"></a></dt>
+<dd><p>Protocol which will be used to talk to your phone.</p>
+<p>For Nokia cables you want to use one of following:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fbus</span></code></dt><dd><p>serial FBUS connection</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dlr3</span></code></dt><dd><p>DLR-3 and compatible cables</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dku2</span></code></dt><dd><p>DKU-2 and compatible cables</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dku5</span></code></dt><dd><p>DKU-5 and compatible cables</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mbus</span></code></dt><dd><p>serial MBUS connection</p>
+</dd>
+</dl>
+<p>If you use some non original cable, you might need to append <code class="docutils literal notranslate"><span class="pre">-nodtr</span></code> (eg. for
+ARK3116 based cables) or <code class="docutils literal notranslate"><span class="pre">-nopower</span></code>, but Gammu should be able to detect this
+automatically.</p>
+<p>For non-Nokia phones connected using cable you generally want:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">at</span></code></dt><dd><p>generic AT commands based connection</p>
+</dd>
+</dl>
+<p>You can optionally specify speed of the connection, eg. <code class="docutils literal notranslate"><span class="pre">at19200</span></code>, but it is
+not needed for modern USB cables.</p>
+<p>For IrDA connections use one of following:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">irdaphonet</span></code></dt><dd><p>Phonet connection for Nokia phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">irdaat</span></code></dt><dd><p>AT commands connection for most of phones (this is not supported on Linux).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">irdaobex</span></code></dt><dd><p>OBEX (IrMC or file transfer) connection for most of phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">irdagnapbus</span></code></dt><dd><p>GNapplet based connection for Symbian phones, see <a class="reference internal" href="../protocol/gnapplet.html#gnapplet"><span class="std std-ref">Gnapplet Protocol</span></a>.</p>
+</dd>
+</dl>
+<p>For Bluetooth connection use one of following:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">bluephonet</span></code></dt><dd><p>Phonet connection for Nokia phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bluefbus</span></code></dt><dd><p>FBUS connection for Nokia phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">blueat</span></code></dt><dd><p>AT commands connection for most of phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">blueobex</span></code></dt><dd><p>OBEX (IrMC or file transfer) connection for most of phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bluerfgnapbus</span></code></dt><dd><p>GNapplet based connection for Symbian phones, see <a class="reference internal" href="../protocol/gnapplet.html#gnapplet"><span class="std std-ref">Gnapplet Protocol</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">blues60</span></code></dt><dd><p>Connection to Series60 applet in S60 phones, see <a class="reference internal" href="../protocol/s60.html#s60"><span class="std std-ref">Series60 Remote Protocol</span></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.29.90.</span></p>
+</div>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.36.7: </span>Gammu now supports connecting using proxy command.</p>
+</div>
+<p>You can also proxy the connection using shell command, for example to
+different host. This can be done using proxy connections:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">proxyphonet</span></code></dt><dd><p>Phonet connection for Nokia phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proxyfbus</span></code></dt><dd><p>FBUS connection for Nokia phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proxyat</span></code></dt><dd><p>AT commands connection for most of phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proxyobex</span></code></dt><dd><p>OBEX (IrMC or file transfer) connection for most of phones.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proxygnapbus</span></code></dt><dd><p>GNapplet based connection for Symbian phones, see <a class="reference internal" href="../protocol/gnapplet.html#gnapplet"><span class="std std-ref">Gnapplet Protocol</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proxys60</span></code></dt><dd><p>Connection to Series60 applet in S60 phones, see <a class="reference internal" href="../protocol/s60.html#s60"><span class="std std-ref">Series60 Remote Protocol</span></a>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../faq/config.html#faq-config"><span class="std std-ref">Configuring Gammu FAQ</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Device">
+<span class="sig-name descname"><span class="pre">Device</span></span><a class="headerlink" href="#option-Device" title="Permalink to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.27.95.</span></p>
+</div>
+<p>Device node or address of phone. It depends on used connection.</p>
+<p>For <strong>cables</strong> or emulated serial ports, you enter device name (for example
+<code class="docutils literal notranslate"><span class="pre">/dev/ttyS0</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev/ttyACM0</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev/ircomm0</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev/rfcomm0</span></code> on Linux,
+<code class="docutils literal notranslate"><span class="pre">/dev/cuad0</span></code> on FreeBSD or <code class="docutils literal notranslate"><span class="pre">COM1:</span></code> on Windows). The special exception are
+DKU-2 and DKU-5 cables on Windows, where the device is automatically detected
+from driver information and this parameters is ignored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some USB modems expose several interfaces, in such cases Gammu works best
+with “User” one, you can find more information on
+&lt;<a class="reference external" href="http://www.dd-wrt.com/wiki/index.php/Mobile_Broadband">http://www.dd-wrt.com/wiki/index.php/Mobile_Broadband</a>&gt;.</p>
+</div>
+<p>For <strong>USB</strong> connections (currently only fbususb and dku2 on Linux), you can
+specify to which USB device Gammu should connect. You can either provide
+vendor/product IDs or device address on USB:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Device</span> <span class="o">=</span> <span class="mh">0x1234</span><span class="p">:</span><span class="mh">0x5678</span>  <span class="c1"># Match device by vendor and product id</span>
+<span class="n">Device</span> <span class="o">=</span> <span class="mh">0x1234</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span>      <span class="c1"># Match device by vendor id</span>
+<span class="n">Device</span> <span class="o">=</span> <span class="mf">1.10</span>           <span class="c1"># Match device by usb bus and device address</span>
+<span class="n">Device</span> <span class="o">=</span> <span class="mi">10</span>             <span class="c1"># Match device by usb device address</span>
+<span class="n">Device</span> <span class="o">=</span> <span class="n">serial</span><span class="p">:</span><span class="mi">123456</span>  <span class="c1"># Match device by serial string</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Linux systems, you might lack permissions for some device nodes.
+You might need to be member of some group (eg. <code class="samp docutils literal notranslate"><span class="pre">plugdev</span></code> or
+<code class="samp docutils literal notranslate"><span class="pre">dialout</span></code>) or or add special udev rules to enable you access
+these devices as non-root.</p>
+<p>For Nokia phones you can put following file (also available in sources
+as <code class="file docutils literal notranslate"><span class="pre">contrib/udev/69-gammu-acl.rules</span></code>) as
+<code class="file docutils literal notranslate"><span class="pre">/etc/udev/rules.d/69-gammu-acl.rules</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># udev rule to give users access to USB device to be used by Gammu</span>
+<span class="c1">#</span>
+
+ACTION!<span class="o">=</span><span class="s2">&quot;add|change&quot;</span>,<span class="w"> </span><span class="nv">GOTO</span><span class="o">=</span><span class="s2">&quot;gammu_acl_rules_end&quot;</span>
+
+KERNEL!<span class="o">=</span><span class="s2">&quot;ttyACM[0-9]*&quot;</span>,<span class="w"> </span><span class="nv">GOTO</span><span class="o">=</span><span class="s2">&quot;gammu_acl_rules_end&quot;</span>
+SUBSYSTEM!<span class="o">=</span><span class="s2">&quot;tty&quot;</span>,<span class="w"> </span><span class="nv">GOTO</span><span class="o">=</span><span class="s2">&quot;gammu_acl_rules_end&quot;</span>
+
+<span class="c1"># Nokia devices</span>
+ATTRS<span class="o">{</span>manufacturer<span class="o">}==</span><span class="s2">&quot;Nokia&quot;</span>,<span class="w"> </span><span class="nv">TAG</span><span class="o">+=</span><span class="s2">&quot;uaccess&quot;</span>
+
+<span class="c1"># Example for Sony Ericsson J108i Cedar</span>
+<span class="c1"># ATTRS{idVendor}==&quot;0fce&quot;, ATTRS{idProduct}==&quot;d14e&quot;, TAG+=&quot;uaccess&quot;</span>
+
+<span class="nv">LABEL</span><span class="o">=</span><span class="s2">&quot;gammu_acl_rules_end&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>In case your USB device appears as the serial port in the system (eg.
+<code class="docutils literal notranslate"><span class="pre">/dev/ttyACM0</span></code> on Linux or <code class="docutils literal notranslate"><span class="pre">COM5:</span></code> on Windows), just use same setup as
+with serial port.</p>
+<p>For <strong>Bluetooth</strong> connection you have to enter Bluetooth address of your phone
+(you can list Bluetooth devices in range on Linux using <strong class="command">hcitool scan</strong>
+command). Optionally you can also force Gammu to use specified channel by
+including channel number after slash.</p>
+<p>Before using Gammu, your device should be paired with computer or you should
+have set up automatic pairing.</p>
+<p>For <strong>Proxy</strong> connections, you need to specify command which should be
+executed. It is supposed to pass bidirectional communication from Gammu to
+the device. This can happen for example over network.</p>
+<p>For <strong>IrDA</strong> connections, this parameters is not used at all.</p>
+<p>If IrDA does not work on Linux, you might need to bring up the interface and
+enable discovery (you need to run these commands as root):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>l<span class="w"> </span>s<span class="w"> </span>dev<span class="w"> </span>irda0<span class="w"> </span>up<span class="w">          </span><span class="c1"># Enables irda0 device</span>
+sysctl<span class="w"> </span>net.irda.discovery<span class="o">=</span><span class="m">1</span><span class="w">  </span><span class="c1"># Enables device discovery on IrDA</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Native IrDA is not supported on Linux, you need to setup virtual
+serial port for it (eg. <code class="docutils literal notranslate"><span class="pre">/dev/ircomm0</span></code>) and use it same way as cable.
+This can be usually achieved by loading modules <code class="docutils literal notranslate"><span class="pre">ircomm-tty</span></code> and <code class="docutils literal notranslate"><span class="pre">irtty-sir</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>modprobe<span class="w"> </span>ircomm-tty
+modprobe<span class="w"> </span>irtty-sir
+</pre></div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../faq/config.html#faq-config"><span class="std std-ref">Configuring Gammu FAQ</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Port">
+<span class="sig-name descname"><span class="pre">Port</span></span><a class="headerlink" href="#option-Port" title="Permalink to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.27.95: </span>Please use <span class="target" id="index-1"></span><a class="reference internal" href="#option-Device"><code class="xref config config-option docutils literal notranslate"><span class="pre">Device</span></code></a> instead.</p>
+</div>
+<p>Alias for <span class="target" id="index-2"></span><a class="reference internal" href="#option-Device"><code class="xref config config-option docutils literal notranslate"><span class="pre">Device</span></code></a>, kept for backward compatibility.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Model">
+<span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#option-Model" title="Permalink to this definition"></a></dt>
+<dd><p>Do not use this parameter unless really needed! The only use case for this is
+when Gammu does not know your phone and misdetects it’s features.</p>
+<p>The only special case for using model is to force special type of OBEX
+connection instead of letting Gammu try the best suited for selected
+operation:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">obexfs</span></code></dt><dd><p>force using of file browsing service (file system support)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">obexirmc</span></code></dt><dd><p>force using of IrMC service (contacts, calendar and notes support)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">obexnone</span></code></dt><dd><p>none service chosen, this has only limited use for sending file (<code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">sendfile</span></code> command)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mobex</span></code></dt><dd><p>m-obex service for Samsung phones</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Use_Locking">
+<span class="sig-name descname"><span class="pre">Use_Locking</span></span><a class="headerlink" href="#option-Use_Locking" title="Permalink to this definition"></a></dt>
+<dd><p>On Posix systems, you might want to lock serial device when it is being used
+using UUCP-style lock files. Enabling this option (setting to yes) will make
+Gammu honor these locks and create it on startup. On most distributions you
+need additional privileges to use locking (eg. you need to be member of uucp
+group).</p>
+<p>This option has no meaning on Windows.</p>
+</dd></dl>
+
+</section>
+<section id="connection-options">
+<h3>Connection options<a class="headerlink" href="#connection-options" title="Permalink to this heading"></a></h3>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-SynchronizeTime">
+<span class="sig-name descname"><span class="pre">SynchronizeTime</span></span><a class="headerlink" href="#option-SynchronizeTime" title="Permalink to this definition"></a></dt>
+<dd><p>If you want to set time from computer to phone during starting connection.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-StartInfo">
+<span class="sig-name descname"><span class="pre">StartInfo</span></span><a class="headerlink" href="#option-StartInfo" title="Permalink to this definition"></a></dt>
+<dd><p>This option allows one to set, that you want (setting <code class="docutils literal notranslate"><span class="pre">yes</span></code>) to see
+message on the phone screen or phone should enable light for a moment
+during starting connection. Phone will not beep during starting connection
+with this option. This works only with some Nokia phones.</p>
+</dd></dl>
+
+</section>
+<section id="debugging-options">
+<h3>Debugging options<a class="headerlink" href="#debugging-options" title="Permalink to this heading"></a></h3>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-LogFile">
+<span class="sig-name descname"><span class="pre">LogFile</span></span><a class="headerlink" href="#option-LogFile" title="Permalink to this definition"></a></dt>
+<dd><p>Path to file where information about communication will be stored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For most debug levels (excluding <code class="docutils literal notranslate"><span class="pre">errors</span></code>) the log file is overwritten on
+each execution.</p>
+</div>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-LogFormat">
+<span class="sig-name descname"><span class="pre">LogFormat</span></span><a class="headerlink" href="#option-LogFormat" title="Permalink to this definition"></a></dt>
+<dd><p>Determines what all will be logged to <span class="target" id="index-3"></span><a class="reference internal" href="../smsd/config.html#option-LogFile"><code class="xref config config-option docutils literal notranslate"><span class="pre">LogFile</span></code></a>. Possible values are:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">nothing</span></code></dt><dd><p>no debug level</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">text</span></code></dt><dd><p>transmission dump in text format</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">textall</span></code></dt><dd><p>all possible info in text format</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">textalldate</span></code></dt><dd><p>all possible info in text format, with time stamp</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">errors</span></code></dt><dd><p>errors in text format</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">errorsdate</span></code></dt><dd><p>errors in text format, with time stamp</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">binary</span></code></dt><dd><p>transmission dump in binary format</p>
+</dd>
+</dl>
+<p>For debugging use either <code class="docutils literal notranslate"><span class="pre">textalldate</span></code> or <code class="docutils literal notranslate"><span class="pre">textall</span></code>, it contains all
+needed information to diagnose problems.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-Features">
+<span class="sig-name descname"><span class="pre">Features</span></span><a class="headerlink" href="#option-Features" title="Permalink to this definition"></a></dt>
+<dd><p>Custom features for phone. This can be used as override when values coded
+in <code class="docutils literal notranslate"><span class="pre">common/gsmphones.c</span></code> are bad or missing. Consult
+<code class="docutils literal notranslate"><span class="pre">include/gammu-info.h</span></code> for possible values (all <a class="reference internal" href="../c/info.html#c.GSM_Feature" title="GSM_Feature"><code class="xref c c-type docutils literal notranslate"><span class="pre">GSM_Feature</span></code></a> values
+without leading <code class="docutils literal notranslate"><span class="pre">F_</span></code> prefix). Please report correct values to Gammu
+authors.</p>
+</dd></dl>
+
+</section>
+<section id="locales-and-character-set-options">
+<h3>Locales and character set options<a class="headerlink" href="#locales-and-character-set-options" title="Permalink to this heading"></a></h3>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-GammuCoding">
+<span class="sig-name descname"><span class="pre">GammuCoding</span></span><a class="headerlink" href="#option-GammuCoding" title="Permalink to this definition"></a></dt>
+<dd><p>Forces using specified codepage (for example <code class="docutils literal notranslate"><span class="pre">1250</span></code> will force CP-1250 or
+<code class="docutils literal notranslate"><span class="pre">utf8</span></code> for UTF-8). This should not be needed, Gammu detects it according
+to your locales.</p>
+</dd></dl>
+
+<dl class="config option">
+<dt class="sig sig-object config" id="option-GammuLoc">
+<span class="sig-name descname"><span class="pre">GammuLoc</span></span><a class="headerlink" href="#option-GammuLoc" title="Permalink to this definition"></a></dt>
+<dd><p>Path to directory with localisation files (the directory should contain
+<code class="docutils literal notranslate"><span class="pre">LANG/LC_MESSAGES/gammu.mo</span></code>). If gammu is properly installed it should find
+these files automatically.</p>
+</dd></dl>
+
+</section>
+<section id="advanced-options">
+<h3>Advanced options<a class="headerlink" href="#advanced-options" title="Permalink to this heading"></a></h3>
+<p>Advanced options are used to alter default logic, when using these options the
+user is responsible for ensuring any settings are correct for the target device
+and that they produce the desired behaviour.</p>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-atgen_setCNMI">
+<span class="sig-name descname"><span class="pre">atgen_setCNMI</span></span><a class="headerlink" href="#option-atgen_setCNMI" title="Permalink to this definition"></a></dt>
+<dd><p>For configurations using the generic AT command protocol it is possible to
+override the default indicators used when a new SMS message is received.</p>
+<p>The value for the setting is a comma delimited list of single digits
+corresponding to the values for the <code class="docutils literal notranslate"><span class="pre">AT+CNMI</span></code> modem command. If a digit
+is not provided, or if the provided digit is outside of the acceptable
+range for the device the default value is used.</p>
+<p>For example setting <code class="docutils literal notranslate"><span class="pre">atgen_setcnmi</span> <span class="pre">=</span> <span class="pre">,,2</span></code> would set the third parameter of
+the CNMI command to the value 2, leaving the rest of the parameters at
+default, and <code class="docutils literal notranslate"><span class="pre">atgen_setcnmi</span> <span class="pre">=</span> <span class="pre">1,,,1</span></code> would set the first and fourth parameters
+respectively.</p>
+</dd></dl>
+
+</section>
+<section id="other-options">
+<h3>Other options<a class="headerlink" href="#other-options" title="Permalink to this heading"></a></h3>
+<dl class="config option">
+<dt class="sig sig-object config" id="option-DataPath">
+<span class="sig-name descname"><span class="pre">DataPath</span></span><a class="headerlink" href="#option-DataPath" title="Permalink to this definition"></a></dt>
+<dd><p>Additional path where to search for data files. The default path is
+configured on build time (and defaults to <code class="docutils literal notranslate"><span class="pre">/usr/share/data/gammu</span></code> on Unix
+systems). Currently it is used only for searching files to upload to phone
+using <code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">install</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>There is more complete example available in Gammu documentation, see <a class="reference internal" href="../gammu/index.html#gammu"><span class="std std-ref">Gammu Utility</span></a>.</p>
+<section id="connection-examples">
+<h3>Connection examples<a class="headerlink" href="#connection-examples" title="Permalink to this heading"></a></h3>
+<p>Gammu configuration for Nokia phone using DLR-3 cable:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyACM0</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dlr3</span>
+</pre></div>
+</div>
+<p>Gammu configuration for Sony-Ericsson phone (or any other AT compatible
+phone) connected using USB cable:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyACM0</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+</pre></div>
+</div>
+<p>Gammu configuration for Sony-Ericsson (or any other AT compatible
+phone) connected using bluetooth:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">B0:0B:00:00:FA:CE</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">blueat</span>
+</pre></div>
+</div>
+<p>Gammu configuration for phone which needs to manually adjust Bluetooth channel to use channel 42:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">B0:0B:00:00:FA:CE/42</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">blueat</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-multiple-phones">
+<h3>Working with multiple phones<a class="headerlink" href="#working-with-multiple-phones" title="Permalink to this heading"></a></h3>
+<p>Gammu can be configured for multiple phones (however only one connection
+is used at one time, you can choose which one to use with <a class="reference external" href="https://docs.python.org/3.9/using/cmdline.html#cmdoption-s" title="(in Python v3.9)"><code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">-s</span></code></a>
+parameter). Configuration for phones on three serial ports would look
+like following:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyS0</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+
+<span class="k">[gammmu1]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyS1</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+
+<span class="k">[gammmu2]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyS2</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">at</span>
+</pre></div>
+</div>
+</section>
+<section id="connecting-to-remote-phone">
+<h3>Connecting to remote phone<a class="headerlink" href="#connecting-to-remote-phone" title="Permalink to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.36.7.</span></p>
+</div>
+<p>You can connect using Gammu to phone running on different host. This can be
+achieved using proxy connection, which executes command to forward
+bi-directional communication with the phone.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ssh root@my.router /usr/local/bin/myscript /dev/ttyUSB0</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">proxyat</span>
+</pre></div>
+</div>
+<p>You can find sample script which can be used on the remote side in
+<code class="file docutils literal notranslate"><span class="pre">contrib/proxy/gammu-backend</span></code>.</p>
+</section>
+<section id="fully-documented-example">
+<span id="id1"></span><h3>Fully documented example<a class="headerlink" href="#fully-documented-example" title="Permalink to this heading"></a></h3>
+<p>You can find this sample file as <code class="file docutils literal notranslate"><span class="pre">docs/config/gammurc</span></code> in Gammu sources.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; This is a sample ~/.gammurc file.</span>
+<span class="c1">; In Unix/Linux  copy it into your home directory and name it .gammurc</span>
+<span class="c1">;                or into /etc and name it gammurc</span>
+<span class="c1">; In Win32       copy it into directory with Gammu.exe and name gammurc</span>
+<span class="c1">; More about parameters later</span>
+<span class="c1">; Anything behind ; or # is comment.</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+
+<span class="k">[gammu]</span>
+
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">com8:</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">irdaphonet</span>
+<span class="c1">; Do not use model configuration unless you really need it</span>
+<span class="c1">;model = 6110</span>
+<span class="c1">;synchronizetime = yes</span>
+<span class="c1">;logfile = gammulog</span>
+<span class="c1">;logformat = textall</span>
+<span class="c1">;use_locking = yes</span>
+<span class="c1">;gammuloc = locfile</span>
+<span class="c1">;startinfo = yes</span>
+<span class="c1">;gammucoding = utf8</span>
+<span class="c1">;usephonedb = yes</span>
+
+<span class="k">[gammu1]</span>
+
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">com8:</span>
+<span class="c1">;model = 6110</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fbusblue</span>
+<span class="c1">;synchronizetime = yes</span>
+<span class="c1">;logfile = gammulog</span>
+<span class="c1">;logformat = textall</span>
+<span class="c1">;use_locking = yes</span>
+<span class="c1">;gammuloc = locfile</span>
+<span class="c1">;startinfo = yes</span>
+<span class="c1">;gammucoding = utf8</span>
+
+<span class="c1">; Step 1. Please find required Connection parameter and look into assigned</span>
+<span class="c1">; with it device type. With some Connection you must set concrete model</span>
+
+<span class="c1">; ================================================================ cables =====</span>
+<span class="c1">; New Nokia protocol for FBUS/DAU9P</span>
+<span class="c1">;    Connection &quot;fbus&quot;, device type serial</span>
+<span class="c1">; New Nokia protocol for DLR3/DLR3P</span>
+<span class="c1">;    Connection &quot;fbusdlr3&quot;/&quot;dlr3&quot;, device type serial</span>
+<span class="c1">; New Nokia protocol for DKU2 (and phone with USB converter on phone mainboard</span>
+<span class="c1">;                              like 6230)</span>
+<span class="c1">;    Connection &quot;dku2phonet&quot;/&quot;dku2&quot;, device type dku2 on Windows</span>
+<span class="c1">;    Connection &quot;fbususb&quot; on Linux</span>
+<span class="c1">; New Nokia protocol for DKU5 (and phone without USB converter on phone</span>
+<span class="c1">;                              mainboard like 5100)</span>
+<span class="c1">;    Connection &quot;dku5fbus&quot;/&quot;dku5&quot;, device type dku5</span>
+<span class="c1">; New Nokia protocol for PL2303 USB cable (and phone without USB converter</span>
+<span class="c1">;                                          on phone mainboard like 5100)</span>
+<span class="c1">;    Connection &quot;fbuspl2303&quot;, device type usb</span>
+<span class="c1">; Old Nokia protocol for MBUS/DAU9P</span>
+<span class="c1">;    Connection &quot;mbus&quot;, device type serial</span>
+<span class="c1">; Variants:</span>
+<span class="c1">; You can modify a bit behaviour of connection using additional flags</span>
+<span class="c1">; specified just after connection name like connection-variant.</span>
+<span class="c1">; If you&#39;re using ARK3116 cable (or any other which does not like dtr</span>
+<span class="c1">; handling), you might need -nodtr variant of connection, eg. dlr3-nodtr.</span>
+<span class="c1">; If cable you use is not powered over DTR/RTS, try using -nopower variant of</span>
+<span class="c1">; connection, eg. fbus-nopower.</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; AT commands for DLR3, DKU5 or other AT compatible cable (8 bits, None</span>
+<span class="c1">; parity, no flow control, 1 stop bit). Used with Nokia, Alcatel, Siemens, etc.</span>
+<span class="c1">;    Connection &quot;at19200&quot;/&quot;at115200&quot;/.., device type serial</span>
+<span class="c1">; AT commands for DKU2 cable</span>
+<span class="c1">;    Connection &quot;dku2at&quot;, device type dku2</span>
+<span class="c1">; ============================================================== infrared =====</span>
+<span class="c1">; Nokia protocol for infrared with Nokia 6110/6130/6150</span>
+<span class="c1">;    Connection &quot;fbusirda&quot;/&quot;infrared&quot;, device type serial</span>
+<span class="c1">; Nokia protocol for infrared with other Nokia models</span>
+<span class="c1">;    Connection &quot;irdaphonet&quot;/&quot;irda&quot;, device type irda</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; AT commands for infrared. Used with Nokia, Alcatel, Siemens, etc.</span>
+<span class="c1">;    Connection &quot;irdaat&quot;, device type irda</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; OBEX for infrared</span>
+<span class="c1">;    Connection &quot;irdaobex&quot;, device type irda.</span>
+<span class="c1">; ============================================================= Bluetooth =====</span>
+<span class="c1">; Nokia protocol with serial device set in BT stack (WidComm, other) from</span>
+<span class="c1">; adequate service and Nokia 6210</span>
+<span class="c1">;    Connection &quot;fbusblue&quot;, device type serial</span>
+<span class="c1">; Nokia protocol with serial device set in BT stack (WidComm, other) from</span>
+<span class="c1">; adequate service and other Nokia models</span>
+<span class="c1">;    Connection &quot;phonetblue&quot;, device type serial</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; Nokia protocol for Bluetooth stack with Nokia 6210</span>
+<span class="c1">;    Connection &quot;bluerffbus&quot;, device type BT</span>
+<span class="c1">; Nokia protocol for Bluetooth stack with DCT4 Nokia models, which don&#39;t inform</span>
+<span class="c1">; about services correctly (6310, 6310i with firmware lower than 5.50, 8910,..)</span>
+<span class="c1">;    Connection &quot;bluerfphonet&quot;, device type BT</span>
+<span class="c1">; Nokia protocol for Bluetooth stack with other DCT4 Nokia models</span>
+<span class="c1">;    Connection &quot;bluephonet&quot;, device type BT</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; AT commands for Bluetooth stack and 6210 / DCT4 Nokia models, which don&#39;t</span>
+<span class="c1">; inform about BT services correctly (6310, 6310i with firmware lower</span>
+<span class="c1">; than 5.50, 8910,..)</span>
+<span class="c1">;    Connection &quot;bluerfat&quot;, device type BT</span>
+<span class="c1">; AT commands for Bluetooth stack with other phones (Siemens, other Nokia,etc.)</span>
+<span class="c1">;    Connection &quot;blueat&quot;, device type BT</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; OBEX for Bluetooth stack with DCT4 Nokia models, which don&#39;t inform about</span>
+<span class="c1">; BT services correctly (6310, 6310i with firmware lower than 5.50, 8910,...)</span>
+<span class="c1">;    Connection &quot;bluerfobex&quot;, device type BT</span>
+<span class="c1">; OBEX for Bluetooth stack with other phones (Siemens, other Nokia, etc.)</span>
+<span class="c1">;    Connection &quot;blueobex&quot;, device type BT.</span>
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">;    Connection &quot;bluerfgnapbus&quot;, device type BT, model &quot;gnap&quot;</span>
+<span class="c1">;    Connection &quot;irdagnapbus&quot;, device type irda, model &quot;gnap&quot;</span>
+
+<span class="c1">; Step2. According to device type from Step1 and used OS set Port parameter</span>
+
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; Port type | &quot;Port&quot; parameter in Windows/DOS | &quot;Port&quot; parameter in Linux/Unix</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; serial    | &quot;com*:&quot;                         | &quot;/dev/ttyS*&quot;</span>
+<span class="c1">;           | (example &quot;com1:&quot;)               | (example &quot;/dev/ttyS1&quot;)</span>
+<span class="c1">;           |                                 | or &quot;/dev/tts/**&quot; (with DevFS)</span>
+<span class="c1">;           |                                 | virtual serial ports like</span>
+<span class="c1">;           |                                 | &quot;/dev/ircomm*&quot; or &quot;/dev/rfcomm*&quot;</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; irda      | ignored (can be empty)          | ignored (can be empty)</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; BT        | Bluetooth device address (example &quot;00:11:22:33:44:55&quot;).</span>
+<span class="c1">;           | Optionally you can also include channel after slash</span>
+<span class="c1">;           | (example &quot;00:11:22:33:44:55/12&quot;). Can be also empty.</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; dku2      | ignored (can be empty)          | /dev/ttyUSB* or /dev/ttyACM*</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; dku5      | ignored (can be empty)          | connection with it not possible</span>
+<span class="c1">; ----------|---------------------------------|--------------------------------</span>
+<span class="c1">; usb       | connection with it not possible | &quot;/dev/ttyUSB*&quot;</span>
+
+<span class="c1">; Step3. Set other config parameters</span>
+
+<span class="c1">; -----------------------------------------------------------------------------</span>
+<span class="c1">; Parameter name  | Description</span>
+<span class="c1">; ----------------|------------------------------------------------------------</span>
+<span class="c1">; Model           | Should not be used unless you have a good reason to do so.</span>
+<span class="c1">;                 | If Gammu doesn&#39;t recognize your phone model, put it here.</span>
+<span class="c1">;                 | Example values: &quot;6110&quot;, &quot;6150&quot;, &quot;6210&quot;, &quot;8210&quot;</span>
+<span class="c1">; SynchronizeTime | if you want to set time from computer to phone during</span>
+<span class="c1">;                 | starting connection. Do not rather use this option when</span>
+<span class="c1">;                 | when to reset phone during connection (in some phones need</span>
+<span class="c1">;                 | to set time again after restart)</span>
+<span class="c1">; GammuLoc        | name of localisation file</span>
+<span class="c1">; StartInfo       | this option allows one to set, that you want (setting &quot;yes&quot;)</span>
+<span class="c1">;                 | to see message on the phone screen or phone should enable</span>
+<span class="c1">;                 | light for a moment during starting connection. Phone</span>
+<span class="c1">;                 | WON&#39;T beep during starting connection with this option.</span>
+<span class="c1">; GammuCoding     | forces using specified codepage (in win32 - for example</span>
+<span class="c1">;                 | &quot;1250&quot; will force CP1250) or UTF8 (in Linux - &quot;utf8&quot;)</span>
+<span class="c1">; ----------------|------------------------------------------------------------</span>
+<span class="c1">; Logfile         | Use, when want to have logfile from communication.</span>
+<span class="c1">; Logformat       | What debug info and format should be used:</span>
+<span class="c1">;                 |   &quot;nothing&quot; - no debug level (default)</span>
+<span class="c1">;                 |   &quot;text&quot;    - transmission dump in text format</span>
+<span class="c1">;                 |   &quot;textall&quot; - all possible info in text format</span>
+<span class="c1">;                 |   &quot;errors&quot;  - errors in text format</span>
+<span class="c1">;                 |   &quot;binary&quot;  - transmission dump in binary format</span>
+<span class="c1">; ----------------|------------------------------------------------------------</span>
+<span class="c1">; Features        | Custom features for phone. This can be used as override</span>
+<span class="c1">;                 | when values coded in common/gsmphones.c are bad or</span>
+<span class="c1">;                 | missing. Consult include/gammu-info.h for possible values</span>
+<span class="c1">;                 | (all Feature values without leading F_ prefix).</span>
+<span class="c1">;                 | Please report correct values to Gammu authors.</span>
+<span class="c1">; ----------------|------------------------------------------------------------</span>
+<span class="c1">; Use_Locking     | under Unix/Linux use &quot;yes&quot;, if want to lock used device</span>
+<span class="c1">;                 | to prevent using it by other applications. In win32 ignored</span>
+
+<span class="c1">; vim: et ts=4 sw=4 sts=4 tw=78 spell spelllang=en_us</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../formats/backup.html" class="btn btn-neutral float-left" title="Backup Format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gammu/index.html" class="btn btn-neutral float-right" title="Gammu Utility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

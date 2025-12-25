@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTK AT Commands &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="m-obex protocol used by some Samsung mobiles" href="m-obex.html" />
+    <link rel="prev" title="Sonim AT Commands" href="sonim.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MTK AT Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vcard-access">VCard access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filesystem-access">Filesystem access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">MTK AT Commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/mtk.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mtk-at-commands">
+<h1>MTK AT Commands<a class="headerlink" href="#mtk-at-commands" title="Permalink to this heading"></a></h1>
+<section id="vcard-access">
+<h2>VCard access<a class="headerlink" href="#vcard-access" title="Permalink to this heading"></a></h2>
+<p>Read vcard, first 1 is READ command, second 1 is memory position:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">EVCARD</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="o">+</span><span class="n">EVCARD</span><span class="p">:</span> <span class="s2">&quot;0043003a005c00520065006300650069007600650064005c007e00760063006100720064005f0072002e007600630066&quot;</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>HEX UCS2 temporary file name which we must read for VCARD</p>
+</section>
+<section id="filesystem-access">
+<h2>Filesystem access<a class="headerlink" href="#filesystem-access" title="Permalink to this heading"></a></h2>
+<p>Change operation mode to obtain access to filesystem operations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ESUO</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Change directory to root folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">EFSF</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Read file with name from +EVCARD reply:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">EFSR</span><span class="o">=</span><span class="s2">&quot;0043003a005c00520065006300650069007600650064005c007e00760063006100720064005f0072002e007600630066&quot;</span>
+<span class="o">+</span><span class="n">EFSR</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">168</span><span class="p">,</span>
+<span class="s2">&quot;424547494E3A56434152440D0A56455253494F4E3A322E310D0A4E3B434841525345543D5554462D383B454E434F44494E473D51554F5445442D5052494E5441424C453A3D44303D39383D44313D38303D44303D42383D44303D42443D44303D42300D0A54454C3B43454C4C3A2B37787878787878787878780D0A54454C3B484F4D453A2B37787878787878787878780D0A54454C3B574F524B3A2B37787878787878787878780D0A454E443A56434152440D0A&quot;</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>(1, 1, 168) = (&lt;MEM POSITION&gt;, &lt;EOF FLAG&gt;, &lt;HEXLIFIED VCARD LEN&gt;)</p>
+<p>Change operation mode to compatible:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ESUO</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sonim.html" class="btn btn-neutral float-left" title="Sonim AT Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="m-obex.html" class="btn btn-neutral float-right" title="m-obex protocol used by some Samsung mobiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

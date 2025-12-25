@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMSUNG Organizer AT commands &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SAMSUNG GT calendar AT commands" href="samsung-gt.html" />
+    <link rel="prev" title="TDMA 5120" href="tdma_5120.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SAMSUNG Organizer AT commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-organizer-information">Get organizer information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-organizer-details">Get organizer details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-organizer-entry">Write organizer entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-organizer-entry">Delete organizer entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">SAMSUNG Organizer AT commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/samsung.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="samsung-organizer-at-commands">
+<h1>SAMSUNG Organizer AT commands<a class="headerlink" href="#samsung-organizer-at-commands" title="Permalink to this heading"></a></h1>
+<section id="get-organizer-information">
+<h2>Get organizer information<a class="headerlink" href="#get-organizer-information" title="Permalink to this heading"></a></h2>
+<p>Invocation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT+ORGI?
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT+ORGI?
++ORGI: 84,400,30,100,30
+OK
+</pre></div>
+</div>
+<p>Return 5 values:</p>
+<dl class="simple">
+<dt>par1</dt><dd><p>( 84) Busy entries (1 to par1 of par2 possibles entries)</p>
+</dd>
+<dt>par2</dt><dd><ol class="arabic simple" start="400">
+<li><p>Max possible entries</p></li>
+</ol>
+</dd>
+<dt>par3</dt><dd><p>( 30) Unknown</p>
+</dd>
+<dt>par4</dt><dd><ol class="arabic simple" start="100">
+<li><p>Unknown</p></li>
+</ol>
+</dd>
+<dt>par5</dt><dd><p>( 30) Unknown</p>
+</dd>
+</dl>
+</section>
+<section id="get-organizer-details">
+<h2>Get organizer details<a class="headerlink" href="#get-organizer-details" title="Permalink to this heading"></a></h2>
+<p>Invocation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGR</span><span class="o">=</span><span class="n">number</span>
+</pre></div>
+</div>
+<p>Get organizer details for index entry “number”
+Returns 24 values:</p>
+<p>Example 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGR</span><span class="o">=</span><span class="mi">10</span>
+<span class="o">+</span><span class="n">ORGR</span><span class="p">:</span> <span class="mi">161</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Comprar lagrimas artificiales&quot;</span><span class="p">,</span><span class="s2">&quot;Farmacia&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;Farmacia&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,,,</span><span class="mi">29</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Example 2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGR</span><span class="o">=</span><span class="mi">15</span>
+<span class="o">+</span><span class="n">ORGR</span><span class="p">:</span> <span class="mi">67</span><span class="p">,</span><span class="mi">2</span><span class="p">,,</span><span class="s2">&quot;Laura Santiesteban Cabrera&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">,,,,,,,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,,,,,</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Example 3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGR</span><span class="o">=</span><span class="mi">19</span>
+<span class="o">+</span><span class="n">ORGR</span><span class="p">:</span> <span class="mi">205</span><span class="p">,</span><span class="mi">3</span><span class="p">,,</span><span class="s2">&quot;Cemento&quot;</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,,,,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,,,</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Example 4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGR</span><span class="o">=</span><span class="mi">23</span>
+<span class="o">+</span><span class="n">ORGR</span><span class="p">:</span> <span class="mi">235</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;Curso&quot;</span><span class="p">,</span><span class="s2">&quot;Averiguar&quot;</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">59</span><span class="p">,,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,,,,,,</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>+ORGR: AT+ORGR answer header</p>
+<dl class="simple">
+<dt>par01</dt><dd><p>Pointer to real memory position</p>
+</dd>
+<dt>par02</dt><dd><p>Organizer entry type (1=appointments, 2=aniversaries, 3=tasks, 4=miscellany )</p>
+</dd>
+</dl>
+<p>If par02 =1, appointment entry type</p>
+<dl class="simple">
+<dt>par03</dt><dd><p>Organizer entry short name</p>
+</dd>
+<dt>par04</dt><dd><p>Organizer entry detailed description</p>
+</dd>
+<dt>par05</dt><dd><p>Start day</p>
+</dd>
+<dt>par06</dt><dd><p>Start month</p>
+</dd>
+<dt>par07</dt><dd><p>Start year</p>
+</dd>
+<dt>par08</dt><dd><p>Start hour</p>
+</dd>
+<dt>par09</dt><dd><p>Start minute</p>
+</dd>
+<dt>par10</dt><dd><p>End day</p>
+</dd>
+<dt>par11</dt><dd><p>End month</p>
+</dd>
+<dt>par12</dt><dd><p>End year</p>
+</dd>
+<dt>par13</dt><dd><p>End hour</p>
+</dd>
+<dt>par14</dt><dd><p>End minute</p>
+</dd>
+<dt>par15</dt><dd><p>Location</p>
+</dd>
+<dt>par16</dt><dd><p>Alarm flag (0=no, 1=yes)</p>
+</dd>
+<dt>par17</dt><dd><p>Alarm time unit (1=minutes, 2=hours, days, 4=weeks)</p>
+</dd>
+<dt>par18</dt><dd><p>Alarm items quantity</p>
+</dd>
+<dt>par19</dt><dd><p>Alarm repeat flag (0 or empty=no, 2=yes)</p>
+</dd>
+<dt>par20</dt><dd><p>Empty</p>
+</dd>
+<dt>par21</dt><dd><p>Empty</p>
+</dd>
+<dt>par22</dt><dd><p>Repeat until day</p>
+</dd>
+<dt>par23</dt><dd><p>Repeat until month</p>
+</dd>
+<dt>par24</dt><dd><p>Repeat until year</p>
+</dd>
+</dl>
+<p>If par02 = 2, anniversary entry type</p>
+<dl class="simple">
+<dt>par03</dt><dd><p>Empty</p>
+</dd>
+<dt>par04</dt><dd><p>Occasion name</p>
+</dd>
+<dt>par05</dt><dd><p>Alarm day</p>
+</dd>
+<dt>par06</dt><dd><p>Alarm month</p>
+</dd>
+<dt>par07</dt><dd><p>Alarm year</p>
+</dd>
+<dt>par08</dt><dd><p>Alarm hour</p>
+</dd>
+<dt>par09</dt><dd><p>Alarm minutes</p>
+</dd>
+<dt>par10</dt><dd><p>Empty</p>
+</dd>
+<dt>par11</dt><dd><p>Empty</p>
+</dd>
+<dt>par12</dt><dd><p>Empty</p>
+</dd>
+<dt>par13</dt><dd><p>Empty</p>
+</dd>
+<dt>par14</dt><dd><p>Empty</p>
+</dd>
+<dt>par15</dt><dd><p>Empty</p>
+</dd>
+<dt>par16</dt><dd><p>Alarm flag (0=no, 1=yes)</p>
+</dd>
+<dt>par17</dt><dd><p>Alarm time unit (1=minutes, 2=hours, days, 4=weeks)</p>
+</dd>
+<dt>par18</dt><dd><p>Alarm items quantity</p>
+</dd>
+<dt>par19</dt><dd><p>Repeat each year (0=no, 4=yes)</p>
+</dd>
+<dt>par20</dt><dd><p>Empty</p>
+</dd>
+<dt>par21</dt><dd><p>Empty</p>
+</dd>
+<dt>par22</dt><dd><p>Empty</p>
+</dd>
+<dt>par23</dt><dd><p>Empty</p>
+</dd>
+<dt>par24</dt><dd><p>Empty</p>
+</dd>
+</dl>
+<p>If par02 = 3, task entry type</p>
+<dl class="simple">
+<dt>par03</dt><dd><p>Empty</p>
+</dd>
+<dt>par04</dt><dd><p>Task name</p>
+</dd>
+<dt>par05</dt><dd><p>Start day</p>
+</dd>
+<dt>par06</dt><dd><p>Start month</p>
+</dd>
+<dt>par07</dt><dd><p>Start year</p>
+</dd>
+<dt>par08</dt><dd><p>Alarm hour</p>
+</dd>
+<dt>par09</dt><dd><p>Alarm minute</p>
+</dd>
+<dt>par10</dt><dd><p>Due day</p>
+</dd>
+<dt>par11</dt><dd><p>Due month</p>
+</dd>
+<dt>par12</dt><dd><p>Due year</p>
+</dd>
+<dt>par13</dt><dd><p>Empty</p>
+</dd>
+<dt>par14</dt><dd><p>Empty</p>
+</dd>
+<dt>par15</dt><dd><p>Empty</p>
+</dd>
+<dt>par16</dt><dd><p>Alarm flag (0=no, 1=yes)</p>
+</dd>
+<dt>par17</dt><dd><p>Alarm time unit (1=minutes, 2=hours, days, 4=weeks)</p>
+</dd>
+<dt>par18</dt><dd><p>Alarm items quantity</p>
+</dd>
+<dt>par19</dt><dd><p>Empty</p>
+</dd>
+<dt>par20</dt><dd><p>Task priority (1=high, 2=normal, 3=low)</p>
+</dd>
+<dt>par21</dt><dd><p>Task status (0=undone, 1=done)</p>
+</dd>
+<dt>par22</dt><dd><p>Empty</p>
+</dd>
+<dt>par23</dt><dd><p>Empty</p>
+</dd>
+<dt>par24</dt><dd><p>Empty</p>
+</dd>
+</dl>
+<p>If par02 = 4, miscellany entry type</p>
+<dl class="simple">
+<dt>par03</dt><dd><p>Entry name</p>
+</dd>
+<dt>par04</dt><dd><p>Details</p>
+</dd>
+<dt>par05</dt><dd><p>Start day</p>
+</dd>
+<dt>par06</dt><dd><p>Start month</p>
+</dd>
+<dt>par07</dt><dd><p>Start year</p>
+</dd>
+<dt>par08</dt><dd><p>Start hour</p>
+</dd>
+<dt>par09</dt><dd><p>Start minutes</p>
+</dd>
+<dt>par10</dt><dd><p>End day</p>
+</dd>
+<dt>par11</dt><dd><p>End month</p>
+</dd>
+<dt>par12</dt><dd><p>End year</p>
+</dd>
+<dt>par13</dt><dd><p>End hour</p>
+</dd>
+<dt>par14</dt><dd><p>End minutes</p>
+</dd>
+<dt>par15</dt><dd><p>Empty</p>
+</dd>
+<dt>par16</dt><dd><p>Alarm flag (0=no, 1=yes)</p>
+</dd>
+<dt>par17</dt><dd><p>Alarm time unit (1=minutes, 2=hours, days, 4=weeks)</p>
+</dd>
+<dt>par18</dt><dd><p>Alarm items quantity</p>
+</dd>
+<dt>par19</dt><dd><p>Empty</p>
+</dd>
+<dt>par20</dt><dd><p>Empty</p>
+</dd>
+<dt>par21</dt><dd><p>Empty</p>
+</dd>
+<dt>par22</dt><dd><p>Empty</p>
+</dd>
+<dt>par23</dt><dd><p>Empty</p>
+</dd>
+<dt>par24</dt><dd><p>Empty</p>
+</dd>
+</dl>
+</section>
+<section id="write-organizer-entry">
+<h2>Write organizer entry<a class="headerlink" href="#write-organizer-entry" title="Permalink to this heading"></a></h2>
+<p>Invocation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGW</span><span class="o">=</span><span class="n">par0</span><span class="p">,</span><span class="n">par1</span><span class="p">,</span><span class="n">par2</span><span class="o">...</span><span class="n">par24</span>
+</pre></div>
+</div>
+<p>Write organizer entry in memory location par0</p>
+<p>If par0=65535 then locate next empty entry on memory</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGW</span><span class="o">=</span><span class="mi">65535</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;p2&quot;</span><span class="p">,</span><span class="s2">&quot;p2&quot;</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">23</span><span class="p">,,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,,,,,,</span>
+<span class="o">+</span><span class="n">ORGW</span><span class="p">:</span> <span class="mi">253</span><span class="p">,</span><span class="mi">253</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>par1 to par24 has the same significance than in the AT+ORGR command</p>
+</section>
+<section id="delete-organizer-entry">
+<h2>Delete organizer entry<a class="headerlink" href="#delete-organizer-entry" title="Permalink to this heading"></a></h2>
+<p>Invocation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGD</span><span class="o">=</span><span class="n">number</span>
+</pre></div>
+</div>
+<p>Delete organizer entry of index “number”</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">ORGD</span><span class="o">=</span><span class="mi">21</span>
+
+<span class="n">OK</span>
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<p>Read command use index reference.</p>
+<p>Write command uses index and direct memory reference with special 65535 value to locate empty memory position.</p>
+<p>Delete command use direct memory reference, index are automatically reorganized.</p>
+<p>Hint: After create or delete an organizer entry, reread full information to update index table.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tdma_5120.html" class="btn btn-neutral float-left" title="TDMA 5120" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="samsung-gt.html" class="btn btn-neutral float-right" title="SAMSUNG GT calendar AT commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

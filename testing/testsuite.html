@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gammu Testsuite &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dummy Driver" href="dummy-driver.html" />
+    <link rel="prev" title="Testing Gammu" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing Gammu</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gammu Testsuite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collecting-results">Collecting results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-of-smsd">Testing of SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-of-command-line-utility">Testing of command line utility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-of-python-interface">Testing of Python interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-of-reply-functions">Testing of reply functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-of-data-parsing">Testing of data parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-of-the-test-suite">Configuration of the test suite</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#programs-used-for-testing">Programs used for testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limiting-testsuite">Limiting testsuite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-backends-configuration">Database backends configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dummy-driver.html">Dummy Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Testing Gammu</a></li>
+      <li class="breadcrumb-item active">Gammu Testsuite</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/testing/testsuite.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gammu-testsuite">
+<h1>Gammu Testsuite<a class="headerlink" href="#gammu-testsuite" title="Permalink to this heading"></a></h1>
+<p>Gammu comes with quite big test suite. It covers some basic low level
+functions, handling replies from the phone and also does testing of command
+line utilities and SMSD.</p>
+<section id="running-the-tests">
+<h2>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this heading"></a></h2>
+<p>You can run the test suite this using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>. CMake build system uses
+for testing CTest, which also includes option to connect to dashboard and
+submit test results there, so that they can be reviewed and fixed by others. To
+participate in this testing, you need just to run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">Experimental</span></code> which
+also does submission to the dashboard.</p>
+<p>There are some more options for testing:</p>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code></p>
+<blockquote>
+<div><p>Runs testsuite with no uploading of results.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">Experimental</span></code></p>
+<blockquote>
+<div><p>Runs testsuite and uploads results to the dashboard.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">ExperimentalMemCheck</span></code></p>
+<blockquote>
+<div><p>This checks memory accesses using valgrind during tests and submits
+report. You need to do this after <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">Experimental</span></code> and you can
+submit results using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">ExperimentalSubmit</span></code>.</p>
+</div></blockquote>
+<p>Coverage reports</p>
+<blockquote>
+<div><p>To get test coverage reports, you need to configure project using
+<code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DCOVERAGE=ON</span></code></p>
+</div></blockquote>
+<p>Nightly testing</p>
+<blockquote>
+<div><p>Currently several machines do compile and test Gammu every night. If
+you want to tak part of this, just ensure that your machine executes
+test suite every night (preferably after 3:00 CET). You can select
+either <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">Nightly</span></code> to do regular testing or
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">NightlyMemoryCheck</span></code> to test with valgrind. Also you can enable
+coverage tests as described above.</p>
+</div></blockquote>
+<p>Running single test</p>
+<blockquote>
+<div><p>You can run single test by directly calling ctest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctest</span> <span class="o">-</span><span class="n">R</span> <span class="n">test</span><span class="o">-</span><span class="n">name</span>
+</pre></div>
+</div>
+<p>Adding <code class="docutils literal notranslate"><span class="pre">-V</span></code> runs it in verbose mode with all test output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctest</span> <span class="o">-</span><span class="n">V</span> <span class="o">-</span><span class="n">R</span> <span class="n">test</span><span class="o">-</span><span class="n">name</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="collecting-results">
+<h2>Collecting results<a class="headerlink" href="#collecting-results" title="Permalink to this heading"></a></h2>
+<p>The tests are ran daily on several platforms and you can find the
+results on <a class="reference external" href="https://travis-ci.org/gammu/gammu">Travis</a>.</p>
+<p>The coverage reports are at
+<a class="reference external" href="https://coveralls.io/r/gammu/gammu">Coveralls</a>.</p>
+</section>
+<section id="testing-of-smsd">
+<h2>Testing of SMSD<a class="headerlink" href="#testing-of-smsd" title="Permalink to this heading"></a></h2>
+<p>SMSD tests are performed using <a class="reference internal" href="dummy-driver.html#dummy-driver"><span class="std std-ref">Dummy Driver</span></a> and uses file backend and
+sqlite database by default. For this you nee Gammu compiled with libdbi, have
+installed sqlite driver for libdbi and have <strong class="program">sqlite3</strong> binary available
+on the system.</p>
+<p>Testing of additional database backends must be enabled separately:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_TESTING</span></code>:</dt><dd><p>you need to have setup MySQL server with database where SMSD can play.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_TESTING</span></code></dt><dd><p>you need to have setup PostgreSQL server with database where SMSD can play.</p>
+</dd>
+</dl>
+</section>
+<section id="testing-of-command-line-utility">
+<h2>Testing of command line utility<a class="headerlink" href="#testing-of-command-line-utility" title="Permalink to this heading"></a></h2>
+<p>Gammu command line tests are performed using <a class="reference internal" href="dummy-driver.html#dummy-driver"><span class="std std-ref">Dummy Driver</span></a> where
+required. It covers most of command line interface, but some parts need to be
+explicitly enabled:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ONLINE_TESTING</span></code>:</dt><dd><p>enable testing of features which require internet access</p>
+</dd>
+</dl>
+</section>
+<section id="testing-of-python-interface">
+<h2>Testing of Python interface<a class="headerlink" href="#testing-of-python-interface" title="Permalink to this heading"></a></h2>
+<p>Python module tests are performed using <a class="reference internal" href="dummy-driver.html#dummy-driver"><span class="std std-ref">Dummy Driver</span></a> where required. It
+does also cover testing of SMSD interface, which is done using libdbi(sqlite)
+driver.</p>
+</section>
+<section id="testing-of-reply-functions">
+<h2>Testing of reply functions<a class="headerlink" href="#testing-of-reply-functions" title="Permalink to this heading"></a></h2>
+<p>The <code class="file docutils literal notranslate"><span class="pre">tests</span></code> directory contains various tests which do inject data into
+reply functions and check their response.</p>
+</section>
+<section id="testing-of-data-parsing">
+<h2>Testing of data parsing<a class="headerlink" href="#testing-of-data-parsing" title="Permalink to this heading"></a></h2>
+<p>The <code class="file docutils literal notranslate"><span class="pre">tests</span></code> directory contains various tests which just try to parse
+various file formats supported by libGammu.</p>
+</section>
+<section id="configuration-of-the-test-suite">
+<h2>Configuration of the test suite<a class="headerlink" href="#configuration-of-the-test-suite" title="Permalink to this heading"></a></h2>
+<p>You can pass various parameters to configure the test suite:</p>
+<section id="programs-used-for-testing">
+<h3>Programs used for testing<a class="headerlink" href="#programs-used-for-testing" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">SH_BIN</span></code></dt><dd><p>Path to the <strong class="program">sh</strong> program</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">BASH_BIN</span></code></dt><dd><p>Path to the <strong class="program">bash</strong> program</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SQLITE_BIN</span></code></dt><dd><p>Path to the <strong class="program">sqlite3</strong> program</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SED_BIN</span></code></dt><dd><p>Path to the <strong class="program">sed</strong> program</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_BIN</span></code></dt><dd><p>Path to the <strong class="program">mysql</strong> program</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_BIN</span></code></dt><dd><p>Path to the <strong class="program">psql</strong> program</p>
+</dd>
+</dl>
+</section>
+<section id="limiting-testsuite">
+<h3>Limiting testsuite<a class="headerlink" href="#limiting-testsuite" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ONLINE_TESTING</span></code></dt><dd><p>Enable testing of parts which use remote servers, requires connection to interned</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_TESTING</span></code></dt><dd><p>Enable testing of PostgreSQL SMSD backend, requires configured PostgreSQL database</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_TESTING</span></code></dt><dd><p>Enable testing of MySQL SMSD backend, requires configured MySQL database</p>
+</dd>
+</dl>
+</section>
+<section id="database-backends-configuration">
+<h3>Database backends configuration<a class="headerlink" href="#database-backends-configuration" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_HOST</span></code></dt><dd><p>Host to use for PostgreSQL tests (default: <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_DATABASE</span></code></dt><dd><p>Database to use for PostgreSQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_USER</span></code></dt><dd><p>User to use for PostgreSQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PSQL_PASSWORD</span></code></dt><dd><p>Password to use for PostgreSQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_HOST</span></code></dt><dd><p>Host to use for MySQL tests (default: <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_DATABASE</span></code></dt><dd><p>Database to use for MySQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_USER</span></code></dt><dd><p>User to use for MySQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MYSQL_PASSWORD</span></code></dt><dd><p>Password to use for MySQL tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ODBC_DSN`</span></code></dt><dd><p>ODBC DSN to use for ODBC tests (default: <code class="docutils literal notranslate"><span class="pre">smsd</span></code>).
+Currently needs to point to MySQL database.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Testing Gammu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dummy-driver.html" class="btn btn-neutral float-right" title="Dummy Driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nokia 7110 &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nokia 6210/6310, CARC91, PC Experiment" href="carkit.html" />
+    <link rel="prev" title="Nokia 6510" href="n6510.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">Nokia 7110</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/n7110.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nokia-7110">
+<h1>Nokia 7110<a class="headerlink" href="#nokia-7110" title="Permalink to this heading"></a></h1>
+<p>Assembled by
+Balazs Nagy    &lt;<a class="reference external" href="mailto:js&#37;&#52;&#48;iksz&#46;hu">js<span>&#64;</span>iksz<span>&#46;</span>hu</a>&gt;
+Marcin Wiacek  &lt;<a class="reference external" href="mailto:Marcin&#37;&#52;&#48;MWiacek&#46;com">Marcin<span>&#64;</span>MWiacek<span>&#46;</span>com</a>&gt;
+Jens Bennfors  &lt;<a class="reference external" href="mailto:jens&#46;bennfors&#37;&#52;&#48;ing&#46;hj&#46;se">jens<span>&#46;</span>bennfors<span>&#64;</span>ing<span>&#46;</span>hj<span>&#46;</span>se</a>&gt;
+Michael Hund   &lt;<a class="reference external" href="mailto:michael&#37;&#52;&#48;drhund&#46;de">michael<span>&#64;</span>drhund<span>&#46;</span>de</a>&gt;
+Jay Bertrand   &lt;<a class="reference external" href="mailto:jay&#46;bertrand&#37;&#52;&#48;libertysurf&#46;fr">jay<span>&#46;</span>bertrand<span>&#64;</span>libertysurf<span>&#46;</span>fr</a>&gt;
+Gabriele Zappi &lt;<a class="reference external" href="mailto:gzappi&#37;&#52;&#48;inwind&#46;it">gzappi<span>&#64;</span>inwind<span>&#46;</span>it</a>&gt;
+Markus Plail   &lt;<a class="reference external" href="mailto:plail&#37;&#52;&#48;web&#46;de">plail<span>&#64;</span>web<span>&#46;</span>de</a>&gt;
+Ralf Thelen    &lt;<a class="reference external" href="mailto:ralf&#37;&#52;&#48;mythelen&#46;de">ralf<span>&#64;</span>mythelen<span>&#46;</span>de</a>&gt;
+Walek          &lt;<a class="reference external" href="mailto:walek&#37;&#52;&#48;pa98&#46;opole&#46;sdi&#46;tpnet&#46;pl">walek<span>&#64;</span>pa98<span>&#46;</span>opole<span>&#46;</span>sdi<span>&#46;</span>tpnet<span>&#46;</span>pl</a>&gt;
+… and other members of gnokii mailing list
+and authors of some WWW pages.</p>
+<p>The data provided is for information purposes only.
+Some of the frames might be hazardous to your phone. Be careful!!!
+We do not take any responsibility or liability for damages, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this information isn’t (and can’t be) complete.  If you know anything
+about features not listed here or you noticed a bug in this list, please
+notify us via e-mail.  Thank you.</p>
+</div>
+<p>Document describing frames used in
+GSM Nokia 6210 and derivatives (7110)</p>
+<p>Correct format is FBUS version 2/Infrared/MBUS version 2
+(see nokia.txt for protocol details):</p>
+<p>List:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>0x00: Connect to NBS port ?
+    r Set ringtone          {+0x7c,0x01,0x00,0x0d,0x06[6],0x78,ringtone packed according to SM2.0}
+                            Seems not to work in MBUS!
+0x01: Communication Status
+?   r Call msg              { 0x0002 }
+?   r Call in progress      { 0x0003, seqnr }
+?   r Remote end hang up    { 0x0004, seqnr, ?, error (like in netmon in 39) }
+?   r incoming call alert   { 0x0005, seqnr, numlen, &quot;number&quot;, namelen, &quot;name&quot; }
+?   r answered call         { 0x0007, seqnr }
+?   r terminated call       { 0x0009, seqnr }
+?   r call msg              { 0x000a, seqnr }
+    Note: in 6210 4.27 all msg from 0x01 seems to be unavailable
+0x02: SMS handling
+    s Send SMS message      { 0x0001, 0x02, 0x00 (SEND REQUEST), ... }
+    r Message sent          { 0x0002 }
+    r Send failed           { 0x0003, ?, ?, error (like in netmon in 65)}
+    s Incoming SMS info on  { 0x000d, 0x00, 0x00, 0x02}
+                            note: no info about Delivery Reports
+    r Incoming SMS info onOK{ 0x000e }
+                            note: no info about Delivery Reports
+    r Incoming SMS infoonerr{ 0x000f, error }
+                            where error: 0x0c - no PIN
+    r SMS message received  { 0x0011, ...... } (whole message)
+    s Set CellBroadcast     { 0x0020, 0x01, 0x01, 0x00, 0x00, 0x01, 0x01 }
+                                      for enable cell broadcast ?
+                                      0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+                                      for disable cell broadcast ?
+    r Set CellBroadcast OK  { 0x0021, 0x01 }
+    r Read CellBroadcast    { 0x0023, ?, ?, ?, channel, ?, message... } ?
+    s Set SMS center        { 0x0030, 0x64, priority, checksum?, format,
+                                      validity[2], {DefaultRecipient no.}[12],
+                                      {SMScenter no.}[12], {SMSC name}, 0x00}
+                              where tel.no.[12]: {len, type, {number(BCD)}}
+                                    type: 0x81: normal
+                                          0x91: + (international)
+                                          0xd0: alphanumeric
+                                    format: 0x00: text
+                                            0x22: fax
+                                            0x24: voice
+                                            0x25: ERMES
+                                            0x26: paging
+                                            0x31: X.400
+                                            0x32: email
+                                    validity: 0x000b:  1 hour
+                                              0x0047:  6 hours
+                                              0x00a7: 24 hours
+                                              0x00a9: 72 hours
+                                              0x00ad:  1 week
+                                              0x00ff: max.time
+    r Set SMS center OK     { 0x0031 }
+    r Set SMS center error  { 0x0032, reason }
+    s Get SMS center        { 0x0033, 0x64, priority }
+    r SMS center received   { 0x0034, priority, checksum?, type,
+                                      validity[2], {DefaultRecipient no.}[12],
+                                      {SMScenter no.}[12], {SMSC name}, 0x00 }
+                              where priority, checksum, type, validity,
+                                    tel.no.[12]: see 0x02/0x0030
+    r SMS center error recv { 0x0035, reason }
+    s??                     { 0x0074}
+    r??                     { 0x0075, 0xFF, 0x11, 0x98}
+    s??                     { 0x008C}
+    r??                     { 0x008D, 0x00}
+0x03: Phonebook functions
+    s Get memory status     { 0x0103, 0x02, memory type }
+                            where: memory type - see 0x03/0x0107
+    r Get memory status     { 0x0104, 0x00, xL, 0x00[2], y1H, y1L, 0x10,
+                                      0x00[2], z?, ymaxH, ymaxL, y2H, y2L,
+                                      0x0d?, xH?, 0x00[2]? }
+                              where y1: location (lowermost)
+                                    y2: no. of locations
+                                    ymax: maximum location no.
+    s Read memory           { 0x0107, 0x01, 0x01, 0x00, 0x01, xH, xL,
+                                     yH, yL, 0x00, 0x00}
+                            where x: memory type
+                                     0x01: (256) Dialled numbers
+                                     0x02: (512) Missed calls
+                                     0x03: (768) Received calls
+                                     0x05: (500) telephone phonebook
+                                     0x06: (160) SIM phonebook
+                                     0x07: (10/0)
+                                     0x08: (1/0)
+                                     0x09: (4) voice mailbox
+                                     0x0e: (10) speed dials
+                                     0x10: (5) caller groups
+                                  y: location
+    r Read memory error     { 0x0108, 0x00, 0x01,
+                             code,0x00, 0x00, z, error}
+                            where code==0x0f
+                                  error: 0x34 - phonebook location not found
+                                         0x3b - speed dial not assigned
+    r Read memory OK        { 0x0108, 0x00, 0x01,
+                             code,0x00, 0x00, z, xH, xL, yH, yL, 0x00, 0x00, 0x00, no.of blocks, { block } * }
+                            where code: != 0x0f
+                              y: location
+                              z: generic block size
+                              block: {id, 0, 0, blocksize, block no.,
+                                      {contents}, 0x00}
+                                id: 0x04 pointer to another memory location { 0xff?, yH, yL, xL,0x00[3] }
+                                    0x07 name {len, (unicode)},
+                                    0x08 email
+                                    0x09 postal
+                                    0x0a note {len, (unicode)}
+                                    0x0b number {type, 0x00[3], len, (unicode)}
+                                    0x0c ringtone {ringtone no., 0, 0}
+                    0x13 date for a called list (DC, RC, etc.)
+                                    0x1b caller group graphic {width, height, 0, 0 {bitmap}}
+                                    0x1c caller group graphic on? {(1: yes, 0: no), 0, 0}
+                                    0x1e caller group number {number, 0, 0}
+                                   type: 0x0a: General,
+                                         0x03: Mobile (office ?),
+                                         0x06: Work,
+                                         0x04: Fax,
+                                         0x02: Home (mobile ?)
+    s Set mem location      { 0x010b, 0x00, 0x01, 0x01, 0x00, 0x00, z,
+                                      xH, xL, yH, yL, 0x00, 0x00, 0x00,
+                                      no.of blocks, { block }[no.of blocks] }
+    r Set mem location      { 0x010c, 0?, 1?, code, 0?, 0?, z?, 0?, 0?,
+                                      yH, yL, xL }
+                            where code:
+                                    0x3d - wrong entry type
+                                    0x3e - too many entries
+    s Delete mem location   { 0x010f, 0x00, 0x01, 0x04, 0x00, 0x00, 0x0c, 0x01, 0xff, xH, xL,
+                                      yH, yL, 0x00, 0x00}
+                                      where   x: location
+                                      y: memory type
+    r Delete mem location   { 0x0110, 0x00, 0x00 }
+0x06: Calling line restriction/Call forwarding etc
+    r Get call divert       { 0x0001, 0x02, x, 0x00, divtype, 0x02, calltype, y, z, 0x0b, number, 0x00...0x00, timeout (byte 45) }
+    s Set call divert       { 0x0001, 0x03, 0x00, divtype, calltype, 0x01, number(packed like in SMS), 0x00 ... 0x00,
+                                      length of number (byte 29), 0x00 ... 0x00, timeout (byte 52), 0x00, 0x00, 0x00}
+                            NOTE: msglen=0x37
+                            where timeout:
+                              0x00: not set ?
+                              0x05: 5 second
+                              0x0a: 10 second
+                              0x0f: 15 second
+                              0x14: 20 second
+                              0x19: 25 second
+                              0x1e: 30 second
+                            where divtype:
+                              0x02: all diverts for all call types ?
+                                    Found only, when deactivate all diverts for all call types (with call type 0x00)
+                              0x15: all calls
+                              0x43: when busy
+                              0x3d: when not answered
+                              0x3e: if not reached
+                            calltype:
+                              0x00: all calls (data, voice, fax)
+                              0x0b: voice calls
+                              0x0d: fax calla
+                              0x19: data calls
+    s Deactivate calldiverts{ 0x0001, 0x04, 0x00, divtype, calltype, 0x00 }
+                            where divtype, calltype: see above
+    r Deactivate calldiverts{ 0x0002, 0x04, 0x00, divtype, 0x02, calltype, data }
+    s Get call diverts      { 0x0001, 0x05, 0x00, divtype, calltype, 0x00 }
+                            where divtype, calltype: see above
+    r Get call diverts ok   { 0x0002, 0x05, 0x00, divtype, 0x02, calltype, data }
+                            where divtype, calltype: see above
+                      data: { 0x01, 0x00 } - isn&#39;t active
+                        { 0x02, 0x01, number(packed like in SMS), 0x00, 0x00..., timeout }
+    r Get prepaid(?) info   { 0x0005, ?,?,?,length,message(packed like in 7bit SMS)}
+    r Call diverts active   { 0x0006, ??? }
+0x0a: Network status
+    s get used network      { 0x0070 }
+    r get used network      { 0x0071, available,?,?,length,netstatus,netsel,cellIDH,
+                                      cellIDL,lacH,lacL,MCC+MNC[3],{Opstr}, 4?,
+                                      len, xlen(78), ylen(21), 0, {bitmap} }
+                              where {Opstr}: namelen, {operator name(unicode)}
+                                    len: {xlen, ylen, 0, {bitmap} + 2
+                                    {bitmap}: bitmaplen, 0, 0, {OTA bitmap}
+                    available: 0x02 if the logo following is valid,
+                               0x01 for no operator logo following
+    s get network status    { 0x0081 }
+    r get network status    { 0x0082, network%, 0x14? }
+    s set operator logo     { 0x01a3 0x01, oplogo?, MCC+MNC[3], 0?,4?,len,
+                                     xlen(78),ylen(21), 0 (frames?),
+                                     {bitmap}*?, 0x00(padding) }
+                              where len, {bitmap}: see 0x0a/0x0071
+    r set operator logo OK  { 0x01a4 }
+    s clear operator logo   { 0x00af, x}
+                            where x==0 to 4
+    r clear operator logo   { 0x00bf}
+0x13: Calendar notes
+    s Add meeting note      { 0x0001, body like in subtype 0x001a...}
+    r Add meeting note      { 0x0002, location (2 bytes), status (2 bytes)}
+    s Add call note         { 0x0003, body like in subtype 0x001a...}
+    r Add call note         { 0x0004, location (2 bytes), status (2 bytes)}
+    s Add birthday note     { 0x0005, location (2 bytes), entry type, 0x00, year of birth(2 bytes),
+                                      Month, Day, 0x00, 0x00, alarm (4 bytes), alarm type, length, text (Unicode)}
+    r Add birthday note     { 0x0006, location (2 bytes), status (2 bytes)}
+    s Add reminder note     { 0x0007, body like in subtype 0x001a...}
+    r Add reminder note     { 0x0008, location (2 bytes), status (2 bytes)}
+    s Delete calendar note  { 0x000b, location (2 bytes) }
+    r Delete calendar note  { 0x000c, location (2 bytes), ?, ?, ?, ? }
+    s Get calendar note     { 0x0019, location (2 bytes) }
+    r Calendar note recvd   { 0x001a, location (2 bytes), entry type, 0x00, year (2 bytes), Month, Day, block}
+                            where: entry type - 0x01 - Meeting, 0x02 - Call, 0x04 - Birthday, 0x08 - Reminder
+                                   block: for Meeting:{hour,minute,alarm (two bytes),recurrence (two bytes),len,0x00,string(unicode)}
+                                          where alarm=Number of minutes before the time of the meeting
+                                                  that the alarm should be triggered:
+                                                  For meetings with &quot;No alarm&quot;=0xFFFF (-1).
+                                                  For &quot;On time&quot;=0x0000
+                                                  half an hour=0x001E, and so on.
+                                                Recurrence=in hours, between future occurrences of this meeting.
+                                                  If there is no repeat, this value is 0x0000. The special value 0xffff
+                                                  means 1 Year!
+                                          for Call:{Hour,Minute,Alarm (as above),Recurrence (as above),namelen,numberlen,
+                                                    name(unicode),number(unicode)}
+                                          for Reminder:{Recurrence (as above),len,0x00,string(unicode)}
+                                          for Birthday:{byte1,byte2,alarm(4 bytes),yearofbirth,alarmtype,len,string(unicode)}
+                                                    byte1 and byte2 may vary (???). Usually are 0x00 both (but not always)
+                                                    In Birthday, the Year in the common part, usually contains a strange year.
+                                                    So, don&#39;t consider it as Year of note, neither year of BirthDay (for Year of
+                                                    Birthday use the value described below).
+                                          where alarm=32-bit integer that is the number of seconds between the desired
+                                                  alarm time and 11:59:58pm on the birthday.For &quot;No Alarm&quot;, the value is
+                                                  0x0000FFFF (65535).
+                                                YearOfBirth=used instead of the one in the common part of the entry (see above)
+                                                  but only when reading birthday entries. For storing entries, this field does
+                                                  not exist.
+                                                AlarmType: 0x00 - Tone, 0x01 - Silent
+?   s???                    { 0x0021 }
+?   r???                    { 0x0022, 0x5A, 0x00 }
+?   s???                    { 0x0025 }
+?   r???                    { 0x0026, 0x04, 0x00 }
+?   s                       { 0x0029 }
+?   r                       { 0x002A, 0x04, 0x00 }
+    s Get first free pos    { 0x0031 }
+    r Get first free pos    { 0x0032, location (2bytes) }
+    s Get notes info        { 0x003a, 0xFF, 0xFE}
+    r Get notes info        { 0x003b, how many notes used (2 bytes), 0x01, 0x07, { two bytes with location for each note} *}
+?   s Get calendar note??   { 0x003E, location (2 bytes) }
+?   r Get calendar note??   { 0x003F, location (2bytes), ... }
+0x14:
+    s Get Picture Image     { 0x0007, location, number[2 bytes], 0x00, 0x64 }
+    r Get Picture Image     { 0x0008, 0x07, location, number[2 bytes], 0x07, ??[38],
+                                     width, height, lenH, lenL, {bitmap}, 0x00, 0x00, text len, text(coded like in SMS)...}
+    r Get SMS failed        { 0x0009, 0x02 },
+    s Get SMS status        { 0x0036, 0x64 }
+    r Get SMS Status        { 0x0037, 0x05/0x03, 0x01, 0x00, 0x00,
+                              a (2 octets), b (2 octets), c (2 octets),
+                              d (2 octets), e (2 octets), 0x00
+                              where:
+                              a - according to P.Kot:
+                                Number of locations in &quot;fixed&quot; memory. These are all
+                                Templates entries in my Nokias 6210 (NPE-3 (c) NMP V05.36
+                                14-11-01, NPE-3 (c) NMP V05.27 01-08-01).
+                                I can&#39;t remove any of Templates entries in my phone.
+                                Marcin Wiącek: Rather not ! I don&#39;t agree.
+                                I have 0x00, 0x0f and 10 templates and 3 SMS
+                                and 10 Picture Images.
+                              b - Number of used messages in phone memory. These
+                                are messages manually moved from the other folders.
+                                Picture messages are saved here.
+                              c - Number of unread messages in phone memory. Probably
+                                only smart msssages.
+                              d - Number of used messages in SIM memory. These are
+                                either received messages or saved into Outbox/Inbox.
+                                Note that you *can&#39;t* save message into this memory
+                                using &#39;Move&#39; option. Picture messages are not here.
+                              e - Number of unread messages in SIM memory
+
+    s Set Picture Image     { 0x0050, 0x07, location, number[2 bytes], 0x07, ??[38],
+                                     width, height, lenH, lenL, {bitmap}, 0x00, 0x00, text len, text(coded like in SMS)...}
+                              std. size: 72x28
+    r Set Picture Image     { 0x0051, location, number[2 bytes], 0x07 }
+    s Set SMS name          { 0x0083,folder,location(2bytes),name(Unicode),0x00 , 0x00}
+    r Set SMS name          { 0x0084,folder,0x00, 0x00, name (Unicode),0x00,0x00}
+    s List Picture Images   { 0x0096, location, 0x0f, 0x07 }
+                              where location:
+                     LM tries with 0x09, 0x11, 0x19, 0x21, 0x29, 0x31, 0x39, 0x41, 0x49
+                 Returned value with 0x21
+    r List Picture Images   { 0x0097, number of pictures[2 bytes], number1[2 bytes], number2[2 bytes], ..., }
+    s Write SMS to folder   { 0x0104, status, folder ID, location(2 bytes), 0x02, 0x01, SMS stuff ... }
+    r Write SMS to folder   { 0x0105, folder ID, location(2 bytes), 0x00 }
+    r Write SMS to folder   { 0x0106, 0x02 (write failed errorcode ?) }
+    s Get SMS from folder   { 0x0107, folderID, location(2 bytes), 0x01, 0x65, 0x01}
+                            where: folderID - see 0x14/0x017B
+    r Get SMS from folder   { 0x0108, status, folderID, 0x00, location, type, sender number,...}
+
+                            where: status=0x01 - reveived/read
+                      0x03 - received/unread
+                      0x05 - stored/sent
+                      0x07 - stored/not sent
+
+                where: folderID - see 0x14/0x017B
+
+                            where: type=0x00 - received SMS
+                    0x01 - delivery report
+                    0x02 - stored SMS
+                    0x07 - picture message
+    s Delete SMS message    { 0x010a, folderID, location(2 bytes), 0x01 }
+    r Delete SMS            { 0x010b }
+    s Get folder status     { 0x016b, folderID, 0x0F, 0x01}
+                            where: folderID - see 0x14/0x017B
+    r Get folder status     { 0x016c, number of entries (2 bytes), entry1number (2 bytes), entry2number(2 bytes), ....}
+    s Get folder names      { 0x017A, 0x00, 0x00}
+    r Get folder names      { 0x017B, number of strings, folderID, name1, 0x00, folderID, name2, 0x00, name3, 0x00,...}
+                            where: folderID=0x08 - Inbox
+                                            0x10 - Outbox
+                                            0x18 - Archive
+                                            0x20 - Templates
+                                            0x29 - first &quot;My folders&quot;
+                                            0x31 - second &quot;My folders&quot;
+                                            0x39 - third -&quot;-
+                                            and so on
+0x17:
+    s Get Battery info      { 0x0002 }
+    r Get Battery info      { 0x0003, 0x0b, batt%, 0x14?, 0x01? }
+0x19: Phone clock &amp; alarm
+
+    These frames are like the same frames subtypes in 0x11 in 6110
+
+    s set date and time     { 0x0060, 1,1,7,yearh,yearl,month,mday,hour,min,0x00 }
+    r date and time set     { 0x0061 }
+    s get date and time     { 0x0062 }
+    r date and time recvd   { 0x0063,date_set?,time_set?,?,?,yearh,yearl,month,mday,hour,min,second }
+                            where: date_set &amp; time_set==0x01 - set
+                                            0x00 - not set, ?,?,yearh,yearl,month,mday,hour,min,second
+                                                               not available in frame
+    s set alarm             { 0x006b, 1,32,3,0x02(on-off),hour,min,0x00 }
+    r alarm set             { 0x006c }
+    s get alarm             { 0x006d }
+    r alarm received        { 0x006e,?,?,?,?,alrm(==2:on),hour,min }
+
+    These are new (?)
+
+?   s ??                    { 0x0083, id }
+?   r ??                    { 0x0084, 0x01, 0x40, 0x03, id, 0x00, 0x00 }
+?   r ??                    { 0x0084, 0x01, 0x40, 0x03, id, 0x00, 0x01 }
+?   r ??                    { 0x0084, 0x01, 0x40, 0x03, id, 0x01, 0x00 }
+                            where: id=0x27,0x2a,0x32,0x28,0x40
+0x1b:
+    s Get IMEI              { 0x0001 }
+    r Get IMEI              { 0x0002, {IMEI(ASCII)}, 0x00 }
+    s get HW&amp;SW version     { 0x0003, 0x01, 0x32 }
+    r get HW&amp;SW version     { 0x0004, &quot;V &quot; &quot;firmware\n&quot; &quot;firmware date\n&quot;
+                              &quot;model\n&quot; &quot;(c) NMP.&quot; 0x00 0xff[14] }
+0x1f:
+    s ???                   { 0x0010, 0x02, 0x00, 0xff, 0xff }
+    r ???                   { 0x0011, length, 0x00, {block}[length] }
+                              where block: { unicode letter[2], 0x0000,
+                                0x00, 0x55, ??, ?? }
+    s Set ringtone          { 0x011f, 0x00, location, 0x00, name(Unicode),
+                              ringtone(format the same to 0x40/0x019e and 0x40/0x01a0) }
+                              where: location: 0x87 to 0x8b on N6210
+                                               0x74 to ... on N7110
+    s Get ringtone          { 0x0122, 0x00, location}
+    r Get ringtone          { 0x0123, 0x00, location, name(Unicode), 0x00,...,0x00, 0x02,0xFC,0x09(ringtone contenst)}
+    r Get ringtone error    { 0x0124, ...}
+0x39:
+    s get profile feature   { 0x0101, 0x01, 0x01, 0x01, number1, number2}
+                            where number1: from 0x00 to 0x07 (for each profile ?)
+                                  number2: 0x00 - 0x09, 0x0A, 0x16 - 0x19, 0x1a - 0x1f, 0x20 - 0x29, 0x2a - 0x2c, 0xff
+                                     where 0x09: keypad tones                                           0x02: incoming call alert                                           0x03: ringtone number
+                                           0x04: ringing volume
+                                           0x05: message alert tone                                           0x06: vibra                                           0x07: warning tones                                           0x08: caller groups alert for                                        0x09: automatic answer
+                                           0xff: name
+    r get profile feature   { 0x0102, 0x01, 0x02, number2, block...}
+                            for number2==0xff: (Profile Name)
+                              block: 0x01, length, name(Unicode), 0x00, 0x00
+                            for number2==0x00: (Keypad Tones)
+                              block: 0x01, 0x01, 0x01, Type, 0x01
+                              where: Type : 0x00 = Off
+                                            0x01 to 0x03 = Level1 .. Level3
+                            for number2==0x02: (Incoming Call Alert)
+                              block: 0x01, 0x01, 0x01, Type, 0x01
+                              where: Type : 0x00 = Ringing
+                                            0x01 = Ascending
+                                            0x02 = Ring Once
+                                            0x03 = Beep Once
+                                            0x05 = Off
+                            for number2==0x03: (Ringtone Number)
+                              block: 0x01, 0x01, 0x01, Number, 0x01
+                              where: Number : 0x40 to 0x62 - gives number of factory ringtone. The number of menu is
+                                              obtained by doing (Number - 0x3f);
+                              where: Number : 0x89 to 0x8d - gives number of uploaded ringtone. The number of menu is
+                                              obtained by doing (Number - 0x65),while the uploaded ringtone number is
+                                              obtained by doing (Number - 0x88).
+                            for number2==0x04: (Ringing volume)
+                              block: 0x01, 0x??, 0x??, Volume, 0x01
+                              where: Volume : 0 = Level1 .. to 4 = Level5
+                            for number2==0x05: (Message Alert Tone)
+                              block: 0x01, 0x01, 0x??, Type, 0x01
+                              where: Type : 0x00 = Off
+                                            0x01 = Standard
+                                            0x02 = Special
+                                            0x03 = Beep Once
+                                            0x04 = Ascending
+                            for number2==0x06: (Vibration)
+                              block: 0x01, 0x??, 0x??, Switch, 0x01
+                              where: Switch : 0 = Off, 1 = On
+                            for number2==0x07: (Warning Tones)
+                              block: 0x01, 0x??, 0x??, Switch, 0x01
+                              where: Switch : 0 = Off, 1 = On
+                            for number2==0x08: (Caller groups Alert for)
+                              block: 0x01, 0x??, 0x??, Callers, 0x01
+                              where: Callers : 0xff = All calls alert (Read below *)
+                                               0x01 = Family
+                                               0x02 = VIP
+                                               0x04 = Friends
+                                               0x08 = Colleagues
+                                               0x10 = Others
+                                     All logical OR among groups are valid, so if you select from one phone&#39;s profile
+                                     alert for Friends and Colleagues, a 0x0c will return (because 0x04 OR 0x08 = 0x0c).
+                                 (*) If Callers==0xff, means &quot;Alert for All calls&quot;. Then, in this case, you don&#39;t
+                                     need to read other groups selection.
+                            for number2==0x09: (Automatic answer)
+                              block: 0x01, 0x??, 0x??, Switch, 0x01
+                              where: Switch : 0 = Off, 1 = On
+                                N.B. This feature is valid for Handsfree and Headset profiles only!
+    s ???                   { 0x0101, 0x04, 0x01, 0x01, 0xff, 0x03 }
+    r ???                   { 0x0102, 0x01, 0x02, 0x03, 0x01, 0x01, 0x01, 0x85/0x087 }
+
+    s ?                     { 0x0105}
+    r ?                     { 0x0106, 0x01, 0x04}
+0x3f: WAP
+    s Enable WAP frames     { 0x0000}
+    r Enable WAP frames     { 0x0002, 0x01}
+
+    s  ??                   { 0x0003}
+    r  ??                   { 0x0004}
+
+    s Get WAP bookmark      { 0x0006, 0x00, location}
+                              where location: 0 - 14
+    r Get WAP bookmark      { 0x0007, 0x00, name_len, name(unicode),
+                              url_len, url(unicode), 0x01,0x80,0x00[7]}
+    r Get WAP bookmark err  { 0x0008, error }
+                              where error:
+                                0x00(?)invalid position
+                                0x01   user inside &quot;Bookmarks&quot; menu. Must leave it
+                                0x02   invalid/too high/empty location
+
+    s Set WAP bookmark      { 0x0009, 0xff, 0xff, name_len, name(unicode),
+                              url_len, url(unicode), 0x01,0x80,0x00[7] }
+                              Note: bookmark is added to the first free location.
+    r Set WAP bookmark OK   {+0x01, 0x36, 0x0a, block }
+                              where block:
+                                0x0a, location_of_just_written_bookmark(?),
+                                0x00, next_free_location(?)
+    r Set WAP bookmark err  {+0x01, 0x36, 0x0b, error }
+                              where error:
+                               0x04 - memory is full
+                               0x01 - we are in the bookmark menu
+                               0x00 - unknown reason for now ;(
+
+?   s Delete WAP bookmark   { 0x000c, 0x00, location }
+                              where: location = 0-14
+?   r Delete WAR bookmark OK{ 0x000d }
+?   r Delete WAPbookmark err{ 0x000e, 0x02 }
+
+    s ??                    { 0x000F}
+    r ??                    { 0x0010, 0x00}
+
+    s Get WAP settings 1    { 0x0015, location}
+                            where location: 0x00 - 0x05
+    r Get WAP settings 1 OK { 0x0016, title length, title (Unicode), URL length, URL(Unicode),con_type, ???[6 bytes],location, ???[5 bytes],security,...}
+                            where:
+                              con_type: 0x00 - temporary
+                                        0x01 - continuous
+                              location: when use &quot;Get WAP settings 2 frame&quot;, must give it
+                              security: 0x00 = no, 0x01 = yes
+    r Get WAP settings 1 err{ 0x0017, error }
+                              where error:
+                                0x01   user inside &quot;Settings&quot; menu. Must leave it
+                                0x02   invalid/too high/empty location
+    s Get WAP settings 2    { 0x001b, location}
+                            where location: 0x00 - 0x1d (you get it in &quot;Get WAP settings 1&quot; frame)
+    r Get WAP settings 2 OK { 0x001c, 0x01, type, frame...}
+                            where type : 0x00 - SMS bearer
+                                           frame:
+                                             service_num_len, service_num (Unicode), server_num_len, server_num(Unicode)
+                                         0x01 - data bearer
+                                           frame:
+                                             auth, call_type, call_speed, ?, IP len, IP (Unicode), dialup len, dialup (Unicode),
+                                             user len, user (Unicode), password len, password (Unicode)
+                                             where auth: 0x00 - normal, 0x01 - secure
+                                                   call_type: 0x00 - analogue, 0x01 - ISDN
+                                                   call_speed: 0x00 - 9600, 0x01 - 14400
+                     0x02 - USSD bearer
+                       frame: type, service number len/IP len,service num (Unicode)/IP (Unicode),service code len,
+                              service code (Unicode)
+                         where type: 0x01 - service number, 0x00 - IP
+    r Get WAP settings 2 err{ 0x001d,error}
+                            where: error=0x05
+0x40: Security commands
+?   s ???(N6150)            { 0x08, 0x00 }
+?   r ???(N6150)            { 0x08 }
+    s Enable extended cmds  { 0x64, cmd }
+                            where cmd: 0x00: off
+                                       0x01: on
+                                       0x03: reset (doesn&#39;t ask for PIN again)
+                                       0x04: reset (PIN is requested)
+                                             In 5110 makes reset without PIN
+                                       0x06: CONTACT SERVICE!!! Don&#39;t try it!
+    s Reset phone settings  { 0x65, value, 0x00 }
+                            where value: 0x08 - reset UI (User Interface) settings
+                             0x38 - reset UI, SCM and call counters
+                                         0x40 - reset test 36 in netmonitor
+    r Reset phone settings  { 0x65, 0x00 }
+    s Get IMEI              { 0x66 }
+    r Get IMEI              { 0x66, 0x01, IMEI, 0x00}
+    s (ACD Readings)?(N6150 { 0x68 }
+    r (ACD Readings)?(N6150 { 0x68, ... }
+    s Get Product Profile
+      Settings              { 0x6a}
+    r Get Product Profile
+      Settings              { 0x6a, 4bytes with Product Profile Settings }
+    s Set Product Profile
+      Settings              { 0x6b, 4bytes with Product Profile Settings }
+    r Set Product Profile
+      Settings OK ?         { 0x6b }
+    s Get code              { 0x6e, code }
+                            where code: see 0x08/0x0004 (no allowed code !)
+    r Get code              { 0x6e, code, allowed, allowed? (sec code (text)) }
+                            where code: see 0x08/0x0004
+                                  allowed: 0: no
+                                           1: yes
+?   s ????                  { 0x74, 0x01, 0x01, 0x0e }
+?   r ????                  { 0x74 }
+    s Call commands         { 0x7c, block }
+                            where where: command, (values)
+                      command: 0x01
+                      values: number(ASCII), 0x00 - makes voice call
+                  command: 0x02 - answer call
+                  command: 0x03 - release call
+    r Call commands         { 0x7c, command }
+    s Netmonitor            { 0x7e, field }
+                            where: field: 00: next
+                                          F0: reset
+                                          F1: off
+                                          F2: field test menus
+                                          F3: developer menus
+    s Get simlock info      { 0x8a, 0x00}
+    r Get simlock info      { 0x8a, 0x00, 0x01, lockstype, locksclosed, 0x00, 0x00, locksinfo(lock1,4,2,3), counter1,counter2,counter4,counter4,0x00 }
+                            where: lockstype:   bit1,bit2,bit3,bit4 - if set, selected lock is user lock
+                                   locksclosed: bit1,bit2,bit3,bit4 - if set, selected lock is closed
+                                   counter1 - counter4: counters for locks
+    s Buzzer pitch          { 0x8f, volume, hzLO, hzHI }
+                            if volume and hz is 0, it&#39;s off
+    r Buzzer pitch          { 0x8f}
+    s ACD Readings ?        { 0x91, parameter?(0x02,0x03,0x04,0x05,0x07) }
+    r ACD Readings ?        { 0x91, parameter?, value? }
+?   s ???(N6150)            { 0x98, 0x00 }
+?   r ???(N6150)            { 0x98, 0x00, 0x04 }
+    s Get bin ringtone      { 0x9e, location }
+                            where: location=0,1,etc.
+    r Get bin ringtone      { 0x9e, location, error, contents... }
+                            where location=0,1,etc.
+                                  error=0x0a, ringtone NOT available
+                                        0x00, OK
+    s Set bin ringtone      { 0xa0, location, 0x00, contenst... }
+                            where: location=0,1,etc.
+    r Set bin ringtone      { 0xa0, location, error }
+                              where location=0,1,etc.
+                                    error=0x0a, ringtone NOT set
+                                          0x00, ringtone set OK
+?   r Get MSid              { 0xb5, 0x01, 0x2f, msid, 0x25 }
+    s Get info about phone  { 0xc8, 0x01 }
+    r Get info about phone  { 0xc8, 0x01, 0x00, &quot;V &quot;, &quot;firmware&quot;, 0x0a, &quot;firmware date&quot;, 0x0a, &quot;model&quot;, 0x0a, &quot;(c) NMP.&quot;, 0x00 }
+    s Get MCU SW Checksum   { 0xc8, 0x02 }
+    r Get MCU SW Checksum   { 0xc8, 0x02, 0x00, checksum (4 bytes),0x00 }
+    s DPS External SW       { 0xc7, 0x03 }
+    r DSP External SW       { 0xc7, 0x03, 0x00, string,0x00 }
+    s Get HW                { 0xc8, 0x05 }
+    r Get HW                { 0xc8, 0x05, 0x00, HW version (4 bytes), 0x00 }
+    s Get &quot;Made&quot; Date       { 0xc8, 0x05 }
+    r Get &quot;Made&quot; Date       { 0xc8, 0x05, 0x00, date(4 bytes), 0x00 }
+    s Get DSP Internal SW   { 0xc8, 0x09 }
+    r Get DSP Internal SW   { 0xc8, 0x09, 0x00, version (1 bytes), 0x00 }
+    s Get PCI version       { 0xc8, 0x0b }
+    r Get PCI version       { 0xc8, 0x0b, 0x00, version, 0x00 }
+    s Get system ASIC       { 0xc8, 0x0c }
+    r Get system ASIC       { 0xc8, 0x0c, 0x00, string, 0x00 }
+    s Get COBBA             { 0xc8, 0x0d }
+    r Get COBBA             { 0xc8, 0x0d, 0x00, string, 0x00 }
+    s Get PLUSSA            { 0xc8, 0x0e }
+    r Get PLUSSA            { 0xc8, 0x0e, available, 0x00 }
+                            where available: 0x01: not available
+    s Get CCONT             { 0xc8, 0x0f }
+    r Get CCONT             { 0xc8, 0x0f, available, 0x00 }
+                            where available: 0x01: not available
+    s Get PPM version       { 0xc8, 0x10 }
+    r Get PPM version       { 0xc8, 0x10, 0x00, &quot;V &quot;, &quot;firmware&quot;, 0x0a, &quot;firmware date&quot;, 0x0a, &quot;model&quot;, 0x0a, &quot;(c) NMP.&quot;, 0x00 }
+    s Get PPM info          { 0xc8, 0x12 }
+    r Get PPM info          { 0xc8, 0x12, 0x00, PPM version (&quot;B&quot;, &quot;C&quot;, etc.), 0x00 }
+    s Set HW version        { 0xc9, 0x05, version, 0x00 }
+    s Get Product Code      { 0xca, 0x01 }
+    r Get Product Code      { 0xca, 0x01, 0x00, number, 0x00 }
+    s Get Order Number      { 0xca, 0x02 }
+    r Get Order Number      { 0xca, 0x02, 0x00, string, 0x00 }
+    s Get Prod.Ser.Number   { 0xca, 0x03 }
+    r Get Prod.Ser.Number   { 0xca, 0x03, 0x00, number, 0x00 }
+    s Get Basic Prod.Code   { 0xca, 0x04 }
+    r Get Basic Prod.Code   { 0xca, 0x04, 0x00, number, 0x00 }
+    s Set Product Code      { 0xcb, 0x01, product code, 0x00 }
+    s Set Order Number      { 0xcb, 0x02, number, 0x00 }
+    s Set Prod.Ser.Number   { 0xcb, 0x03, number, 0x00 }
+    s Get (original ?)IMEI  { 0xcc, 0x01 }
+    r Get (original ?)IMEI  { 0xcc, 0x01, IMEI, 0x00 }
+    s Get Manufacture Month { 0xcc, 0x02 }
+    r Get Manufacture Month { 0xcc, 0x02, 0x00, string, 0x00 }
+    s Get Purchare date     { 0xcc, 0x04 }
+    r Get Purchare date     { 0xcc, 0x04, 0x00, string, 0x00 }
+    s Set &quot;Made&quot; date       { 0xcd, 0x02, string, 0x00 }
+    s Make &quot;all&quot; phone tests{ 0xce,0x1d,0xfe,0x23,0x00,0x00}
+    s Make one phone test   { 0xce,0x1d,num1,num2,num3,num4}
+                            Where num1-num4: 0x02,0x00,0x00,0x00;
+                                             0x04,0x00,0x00,0x00;
+                                             0x08,0x00,0x00,0x00;
+                                             0x10,0x00,0x00,0x00;
+                                             0x20,0x00,0x00,0x00;
+                                             0x40,0x00,0x00,0x00;
+                                             0x80,0x00,0x00,0x00;
+                                             0x00,0x01,0x00,0x00;
+                                             0x00,0x02,0x00,0x00;
+                                             0x00,0x04,0x00,0x00; - &quot;Power off&quot;
+                                               No test for &quot;Security data&quot;
+                                             0x00,0x10,0x00,0x00;
+                                             0x00,0x20,0x00,0x00;
+                                             0x00,0x40,0x00,0x00;
+                                             0x00,0x80,0x00,0x00;
+                                             0x00,0x00,0x01,0x00;
+                                             ....
+                                             0x00,0x00,0x10,0x00;
+    s Result of phone tests { 0xcf }
+    r Result of phone tests { 0xcf, number of tests, results of next tests }
+?   s ???                   { 0xd1 }
+?   r ???(N5110)            { 0xd1, 0x00, 0x1d, 0x00, 0x01, 0x08, 0x00 }
+    s LCD Test              { 0xd3, value }
+                            where value: 0x03, 0x02 - 1&#39;st test
+                             0x03, 0x01 - 2&#39;nd test
+                                         0x02, 0x03 - clears screen
+    s ACD Readings(N6150)?  { 0xd4, 0x02, 0x00, 0x02, 0x00, 0x0e, 0x01}
+    r ACD Readings(N6150)?  { 0xd4, 0x02, 0x00, 0x02, 0x00, 0x0e, 0x01, ?}
+    r Function of           { 0xff, 0x8c }
+      0x40 msgtype not
+      supported ?
+0x78:
+    s Status confirm        { 0x0201, 0x03 }
+    r Incoming call seq1    { 0x0102 0x0e 0x03 }
+    r Incoming call seq2    { 0x0102 0x7e 0x01 }
+0x79:
+    s CarKit enable         { 0x0201 0x01 0x62 0x00 }
+    r CarKit enabled        { 0x0201 0x02 0x06 0x00 &quot;V &quot; {version} &quot;\nHFU&quot;
+                                     0x00 }
+0x7a: settings
+    r Set setting           { 0x01eb, number, 0x00 }
+    s Set setting           { 0x01ec, number, contents }
+                            where for number:
+                              0x02 (startup text) : 0x00, text (Unicode)
+                              0x15 (startup logo) : 0x00, 0x00, 0x00, 0x04,
+                                        0xc0, 0x02, 0x00, height, 0xc0, 0x03, 0x00, width,
+                        0xc0, 0x04, 0x03, 0x00, {bitmap} }
+                                where width, height, {bitmap}: see 0x7a/0x01ed 0x15
+    s Get setting           { 0x01ee, number}
+                            where number: 0x01 - 0x1e
+                              0x02: startup text
+                              0x15: startup logo
+                              0x1c: security code
+    r Get setting           { 0x01ed,number, 0x00, contents}
+                            where for number:
+                              0x02 (startup text) : 0x00, text (Unicode)
+                              0x15 (startup logo) : 0x00, 0x00, 0x00, 0x04,
+                                        0xc0, 0x02, 0x00, height, 0xc0, 0x03, 0x00, width,
+                                        0xc0, 0x04, 0x03, 0x00, {bitmap} }
+                                where height: 60 (0x3c) or 65
+                                      width:  96 (0x60)
+                                      {bitmap}: like other bitmaps but pixels
+                                                placed vertically.
+                              0x1c (security code): {code(ascii)}, 0x00
+0x7f: Acknowledge(FBUS/IRDA){+type, seq }
+      Acknowledge(MBUS)...
+0xd0:
+    s Power on message seq1 {+04 }
+    r Power on message seq1 {+05 }
+0xd1:
+    s Get HW&amp;SW version     { 0x0003, 0x00 }
+0xd2:
+    r Get HW&amp;SW version     { 0x0003 &quot;V &quot; &quot;firmware\n&quot; &quot;firmware date\n&quot;
+                              &quot;model\n&quot; &quot;(c) NMP.&quot; }
+0xf4: Power on message seq 2
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="n6510.html" class="btn btn-neutral float-left" title="Nokia 6510" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="carkit.html" class="btn btn-neutral float-right" title="Nokia 6210/6310, CARC91, PC Experiment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backup &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bitmap" href="bitmap.html" />
+    <link rel="prev" title="libGammu C API" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Backup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/backup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="backup">
+<h1>Backup<a class="headerlink" href="#backup" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadSMSBackupFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddSMSBackupFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearSMSBackup” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FreeSMSBackup” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SaveBackupFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GuessBackupFormat” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadBackupFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ClearBackup” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FreeBackup” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetBackupFormatFeatures” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetBackupFileFeatures” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SMS_Backup">
+<span class="target" id="structGSM__SMS__Backup"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SMS_Backup</span></span></span><a class="headerlink" href="#c.GSM_SMS_Backup" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS backup data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SMS_Backup.SMS">
+<span class="target" id="structGSM__SMS__Backup_1a181efe72182d90cf762138f02ccd0d4f"></span><a class="reference internal" href="message.html#c.GSM_SMSMessage" title="GSM_SMSMessage"><span class="n"><span class="pre">GSM_SMSMessage</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">SMS</span></span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#c.GSM_BACKUP_MAX_SMS" title="GSM_BACKUP_MAX_SMS"><span class="n"><span class="pre">GSM_BACKUP_MAX_SMS</span></span></a><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SMS_Backup.SMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>List of SMS messages. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Backup">
+<span class="target" id="structGSM__Backup"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup</span></span></span><a class="headerlink" href="#c.GSM_Backup" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Backup data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.IMEI">
+<span class="target" id="structGSM__Backup_1a1b819892ce3b8026aa6fbc5f8b1ecaaf"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IMEI</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_IMEI_LENGTH</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.IMEI" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IMEI of phone which has been backed up </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Model">
+<span class="target" id="structGSM__Backup_1ac8a3095462657364dae4b70f2f3776ad"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Model</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_MODEL_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="n"><span class="pre">GSM_MAX_VERSION_LENGTH</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Model" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Model of phone which has been backed up </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Creator">
+<span class="target" id="structGSM__Backup_1a9317690708d71c21b041325d2431d597"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Creator</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Creator" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of program which created backup </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.DateTime">
+<span class="target" id="structGSM__Backup_1aadbfde3c857ca41f4fdaa7633c3a7a92"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTime</span></span></span><a class="headerlink" href="#c.GSM_Backup.DateTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Timestamp of backup </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.DateTimeAvailable">
+<span class="target" id="structGSM__Backup_1aec04d6cf1692cb25f3ace3b2e0e95f15"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTimeAvailable</span></span></span><a class="headerlink" href="#c.GSM_Backup.DateTimeAvailable" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether timestamp is present </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.MD5Original">
+<span class="target" id="structGSM__Backup_1a0bf35cbe82b8a71b6ee5e7ad4bae9984"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MD5Original</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">100</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.MD5Original" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Original MD5 of backup from file </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.MD5Calculated">
+<span class="target" id="structGSM__Backup_1aca6ee718c035ca773bd5688b824435ae"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MD5Calculated</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">100</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.MD5Calculated" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calculated MD5 of backup </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.PhonePhonebook">
+<span class="target" id="structGSM__Backup_1a8aa1ce379a6a8c3926b0dd8eb20a13bb"></span><a class="reference internal" href="memory.html#c.GSM_MemoryEntry" title="GSM_MemoryEntry"><span class="n"><span class="pre">GSM_MemoryEntry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PhonePhonebook</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_PHONEPHONEBOOK</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.PhonePhonebook" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone phonebook </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.SIMPhonebook">
+<span class="target" id="structGSM__Backup_1ab49853e13a6204d798a77b441d9fdc57"></span><a class="reference internal" href="memory.html#c.GSM_MemoryEntry" title="GSM_MemoryEntry"><span class="n"><span class="pre">GSM_MemoryEntry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">SIMPhonebook</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_SIMPHONEBOOK</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.SIMPhonebook" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SIM phonebook </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Calendar">
+<span class="target" id="structGSM__Backup_1a73b3c4d539a86bad2a99ec1868377528"></span><a class="reference internal" href="calendar.html#c.GSM_CalendarEntry" title="GSM_CalendarEntry"><span class="n"><span class="pre">GSM_CalendarEntry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Calendar</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAXCALENDARTODONOTES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Calendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.CallerLogos">
+<span class="target" id="structGSM__Backup_1a1569f841fbc75ef12c0787dca6f3ad54"></span><a class="reference internal" href="bitmap.html#c.GSM_Bitmap" title="GSM_Bitmap"><span class="n"><span class="pre">GSM_Bitmap</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">CallerLogos</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_CALLER</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.CallerLogos" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Caller logos </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.SMSC">
+<span class="target" id="structGSM__Backup_1abc2ef893d500d2917586ca93efa672a4"></span><a class="reference internal" href="message.html#c.GSM_SMSC" title="GSM_SMSC"><span class="n"><span class="pre">GSM_SMSC</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">SMSC</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_SMSC</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.SMSC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SMS configuration </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.WAPBookmark">
+<span class="target" id="structGSM__Backup_1a77d1f4890bdb84e443cd77253a10930f"></span><a class="reference internal" href="wap.html#c.GSM_WAPBookmark" title="GSM_WAPBookmark"><span class="n"><span class="pre">GSM_WAPBookmark</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">WAPBookmark</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_WAPBOOKMARK</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.WAPBookmark" title="Permalink to this definition"></a><br /></dt>
+<dd><p>WAP bookmarks </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.WAPSettings">
+<span class="target" id="structGSM__Backup_1a835c0fe0f686c7300edfadb2c003f486"></span><a class="reference internal" href="wap.html#c.GSM_MultiWAPSettings" title="GSM_MultiWAPSettings"><span class="n"><span class="pre">GSM_MultiWAPSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">WAPSettings</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_WAPSETTINGS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.WAPSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>WAP settings </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.MMSSettings">
+<span class="target" id="structGSM__Backup_1a50737954d35c91343355393619c9b22c"></span><a class="reference internal" href="wap.html#c.GSM_MultiWAPSettings" title="GSM_MultiWAPSettings"><span class="n"><span class="pre">GSM_MultiWAPSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">MMSSettings</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_MMSSETTINGS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.MMSSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>MMS settings </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.SyncMLSettings">
+<span class="target" id="structGSM__Backup_1a1cfe1a8eb1cb24c5fec1e67574b109de"></span><a class="reference internal" href="settings.html#c.GSM_SyncMLSettings" title="GSM_SyncMLSettings"><span class="n"><span class="pre">GSM_SyncMLSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">SyncMLSettings</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_SYNCMLSETTINGS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.SyncMLSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>SyncMC settings </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.ChatSettings">
+<span class="target" id="structGSM__Backup_1ac4ec3b7fffaf883d91eea6635b1db0a4"></span><a class="reference internal" href="settings.html#c.GSM_ChatSettings" title="GSM_ChatSettings"><span class="n"><span class="pre">GSM_ChatSettings</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">ChatSettings</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_CHATSETTINGS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.ChatSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Chat settings </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Ringtone">
+<span class="target" id="structGSM__Backup_1a77bb3c1169aa8e01a00ad45ff92eb41f"></span><a class="reference internal" href="ringtone.html#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Ringtone</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_RINGTONES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Ringtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtones </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.ToDo">
+<span class="target" id="structGSM__Backup_1a866166b811af0a70ff385c7689f18785"></span><a class="reference internal" href="calendar.html#c.GSM_ToDoEntry" title="GSM_ToDoEntry"><span class="n"><span class="pre">GSM_ToDoEntry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">ToDo</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAXCALENDARTODONOTES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.ToDo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>To do tasks </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Profiles">
+<span class="target" id="structGSM__Backup_1abbe40ba6052aaf955f05fcbb2cdfa4a2"></span><a class="reference internal" href="settings.html#c.GSM_Profile" title="GSM_Profile"><span class="n"><span class="pre">GSM_Profile</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Profiles</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_PROFILES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Profiles" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Progiles </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.FMStation">
+<span class="target" id="structGSM__Backup_1a35b91030489ba677b9048e69e2c6c526"></span><a class="reference internal" href="settings.html#c.GSM_FMStation" title="GSM_FMStation"><span class="n"><span class="pre">GSM_FMStation</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">FMStation</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_FMSTATIONS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.FMStation" title="Permalink to this definition"></a><br /></dt>
+<dd><p>FM stations </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.GPRSPoint">
+<span class="target" id="structGSM__Backup_1a1a23da7660ad9d2ede94216bffa35776"></span><a class="reference internal" href="settings.html#c.GSM_GPRSAccessPoint" title="GSM_GPRSAccessPoint"><span class="n"><span class="pre">GSM_GPRSAccessPoint</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GPRSPoint</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_GPRSPOINT</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.GPRSPoint" title="Permalink to this definition"></a><br /></dt>
+<dd><p>GPRS configurations </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.Note">
+<span class="target" id="structGSM__Backup_1a4c91b05394a2457a189e7e73b74e8f20"></span><a class="reference internal" href="calendar.html#c.GSM_NoteEntry" title="GSM_NoteEntry"><span class="n"><span class="pre">GSM_NoteEntry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Note</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_BACKUP_MAX_NOTE</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Backup.Note" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Notes </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.StartupLogo">
+<span class="target" id="structGSM__Backup_1a62d2e581379a3ac2a8746973d7ded5d2"></span><a class="reference internal" href="bitmap.html#c.GSM_Bitmap" title="GSM_Bitmap"><span class="n"><span class="pre">GSM_Bitmap</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">StartupLogo</span></span></span><a class="headerlink" href="#c.GSM_Backup.StartupLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Statup logo </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Backup.OperatorLogo">
+<span class="target" id="structGSM__Backup_1adc9eb2ad7d9f15de205db1c45f517f07"></span><a class="reference internal" href="bitmap.html#c.GSM_Bitmap" title="GSM_Bitmap"><span class="n"><span class="pre">GSM_Bitmap</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">OperatorLogo</span></span></span><a class="headerlink" href="#c.GSM_Backup.OperatorLogo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator logo </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat">
+<span class="target" id="group__Backup_1gac5caeb3f1a25ea794e6d5b01323717f1"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BackupFormat</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Backup data. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_Auto">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1a30bbb28b28da1ff28d25bcf061eaab20"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_Auto</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_Auto" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Compatibility with old gboolean used instead of format.</p>
+<p>File type is guessed for extension, non unicode format used for Gammu backup. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_AutoUnicode">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1a4f7c1b84426a6765db2cc98d019e32d1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_AutoUnicode</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_AutoUnicode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Compatibility with old gboolean used instead of format.</p>
+<p>File type is guessed for extension, unicode format used for Gammu backup. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_LMB">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1a305418409fcc4027dfc6fae85b211872"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_LMB</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_LMB" title="Permalink to this definition"></a><br /></dt>
+<dd><p>LMB format, compatible with Logo manager, can store phonebooks and logos. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_VCalendar">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1ae5f3b112aed4e63e8db9a43acb7afbd8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_VCalendar</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_VCalendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>vCalendar standard, can store todo and calendar entries. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_VCard">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1aaa60b4e6cc793686303984bc5a495797"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_VCard</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_VCard" title="Permalink to this definition"></a><br /></dt>
+<dd><p>vCard standard, can store phone phonebook entries. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_LDIF">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1aa3c28b032a17f89275b0db8b2a385669"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_LDIF</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_LDIF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>LDIF (LDAP Data Interchange Format), can store phone phonebook entries. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_ICS">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1ac9484cc9fdaae9665f5618d28da32362"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_ICS</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_ICS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>iCalendar standard, can store todo and calendar entries. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_Gammu">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1afc053c950d9d012526163d870b898798"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_Gammu</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_Gammu" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gammu own format can store almost anything from phone.</p>
+<p>This is ASCII version of the format, Unicode strings are HEX encoded. Use GSM_Backup_GammuUCS2 instead if possible. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_GammuUCS2">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1af2413c6b05e37085fd2a2fcfd1bf9ea3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_GammuUCS2</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_GammuUCS2" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gammu own format can store almost anything from phone.</p>
+<p>This is UCS2-BE version of the format. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_BackupFormat.GSM_Backup_VNote">
+<span class="target" id="group__Backup_1ggac5caeb3f1a25ea794e6d5b01323717f1ace08241c38d5e28a471a2e1e291dfcf7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_VNote</span></span></span><a class="headerlink" href="#c.GSM_BackupFormat.GSM_Backup_VNote" title="Permalink to this definition"></a><br /></dt>
+<dd><p>vNote standard, can store phone notes. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Backup_Info">
+<span class="target" id="structGSM__Backup__Info"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Backup_Info</span></span></span><a class="headerlink" href="#c.GSM_Backup_Info" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Information about supported backup features. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.GSM_BACKUP_MAX_SMS">
+<span class="target" id="gammu-backup_8h_1af054496b576dfb5ae317c62a6279df43"></span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BACKUP_MAX_SMS</span></span></span><a class="headerlink" href="#c.GSM_BACKUP_MAX_SMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maximal number of SMSes in backup.</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Todo:</span></em></dt>
+<dd><p>This should not be hardcoded. </p>
+</dd></dl>
+
+</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.html" class="btn btn-neutral float-left" title="libGammu C API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bitmap.html" class="btn btn-neutral float-right" title="Bitmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

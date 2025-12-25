@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ringtone &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Security" href="security.html" />
+    <link rel="prev" title="Nokia" href="nokia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Ringtone</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/ringtone.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ringtone">
+<h1>Ringtone<a class="headerlink" href="#ringtone" title="Permalink to this heading"></a></h1>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PHONE_RTTLPlayOneNote">
+<span class="target" id="gammu-ringtone_8h_1a61e9f8ac841d32557a48f126239b763e"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PHONE_RTTLPlayOneNote</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_RingNote" title="GSM_RingNote"><span class="n"><span class="pre">GSM_RingNote</span></span></a><span class="w"> </span><span class="n"><span class="pre">note</span></span>, <a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="n"><span class="pre">first</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PHONE_RTTLPlayOneNote" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play one note using state machine interface. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PHONE_Beep">
+<span class="target" id="gammu-ringtone_8h_1aa1ea8a14e9e467137f3bb424e87b087a"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PHONE_Beep</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PHONE_Beep" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Makes phone beek using state machine interface. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetRingtone">
+<span class="target" id="gammu-ringtone_8h_1a8a799a1ff78bb7f66f8e4a1a8140e3f6"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetRingtone</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Ringtone</span></span>, <a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="n"><span class="pre">PhoneRingtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Gets ringtone from phone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SetRingtone">
+<span class="target" id="gammu-ringtone_8h_1a4000d7eeb15f0cb305bc5ac8a0a13312"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SetRingtone</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Ringtone</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">maxlength</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SetRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets ringtone in phone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetRingtonesInfo">
+<span class="target" id="gammu-ringtone_8h_1a8579b77ec54216cb834b7a59b6b04049"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetRingtonesInfo</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="#c.GSM_AllRingtonesInfo" title="GSM_AllRingtonesInfo"><span class="n"><span class="pre">GSM_AllRingtonesInfo</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Info</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetRingtonesInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Acquires ringtone informaiton. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_DeleteUserRingtones">
+<span class="target" id="gammu-ringtone_8h_1a586d150e1814cbd0facb969ec04669d5"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_DeleteUserRingtones</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_DeleteUserRingtones" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Deletes user defined ringtones from phone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_PlayTone">
+<span class="target" id="gammu-ringtone_8h_1a6dcd3c2b9f8ba46d0a0198d10fa8dba8"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_PlayTone</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">Herz</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="n"><span class="pre">Volume</span></span>, <a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="n"><span class="pre">start</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_PlayTone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Plays tone. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_RingtoneConvert">
+<span class="target" id="gammu-ringtone_8h_1a66d649e09811baa08a17151685ba7939"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingtoneConvert</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">dest</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">src</span></span>, <a class="reference internal" href="#c.GSM_RingtoneFormat" title="GSM_RingtoneFormat"><span class="n"><span class="pre">GSM_RingtoneFormat</span></span></a><span class="w"> </span><span class="n"><span class="pre">Format</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_RingtoneConvert" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_ReadRingtoneFile">
+<span class="target" id="gammu-ringtone_8h_1a6bdebcb8eaff80b25b732a77a3d677fe"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ReadRingtoneFile</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">FileName</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_ReadRingtoneFile" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneFile">
+<span class="target" id="gammu-ringtone_8h_1a7c388d224f967b820f73d587f769a18a"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneFile</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">FileName</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneFile" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneOtt">
+<span class="target" id="gammu-ringtone_8h_1a5e85c20e11e9a1527791bb8ae2873279"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneOtt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneOtt" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneMidi">
+<span class="target" id="gammu-ringtone_8h_1a9141fc6e32de609823096c96af15ea26"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneMidi</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneMidi" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneIMelody">
+<span class="target" id="gammu-ringtone_8h_1ab5c7df8ed058055da2126e1512e183f7"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneIMelody</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneIMelody" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneWav">
+<span class="target" id="gammu-ringtone_8h_1ac8486a8dd075315199aee6df89409519"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneWav</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneWav" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_SaveRingtoneRttl">
+<span class="target" id="gammu-ringtone_8h_1a55aaef727e7f0c6e8d2a567f26dcf1a7"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SaveRingtoneRttl</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="#c.GSM_Ringtone" title="GSM_Ringtone"><span class="n"><span class="pre">GSM_Ringtone</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ringtone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_SaveRingtoneRttl" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_GetRingtoneName">
+<span class="target" id="gammu-ringtone_8h_1a5c5de3b97d1673eadbb26ea4b514ee84"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GSM_GetRingtoneName</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.GSM_AllRingtonesInfo" title="GSM_AllRingtonesInfo"><span class="n"><span class="pre">GSM_AllRingtonesInfo</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">Info</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">ID</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_GetRingtoneName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns ringtone name, NULL if not found. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.GSM_RTTLGetTempo">
+<span class="target" id="gammu-ringtone_8h_1aa661b904783f82c04dc1c9fa15a46d11"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RTTLGetTempo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">Beats</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.GSM_RTTLGetTempo" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingNoteStyle">
+<span class="target" id="gammu-ringtone_8h_1afd18e07edb9813aac458ae24abd55e20"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNoteStyle</span></span></span><a class="headerlink" href="#c.GSM_RingNoteStyle" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteStyle.NaturalStyle">
+<span class="target" id="gammu-ringtone_8h_1afd18e07edb9813aac458ae24abd55e20a4c8378eb9c9f1b23c1e52b2242942754"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NaturalStyle</span></span></span><a class="headerlink" href="#c.GSM_RingNoteStyle.NaturalStyle" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Natural style (rest between notes) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteStyle.ContinuousStyle">
+<span class="target" id="gammu-ringtone_8h_1afd18e07edb9813aac458ae24abd55e20aa31d1912502ad624d35441155f946335"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContinuousStyle</span></span></span><a class="headerlink" href="#c.GSM_RingNoteStyle.ContinuousStyle" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Continuous style (no rest between notes) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteStyle.StaccatoStyle">
+<span class="target" id="gammu-ringtone_8h_1afd18e07edb9813aac458ae24abd55e20a050151ae9f11b4478537f1317be0c0c0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StaccatoStyle</span></span></span><a class="headerlink" href="#c.GSM_RingNoteStyle.StaccatoStyle" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Staccato style (shorter notes and longer rest period) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteStyle.INVALIDStyle">
+<span class="target" id="gammu-ringtone_8h_1afd18e07edb9813aac458ae24abd55e20a35a79762c227e3f67122a781e251b84d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">INVALIDStyle</span></span></span><a class="headerlink" href="#c.GSM_RingNoteStyle.INVALIDStyle" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNoteNote</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Pause">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a3392255eb18fe3c60ef820b5f6c1458d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Pause</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Pause" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_C">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a6217e639c60c96896327247c08aa5f7c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_C</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_C" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Cis">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a3bffd2cbb16aa784d03d6463244d3956"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Cis</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Cis" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_D">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a3130fc26b2f88c8db4ec49fbfc528017"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_D</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_D" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Dis">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a3faa37d1d4469a091d7af26e4ed0dc96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Dis</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Dis" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_E">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a4fe6d40cb624caf126632b6812338542"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_E</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_E" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_F">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a400ac3bf210b620ba1da92bc13cdbb1f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_F</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_F" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Fis">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331ad598afc6709058faa090c3291cb324f8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Fis</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Fis" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_G">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a0ff9161bd94836621c7c0828dd95879a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_G</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_G" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Gis">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331afdc2a4a53d51fe7e48dc90a4ac94f113"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Gis</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Gis" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_A">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331ac433297717edfb15598b60bca83fb50f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_A</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_A" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_Ais">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a72c87f863824fd45b2ae397b67caddb3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_Ais</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_Ais" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_H">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331ab0d19797b729855f457ef92dcb067a56"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_H</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_H" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteNote.Note_INVALID">
+<span class="target" id="gammu-ringtone_8h_1a1a8b9543d93b84b67112dd510e58c331a424b31ea1e3eaebe936b58bda21519f8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Note_INVALID</span></span></span><a class="headerlink" href="#c.GSM_RingNoteNote.Note_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNoteDuration</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_Full">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635acf3f759a441ad07f3046a5b25edce490"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_Full</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_Full" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_1_2">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635a525d67f978aa5123b93d13dd0ad5c324"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_1_2</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_1_2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_1_4">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635a956a00d1f1c6385786e14d308b41d9ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_1_4</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_1_4" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_1_8">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635a9b4bc4c9a462ca105c8a4cb46ddca003"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_1_8</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_1_8" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_1_16">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635a3c22a1eb89214755c698de7857ae7c10"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_1_16</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_1_16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_1_32">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635aac8b84619a79660cd1cc70f589fbf4b6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_1_32</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_1_32" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDuration.Duration_INVALID">
+<span class="target" id="gammu-ringtone_8h_1a5ab19416d976b127591868e53294d635a78f3e93697bc0598185299d2bdd83581"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration_INVALID</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDuration.Duration_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNoteDurationSpec</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec.NoSpecialDuration">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5a2018b3dfc7ee35d7284e3850270c0af3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NoSpecialDuration</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec.NoSpecialDuration" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec.DottedNote">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5afe52074b189cb26c0a86b04db763fac7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DottedNote</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec.DottedNote" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec.DoubleDottedNote">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5afb25c380a5155a92295db1ba2ec203fb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DoubleDottedNote</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec.DoubleDottedNote" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec.Length_2_3">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5afaacfa9483bfb53d1c4a7a20ba70530f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Length_2_3</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec.Length_2_3" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteDurationSpec.DurationSpec_INVALID">
+<span class="target" id="gammu-ringtone_8h_1a615b05f03e388bcc9e12ce644a4821e5a6c6ca6f386066fd19fa977388f25eaf9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DurationSpec_INVALID</span></span></span><a class="headerlink" href="#c.GSM_RingNoteDurationSpec.DurationSpec_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNoteScale</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_55">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8a388880646d53413a653b4720c4cf3e58"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_55</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_55" title="Permalink to this definition"></a><br /></dt>
+<dd><p>55 Hz for note A </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_110">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8a902c83e99c5779ccc9df8981ab0bd7bf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_110</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_110" title="Permalink to this definition"></a><br /></dt>
+<dd><p>110 Hz for note A </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_220">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8af113a893c6858102d8caf3929d6628de"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_220</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_220" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_440">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8a2073d7300f7393649767683d44d9fe46"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_440</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_440" title="Permalink to this definition"></a><br /></dt>
+<dd><p>first scale for Nokia </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_880">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8aaadcaf94e0c7d346e76aea91390dad76"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_880</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_880" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_1760">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8a8ae0b5c43620c6df4f4666eb7811a0a2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_1760</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_1760" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_3520">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8ae379cccddadcb04c89b9c7cc8c6f5337"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_3520</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_3520" title="Permalink to this definition"></a><br /></dt>
+<dd><p>last scale for Nokia </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_7040">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8aa7ee07f962faf03a8f778523b1a9e3d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_7040</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_7040" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingNoteScale.Scale_14080">
+<span class="target" id="gammu-ringtone_8h_1a42441e4e11404133b399a6fa84fd6dc8a186fa0f13f9e909a0e4fa80224696572"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale_14080</span></span></span><a class="headerlink" href="#c.GSM_RingNoteScale.Scale_14080" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_RingNote">
+<span class="target" id="structGSM__RingNote"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingNote</span></span></span><a class="headerlink" href="#c.GSM_RingNote" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingCommandType</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_Note">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6a9ed972adddeb4b49ad64063107a613d8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_Note</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_Note" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_EnableVibra">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6ab386126d13200b78d292a53856709980"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_EnableVibra</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_EnableVibra" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_DisableVibra">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6aac5e2af6f664fa38c452ff9ab8d62768"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_DisableVibra</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_DisableVibra" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_EnableLight">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6a1291798d00aa636bd4baeed59fc4207b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_EnableLight</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_EnableLight" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_DisableLight">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6ad744a7b687172a64e795047497b8f2c2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_DisableLight</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_DisableLight" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_EnableLED">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6a04f26121b6ad42caa507f491b46e4f0f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_EnableLED</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_EnableLED" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_DisableLED">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6ac998412569251a34c11a8ec690a6bf8c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_DisableLED</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_DisableLED" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingCommandType.RING_Repeat">
+<span class="target" id="gammu-ringtone_8h_1a919efc4b1e8fdb00ae35ca98208250a6a1970987bf1cdf7ba2f8370f9f03c1e4b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_Repeat</span></span></span><a class="headerlink" href="#c.GSM_RingCommandType.RING_Repeat" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_RingCommand">
+<span class="target" id="structGSM__RingCommand"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingCommand</span></span></span><a class="headerlink" href="#c.GSM_RingCommand" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_NoteRingtone">
+<span class="target" id="structGSM__NoteRingtone"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NoteRingtone</span></span></span><a class="headerlink" href="#c.GSM_NoteRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_NokiaBinaryRingtone">
+<span class="target" id="structGSM__NokiaBinaryRingtone"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NokiaBinaryRingtone</span></span></span><a class="headerlink" href="#c.GSM_NokiaBinaryRingtone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_BinaryTone">
+<span class="target" id="structGSM__BinaryTone"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_BinaryTone</span></span></span><a class="headerlink" href="#c.GSM_BinaryTone" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_RingtoneFormat">
+<span class="target" id="gammu-ringtone_8h_1aa519fe604380ffb4eb43af7bf8297b07"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingtoneFormat</span></span></span><a class="headerlink" href="#c.GSM_RingtoneFormat" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingtoneFormat.RING_NOTETONE">
+<span class="target" id="gammu-ringtone_8h_1aa519fe604380ffb4eb43af7bf8297b07a1442dd2563194faaca7b34d32a99712d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_NOTETONE</span></span></span><a class="headerlink" href="#c.GSM_RingtoneFormat.RING_NOTETONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingtoneFormat.RING_NOKIABINARY">
+<span class="target" id="gammu-ringtone_8h_1aa519fe604380ffb4eb43af7bf8297b07aabb851de97012b9ba0412b29395a5029"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_NOKIABINARY</span></span></span><a class="headerlink" href="#c.GSM_RingtoneFormat.RING_NOKIABINARY" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingtoneFormat.RING_MIDI">
+<span class="target" id="gammu-ringtone_8h_1aa519fe604380ffb4eb43af7bf8297b07a9ece8fe1d81d20ddb7bbd5ee7e15311a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_MIDI</span></span></span><a class="headerlink" href="#c.GSM_RingtoneFormat.RING_MIDI" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_RingtoneFormat.RING_MMF">
+<span class="target" id="gammu-ringtone_8h_1aa519fe604380ffb4eb43af7bf8297b07a34824af687361b1a775916bdd3e097df"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RING_MMF</span></span></span><a class="headerlink" href="#c.GSM_RingtoneFormat.RING_MMF" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Ringtone">
+<span class="target" id="structGSM__Ringtone"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Ringtone</span></span></span><a class="headerlink" href="#c.GSM_Ringtone" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure for saving various ringtones formats </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Ringtone.NokiaBinary">
+<span class="target" id="structGSM__Ringtone_1ad76972d3e7bb65aee8847f84e49ca0bb"></span><a class="reference internal" href="#c.GSM_NokiaBinaryRingtone" title="GSM_NokiaBinaryRingtone"><span class="n"><span class="pre">GSM_NokiaBinaryRingtone</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NokiaBinary</span></span></span><a class="headerlink" href="#c.GSM_Ringtone.NokiaBinary" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtone saved in one of three formats </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Ringtone.Format">
+<span class="target" id="structGSM__Ringtone_1ab3be218bf062c26c0e3d8f8f2371c916"></span><a class="reference internal" href="#c.GSM_RingtoneFormat" title="GSM_RingtoneFormat"><span class="n"><span class="pre">GSM_RingtoneFormat</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Format</span></span></span><a class="headerlink" href="#c.GSM_Ringtone.Format" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtone format </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Ringtone.Name">
+<span class="target" id="structGSM__Ringtone_1a2ba0f453093ead4bef30eb8dfc7137ea"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_RINGTONE_NAME_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Ringtone.Name" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtone name </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Ringtone.Location">
+<span class="target" id="structGSM__Ringtone_1a4e59def0ea0ced289745d806f752b868"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_Ringtone.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ringtone location </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_RingtoneInfo">
+<span class="target" id="structGSM__RingtoneInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_RingtoneInfo</span></span></span><a class="headerlink" href="#c.GSM_RingtoneInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_RingtoneInfo.Group">
+<span class="target" id="structGSM__RingtoneInfo_1aad53beccf1d4ba4a2a2c1ef230f73e30"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Group</span></span></span><a class="headerlink" href="#c.GSM_RingtoneInfo.Group" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nokia specific </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_AllRingtonesInfo">
+<span class="target" id="structGSM__AllRingtonesInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_AllRingtonesInfo</span></span></span><a class="headerlink" href="#c.GSM_AllRingtonesInfo" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nokia.html" class="btn btn-neutral float-left" title="Nokia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

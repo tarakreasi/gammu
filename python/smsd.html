@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gammu.smsd – SMSD access &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammu.data – Generic data usable with Gammu" href="data.html" />
+    <link rel="prev" title="gammu – Mobile phone access" href="gammu.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">python-gammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#a-taste-of-python-gammu">A taste of python-gammu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#api-documentation">API documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gammu.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smsd"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMSD</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.data</span></code> – Generic data usable with Gammu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.worker</span></code> - Asynchronous communication to phone.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.exception</span></code> – Gammu exception handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-gammu-examples">python-gammu Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">python-gammu</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/smsd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gammu.smsd">
+<span id="gammu-smsd-smsd-access"></span><h1><a class="reference internal" href="#module-gammu.smsd" title="gammu.smsd: Provides access to Gammu SMSD functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code></a> – SMSD access<a class="headerlink" href="#module-gammu.smsd" title="Permalink to this heading"></a></h1>
+<section id="smsd">
+<h2><a class="reference internal" href="#gammu.smsd.SMSD" title="gammu.smsd.SMSD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMSD</span></code></a><a class="headerlink" href="#smsd" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gammu.smsd.SMSD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gammu.smsd.</span></span><span class="sig-name descname"><span class="pre">SMSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.smsd.SMSD" title="Permalink to this definition"></a></dt>
+<dd><p>SMSD main class, that is used for communication with phone.</p>
+<p>You don’t need to run the SMS daemon in the python script to control or ask it for
+status, this can be also done on separately running instances (<code class="docutils literal notranslate"><span class="pre">gammu-smsd</span></code>). All you
+need to do for this is to give same configuration file as that instance is
+using.
+For more infos look into <a class="reference internal" href="../smsd/overview.html#gammu-smsd-overview"><span class="std std-ref">Gammu SMSD Overview</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Config</strong> (<em>string</em>) – Path to SMSD configuration file.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.smsd.SMSD.MainLoop">
+<span class="sig-name descname"><span class="pre">MainLoop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MaxFailures</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.smsd.SMSD.MainLoop" title="Permalink to this definition"></a></dt>
+<dd><p>Runs SMS daemon main loop.</p>
+<p>Please note that this will run until some serious error occurs or until
+terminated by <a class="reference internal" href="#gammu.smsd.SMSD.Shutdown" title="gammu.smsd.SMSD.Shutdown"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shutdown()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>MaxFailures</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – After how many init failures SMSD ends. Defaults to 0, what means never.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.smsd.SMSD.Shutdown">
+<span class="sig-name descname"><span class="pre">Shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.smsd.SMSD.Shutdown" title="Permalink to this definition"></a></dt>
+<dd><p>Signals SMS daemon to stop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.smsd.SMSD.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gammu.smsd.SMSD.GetStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Returns SMSD status.</p>
+<p>The following values are set in resulting dictionary:</p>
+<p>Client</p>
+<blockquote>
+<div><p>Client software name.</p>
+</div></blockquote>
+<p>PhoneID</p>
+<blockquote>
+<div><p>PhoneID which can be used for multiple SMSD setup.</p>
+</div></blockquote>
+<p>IMEI</p>
+<blockquote>
+<div><p>IMEI of currently connected phone.</p>
+</div></blockquote>
+<p>Sent</p>
+<blockquote>
+<div><p>Number of sent messages.</p>
+</div></blockquote>
+<p>Received</p>
+<blockquote>
+<div><p>Number of received messages.</p>
+</div></blockquote>
+<p>Failed</p>
+<blockquote>
+<div><p>Number of failed messages.</p>
+</div></blockquote>
+<p>BatterPercent</p>
+<blockquote>
+<div><p>Last battery state as reported by connected phone.</p>
+</div></blockquote>
+<p>NetworkSignal</p>
+<blockquote>
+<div><p>Last signal level as reported by connected phone.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict with status values</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gammu.smsd.SMSD.InjectSMS">
+<span class="sig-name descname"><span class="pre">InjectSMS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gammu.smsd.SMSD.InjectSMS" title="Permalink to this definition"></a></dt>
+<dd><p>Injects SMS message into outgoing messages queue in SMSD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Message</strong> (list of <a class="reference internal" href="objects.html#sms-obj"><span class="std std-ref">SMS Object</span></a>) – Message to inject (can be multipart)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ID of inserted message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gammu.html" class="btn btn-neutral float-left" title="gammu – Mobile phone access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data.html" class="btn btn-neutral float-right" title="gammu.data – Generic data usable with Gammu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

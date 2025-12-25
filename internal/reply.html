@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reply functions &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="State Machine" href="state-machine.html" />
+    <link rel="prev" title="Gammu internals" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gammu internals</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Reply functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#binary">Binary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#text">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numeric">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requests">Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state-machine.html">State Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new-phone.html">Adding support for new phone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gammu internals</a></li>
+      <li class="breadcrumb-item active">Reply functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/reply.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reply-functions">
+<span id="id1"></span><h1>Reply functions<a class="headerlink" href="#reply-functions" title="Permalink to this heading"></a></h1>
+<p>When phone gives answers, we check if we requested received info and we
+redirect it to concrete reply function, which will decode it. Different
+phone answers can go to one reply function let’s say responsible for
+getting sms status.</p>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Reply_Function</span></span></span><a class="headerlink" href="#c.GSM_Reply_Function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Defines reply function for phone driver.</p>
+<dl class="c member">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function.Function">
+<a class="reference internal" href="../c/error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Function</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_Protocol_Message</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../c/statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><span class="n"><span class="pre">GSM_StateMachine</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.GSM_Reply_Function.Function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Callback on reply match.</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function.msgtype">
+<span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">msgtype</span></span></span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.GSM_Reply_Function.msgtype" title="Permalink to this definition"></a><br /></dt>
+<dd><p>String match on the message.</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function.subtypechar">
+<span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">subtypechar</span></span></span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.GSM_Reply_Function.subtypechar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Position for char match inside reply. If 0, message type is checked.</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function.subtype">
+<span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">subtype</span></span></span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.GSM_Reply_Function.subtype" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Match for char/message type check (see above).</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.GSM_Reply_Function.requestID">
+<span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">GSM_Phone_RequestID</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">requestID</span></span></span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.GSM_Reply_Function.requestID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Match for request ID. this is filled in when calling <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_WaitFor()</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>There are three types of answer matching:</p>
+<section id="binary">
+<h2>Binary<a class="headerlink" href="#binary" title="Permalink to this heading"></a></h2>
+<p>Example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">N6110_ReplySaveSMSMessage</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\x14</span><span class="s">&quot;</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="n">ID_SaveSMSMessage</span><span class="p">},</span>
+</pre></div>
+</div>
+<p>ID_SaveSMSMessage request function reply. Frame is type “x14”,
+0x03 char of frame must be 0x05. If yes, we go to N6110_ReplySaveSMSMessage.
+Of course, things like frame type are found in protocol (here FBUS, MBUS,
+etc.) functions. If don’t need anything more than frame type, 0x03,0x05
+should be 0x00, 0x00 - it means then, that we check only frame type.</p>
+</section>
+<section id="text">
+<h2>Text<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
+<p>Example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">ATGEN_ReplyIncomingCallInfo</span><span class="p">,</span><span class="s">&quot;+CLIP&quot;</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="n">ID_IncomingFrame</span><span class="p">},</span>
+</pre></div>
+</div>
+<p>All incoming (not requested in the moment, sent by phone, who
+likes us - ID_IncomingFrame) responses starting from “+CLIP” will go
+to the ATGEN_ReplyIncomingCallInfo.</p>
+</section>
+<section id="numeric">
+<h2>Numeric<a class="headerlink" href="#numeric" title="Permalink to this heading"></a></h2>
+<p>Example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">S60_Reply_Generic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_QUIT</span><span class="p">,</span><span class="w"> </span><span class="n">ID_Terminate</span><span class="w"> </span><span class="p">},</span>
+</pre></div>
+</div>
+<p>When match string is empty and match char position is zero, matching on message
+type is performed.</p>
+</section>
+<section id="requests">
+<h2>Requests<a class="headerlink" href="#requests" title="Permalink to this heading"></a></h2>
+<p>This is how GSM_Reply_Function is filled. Now how to make phone requests ?</p>
+<p>Example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">GSM_Error</span><span class="w"> </span><span class="nf">N6110_GetMemory</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_StateMachine</span><span class="w">   </span><span class="o">*</span><span class="n">s</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">GSM_PhonebookEntry</span><span class="w"> </span><span class="o">*</span><span class="n">entry</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">req</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">N6110_FRAME_HEADER</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span>
+<span class="w">       </span><span class="mh">0x00</span><span class="p">,</span><span class="w">            </span><span class="cm">/* memory type */</span>
+<span class="w">       </span><span class="mh">0x00</span><span class="p">,</span><span class="w">            </span><span class="cm">/* location */</span>
+<span class="w">       </span><span class="mh">0x00</span><span class="p">};</span>
+
+<span class="w">  </span><span class="n">req</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NOKIA_GetMemoryType</span><span class="p">(</span><span class="n">entry</span><span class="o">-&gt;</span><span class="n">MemoryType</span><span class="p">,</span><span class="n">N6110_MEMORY_TYPES</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">==</span><span class="mh">0xff</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GE_NOTSUPPORTED</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">req</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entry</span><span class="o">-&gt;</span><span class="n">Location</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">Phone</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Memory</span><span class="o">=</span><span class="n">entry</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dprintf</span><span class="p">(</span><span class="s">&quot;Getting phonebook entry</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GSM_WaitFor</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mh">0x03</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">ID_GetMemory</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>First we fill req according to values in *entry. Later set pointer
+in s-&gt;Phone.Data (it’s available for reply functions and they set
+responses exactly to it) and use GSM_WaitFor. It uses s statemachine,
+sends req frame with length 7, msg type is 0x03, we wait for answer
+during 4 seconds, request id is ID_GetMemory. GSM_WaitFor internally
+checks incoming bytes from phone and redirect them to protocol functions.
+If they found full frame, there is checked GSM_Reply_Function, where is
+called ReplyFunction or showed debug info, that frame is unknown. If
+there is ReplyFunction, it has access to s-&gt;Phone.Data and decodes answer.
+Returns error or not (and this is value for GSM_WaitFor). If there is
+no requested answer during time, GSM_WaitFor returns GE_TIMEOUT.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Gammu internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="state-machine.html" class="btn btn-neutral float-right" title="State Machine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

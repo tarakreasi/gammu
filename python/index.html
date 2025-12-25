@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>python-gammu &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammu – Mobile phone access" href="gammu.html" />
+    <link rel="prev" title="Python-gammu FAQ" href="../faq/python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">python-gammu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-taste-of-python-gammu">A taste of python-gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-documentation">API documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.data</span></code> – Generic data usable with Gammu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.worker</span></code> - Asynchronous communication to phone.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.exception</span></code> – Gammu exception handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#python-gammu-examples">python-gammu Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sending-a-message">Sending a message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-a-long-message">Sending a long message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiating-a-voice-call">Initiating a voice call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-calendar-from-phone">Reading calendar from phone</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">python-gammu</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-gammu">
+<span id="python"></span><h1>python-gammu<a class="headerlink" href="#python-gammu" title="Permalink to this heading"></a></h1>
+<section id="a-taste-of-python-gammu">
+<h2>A taste of python-gammu<a class="headerlink" href="#a-taste-of-python-gammu" title="Permalink to this heading"></a></h2>
+<p>Python-gammu allows you to easily access the phone. Following code will connect
+to phone based on your Gammu configuration (usually stored in
+<code class="file docutils literal notranslate"><span class="pre">~/.gammurc</span></code>) and gets network information from it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gammu</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Create state machine object</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">()</span>
+
+<span class="c1"># Read ~/.gammurc</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">()</span>
+
+<span class="c1"># Connect to phone</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+
+<span class="c1"># Reads network information from phone</span>
+<span class="n">netinfo</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GetNetworkInfo</span><span class="p">()</span>
+
+<span class="c1"># Print information</span>
+<span class="nb">print</span> <span class="s1">&#39;Network name: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">netinfo</span><span class="p">[</span><span class="s1">&#39;NetworkName&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="s1">&#39;Network code: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">netinfo</span><span class="p">[</span><span class="s1">&#39;NetworkCode&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="s1">&#39;LAC: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">netinfo</span><span class="p">[</span><span class="s1">&#39;LAC&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="s1">&#39;CID: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">netinfo</span><span class="p">[</span><span class="s1">&#39;CID&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="api-documentation">
+<h2>API documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gammu.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#gammu-statemachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">gammu.StateMachine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.StateMachine"><code class="docutils literal notranslate"><span class="pre">StateMachine</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#generic-functions">Generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.Version"><code class="docutils literal notranslate"><span class="pre">Version()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#debugging-configuration">Debugging configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SetDebugFile"><code class="docutils literal notranslate"><span class="pre">SetDebugFile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SetDebugLevel"><code class="docutils literal notranslate"><span class="pre">SetDebugLevel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#message-processing">Message processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.LinkSMS"><code class="docutils literal notranslate"><span class="pre">LinkSMS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SMSCounter"><code class="docutils literal notranslate"><span class="pre">SMSCounter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.DecodeSMS"><code class="docutils literal notranslate"><span class="pre">DecodeSMS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeSMS"><code class="docutils literal notranslate"><span class="pre">EncodeSMS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.DecodePDU"><code class="docutils literal notranslate"><span class="pre">DecodePDU()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodePDU"><code class="docutils literal notranslate"><span class="pre">EncodePDU()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#encoding-and-decoding-entries">Encoding and decoding entries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.DecodeVCARD"><code class="docutils literal notranslate"><span class="pre">DecodeVCARD()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeVCARD"><code class="docutils literal notranslate"><span class="pre">EncodeVCARD()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.DecodeVCS"><code class="docutils literal notranslate"><span class="pre">DecodeVCS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.DecodeICS"><code class="docutils literal notranslate"><span class="pre">DecodeICS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeVCALENDAR"><code class="docutils literal notranslate"><span class="pre">EncodeVCALENDAR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeICALENDAR"><code class="docutils literal notranslate"><span class="pre">EncodeICALENDAR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeVTODO"><code class="docutils literal notranslate"><span class="pre">EncodeVTODO()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.EncodeITODO"><code class="docutils literal notranslate"><span class="pre">EncodeITODO()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#backup-reading-and-writing">Backup reading and writing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SaveRingtone"><code class="docutils literal notranslate"><span class="pre">SaveRingtone()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SaveBackup"><code class="docutils literal notranslate"><span class="pre">SaveBackup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.ReadBackup"><code class="docutils literal notranslate"><span class="pre">ReadBackup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.SaveSMSBackup"><code class="docutils literal notranslate"><span class="pre">SaveSMSBackup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.ReadSMSBackup"><code class="docutils literal notranslate"><span class="pre">ReadSMSBackup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gammu.html#various-data">Various data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.GSMNetworks"><code class="docutils literal notranslate"><span class="pre">GSMNetworks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gammu.html#gammu.GSMCountries"><code class="docutils literal notranslate"><span class="pre">GSMCountries</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="smsd.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="smsd.html#smsd"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMSD</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html#gammu.smsd.SMSD"><code class="docutils literal notranslate"><span class="pre">SMSD</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.data</span></code> – Generic data usable with Gammu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.Connections"><code class="docutils literal notranslate"><span class="pre">Connections</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.MemoryValueTypes"><code class="docutils literal notranslate"><span class="pre">MemoryValueTypes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.CalendarTypes"><code class="docutils literal notranslate"><span class="pre">CalendarTypes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.CalendarValueTypes"><code class="docutils literal notranslate"><span class="pre">CalendarValueTypes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.TodoPriorities"><code class="docutils literal notranslate"><span class="pre">TodoPriorities</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.TodoValueTypes"><code class="docutils literal notranslate"><span class="pre">TodoValueTypes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.InternationalPrefixes"><code class="docutils literal notranslate"><span class="pre">InternationalPrefixes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.Errors"><code class="docutils literal notranslate"><span class="pre">Errors</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#gammu.data.ErrorNumbers"><code class="docutils literal notranslate"><span class="pre">ErrorNumbers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="worker.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.worker</span></code> - Asynchronous communication to phone.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.GammuCommand"><code class="docutils literal notranslate"><span class="pre">GammuCommand</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuCommand.get_command"><code class="docutils literal notranslate"><span class="pre">GammuCommand.get_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuCommand.get_params"><code class="docutils literal notranslate"><span class="pre">GammuCommand.get_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuCommand.get_percentage"><code class="docutils literal notranslate"><span class="pre">GammuCommand.get_percentage()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.GammuTask"><code class="docutils literal notranslate"><span class="pre">GammuTask</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuTask.get_name"><code class="docutils literal notranslate"><span class="pre">GammuTask.get_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuTask.get_next"><code class="docutils literal notranslate"><span class="pre">GammuTask.get_next()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.GammuThread"><code class="docutils literal notranslate"><span class="pre">GammuThread</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuThread.join"><code class="docutils literal notranslate"><span class="pre">GammuThread.join()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuThread.kill"><code class="docutils literal notranslate"><span class="pre">GammuThread.kill()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuThread.run"><code class="docutils literal notranslate"><span class="pre">GammuThread.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker"><code class="docutils literal notranslate"><span class="pre">GammuWorker</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.abort"><code class="docutils literal notranslate"><span class="pre">GammuWorker.abort()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.configure"><code class="docutils literal notranslate"><span class="pre">GammuWorker.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.enqueue"><code class="docutils literal notranslate"><span class="pre">GammuWorker.enqueue()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.enqueue_command"><code class="docutils literal notranslate"><span class="pre">GammuWorker.enqueue_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.enqueue_task"><code class="docutils literal notranslate"><span class="pre">GammuWorker.enqueue_task()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.initiate"><code class="docutils literal notranslate"><span class="pre">GammuWorker.initiate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html#gammu.worker.GammuWorker.terminate"><code class="docutils literal notranslate"><span class="pre">GammuWorker.terminate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.InvalidCommand"><code class="docutils literal notranslate"><span class="pre">InvalidCommand</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="worker.html#gammu.worker.check_worker_command"><code class="docutils literal notranslate"><span class="pre">check_worker_command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.exception</span></code> – Gammu exception handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.GSMError"><code class="docutils literal notranslate"><span class="pre">gammu.GSMError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_ABORTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_ABORTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_BADFEATURE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_BADFEATURE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_BUG"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_BUG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_BUSY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_BUSY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_CANCELED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_CANCELED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_CANTOPENFILE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_CANTOPENFILE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_CORRUPTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_CORRUPTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_COULDNT_CONNECT"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_COULDNT_CONNECT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_COULDNT_RESOLVE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_COULDNT_RESOLVE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DATACONVERTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DATACONVERTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEBUSY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEBUSY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICECHANGESPEEDERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICECHANGESPEEDERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEDTRRTSERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEDTRRTSERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICELOCKED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICELOCKED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICENODRIVER"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICENODRIVER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICENOPERMISSION"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICENOPERMISSION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICENOTEXIST"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICENOTEXIST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICENOTWORK"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICENOTWORK</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEOPENERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEOPENERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEPARITYERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEPARITYERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEREADERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEREADERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DEVICEWRITEERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DEVICEWRITEERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_DISABLED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_DISABLED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_EMPTY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_EMPTY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_EMPTYSMSC"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_EMPTYSMSC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FILEALREADYEXIST"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FILEALREADYEXIST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FILENOTEXIST"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FILENOTEXIST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FILENOTSUPPORTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FILENOTSUPPORTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FOLDERNOTEMPTY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FOLDERNOTEMPTY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FOLDERPART"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FOLDERPART</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FRAMENOTREQUESTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FRAMENOTREQUESTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_FULL"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_FULL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_GETTING_SMSC"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_GETTING_SMSC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_GNAPPLETWRONG"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_GNAPPLETWRONG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_INSIDEPHONEMENU"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_INSIDEPHONEMENU</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_INSTALL_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_INSTALL_NOT_FOUND</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_INVALIDDATA"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_INVALIDDATA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_INVALIDDATETIME"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_INVALIDDATETIME</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_INVALIDLOCATION"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_INVALIDLOCATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_MEMORY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_MEMORY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_MOREMEMORY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_MOREMEMORY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NEEDANOTHERANSWER"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NEEDANOTHERANSWER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NETWORK_ERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NETWORK_ERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NONE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NONE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NONE_SECTION"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NONE_SECTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOSERVICE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOSERVICE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOSIM"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOSIM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOTCONNECTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOTCONNECTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOTIMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOTIMPLEMENTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOTRUNNING"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOTRUNNING</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_NOTSUPPORTED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_NOTSUPPORTED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_OTHERCONNECTIONREQUIRED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_OTHERCONNECTIONREQUIRED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_PERMISSION"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_PERMISSION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_PHONEOFF"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_PHONEOFF</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_PHONE_INTERNAL"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_PHONE_INTERNAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_READ_ONLY"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_READ_ONLY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_SECURITYERROR"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_SECURITYERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_SHOULDBEFILE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_SHOULDBEFILE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_SHOULDBEFOLDER"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_SHOULDBEFOLDER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_SOURCENOTAVAILABLE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_SOURCENOTAVAILABLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_SPECIFYCHANNEL"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_SPECIFYCHANNEL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_TIMEOUT"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_TIMEOUT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNCONFIGURED"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNCONFIGURED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNKNOWN"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNKNOWN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNKNOWNCONNECTIONTYPESTRING"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNKNOWNCONNECTIONTYPESTRING</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNKNOWNFRAME"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNKNOWNFRAME</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNKNOWNMODELSTRING"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNKNOWNMODELSTRING</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_UNKNOWNRESPONSE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_UNKNOWNRESPONSE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_USING_DEFAULTS"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_USING_DEFAULTS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_WORKINPROGRESS"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_WORKINPROGRESS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_WRITING_FILE"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_WRITING_FILE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_WRONGCRC"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_WRONGCRC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#gammu.exception.gammu.ERR_WRONGFOLDER"><code class="docutils literal notranslate"><span class="pre">gammu.ERR_WRONGFOLDER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#sms-object">SMS Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#SMSC"><code class="docutils literal notranslate"><span class="pre">SMSC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Number"><code class="docutils literal notranslate"><span class="pre">Number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#UDH"><code class="docutils literal notranslate"><span class="pre">UDH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Folder"><code class="docutils literal notranslate"><span class="pre">Folder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Location"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#InboxFolder"><code class="docutils literal notranslate"><span class="pre">InboxFolder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#DeliveryStatus"><code class="docutils literal notranslate"><span class="pre">DeliveryStatus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ReplyViaSameSMSC"><code class="docutils literal notranslate"><span class="pre">ReplyViaSameSMSC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Class"><code class="docutils literal notranslate"><span class="pre">Class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#MessageReference"><code class="docutils literal notranslate"><span class="pre">MessageReference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ReplaceMessage"><code class="docutils literal notranslate"><span class="pre">ReplaceMessage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#RejectDuplicates"><code class="docutils literal notranslate"><span class="pre">RejectDuplicates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Memory"><code class="docutils literal notranslate"><span class="pre">Memory</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Type"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Coding"><code class="docutils literal notranslate"><span class="pre">Coding</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#DateTime"><code class="docutils literal notranslate"><span class="pre">DateTime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#SMSCDateTime"><code class="docutils literal notranslate"><span class="pre">SMSCDateTime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#State"><code class="docutils literal notranslate"><span class="pre">State</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#udh-object">UDH Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ID8bit"><code class="docutils literal notranslate"><span class="pre">ID8bit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ID16bit"><code class="docutils literal notranslate"><span class="pre">ID16bit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#PartNumber"><code class="docutils literal notranslate"><span class="pre">PartNumber</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#AllParts"><code class="docutils literal notranslate"><span class="pre">AllParts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id0"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id1"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#smsc-object">SMSC Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id2"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id3"><code class="docutils literal notranslate"><span class="pre">Number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id4"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#DefaultNumber"><code class="docutils literal notranslate"><span class="pre">DefaultNumber</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Format"><code class="docutils literal notranslate"><span class="pre">Format</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Validity"><code class="docutils literal notranslate"><span class="pre">Validity</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#sms-info-object">SMS Info Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Unicode"><code class="docutils literal notranslate"><span class="pre">Unicode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id5"><code class="docutils literal notranslate"><span class="pre">ReplaceMessage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Unknown"><code class="docutils literal notranslate"><span class="pre">Unknown</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id6"><code class="docutils literal notranslate"><span class="pre">Class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Entries"><code class="docutils literal notranslate"><span class="pre">Entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#sms-info-part-object">SMS Info Part Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ID"><code class="docutils literal notranslate"><span class="pre">ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Left"><code class="docutils literal notranslate"><span class="pre">Left</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Right"><code class="docutils literal notranslate"><span class="pre">Right</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Center"><code class="docutils literal notranslate"><span class="pre">Center</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Large"><code class="docutils literal notranslate"><span class="pre">Large</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Small"><code class="docutils literal notranslate"><span class="pre">Small</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Bold"><code class="docutils literal notranslate"><span class="pre">Bold</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Italic"><code class="docutils literal notranslate"><span class="pre">Italic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Underlined"><code class="docutils literal notranslate"><span class="pre">Underlined</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Strikethrough"><code class="docutils literal notranslate"><span class="pre">Strikethrough</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Protected"><code class="docutils literal notranslate"><span class="pre">Protected</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id7"><code class="docutils literal notranslate"><span class="pre">Number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Ringtone"><code class="docutils literal notranslate"><span class="pre">Ringtone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Bitmap"><code class="docutils literal notranslate"><span class="pre">Bitmap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Bookmark"><code class="docutils literal notranslate"><span class="pre">Bookmark</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#MMSIndicator"><code class="docutils literal notranslate"><span class="pre">MMSIndicator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Phonebook"><code class="docutils literal notranslate"><span class="pre">Phonebook</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Calendar"><code class="docutils literal notranslate"><span class="pre">Calendar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ToDo"><code class="docutils literal notranslate"><span class="pre">ToDo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#File"><code class="docutils literal notranslate"><span class="pre">File</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Buffer"><code class="docutils literal notranslate"><span class="pre">Buffer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#todo-object">Todo Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id8"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id9"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Priority"><code class="docutils literal notranslate"><span class="pre">Priority</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id10"><code class="docutils literal notranslate"><span class="pre">Entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#todo-entries-object">Todo Entries Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id11"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Value"><code class="docutils literal notranslate"><span class="pre">Value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#calendar-object">Calendar Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id12"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id13"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id14"><code class="docutils literal notranslate"><span class="pre">Entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#calendar-entries-object">Calendar Entries Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id15"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id16"><code class="docutils literal notranslate"><span class="pre">Value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#phonebook-object">Phonebook Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id17"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#MemoryType"><code class="docutils literal notranslate"><span class="pre">MemoryType</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id18"><code class="docutils literal notranslate"><span class="pre">Entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#phonebook-entries-object">Phonebook Entries Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id19"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id20"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id21"><code class="docutils literal notranslate"><span class="pre">Value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#PictureType"><code class="docutils literal notranslate"><span class="pre">PictureType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#file-object">File Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Used"><code class="docutils literal notranslate"><span class="pre">Used</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id22"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id23"><code class="docutils literal notranslate"><span class="pre">Folder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Level"><code class="docutils literal notranslate"><span class="pre">Level</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id24"><code class="docutils literal notranslate"><span class="pre">Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ID_FullName"><code class="docutils literal notranslate"><span class="pre">ID_FullName</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id25"><code class="docutils literal notranslate"><span class="pre">Buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Modified"><code class="docutils literal notranslate"><span class="pre">Modified</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id26"><code class="docutils literal notranslate"><span class="pre">Protected</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#ReadOnly"><code class="docutils literal notranslate"><span class="pre">ReadOnly</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Hidden"><code class="docutils literal notranslate"><span class="pre">Hidden</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#System"><code class="docutils literal notranslate"><span class="pre">System</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Pos"><code class="docutils literal notranslate"><span class="pre">Pos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Finished"><code class="docutils literal notranslate"><span class="pre">Finished</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#divert-type">Divert Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#call-type">Call Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#call-divert-objects">Call Divert Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#DivertType"><code class="docutils literal notranslate"><span class="pre">DivertType</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#CallType"><code class="docutils literal notranslate"><span class="pre">CallType</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#id28"><code class="docutils literal notranslate"><span class="pre">Number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="objects.html#Timeout"><code class="docutils literal notranslate"><span class="pre">Timeout</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="python-gammu-examples">
+<span id="id1"></span><h2>python-gammu Examples<a class="headerlink" href="#python-gammu-examples" title="Permalink to this heading"></a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Many examples are available in <a class="reference external" href="https://github.com/gammu/python-gammu/tree/master/examples">/examples</a> directory in the python-gammu git repository.</p>
+</div>
+<section id="sending-a-message">
+<h3>Sending a message<a class="headerlink" href="#sending-a-message" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Sample script to show how to send SMS</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gammu</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Create object for talking with phone</span>
+<span class="n">state_machine</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">()</span>
+
+<span class="c1"># Optionally load config file as defined by first parameter</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="c1"># Read the configuration from given file</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># Remove file name from args list</span>
+    <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Read the configuration (~/.gammurc)</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">()</span>
+
+<span class="c1"># Check parameters</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: sendsms.py [configfile] RECIPIENT_NUMBER&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Connect to the phone</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+
+<span class="c1"># Prepare message data</span>
+<span class="c1"># We tell that we want to use first SMSC number stored in phone</span>
+<span class="n">message</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Text&quot;</span><span class="p">:</span> <span class="s2">&quot;python-gammu testing message&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMSC&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Location&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">&quot;Number&quot;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># Actually send the message</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">SendSMS</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sending-a-long-message">
+<h3>Sending a long message<a class="headerlink" href="#sending-a-long-message" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Sample script to show how to send long (multipart) SMS</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gammu</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Create object for talking with phone</span>
+<span class="n">state_machine</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">()</span>
+
+<span class="c1"># Optionally load config file as defined by first parameter</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="c1"># Read the configuration from given file</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># Remove file name from args list</span>
+    <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Read the configuration (~/.gammurc)</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">()</span>
+
+<span class="c1"># Check parameters</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: sendlongsms.py [configfile] RECIPIENT_NUMBER&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Connect to the phone</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+
+
+<span class="c1"># Create SMS info structure</span>
+<span class="n">smsinfo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Class&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;Unicode&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;Entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="s2">&quot;ConcatenatedTextLong&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="s2">&quot;Very long python-gammu testing message &quot;</span>
+            <span class="s2">&quot;sent from example python script. &quot;</span>
+            <span class="s2">&quot;Very long python-gammu testing message &quot;</span>
+            <span class="s2">&quot;sent from example python script. &quot;</span>
+            <span class="s2">&quot;Very long python-gammu testing message &quot;</span>
+            <span class="s2">&quot;sent from example python script. &quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># Encode messages</span>
+<span class="n">encoded</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">EncodeSMS</span><span class="p">(</span><span class="n">smsinfo</span><span class="p">)</span>
+
+<span class="c1"># Send messages</span>
+<span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">encoded</span><span class="p">:</span>
+    <span class="c1"># Fill in numbers</span>
+    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;SMSC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Location&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;Number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Actually send the message</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">SendSMS</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="initiating-a-voice-call">
+<h3>Initiating a voice call<a class="headerlink" href="#initiating-a-voice-call" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gammu</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Create object for talking with phone</span>
+<span class="n">state_machine</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">()</span>
+
+<span class="c1"># Read the configuration (~/.gammurc or from command line)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">()</span>
+
+<span class="c1"># Connect to the phone</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+
+<span class="c1"># Check whether we have a number to dial</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: dialvoice.py NUMBER&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Dial a number</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">DialVoice</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-calendar-from-phone">
+<h3>Reading calendar from phone<a class="headerlink" href="#reading-calendar-from-phone" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Example for reading calendar from phone</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gammu</span>
+
+<span class="c1"># Create object for talking with phone</span>
+<span class="n">state_machine</span> <span class="o">=</span> <span class="n">gammu</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">()</span>
+
+<span class="c1"># Read the configuration (~/.gammurc)</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">ReadConfig</span><span class="p">()</span>
+
+<span class="c1"># Connect to the phone</span>
+<span class="n">state_machine</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+
+<span class="c1"># Get number of calendar entries</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">state_machine</span><span class="o">.</span><span class="n">GetCalendarStatus</span><span class="p">()</span>
+
+<span class="n">remain</span> <span class="o">=</span> <span class="n">status</span><span class="p">[</span><span class="s2">&quot;Used&quot;</span><span class="p">]</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">while</span> <span class="n">remain</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Read the entry</span>
+    <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">state_machine</span><span class="o">.</span><span class="n">GetNextCalendar</span><span class="p">(</span><span class="n">Start</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">state_machine</span><span class="o">.</span><span class="n">GetNextCalendar</span><span class="p">(</span><span class="n">Location</span><span class="o">=</span><span class="n">entry</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+    <span class="n">remain</span> <span class="o">=</span> <span class="n">remain</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c1"># Display it</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-20s</span><span class="s2">: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;Location&quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-20s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;Entries&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-20s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../faq/python.html" class="btn btn-neutral float-left" title="Python-gammu FAQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gammu.html" class="btn btn-neutral float-right" title="gammu – Mobile phone access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

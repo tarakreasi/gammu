@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objects &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="libGammu" href="../c/index.html" />
+    <link rel="prev" title="gammu.exception – Gammu exception handling" href="exceptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">python-gammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#a-taste-of-python-gammu">A taste of python-gammu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#api-documentation">API documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gammu.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu</span></code> – Mobile phone access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.smsd</span></code> – SMSD access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.data</span></code> – Generic data usable with Gammu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.worker</span></code> - Asynchronous communication to phone.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gammu.exception</span></code> – Gammu exception handling</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sms-object">SMS Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udh-object">UDH Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smsc-object">SMSC Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sms-info-object">SMS Info Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sms-info-part-object">SMS Info Part Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo-object">Todo Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo-entries-object">Todo Entries Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calendar-object">Calendar Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calendar-entries-object">Calendar Entries Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phonebook-object">Phonebook Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phonebook-entries-object">Phonebook Entries Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-object">File Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#divert-type">Divert Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-type">Call Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-divert-objects">Call Divert Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-gammu-examples">python-gammu Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">python-gammu</a></li>
+      <li class="breadcrumb-item active">Objects</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/objects.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="objects">
+<h1>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h1>
+<p>For various (mostly historical) reasons, all objects you get from Gammu are
+not real objects but rather a dictionaries. This has quite a big impact of
+usability and will most likely change in the future.</p>
+<p>All the objects basically map to C structures, so you might also refer to
+<a class="reference internal" href="../c/index.html#libgammu"><span class="std std-ref">libGammu</span></a> chapter.</p>
+<section id="sms-object">
+<span id="sms-obj"></span><h2>SMS Object<a class="headerlink" href="#sms-object" title="Permalink to this heading"></a></h2>
+<p>Object describing single SMS message in a way GSM network handles is (140
+bytes of data). You can construct it from <a class="reference internal" href="#sms-info-obj"><span class="std std-ref">SMS Info Object</span></a> using
+<a class="reference internal" href="gammu.html#gammu.EncodeSMS" title="gammu.EncodeSMS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gammu.EncodeSMS()</span></code></a>.</p>
+<p>Message dictionary can consist of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SMSC">
+<span class="sig-name descname"><span class="pre">SMSC</span></span><a class="headerlink" href="#SMSC" title="Permalink to this definition"></a></dt>
+<dd><p>SMSC information, see <a class="reference internal" href="#smsc-obj"><span class="std std-ref">SMSC Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Number">
+<span class="sig-name descname"><span class="pre">Number</span></span><a class="headerlink" href="#Number" title="Permalink to this definition"></a></dt>
+<dd><p>Recipient number, needs to be set for sending.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Name">
+<span class="sig-name descname"><span class="pre">Name</span></span><a class="headerlink" href="#Name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the message, does not make any effect on sending, some phones might
+store it.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UDH">
+<span class="sig-name descname"><span class="pre">UDH</span></span><a class="headerlink" href="#UDH" title="Permalink to this definition"></a></dt>
+<dd><p>User defined headers for SMS, see <a class="reference internal" href="#udh-obj"><span class="std std-ref">UDH Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Text">
+<span class="sig-name descname"><span class="pre">Text</span></span><a class="headerlink" href="#Text" title="Permalink to this definition"></a></dt>
+<dd><p>Message text</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Folder">
+<span class="sig-name descname"><span class="pre">Folder</span></span><a class="headerlink" href="#Folder" title="Permalink to this definition"></a></dt>
+<dd><p>Folder where the message is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Location">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#Location" title="Permalink to this definition"></a></dt>
+<dd><p>Location where the message is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="InboxFolder">
+<span class="sig-name descname"><span class="pre">InboxFolder</span></span><a class="headerlink" href="#InboxFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Indication whether folder is an inbox</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DeliveryStatus">
+<span class="sig-name descname"><span class="pre">DeliveryStatus</span></span><a class="headerlink" href="#DeliveryStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Message delivery status, used only for received messages</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ReplyViaSameSMSC">
+<span class="sig-name descname"><span class="pre">ReplyViaSameSMSC</span></span><a class="headerlink" href="#ReplyViaSameSMSC" title="Permalink to this definition"></a></dt>
+<dd><p>Flag indicating whether reply using same SMSC is requested</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><a class="headerlink" href="#Class" title="Permalink to this definition"></a></dt>
+<dd><p>Message class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MessageReference">
+<span class="sig-name descname"><span class="pre">MessageReference</span></span><a class="headerlink" href="#MessageReference" title="Permalink to this definition"></a></dt>
+<dd><p>Message reference number, used mostly to identify delivery reports</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ReplaceMessage">
+<span class="sig-name descname"><span class="pre">ReplaceMessage</span></span><a class="headerlink" href="#ReplaceMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Id of message which this message is supposed to replace</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="RejectDuplicates">
+<span class="sig-name descname"><span class="pre">RejectDuplicates</span></span><a class="headerlink" href="#RejectDuplicates" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to reject duplicates</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Memory">
+<span class="sig-name descname"><span class="pre">Memory</span></span><a class="headerlink" href="#Memory" title="Permalink to this definition"></a></dt>
+<dd><p>Memory where the message is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Type">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#Type" title="Permalink to this definition"></a></dt>
+<dd><p>Message type, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Submit</span></code> - message to be send</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Deliver</span></code> - delivered message</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Status_Report</span></code> - when creating new message this will create submit message
+with request for delivery report</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Coding">
+<span class="sig-name descname"><span class="pre">Coding</span></span><a class="headerlink" href="#Coding" title="Permalink to this definition"></a></dt>
+<dd><p>Message encoding, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Unicode_No_Compression</span></code> - unicode message which can contain any chars,
+but can be only 70 chars long</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Unicode_Compression</span></code> - not supported by Gammu and most phones</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Default_No_Compression</span></code> - message with GSM alphabet only, up to 160 chars
+long</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Default_Compression</span></code> - not supported by Gammu and most phones</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">8bit</span></code> - for binary messages</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DateTime">
+<span class="sig-name descname"><span class="pre">DateTime</span></span><a class="headerlink" href="#DateTime" title="Permalink to this definition"></a></dt>
+<dd><p>Timestamp when the message was received or sent.</p>
+<p>Please note that most phones do no record timestamp of sent messages.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SMSCDateTime">
+<span class="sig-name descname"><span class="pre">SMSCDateTime</span></span><a class="headerlink" href="#SMSCDateTime" title="Permalink to this definition"></a></dt>
+<dd><p>Timestamp when the message was at SMSC.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="State">
+<span class="sig-name descname"><span class="pre">State</span></span><a class="headerlink" href="#State" title="Permalink to this definition"></a></dt>
+<dd><p>Message state, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Sent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnSent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Read</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnRead</span></code></p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple message to send, using SMSC from phone</span>
+<span class="n">SMS_1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;123465&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SMSC&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Location&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s1">&#39;Text&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello world!&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Class 0 (on display) message using custom SMSC number</span>
+<span class="n">SMS_2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;123465&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SMSC&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;+420987654321&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;Text&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello world!&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Class&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="udh-object">
+<span id="udh-obj"></span><h2>UDH Object<a class="headerlink" href="#udh-object" title="Permalink to this heading"></a></h2>
+<p>UDH dictionary can consist of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ID8bit">
+<span class="sig-name descname"><span class="pre">ID8bit</span></span><a class="headerlink" href="#ID8bit" title="Permalink to this definition"></a></dt>
+<dd><p>8-bit ID of the message, not required</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ID16bit">
+<span class="sig-name descname"><span class="pre">ID16bit</span></span><a class="headerlink" href="#ID16bit" title="Permalink to this definition"></a></dt>
+<dd><p>16-bit ID of the message, not required</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PartNumber">
+<span class="sig-name descname"><span class="pre">PartNumber</span></span><a class="headerlink" href="#PartNumber" title="Permalink to this definition"></a></dt>
+<dd><p>Number of current part</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AllParts">
+<span class="sig-name descname"><span class="pre">AllParts</span></span><a class="headerlink" href="#AllParts" title="Permalink to this definition"></a></dt>
+<dd><p>Count of all message parts</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>UDH type, one of predefined strings:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NoUDH</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedMessages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedMessages16bit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableVoice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableFax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableEmail</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableVoice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableFax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableEmail</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VoidSMS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaRingtone</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaRingtoneLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaOperatorLogoLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaCallerLogo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaWAP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaWAPLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaCalendarLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaProfileLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaPhonebookLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UserUDH</span></code></p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">Text</span></span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>UDH content</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UDH</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ID8bit&quot;</span><span class="p">:</span> <span class="mh">0xCD</span><span class="p">,</span>
+    <span class="s2">&quot;PartNumber&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;AllParts&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;ConcatenatedMessages&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="smsc-object">
+<span id="smsc-obj"></span><h2>SMSC Object<a class="headerlink" href="#smsc-object" title="Permalink to this heading"></a></h2>
+<p>SMSC dictionary can consist of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>Location where the SMSC is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">Number</span></span><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>SMSC number</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">Name</span></span><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the SMSC configuration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DefaultNumber">
+<span class="sig-name descname"><span class="pre">DefaultNumber</span></span><a class="headerlink" href="#DefaultNumber" title="Permalink to this definition"></a></dt>
+<dd><p>Default recipient number, ignored on most phones</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Format">
+<span class="sig-name descname"><span class="pre">Format</span></span><a class="headerlink" href="#Format" title="Permalink to this definition"></a></dt>
+<dd><p>Default message format, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Text</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pager</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Email</span></code></p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Validity">
+<span class="sig-name descname"><span class="pre">Validity</span></span><a class="headerlink" href="#Validity" title="Permalink to this definition"></a></dt>
+<dd><p>Default message validity as a string</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NA</span></code> - validity not available</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Max</span></code> - maximum validity allowed by network</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nM</span></code>, <code class="docutils literal notranslate"><span class="pre">nH</span></code>, <code class="docutils literal notranslate"><span class="pre">nD</span></code>, <code class="docutils literal notranslate"><span class="pre">nW</span></code> - period defined in minutes, hours, days or
+weeks, eg. <code class="docutils literal notranslate"><span class="pre">3W</span></code></p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SMSC</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Location&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;Number&quot;</span><span class="p">:</span> <span class="s2">&quot;+420987654321&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Format&quot;</span><span class="p">:</span> <span class="s2">&quot;Text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Validity&quot;</span><span class="p">:</span> <span class="s2">&quot;Max&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="sms-info-object">
+<span id="sms-info-obj"></span><h2>SMS Info Object<a class="headerlink" href="#sms-info-object" title="Permalink to this heading"></a></h2>
+<p>Message info dictionary can consist of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Unicode">
+<span class="sig-name descname"><span class="pre">Unicode</span></span><a class="headerlink" href="#Unicode" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to use Unicode for the message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">ReplaceMessage</span></span><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd><p>Id of message which this message is supposed to replace</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Unknown">
+<span class="sig-name descname"><span class="pre">Unknown</span></span><a class="headerlink" href="#Unknown" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean flag indicating there was some part which Gammu could not decode.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">Class</span></span><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dd><p>Message class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Entries">
+<span class="sig-name descname"><span class="pre">Entries</span></span><a class="headerlink" href="#Entries" title="Permalink to this definition"></a></dt>
+<dd><p>Actual message data, see <a class="reference internal" href="#sms-info-part-obj"><span class="std std-ref">SMS Info Part Object</span></a>.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SMSINFO</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Class&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;Entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="s2">&quot;This is a &quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;Italic&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="s2">&quot; from &quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="s2">&quot;Gammu&quot;</span><span class="p">,</span> <span class="s2">&quot;Bold&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="sms-info-part-object">
+<span id="sms-info-part-obj"></span><h2>SMS Info Part Object<a class="headerlink" href="#sms-info-part-object" title="Permalink to this heading"></a></h2>
+<p>Message component can consist of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><a class="headerlink" href="#ID" title="Permalink to this definition"></a></dt>
+<dd><p>Identification of the part type:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Text</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedTextLong</span></code>  - Contacenated SMS, when longer than 1 SMS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedAutoTextLong</span></code> - Contacenated SMS, auto Default/Unicode coding.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedTextLong16bit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcatenatedAutoTextLong16bit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaProfileLong</span></code> -  Nokia profile = Name`` Ringtone`` ScreenSaver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaPictureImageLong</span></code> -  Nokia Picture Image + (text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaScreenSaverLong</span></code> -  Nokia screen saver + (text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaRingtone</span></code> -  Nokia ringtone - old SM2.0 format`` 1 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaRingtoneLong</span></code> -  Nokia ringtone concatenated`` when very long</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaOperatorLogo</span></code> -  Nokia 72x14 operator logo`` 1 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaOperatorLogoLong</span></code> -  Nokia 72x14 op logo or 78x21 in 2 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaCallerLogo</span></code> -  Nokia 72x14 caller logo`` 1 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaWAPBookmarkLong</span></code> -  Nokia WAP bookmark in 1 or 2 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaWAPSettingsLong</span></code> -  Nokia WAP settings in 2 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaMMSSettingsLong</span></code> -  Nokia MMS settings in 2 SMS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaVCARD10Long</span></code> -  Nokia VCARD 1.0 - only name and default number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaVCARD21Long</span></code> -  Nokia VCARD 2.1 - all numbers + text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaVCALENDAR10Long</span></code> -  Nokia VCALENDAR 1.0 - can be in few sms</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NokiaVTODOLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VCARD10Long</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VCARD21Long</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableVoice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableFax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisableEmail</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableVoice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableFax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableEmail</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VoidSMS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSound10</span></code> -  IMelody 1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSound12</span></code> -  IMelody 1.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSonyEricssonSound</span></code>  -  IMelody without header - SonyEricsson extension</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSound10Long</span></code> -  IMelody 1.0 with UPI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSound12Long</span></code> -  IMelody 1.2 with UPI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSSonyEricssonSoundLong</span></code> -  IMelody without header with UPI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSPredefinedSound</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSPredefinedAnimation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSAnimation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSFixedBitmap</span></code> -  Fixed bitmap of size 16x16 or 32x32.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSVariableBitmap</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMSVariableBitmapLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MMSIndicatorLong</span></code> - MMS message indicator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WAPIndicatorLong</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AlcatelMonoBitmapLong</span></code> - Variable bitmap with black and white colors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AlcatelMonoAnimationLong</span></code> -  Variable animation with black and white colors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AlcatelSMSTemplateName</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SiemensFile</span></code> - Siemens OTA</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Left">
+<span class="sig-name descname"><span class="pre">Left</span></span><a class="headerlink" href="#Left" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Right">
+<span class="sig-name descname"><span class="pre">Right</span></span><a class="headerlink" href="#Right" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Center">
+<span class="sig-name descname"><span class="pre">Center</span></span><a class="headerlink" href="#Center" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Large">
+<span class="sig-name descname"><span class="pre">Large</span></span><a class="headerlink" href="#Large" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Small">
+<span class="sig-name descname"><span class="pre">Small</span></span><a class="headerlink" href="#Small" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Bold">
+<span class="sig-name descname"><span class="pre">Bold</span></span><a class="headerlink" href="#Bold" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Italic">
+<span class="sig-name descname"><span class="pre">Italic</span></span><a class="headerlink" href="#Italic" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Underlined">
+<span class="sig-name descname"><span class="pre">Underlined</span></span><a class="headerlink" href="#Underlined" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Strikethrough">
+<span class="sig-name descname"><span class="pre">Strikethrough</span></span><a class="headerlink" href="#Strikethrough" title="Permalink to this definition"></a></dt>
+<dd><p>Text formatting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Protected">
+<span class="sig-name descname"><span class="pre">Protected</span></span><a class="headerlink" href="#Protected" title="Permalink to this definition"></a></dt>
+<dd><p>Whether message part should be protected (DRM)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">Number</span></span><a class="headerlink" href="#id7" title="Permalink to this definition"></a></dt>
+<dd><p>Number to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ringtone">
+<span class="sig-name descname"><span class="pre">Ringtone</span></span><a class="headerlink" href="#Ringtone" title="Permalink to this definition"></a></dt>
+<dd><p>Ringtone to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Bitmap">
+<span class="sig-name descname"><span class="pre">Bitmap</span></span><a class="headerlink" href="#Bitmap" title="Permalink to this definition"></a></dt>
+<dd><p>Bitmap to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Bookmark">
+<span class="sig-name descname"><span class="pre">Bookmark</span></span><a class="headerlink" href="#Bookmark" title="Permalink to this definition"></a></dt>
+<dd><p>Bookmark to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Settings">
+<span class="sig-name descname"><span class="pre">Settings</span></span><a class="headerlink" href="#Settings" title="Permalink to this definition"></a></dt>
+<dd><p>Settings to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MMSIndicator">
+<span class="sig-name descname"><span class="pre">MMSIndicator</span></span><a class="headerlink" href="#MMSIndicator" title="Permalink to this definition"></a></dt>
+<dd><p>MMS indication to encode in message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Phonebook">
+<span class="sig-name descname"><span class="pre">Phonebook</span></span><a class="headerlink" href="#Phonebook" title="Permalink to this definition"></a></dt>
+<dd><p>Phonebook entry to encode in message, see <a class="reference internal" href="#pbk-obj"><span class="std std-ref">Phonebook Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Calendar">
+<span class="sig-name descname"><span class="pre">Calendar</span></span><a class="headerlink" href="#Calendar" title="Permalink to this definition"></a></dt>
+<dd><p>Calendar entry to encode in message, see <a class="reference internal" href="#cal-obj"><span class="std std-ref">Calendar Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ToDo">
+<span class="sig-name descname"><span class="pre">ToDo</span></span><a class="headerlink" href="#ToDo" title="Permalink to this definition"></a></dt>
+<dd><p>Todo entry to encode in message, see <a class="reference internal" href="#todo-obj"><span class="std std-ref">Todo Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="File">
+<span class="sig-name descname"><span class="pre">File</span></span><a class="headerlink" href="#File" title="Permalink to this definition"></a></dt>
+<dd><p>File to encode in message, see <a class="reference internal" href="#file-obj"><span class="std std-ref">File Object</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Buffer">
+<span class="sig-name descname"><span class="pre">Buffer</span></span><a class="headerlink" href="#Buffer" title="Permalink to this definition"></a></dt>
+<dd><p>String to encode in message.</p>
+</dd></dl>
+
+</section>
+<section id="todo-object">
+<span id="todo-obj"></span><h2>Todo Object<a class="headerlink" href="#todo-object" title="Permalink to this heading"></a></h2>
+<p>Todo entry is a dictionary consisting of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#id8" title="Permalink to this definition"></a></dt>
+<dd><p>Location where the entry is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id9" title="Permalink to this definition"></a></dt>
+<dd><p>Type of entry, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">REMINDER</span></code> - Reminder or Date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CALL</span></code> - Call</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MEETING</span></code> - Meeting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BIRTHDAY</span></code> - Birthday or Anniversary or Special Occasion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MEMO</span></code> - Memo or Miscellaneous</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRAVEL</span></code> - Travel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VACATION</span></code> - Vacation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_ATHL</span></code> - Training - Athletism</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_BALL</span></code> - Training - Ball Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_CYCL</span></code> - Training - Cycling</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_BUDO</span></code> - Training - Budo</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_DANC</span></code> - Training - Dance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_EXTR</span></code> - Training - Extreme Sports</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_FOOT</span></code> - Training - Football</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_GOLF</span></code> - Training - Golf</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_GYM</span></code> - Training - Gym</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_HORS</span></code> - Training - Horse Race</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_HOCK</span></code> - Training - Hockey</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_RACE</span></code> - Training - Races</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_RUGB</span></code> - Training - Rugby</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_SAIL</span></code> - Training - Sailing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_STRE</span></code> - Training - Street Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_SWIM</span></code> - Training - Swimming</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_TENN</span></code> - Training - Tennis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_TRAV</span></code> - Training - Travels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_WINT</span></code> - Training - Winter Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALARM</span></code> - Alarm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DAILY_ALARM</span></code> - Alarm repeating each day.</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Priority">
+<span class="sig-name descname"><span class="pre">Priority</span></span><a class="headerlink" href="#Priority" title="Permalink to this definition"></a></dt>
+<dd><p>Entry priority, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">High</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Medium</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Low</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">Entries</span></span><a class="headerlink" href="#id10" title="Permalink to this definition"></a></dt>
+<dd><p>Actual entries, see <a class="reference internal" href="#todo-entry-obj"><span class="std std-ref">Todo Entries Object</span></a></p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;MEMO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;END_DATETIME&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;Buy some milk&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="todo-entries-object">
+<span id="todo-entry-obj"></span><h2>Todo Entries Object<a class="headerlink" href="#todo-entries-object" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id11" title="Permalink to this definition"></a></dt>
+<dd><p>Type of entry, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">END_DATETIME</span></code> - Due date (Date).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPLETED</span></code> - Whether is completed (Number).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALARM_DATETIME</span></code> - When should alarm be fired (Date).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SILENT_ALARM_DATETIME</span></code> - When should silent alarm be fired (Date).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TEXT</span></code> - Text of to do (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCRIPTION</span></code> - Description of to do (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCATION</span></code> - Location of to do (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRIVATE</span></code> - Whether entry is private (Number).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CATEGORY</span></code> - Category of entry (Number).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTACTID</span></code> - Related contact ID (Number).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PHONE</span></code> - Number to call (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LUID</span></code> - IrMC LUID which can be used for synchronisation (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAST_MODIFIED</span></code> - Date and time of last modification (Date).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">START_DATETIME</span></code> - Start date (Date).</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Value">
+<span class="sig-name descname"><span class="pre">Value</span></span><a class="headerlink" href="#Value" title="Permalink to this definition"></a></dt>
+<dd><p>Actual value, corresponding type to Type field.</p>
+</dd></dl>
+
+</section>
+<section id="calendar-object">
+<span id="cal-obj"></span><h2>Calendar Object<a class="headerlink" href="#calendar-object" title="Permalink to this heading"></a></h2>
+<p>Calendar entry is a dictionary consisting of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#id12" title="Permalink to this definition"></a></dt>
+<dd><p>Location where the entry is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id13" title="Permalink to this definition"></a></dt>
+<dd><p>Type of entry, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">REMINDER</span></code> - Reminder or Date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CALL</span></code> - Call</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MEETING</span></code> - Meeting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BIRTHDAY</span></code> - Birthday or Anniversary or Special Occasion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MEMO</span></code> - Memo or Miscellaneous</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRAVEL</span></code> - Travel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VACATION</span></code> - Vacation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_ATHL</span></code> - Training - Athletism</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_BALL</span></code> - Training - Ball Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_CYCL</span></code> - Training - Cycling</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_BUDO</span></code> - Training - Budo</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_DANC</span></code> - Training - Dance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_EXTR</span></code> - Training - Extreme Sports</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_FOOT</span></code> - Training - Football</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_GOLF</span></code> - Training - Golf</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_GYM</span></code> - Training - Gym</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_HORS</span></code> - Training - Horse Race</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_HOCK</span></code> - Training - Hockey</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_RACE</span></code> - Training - Races</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_RUGB</span></code> - Training - Rugby</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_SAIL</span></code> - Training - Sailing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_STRE</span></code> - Training - Street Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_SWIM</span></code> - Training - Swimming</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_TENN</span></code> - Training - Tennis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_TRAV</span></code> - Training - Travels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_WINT</span></code> - Training - Winter Games</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALARM</span></code> - Alarm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DAILY_ALARM</span></code> - Alarm repeating each day.</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">Entries</span></span><a class="headerlink" href="#id14" title="Permalink to this definition"></a></dt>
+<dd><p>Actual entries, see <a class="reference internal" href="#cal-entry-obj"><span class="std std-ref">Calendar Entries Object</span></a></p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CAL</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;MEMO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;START_DATETIME&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;END_DATETIME&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;LOCATION&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;Relax for one day&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="calendar-entries-object">
+<span id="cal-entry-obj"></span><h2>Calendar Entries Object<a class="headerlink" href="#calendar-entries-object" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id15" title="Permalink to this definition"></a></dt>
+<dd><p>Type of entry, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">START_DATETIME</span></code> - Date and time of event start.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">END_DATETIME</span></code> - Date and time of event end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TONE_ALARM_DATETIME</span></code> - Alarm date and time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SILENT_ALARM_DATETIME</span></code> - Date and time of silent alarm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TEXT</span></code> - Text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCRIPTION</span></code> - Detailed description.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOCATION</span></code> - Location.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PHONE</span></code> - Phone number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRIVATE</span></code> - Whether this entry is private.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTACTID</span></code> - Related contact id.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_DAYOFWEEK</span></code> - Repeat each x’th day of week.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_DAY</span></code> - Repeat each x’th day of month.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_DAYOFYEAR</span></code> - Repeat each x’th day of year.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_WEEKOFMONTH</span></code> - Repeat x’th week of month.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_MONTH</span></code> - Repeat x’th month.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_FREQUENCY</span></code> - Repeating frequency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_STARTDATE</span></code> - Repeating start.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_STOPDATE</span></code> - Repeating end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEAT_COUNT</span></code> - Number of repetitions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LUID</span></code> - IrMC LUID which can be used for synchronisation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAST_MODIFIED</span></code> - Date and time of last modification.</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">Value</span></span><a class="headerlink" href="#id16" title="Permalink to this definition"></a></dt>
+<dd><p>Actual value, corresponding type to Type field.</p>
+</dd></dl>
+
+</section>
+<section id="phonebook-object">
+<span id="pbk-obj"></span><h2>Phonebook Object<a class="headerlink" href="#phonebook-object" title="Permalink to this heading"></a></h2>
+<p>Phonebook entry is a dictionary consisting of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#id17" title="Permalink to this definition"></a></dt>
+<dd><p>Location where the entry is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MemoryType">
+<span class="sig-name descname"><span class="pre">MemoryType</span></span><a class="headerlink" href="#MemoryType" title="Permalink to this definition"></a></dt>
+<dd><p>Memory where the message is stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">Entries</span></span><a class="headerlink" href="#id18" title="Permalink to this definition"></a></dt>
+<dd><p>Actual entries, see <a class="reference internal" href="#pbk-entry-obj"><span class="std std-ref">Phonebook Entries Object</span></a></p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PBK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Location&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">&quot;MemoryType&quot;</span><span class="p">:</span> <span class="s2">&quot;ME&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;Number_General&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;+420123456789&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;Text_Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;Stojan Jakotyc&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="phonebook-entries-object">
+<span id="pbk-entry-obj"></span><h2>Phonebook Entries Object<a class="headerlink" href="#phonebook-entries-object" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id19" title="Permalink to this definition"></a></dt>
+<dd><p>Type of entry, one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_General</span></code> - General number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_Mobile</span></code> - Mobile number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_Fax</span></code> - Fax number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_Pager</span></code> - Pager number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_Other</span></code> - Other number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Note</span></code> - Note. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Postal</span></code> - Complete postal address. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Email</span></code> - Email. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Email2</span></code> - Second email. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_URL</span></code> - URL (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Date</span></code> - Date and time of last call. (Date)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Caller_Group</span></code> - Caller group. (Number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Name</span></code> - Name (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_LastName</span></code> - Last name. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_FirstName</span></code> - First name. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Company</span></code> - Company. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_JobTitle</span></code> - Job title. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Category</span></code> - Category. (Number, if -1 then text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Private</span></code> - Whether entry is private. (Number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_StreetAddress</span></code> - Street address. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_City</span></code> - City. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_State</span></code> - State. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Zip</span></code> - Zip code. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Country</span></code> - Country. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Custom1</span></code> - Custom information 1. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Custom2</span></code> - Custom information 2. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Custom3</span></code> - Custom information 3. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_Custom4</span></code> - Custom information 4. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RingtoneID</span></code> - Ringtone ID. (Number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PictureID</span></code> - Picture ID. (Number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_UserID</span></code> - User ID. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CallLength</span></code> - Length of call (Number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_LUID</span></code> - LUID - Unique Identifier used for synchronisation (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LastModified</span></code> - Date of last modification (Date)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_NickName</span></code> - Nick name (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_FormalName</span></code> - Formal name (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text_PictureName</span></code> - Picture name (on phone filesystem). (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PushToTalkID</span></code> - Push-to-talk ID (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Number_Messaging</span></code> - Favorite messaging number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Photo</span></code> - Photo (Picture).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SecondName</span></code> - Second name. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOIP</span></code> - VOIP address (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SIP</span></code> - SIP address (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DTMF</span></code> - DTMF (Text).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Video</span></code> - Video number. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SWIS</span></code> - See What I See address. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WVID</span></code> - Wireless Village user ID. (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NamePrefix</span></code> - Name prefix (Text)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NameSuffix</span></code> - Name suffix (Text)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">Location</span></span><a class="headerlink" href="#id20" title="Permalink to this definition"></a></dt>
+<dd><p>Location for the field:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Unknown</span></code> - not define</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Home</span></code> - home</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Work</span></code> - work</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">Value</span></span><a class="headerlink" href="#id21" title="Permalink to this definition"></a></dt>
+<dd><p>Actual value, corresponding type to Type field.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PictureType">
+<span class="sig-name descname"><span class="pre">PictureType</span></span><a class="headerlink" href="#PictureType" title="Permalink to this definition"></a></dt>
+<dd><p>Type of picture which is stored in Value field (only for Picture fields).</p>
+</dd></dl>
+
+</section>
+<section id="file-object">
+<span id="file-obj"></span><h2>File Object<a class="headerlink" href="#file-object" title="Permalink to this heading"></a></h2>
+<p>File is a dictionary consisting of following fields:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Used">
+<span class="sig-name descname"><span class="pre">Used</span></span><a class="headerlink" href="#Used" title="Permalink to this definition"></a></dt>
+<dd><p>Number of bytes used by this file.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">Name</span></span><a class="headerlink" href="#id22" title="Permalink to this definition"></a></dt>
+<dd><p>File name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">Folder</span></span><a class="headerlink" href="#id23" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating whether this is a folder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Level">
+<span class="sig-name descname"><span class="pre">Level</span></span><a class="headerlink" href="#Level" title="Permalink to this definition"></a></dt>
+<dd><p>Depth of file on the filesystem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#id24" title="Permalink to this definition"></a></dt>
+<dd><p>File type, one of:</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Other</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Java_JAR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image_JPG</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image_BMP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image_GIF</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image_PNG</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image_WBMP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Video_3GP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sound_AMR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sound_NRT</span></code> - DCT4 binary format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sound_MIDI</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MMS</span></code></p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ID_FullName">
+<span class="sig-name descname"><span class="pre">ID_FullName</span></span><a class="headerlink" href="#ID_FullName" title="Permalink to this definition"></a></dt>
+<dd><p>Full file name including path.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">Buffer</span></span><a class="headerlink" href="#id25" title="Permalink to this definition"></a></dt>
+<dd><p>Content of the file.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Modified">
+<span class="sig-name descname"><span class="pre">Modified</span></span><a class="headerlink" href="#Modified" title="Permalink to this definition"></a></dt>
+<dd><p>Timestamp of last change</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">Protected</span></span><a class="headerlink" href="#id26" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating whether file is protected (DRM).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ReadOnly">
+<span class="sig-name descname"><span class="pre">ReadOnly</span></span><a class="headerlink" href="#ReadOnly" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating whether file is read only.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Hidden">
+<span class="sig-name descname"><span class="pre">Hidden</span></span><a class="headerlink" href="#Hidden" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating whether file is hidden.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="System">
+<span class="sig-name descname"><span class="pre">System</span></span><a class="headerlink" href="#System" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating whether file is system.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Pos">
+<span class="sig-name descname"><span class="pre">Pos</span></span><a class="headerlink" href="#Pos" title="Permalink to this definition"></a></dt>
+<dd><p>Current position of file upload</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Finished">
+<span class="sig-name descname"><span class="pre">Finished</span></span><a class="headerlink" href="#Finished" title="Permalink to this definition"></a></dt>
+<dd><p>Boolean value indicating completed file transfer.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FILE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ID_FullName&quot;</span><span class="p">:</span> <span class="n">PATH</span><span class="p">,</span>
+    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">PATH</span><span class="p">),</span>
+    <span class="s2">&quot;Buffer&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+    <span class="s2">&quot;Protected&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;ReadOnly&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Hidden&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;System&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Folder&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Level&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;Other&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Finished&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Pos&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="divert-type">
+<span id="id27"></span><h2>Divert Type<a class="headerlink" href="#divert-type" title="Permalink to this heading"></a></h2>
+<p>The divert type can have one of following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Busy</span></code> - Divert when busy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoAnswer</span></code> - Divert when not answered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OutOfReach</span></code> - Divert when phone off or no coverage.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AllTypes</span></code> - Divert all calls without ringing.</p></li>
+</ul>
+</section>
+<section id="call-type">
+<span id="divert-call"></span><h2>Call Type<a class="headerlink" href="#call-type" title="Permalink to this heading"></a></h2>
+<p>The call type for diverts can have one of following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Voice</span></code> - Voice calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fax</span></code> - Fax calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span></code> - Data calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">All</span></code> - All calls.</p></li>
+</ul>
+</section>
+<section id="call-divert-objects">
+<span id="divert-entry"></span><h2>Call Divert Objects<a class="headerlink" href="#call-divert-objects" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DivertType">
+<span class="sig-name descname"><span class="pre">DivertType</span></span><a class="headerlink" href="#DivertType" title="Permalink to this definition"></a></dt>
+<dd><p>When to do the divert, see <a class="reference internal" href="#divert-type"><span class="std std-ref">Divert Type</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CallType">
+<span class="sig-name descname"><span class="pre">CallType</span></span><a class="headerlink" href="#CallType" title="Permalink to this definition"></a></dt>
+<dd><p>What call types to divert, see <a class="reference internal" href="#divert-call"><span class="std std-ref">Call Type</span></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id28">
+<span class="sig-name descname"><span class="pre">Number</span></span><a class="headerlink" href="#id28" title="Permalink to this definition"></a></dt>
+<dd><p>Phone number where to divert.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Timeout">
+<span class="sig-name descname"><span class="pre">Timeout</span></span><a class="headerlink" href="#Timeout" title="Permalink to this definition"></a></dt>
+<dd><p>Timeout after which the divert will happen.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exceptions.html" class="btn btn-neutral float-left" title="gammu.exception – Gammu exception handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../c/index.html" class="btn btn-neutral float-right" title="libGammu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Gammu FAQ &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuring Gammu FAQ" href="config.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">General Gammu FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#will-gammu-work-on-my-system">Will Gammu work on my system?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-set-sender-number-in-message">How to set sender number in message?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-use-gammu-to-send-mms">Can I use Gammu to send MMS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-use-gammu-to-receive-mms">Can I use Gammu to receive MMS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-name-always-changes-on-linux-how-to-solve-that">Device name always changes on Linux, how to solve that?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-programs-using-same-device-cause-various-errors-how-to-fix-that">Multiple programs using same device cause various errors, how to fix that?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-free-alternatives-to-gammu">What are free alternatives to Gammu?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuring Gammu FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phone.html">Phone Support FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smsd.html">SMSD FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python-gammu FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Frequently Asked Questions</a></li>
+      <li class="breadcrumb-item active">General Gammu FAQ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/faq/general.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="general-gammu-faq">
+<h1>General Gammu FAQ<a class="headerlink" href="#general-gammu-faq" title="Permalink to this heading"></a></h1>
+<section id="will-gammu-work-on-my-system">
+<h2>Will Gammu work on my system?<a class="headerlink" href="#will-gammu-work-on-my-system" title="Permalink to this heading"></a></h2>
+<p>Gammu is known to run on wide range of systems. It can be compiled natively on
+Linux, Mac OS X, FreeBSD, OpenBSD and Microsoft Windows. It can be probably
+compiled also elsewhere, but nobody has yet tried. On some platforms however
+you might lack support for some specific kind of devices (eg. Bluetooth or
+USB).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../project/install.html#installing"><span class="std std-ref">Installing Gammu</span></a></p>
+</div>
+</section>
+<section id="how-to-set-sender-number-in-message">
+<h2>How to set sender number in message?<a class="headerlink" href="#how-to-set-sender-number-in-message" title="Permalink to this heading"></a></h2>
+<p>You can quite often see messages sent from textual address or with some other
+nice looking sender number. However this needs to be done in the GSM network
+and it is not possible to influence this from the terminal device (phone).
+Usually it is set by SMSC and some network providers allow you to set this
+based on some contract. Alternatively you can use their SMS gateways, which
+also allow this functionality.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../gammu/index.html#gammu-sms"><span class="std std-ref">SMS and EMS commands</span></a></p>
+</div>
+</section>
+<section id="can-i-use-gammu-to-send-mms">
+<h2>Can I use Gammu to send MMS?<a class="headerlink" href="#can-i-use-gammu-to-send-mms" title="Permalink to this heading"></a></h2>
+<p>MMS contains of two parts - the actual MMS data in SMIL format and the SMS
+containing notification about the data. Gammu can create the notification SMS,
+where you just need to put URL of the data (use <code class="xref std std-option docutils literal notranslate"><span class="pre">gammu</span> <span class="pre">sendsms</span></code>
+MMSINDICATOR for that). However you need to encode MMS data yourself or use
+other program to do that.</p>
+</section>
+<section id="can-i-use-gammu-to-receive-mms">
+<span id="faq-mms-download"></span><h2>Can I use Gammu to receive MMS?<a class="headerlink" href="#can-i-use-gammu-to-receive-mms" title="Permalink to this heading"></a></h2>
+<p>MMS contains of two parts - the actual MMS data in SMIL format and the SMS
+containing notification about the data. Gammu (or SMSD) will receive the
+notification SMS, where URL to download the MMS content is included.</p>
+<p>However in most situations the URL is accessible only from the network and APN
+specific for the MMS messages, so downloading it is a bit tricky and needs to
+connect using GSM modem to the network using this APN.</p>
+</section>
+<section id="device-name-always-changes-on-linux-how-to-solve-that">
+<span id="faq-devname"></span><h2>Device name always changes on Linux, how to solve that?<a class="headerlink" href="#device-name-always-changes-on-linux-how-to-solve-that" title="Permalink to this heading"></a></h2>
+<p>You can use udev to assign persistent device name (used as
+<span class="target" id="index-0"></span><a class="reference internal" href="../config/index.html#option-Device"><code class="xref config config-option docutils literal notranslate"><span class="pre">Device</span></code></a>). You can either use standard persistent names based on
+serial number (located in <code class="file docutils literal notranslate"><span class="pre">/dev/serial/by-id/</span></code>) or define own rules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="n">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">manufacturer</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;Nokia&quot;</span><span class="p">,</span> <span class="n">KERNEL</span><span class="o">==</span><span class="s2">&quot;ttyUSB*&quot;</span><span class="p">,</span> <span class="n">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;phone&quot;</span>
+</pre></div>
+</div>
+<p>Better is to use vendor and product IDs (you can get them for example using <strong class="command">lsusb</strong>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="n">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idVendor</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;xxxx&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idProduct</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;yyyy&quot;</span><span class="p">,</span> <span class="n">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;phone&quot;</span>
+</pre></div>
+</div>
+<p>If you’re using 3G modem, it’s quite likely that it exposes multiple interfaces
+and only one of them is good for Gammu usage. In this case you should match
+against interface number as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="n">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idVendor</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;xxxx&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idProduct</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;yyyy&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">bInterfaceNumber</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="n">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;phone&quot;</span>
+</pre></div>
+</div>
+<p>You can match by various attributes, you can figure them using udevadm command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>udevadm<span class="w"> </span>info<span class="w"> </span>--name<span class="o">=</span>/dev/ttyUSB1<span class="w"> </span>--attribute-walk
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Various documentation on creating persistent device names using udev is
+available online, for example on the <a class="reference external" href="http://wiki.debian.org/udev#persistent-name">Debian wiki</a> or in
+<a class="reference external" href="http://reactivated.net/writing_udev_rules.html">Writing udev rules</a> document.</p>
+</div>
+</section>
+<section id="multiple-programs-using-same-device-cause-various-errors-how-to-fix-that">
+<span id="echo"></span><h2>Multiple programs using same device cause various errors, how to fix that?<a class="headerlink" href="#multiple-programs-using-same-device-cause-various-errors-how-to-fix-that" title="Permalink to this heading"></a></h2>
+<p>Gammu needs to be the only program using the device, otherwise you will get
+strange errors from both programs as they will read answer to command sent by
+something else.</p>
+<p>In gammu, it can happen quite early with error message “Phone does not support
+enabled echo, it can not work with Gammu!”, but it can be spotted later as
+well, depending on various conditions.</p>
+<p>In case you see such behavior, check what other programs are using given device.
+This can be done using <strong class="program">fuser</strong> tool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fuser<span class="w"> </span>-va<span class="w"> </span>/dev/ttyACM0
+</pre></div>
+</div>
+<p>The usual programs involve:</p>
+<ul class="simple">
+<li><p>NetworkManager with ModemManager, you need to disable mobile networking to
+stop it using the device, disabling the modem connection does not seem to be
+enough.</p></li>
+<li><p>Other Gammu instance, in case you want to interact with modem while SMSD is
+running see <a class="reference internal" href="../smsd/smsd.html#gammu-smsd-suspend"><span class="std std-ref">Invoking Gammu and suspending SMSD</span></a>.</p></li>
+</ul>
+</section>
+<section id="what-are-free-alternatives-to-gammu">
+<h2>What are free alternatives to Gammu?<a class="headerlink" href="#what-are-free-alternatives-to-gammu" title="Permalink to this heading"></a></h2>
+<p>It depends on your phone. For Nokia or AT based phones, you can try <a class="reference external" href="http://gnokii.org/">Gnokii</a>,
+but Gammu should be superior in most cases. For Symbian phone you can try using
+<a class="reference external" href="http://series60-remote.sourceforge.net/">Series60-Remote</a>, which works pretty well with S60 phones, though Gammu
+brings various fixes to their applet.</p>
+<p>If you are looking for synchronisation, try using something what supports
+SyncML to retrieve contacts or calendar from your phone, for example
+<a class="reference external" href="http://www.opensync.org/">OpenSync</a> or <a class="reference external" href="http://syncevolution.org/">syncEvolution</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Frequently Asked Questions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="config.html" class="btn btn-neutral float-right" title="Configuring Gammu FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

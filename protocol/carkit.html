@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nokia 6210/6310, CARC91, PC Experiment &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TDMA 5120" href="tdma_5120.html" />
+    <link rel="prev" title="Nokia 7110" href="n7110.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nokia 6210/6310, CARC91, PC Experiment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nokia-6210">Nokia 6210</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#phone-connected-to-pc">Phone connected to PC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phone-connected-to-carc91">Phone connected to CARC91</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nokia-6310">Nokia 6310</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Phone connected to PC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Phone connected to CARC91</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">Nokia 6210/6310, CARC91, PC Experiment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/carkit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nokia-6210-6310-carc91-pc-experiment">
+<h1>Nokia 6210/6310, CARC91, PC Experiment<a class="headerlink" href="#nokia-6210-6310-carc91-pc-experiment" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>Author:</dt><dd><p>Jens Bennfors</p>
+</dd>
+<dt>Company</dt><dd><p>AB Indevia</p>
+</dd>
+<dt>Date:</dt><dd><p>2002-04-09</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The purpose of this experiment is to gain understanding about how Nokias commands for handsfree works in a way that can be of use in the construction of Com.n.sense. The means available is a Nokia 6210, a Nokia 6310, a HFU-2 CARC91 and a PC with a LabVIEW program installed.</p>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
+<p>I have connected the phone to a Nokia original handsfree (CARC91). I then use the PC for listening to the data communication between the phone and CARC91. I also send the frames directly from the PC to the phone.</p>
+</section>
+<section id="nokia-6210">
+<h2>Nokia 6210<a class="headerlink" href="#nokia-6210" title="Permalink to this heading"></a></h2>
+<section id="phone-connected-to-pc">
+<h3>Phone connected to PC<a class="headerlink" href="#phone-connected-to-pc" title="Permalink to this heading"></a></h3>
+<section id="initiation">
+<h4>Initiation<a class="headerlink" href="#initiation" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from PC</p>
+</dd>
+<dt>1F0004 D0 0001 04 01CF</dt><dd><p>Power up from PC</p>
+</dd>
+<dt>1F0400 D0 0001 05 10DF</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0203</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 044F</dt><dd><p>HFU-2 Version</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 117C</dt><dd><p>Status 0x08, 0x01 from phone</p>
+</dd>
+<dt>1F0400 DA 0002 0002 12D3</dt><dd><p>Type =&gt; 0xDA, data =&gt; 0x00, 0x02</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0504</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0607</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 78 0003 0201 0307 67</dt><dd><p>Status confirm from PC</p>
+</dd>
+<dt>1F0004 78 0003 0201 0308 68</dt><dd><p>Status confirm from PC</p>
+</dd>
+<dt>1F0400 7F 086C</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+<p>The phone enters the profile ”handsfree” when the frame carkit enable is sent. It sends out an unknown status frame 0x08, 0x01.</p>
+</section>
+<section id="incoming-call">
+<h4>Incoming call<a class="headerlink" href="#incoming-call" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0102 0701 197B</dt><dd><p>Status 0x07, 0x01 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1A73</dt><dd><p>Status 0x0E, 0x03 from phone</p>
+</dd>
+</dl>
+<p>Status type 0x07 with status 0x01 means mute external audio equipment. Status type 0x0E with status 0x03 means audio amplifier on.</p>
+</section>
+<section id="connected">
+<h4>Connected<a class="headerlink" href="#connected" title="Permalink to this heading"></a></h4>
+<p>The phone doesn’t send out anything when a call has been set up.</p>
+</section>
+<section id="initiation-with-connected-phone">
+<h4>Initiation with connected phone<a class="headerlink" href="#initiation-with-connected-phone" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from PC</p>
+</dd>
+<dt>1F0400 D0 0001 05 1BD4</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 0001 00</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1C75</dt><dd><p>Status 0x0E, 0x03 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0701 1D7F</dt><dd><p>Status 0x07, 0x01 from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 00 5620 3037 2E30 300A 4846 5532 00 0249</dt><dd><p>HFU-2 Version from PC</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 1E73</dt><dd><p>Status 0x08, 0x01 from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 0003 02</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1F76</dt><dd><p>Status 0x0E, 0x03 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0701 2042</dt><dd><p>Status 0x07, 0x01 from phone</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0464</dt><dd><p>Status confirm from PC</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="disconnected">
+<h4>Disconnected<a class="headerlink" href="#disconnected" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F04 0078 0004 0102 0700 2142</dt><dd><p>Status 0x07, 0x00</p>
+</dd>
+</dl>
+</section>
+<section id="incoming-sms">
+<h4>Incoming SMS<a class="headerlink" href="#incoming-sms" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>FCF0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0F0 F0</dt><dd><p>Initiation of bit length from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 254C</dt><dd><p>Status 0x0E, 0x03 from phone</p>
+</dd>
+<dt>F0F0F0F0</dt><dd><p>Initiation of bit length from phone</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="phone-connected-to-carc91">
+<h3>Phone connected to CARC91<a class="headerlink" href="#phone-connected-to-carc91" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h4>Initiation<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from HFU-2</p>
+</dd>
+<dt>1F0400 D0 0001 05 02CD</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0100</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0249</dt><dd><p>HFU-2 Version</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 036E</dt><dd><p>Status 0x08, 0x01</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 036E</dt><dd><p>Status 0x08, 0x01</p>
+</dd>
+<dt>1F0004 7F 0367</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 DA 0002 0002 04C5</dt><dd><p>Status type =&gt; 0xDA, data =&gt; 0x00, 0x02</p>
+</dd>
+<dt>1F0004 7F 0460</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 056C</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 0561</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0464</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E00 066C</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 0662</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0565</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0561</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h4>Incoming call<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0102 0701 1173</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 1175</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 127B</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 1276</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0868</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 086C</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h4>Connected<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<p>The phone doesn’t send out anything when a call has been set up.</p>
+</section>
+<section id="id4">
+<h4>Initiation with connected phone<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from HFU-2</p>
+</dd>
+<dt>1F0400 D0 0001 05 1AD5</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0100</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1B72</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0249</dt><dd><p>HFU-2 Version</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1B72</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 1B7F</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 1C71</dt><dd><p>Status 0x08, 0x01</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0464</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0801 1C71</dt><dd><p>Status 0x08, 0x01</p>
+</dd>
+<dt>1F0004 7F 1C78</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E03 1D74</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 1D79</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0701 1E7C</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0565</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0561</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0701 1E7C</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 1E7A</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0701 1F7D</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 1F7B</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 DA 0002 0002 20E1</dt><dd><p>Typ =&gt; 0xDA, data =&gt; 0x00. 0x02</p>
+</dd>
+<dt>1F0004 7F 2044</dt><dd><p>Ack from HFU-2</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h4>Disconnected<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0102 0700 1774</dt><dd><p>Status 0x07, 0x00</p>
+</dd>
+<dt>1F0004 7F 1773</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E00 1872</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 187C</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0B6B</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0B6F</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h4>Incoming SMS<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0102 0E03 076E</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 0763</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0666</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E00 0862</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 086C</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0767</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0763</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="button-pushed">
+<h4>Button pushed<a class="headerlink" href="#button-pushed" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0102 0E03 0960</dt><dd><p>Status 0x0E, 0x03</p>
+</dd>
+<dt>1F0004 7F 096D</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0868</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 086C</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0102 0E00 0A60</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 0A6E</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 0969</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 096D</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="nokia-6310">
+<h2>Nokia 6310<a class="headerlink" href="#nokia-6310" title="Permalink to this heading"></a></h2>
+<section id="id7">
+<h3>Phone connected to PC<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<section id="id8">
+<h4>Initiation<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 02CC</dt><dd><p>Power up from PC</p>
+</dd>
+<dt>1F0400 D0 0001 05 0DC2</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0C0D</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 0C68</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0B00 0E4B</dt><dd><p>Status 0x0B, 0x00 from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0D46</dt><dd><p>HFU-2 version from PC</p>
+</dd>
+<dt>1F0400 7F 0E6A</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 DA 0004 0028 0000 0FE2</dt><dd><p>?</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 1716</dt><dd><p>Enable carkit mode from PC</p>
+</dd>
+<dt>1F0400 7F 1773</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0B00 1055</dt><dd><p>Status 0x0B, 0x00 from phone</p>
+</dd>
+<dt>1F0004 78 0003 0201 03 1878</dt><dd><p>Status confirm from PC</p>
+</dd>
+<dt>1F0400 7F 1A7E</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+<p>An unknown status frame (0x0B) is sent by the phone.</p>
+</section>
+<section id="id9">
+<h4>Incoming call<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0701 0D45</dt><dd><p>Status 0x07, 0x01 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 0F4E</dt><dd><p>Status 0x0E, 0x01 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 1054</dt><dd><p>Status 0x0A, 0x00 from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 1157</dt><dd><p>Status 0x09, 0x01 from phone</p>
+</dd>
+</dl>
+<p>Byte 8 in the status frames is some kind of ID number. 0x28 is the ID for 6310. Status 0x0A, 0x09 is unknown.</p>
+</section>
+<section id="id10">
+<h4>Connected<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<p>The phone doesn’t send out anything when a call has been set up. This might be because the profile “handsfree” is lost when ack isn’t sent.</p>
+</section>
+<section id="id11">
+<h4>Initiation with connected phone<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 1C57</dt><dd><p>HFU-2 version from PC</p>
+</dd>
+<dt>1F0400 7F 1C78</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E02 1A58</dt><dd><p>Status 0x0E, 0x02</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 1B5F</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0400 78 0004 0128 0900 1C5B</dt><dd><p>Status 0x09, 0x00</p>
+</dd>
+<dt>1F0400 78 0004 0128 0701 1D55</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from HFU-2</p>
+</dd>
+<dt>1F0400 D0 0001 05 74BB</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0100</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0249</dt><dd><p>HFU-2 Version</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 7534</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 7534</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 7511</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A01 7633</dt><dd><p>Status 0x0A, 0x01</p>
+</dd>
+<dt>1F0004 7F 7612</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 7731</dt><dd><p>Status 0x09, 0x01</p>
+</dd>
+<dt>1F0004 7F 7713</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0701 7830</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 781C</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 7938</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 791D</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 044E</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 DA 0004 0028 0000 7A97</dt><dd><p>Type =&gt; 0xDA, data =&gt; 0x0028, 0x0000</p>
+</dd>
+<dt>1F0004 7F 7A1E</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 7B3A</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 7B1F</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 7C38</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 054F</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0561</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 7C38</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 7F 7C18</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0700 7D34</dt><dd><p>Status 0x07, 0x00</p>
+</dd>
+<dt>1F0004 7F 7D19</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E00 7E3E</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 7E1A</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 064C</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h4>Disconnected<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<p>No response. Probably because phone has lost the profile “handsfree”.</p>
+</section>
+<section id="id13">
+<h4>Incoming SMS<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0E01 0849</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 094D</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 0A4C</dt><dd><p>Status 0x09, 0x01</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id14">
+<h3>Phone connected to CARC91<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<section id="id15">
+<h4>Initiation<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from HFU-2</p>
+</dd>
+<dt>1F0400 D0 0001 05 2DE2</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0100</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0249</dt><dd><p>HFU version from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E00 2E6E</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 2E4A</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 044E</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0460</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 DA 0004 0028 0000 2FC2</dt><dd><p>?</p>
+</dd>
+<dt>1F0004 7F 2F4B</dt><dd><p>Ack from HFU-2</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h4>Incoming call<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0701 3078</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 3054</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0701 3179</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 3155</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 3273</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 3256</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 3377</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 054F</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0561</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 3377</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 7F 33 57</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 3472</dt><dd><p>Status 0x09, 0x01</p>
+</dd>
+<dt>1F0004 7F 3450</dt><dd><p>Ack from HFU-2</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h4>Connected<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0E01 3574</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 3551</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A01 3673</dt><dd><p>Status 0x0A, 0x01</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 064C</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A01 3673</dt><dd><p>Status 0x0A, 0x01</p>
+</dd>
+<dt>1F0004 7F 3652</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 3773</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 7F 3753</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0900 387F</dt><dd><p>Status 0x09, 0x00</p>
+</dd>
+<dt>1F0004 7F 385C</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A01 397C</dt><dd><p>Status 0x0A, 0x01</p>
+</dd>
+<dt>1F0004 7F 395D</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 3A7C</dt><dd><p>Status 0x09, 0x01</p>
+</dd>
+<dt>1F0004 7F 3A5E</dt><dd><p>Ack from HFU-2</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h4>Initiation with connected phone<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0004 D0 0001 04 00CE</dt><dd><p>Power up from HFU-2</p>
+</dd>
+<dt>1F0400 D0 0001 05 5996</dt><dd><p>Power up from phone</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0100</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0165</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0004 79 0012 0201 0206 0056 2030 372E 3030 0A48 4655 3200 0249</dt><dd><p>HFU-2 Version</p>
+</dd>
+<dt>1F0400 7F 0266</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 5A1B</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 79 0005 0201 0164 00 0302</dt><dd><p>Enable carkit mode from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0367</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E01 5A1B</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 5A3E</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A01 5B1E</dt><dd><p>Status 0x0A, 0x01</p>
+</dd>
+<dt>1F0004 7F 5B3F</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0901 5C1A</dt><dd><p>Status 0x09, 0x01</p>
+</dd>
+<dt>1F0004 7F 5C38</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0701 5D15</dt><dd><p>Status 0x07, 0x01</p>
+</dd>
+<dt>1F0004 7F 5D39</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 0305 4F</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0561</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 DA 0004 0028 0000 5EB3</dt><dd><p>?</p>
+</dd>
+<dt>1F0004 7F 5E3A</dt><dd><p>Ack from HFU-2</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h4>Disconnected<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0E01 3B7A</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 3B5F</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 3C78</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 074D</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0763</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0A00 3C78</dt><dd><p>Status 0x0A, 0x00</p>
+</dd>
+<dt>1F0004 7F 3C58</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0700 3D74</dt><dd><p>Status 0x07, 0x00</p>
+</dd>
+<dt>1F0004 7F 3D59</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E00 3E7E</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 3E5A</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 0308 42</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 086C</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h4>Incoming SMS<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0E01 6627</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 6602</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 064C</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E00 6727</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 6703</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 074D</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0763</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h4>Button pushed<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>1F0400 78 0004 0128 0E01 0948</dt><dd><p>Status 0x0E, 0x01</p>
+</dd>
+<dt>1F0004 7F 096D</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 064C</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0662</dt><dd><p>Ack from phone</p>
+</dd>
+<dt>1F0400 78 0004 0128 0E00 0A4A</dt><dd><p>Status 0x0E, 0x00</p>
+</dd>
+<dt>1F0004 7F 0A6E</dt><dd><p>Ack from HFU-2</p>
+</dd>
+<dt>1F0004 78 0003 2801 03 074D</dt><dd><p>Status confirm from HFU-2</p>
+</dd>
+<dt>1F0400 7F 0763</dt><dd><p>Ack from phone</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this heading"></a></h2>
+<p>Important things to consider when designing a program for Com.n.sense that is to work with 6310.</p>
+<ul class="simple">
+<li><p>6310 sends out status 0x0E, 0x01 when speaker should be enabled</p></li>
+<li><p>HFU-2 version has to be sent in order for 6310 to switch to profile ”Handsfree”.</p></li>
+<li><p>Status 0x0A might say weather the phone is ringing or connected. Only 6310 send this status.</p></li>
+<li><p>Status confirm should be sent when status 0x0E is received.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="n7110.html" class="btn btn-neutral float-left" title="Nokia 7110" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tdma_5120.html" class="btn btn-neutral float-right" title="TDMA 5120" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

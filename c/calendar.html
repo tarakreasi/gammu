@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Callback" href="callback.html" />
+    <link rel="prev" title="Bitmap" href="bitmap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Calendar</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/calendar.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calendar">
+<h1>Calendar<a class="headerlink" href="#calendar" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_CalendarFindDefaultTextTimeAlarmPhone” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeVTODO” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeVCALENDAR” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeVNOTE” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_EncodeVNTFile” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DecodeVCALENDAR_VTODO” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_IsCalendarNoteFromThePast” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetAlarm” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetAlarm” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetToDoStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteAllToDo” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCalendarStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteAllCalendar” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetCalendarSettings” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetCalendarSettings” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNotesStatus” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNote” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetNextNote” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetNote” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AddNote” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteNote” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_DeleteAllNotes” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CalendarSettings">
+<span class="target" id="structGSM__CalendarSettings"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CalendarSettings</span></span></span><a class="headerlink" href="#c.GSM_CalendarSettings" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar settings structure. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarSettings.StartDay">
+<span class="target" id="structGSM__CalendarSettings_1a6956e5783c90ead5265da5c5ee952ca1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StartDay</span></span></span><a class="headerlink" href="#c.GSM_CalendarSettings.StartDay" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Monday = 1, Tuesday = 2,… </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarSettings.AutoDelete">
+<span class="target" id="structGSM__CalendarSettings_1a17ee1a38f0a64d33a6dcd846934af0e1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AutoDelete</span></span></span><a class="headerlink" href="#c.GSM_CalendarSettings.AutoDelete" title="Permalink to this definition"></a><br /></dt>
+<dd><p>0 = no delete, 1 = after day,… </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_ToDoStatus">
+<span class="target" id="structGSM__ToDoStatus"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ToDoStatus</span></span></span><a class="headerlink" href="#c.GSM_ToDoStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of to do entries. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoStatus.Free">
+<span class="target" id="structGSM__ToDoStatus_1a1a1a4066040fb3891af97cae73151aa2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Free</span></span></span><a class="headerlink" href="#c.GSM_ToDoStatus.Free" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of free positions. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoStatus.Used">
+<span class="target" id="structGSM__ToDoStatus_1aeac5d976f8fa53c5db1da6c50d9e4b44"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Used</span></span></span><a class="headerlink" href="#c.GSM_ToDoStatus.Used" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of used positions. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CalendarStatus">
+<span class="target" id="structGSM__CalendarStatus"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CalendarStatus</span></span></span><a class="headerlink" href="#c.GSM_CalendarStatus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Structure used for returning calendar status. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarStatus.Free">
+<span class="target" id="structGSM__CalendarStatus_1ac1826d7103ae614beadb6a06e9f1ff93"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Free</span></span></span><a class="headerlink" href="#c.GSM_CalendarStatus.Free" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of free positions. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarStatus.Used">
+<span class="target" id="structGSM__CalendarStatus_1a2040c208cb9ab137ab7552370c4cbcf4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Used</span></span></span><a class="headerlink" href="#c.GSM_CalendarStatus.Used" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of used positions. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType">
+<span class="target" id="group__Calendar_1gad6d4a79ea38f2819f35df9d3d5ff0f08"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CalendarNoteType</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enum defines types of calendar notes </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_REMINDER">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ac48850dac1e1dd57d0f4fa7301e51b33"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_REMINDER</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_REMINDER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reminder or Date </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_CALL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a052a526e072aacd5b4818522f4ceaa77"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_CALL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_CALL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Call </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_MEETING">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08aeaaa759958be76a9a22d7095f20e483e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_MEETING</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_MEETING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Meeting </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_BIRTHDAY">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a927c03154f1f2e9ed5402f2021eac650"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_BIRTHDAY</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_BIRTHDAY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Birthday or Anniversary or Special Occasion </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_MEMO">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a9d7e00f04469db821ca19ce933aa0ef6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_MEMO</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_MEMO" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Memo or Miscellaneous </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_TRAVEL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ac01518ad008476aee512a652dda4fca2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_TRAVEL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_TRAVEL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Travel </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_VACATION">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08af419ca41e84b8a0aaf5a97165db153e6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_VACATION</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_VACATION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Vacation </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_ATHL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ae99bc9e41f51dee068b6a94e39805059"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_ATHL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_ATHL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Athletism </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_BALL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a9bd7b521a6569480bd363ed349055e5d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_BALL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_BALL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Ball Games </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_CYCL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08aa42121907a9600356030badcafcb7d69"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_CYCL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_CYCL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Cycling </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_BUDO">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ae488f7fea49ec2675306bc5eb64dd85b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_BUDO</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_BUDO" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Budo </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_DANC">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a4d91bc0877a65c73896e0fda8f9b61a9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_DANC</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_DANC" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Dance </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_EXTR">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a01e3da43a4072959ff5513d515c64fe8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_EXTR</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_EXTR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Extreme Sports </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_FOOT">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08aa810dedbd4fb02278d0109a5cbdecdfa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_FOOT</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_FOOT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Football </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_GOLF">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a79ae050b64c17b30cb573ae6e7cfb850"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_GOLF</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_GOLF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Golf </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_GYM">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a7a8a234872a9fc046209d1c1c679ea8d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_GYM</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_GYM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Gym </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_HORS">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a3df8ea4589b808c7f01ddae04437b607"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_HORS</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_HORS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Horse Race </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_HOCK">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a848aea1cbaadd5765bd63648ca408b4e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_HOCK</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_HOCK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Hockey </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_RACE">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a083ceee6ce1270a12d8c2bafafda7212"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_RACE</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_RACE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Races </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_RUGB">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a50d630ba0025835a32d1e6339d458540"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_RUGB</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_RUGB" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Rugby </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_SAIL">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a19e3386d2b58ab029c94a36aa619a7c1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_SAIL</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_SAIL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Sailing </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_STRE">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a1426ebf950160b3f5ffbfa0575ab0418"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_STRE</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_STRE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Street Games </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_SWIM">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ade5b1b3eec984d87c6cf796a37d14e3a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_SWIM</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_SWIM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Swimming </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_TENN">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08ab051e8cf63b9c371e502022c49865319"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_TENN</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_TENN" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Tennis </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_TRAV">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a24543c5b9f8288c4594018a6a215e0f2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_TRAV</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_TRAV" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Travels </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_T_WINT">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a91414d4371f7498d61b53514d81355b1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_T_WINT</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_T_WINT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Training - Winter Games </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_ALARM">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a8a3157954750b94e6eb81911a6ac5270"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_ALARM</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_ALARM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Alarm </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_DAILY_ALARM">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a51152da070b659e8a41e695908cd2bc1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_DAILY_ALARM</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_DAILY_ALARM" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Alarm repeating each day. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarNoteType.GSM_CAL_SHOPPING">
+<span class="target" id="group__Calendar_1ggad6d4a79ea38f2819f35df9d3d5ff0f08a9856400e7a74eb4aa1c27077cce968e5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CAL_SHOPPING</span></span></span><a class="headerlink" href="#c.GSM_CalendarNoteType.GSM_CAL_SHOPPING" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Shopping </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_CalendarType">
+<span class="target" id="group__Calendar_1ga7f220058028142755d556a238cbf2598"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CalendarType</span></span></span><a class="headerlink" href="#c.GSM_CalendarType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>One value of calendar event. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_START_DATETIME">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a23ee261d4b11c5b9c6218e3d906ef927"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_START_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_START_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of event start. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_END_DATETIME">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598ac65b3480f9d1b973a0696ba7ea7cbe3d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_END_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_END_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of event end. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_TONE_ALARM_DATETIME">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598af99d94c907ebc3e56a9e0e966615db2d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_TONE_ALARM_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_TONE_ALARM_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Alarm date and time. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_SILENT_ALARM_DATETIME">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598aaa774bf1c95a7b152342c15811b7003d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_SILENT_ALARM_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_SILENT_ALARM_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of silent alarm. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_TEXT">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598ae63deef5db312fdd0bd468e7a1aa0d94"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_TEXT</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_TEXT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_DESCRIPTION">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598aec393b45c18b7f8bd0011948b97ed768"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_DESCRIPTION</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_DESCRIPTION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Detailed description. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_LOCATION">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a865b2657df03146cf81b3b20833ad1be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_LOCATION</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_LOCATION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_PHONE">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598ab74e03523f73388b77802684b8340f37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_PHONE</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_PHONE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone number. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_PRIVATE">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a6dd83026e481c1e47c7ecd435b4b4637"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_PRIVATE</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_PRIVATE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether this entry is private. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_CONTACTID">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a5e01066d2d80b5c23c63be4ef1ac1f42"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_CONTACTID</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_CONTACTID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Related contact id. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_DAYOFWEEK">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a5fc363199c7ea09577b8f1f004b1f789"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_DAYOFWEEK</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_DAYOFWEEK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeat each x’th day of week. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_DAY">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a248c10861bafa2c20b4d11e53e2d9d25"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_DAY</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_DAY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeat each x’th day of month. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_DAYOFYEAR">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a0a0e8590ff5704d5bbbd32ce99bc4f6b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_DAYOFYEAR</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_DAYOFYEAR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeat each x’th day of year. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_WEEKOFMONTH">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a9219070b5b4077193cd1390c8598ac7d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_WEEKOFMONTH</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_WEEKOFMONTH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeat x’th week of month. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_MONTH">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a35d26ef24b1aa87b02bc3124f49cd314"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_MONTH</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_MONTH" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeat x’th month. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_FREQUENCY">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a186604cee2810b08421b459a4c4e49fd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_FREQUENCY</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_FREQUENCY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeating frequency. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_STARTDATE">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598ac06ec1808481958620bf78ea532d51de"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_STARTDATE</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_STARTDATE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeating start. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_STOPDATE">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598aaf47557df8f0589267bcc543f5cd900d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_STOPDATE</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_STOPDATE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Repeating end. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_REPEAT_COUNT">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a6b0707eb486197fd4a251bfc7cf0ef28"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_REPEAT_COUNT</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_REPEAT_COUNT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of repetitions. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_LUID">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598a8322d04ea7367d3b2019c140e1b4ceb4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_LUID</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_LUID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IrMC LUID which can be used for synchronisation. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_CalendarType.CAL_LAST_MODIFIED">
+<span class="target" id="group__Calendar_1gga7f220058028142755d556a238cbf2598ab34e4cd1c678854982416e56828a05ce"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CAL_LAST_MODIFIED</span></span></span><a class="headerlink" href="#c.GSM_CalendarType.CAL_LAST_MODIFIED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of last modification. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry">
+<span class="target" id="structGSM__SubCalendarEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SubCalendarEntry</span></span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>One value of calendar event. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry.EntryType">
+<span class="target" id="structGSM__SubCalendarEntry_1aee08809791aae477a145f955a0f53474"></span><a class="reference internal" href="#c.GSM_CalendarType" title="GSM_CalendarType"><span class="n"><span class="pre">GSM_CalendarType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EntryType</span></span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry.EntryType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of value. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry.Date">
+<span class="target" id="structGSM__SubCalendarEntry_1a0423c439d880667b330038081b71e8a4"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Date</span></span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry.Date" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of value, if applicable. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry.Number">
+<span class="target" id="structGSM__SubCalendarEntry_1ae3889658cec67b656453b68a0baabce7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of value, if applicable. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry.AddError">
+<span class="target" id="structGSM__SubCalendarEntry_1a2632c21c7925a7becdc32807f6f58788"></span><a class="reference internal" href="error.html#c.GSM_Error" title="GSM_Error"><span class="n"><span class="pre">GSM_Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AddError</span></span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry.AddError" title="Permalink to this definition"></a><br /></dt>
+<dd><p>During adding SubEntry Gammu can return here info, if it was done OK </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubCalendarEntry.Text">
+<span class="target" id="structGSM__SubCalendarEntry_1aab6342e20da7fd753bc3bddba594e155"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_CALENDAR_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SubCalendarEntry.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text of value, if applicable. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_CalendarEntry">
+<span class="target" id="structGSM__CalendarEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_CalendarEntry</span></span></span><a class="headerlink" href="#c.GSM_CalendarEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calendar note values. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarEntry.Type">
+<span class="target" id="structGSM__CalendarEntry_1a294607df31dc7192b615cd00a9845be7"></span><a class="reference internal" href="#c.GSM_CalendarNoteType" title="GSM_CalendarNoteType"><span class="n"><span class="pre">GSM_CalendarNoteType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_CalendarEntry.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of calendar note. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarEntry.Location">
+<span class="target" id="structGSM__CalendarEntry_1a82f25b95460e92a09343e2a17b90cfaf"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_CalendarEntry.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location in memory. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarEntry.EntriesNum">
+<span class="target" id="structGSM__CalendarEntry_1a7b8fa78525d6db20930f2ec9c8056899"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EntriesNum</span></span></span><a class="headerlink" href="#c.GSM_CalendarEntry.EntriesNum" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of entries. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_CalendarEntry.Entries">
+<span class="target" id="structGSM__CalendarEntry_1a5ca0894735ece2dfc49749a6217d3d55"></span><a class="reference internal" href="#c.GSM_SubCalendarEntry" title="GSM_SubCalendarEntry"><span class="n"><span class="pre">GSM_SubCalendarEntry</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Entries</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_CALENDAR_ENTRIES</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_CalendarEntry.Entries" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Values of entries. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ToDoType">
+<span class="target" id="group__Todo_1ga31e4cf4f323a87b4a2117deccc41de9f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ToDoType</span></span></span><a class="headerlink" href="#c.GSM_ToDoType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Types of to do values. In parenthesis is member of <a class="reference internal" href="#structGSM__SubToDoEntry"><span class="std std-ref">GSM_SubToDoEntry</span></a>, where value is stored. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_END_DATETIME">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa8a1b7e54c28fe8be59044779ea7f2a57"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_END_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_END_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Due date (Date). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_COMPLETED">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa9f3d6a171cdd200db255333a00a51e82"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_COMPLETED</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_COMPLETED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether is completed (Number). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_ALARM_DATETIME">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fab8c93ffab0adb08360c682496e45179d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_ALARM_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_ALARM_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>When should alarm be fired (Date). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_SILENT_ALARM_DATETIME">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9faf513e4a0aaa6e238f0fd231910d29694"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_SILENT_ALARM_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_SILENT_ALARM_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>When should silent alarm be fired (Date). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_TEXT">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa4d89230badf0709d32a01e3e0872b81f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_TEXT</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_TEXT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text of to do (Text). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_DESCRIPTION">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa96653464ae80cd7233ffb4b49fc9782b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_DESCRIPTION</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_DESCRIPTION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Description of to do (Text). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_LOCATION">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9facf36ccdfabd0523352cc7df64f21ec91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_LOCATION</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_LOCATION" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location of to do (Text). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_PRIVATE">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa865fa77bf464a79e23af000615bf278c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_PRIVATE</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_PRIVATE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether entry is private (Number). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_CATEGORY">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa8604169d3b3c62f59bb53b3d023b34a3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_CATEGORY</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_CATEGORY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Category of entry (Number). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_CONTACTID">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa363854d49b76a0a5c089d7ea3dd9f394"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_CONTACTID</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_CONTACTID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Related contact ID (Number). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_PHONE">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fadac88edda30180215e6b6ec39ef01ac2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_PHONE</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_PHONE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number to call (Text). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_LUID">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fad914a5f791cc4343c54437b6d39d337d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_LUID</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_LUID" title="Permalink to this definition"></a><br /></dt>
+<dd><p>IrMC LUID which can be used for synchronisation (Text). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_LAST_MODIFIED">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa49a1c830ac3e52fd83878da6b0f65ef9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_LAST_MODIFIED</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_LAST_MODIFIED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of last modification (Date). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_START_DATETIME">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fa6d9b3eaef4c3f30ae404131a24da49f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_START_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_START_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Start date (Date). </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDoType.TODO_COMPLETED_DATETIME">
+<span class="target" id="group__Todo_1gga31e4cf4f323a87b4a2117deccc41de9fad546cd9f05b2d75ff85f71f33c32a29b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TODO_COMPLETED_DATETIME</span></span></span><a class="headerlink" href="#c.GSM_ToDoType.TODO_COMPLETED_DATETIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Completed date (Date). </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority">
+<span class="target" id="group__Todo_1ga40ea3df0324e95c827b62016ab7432c9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ToDo_Priority</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Priority of to do. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority.GSM_Priority_None">
+<span class="target" id="group__Todo_1gga40ea3df0324e95c827b62016ab7432c9a4eb095d2de939d3873dd4c27a3676fc2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Priority_None</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority.GSM_Priority_None" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority.GSM_Priority_High">
+<span class="target" id="group__Todo_1gga40ea3df0324e95c827b62016ab7432c9a41c179211aab632221cf191f82e68673"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Priority_High</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority.GSM_Priority_High" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority.GSM_Priority_Medium">
+<span class="target" id="group__Todo_1gga40ea3df0324e95c827b62016ab7432c9a94391e27d0f2b743f47a857f7b6ee913"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Priority_Medium</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority.GSM_Priority_Medium" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority.GSM_Priority_Low">
+<span class="target" id="group__Todo_1gga40ea3df0324e95c827b62016ab7432c9aece024835016d4f4c10b95e4ee5dc873"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Priority_Low</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority.GSM_Priority_Low" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ToDo_Priority.GSM_Priority_INVALID">
+<span class="target" id="group__Todo_1gga40ea3df0324e95c827b62016ab7432c9a91ef87ee90bd773a12a41f18735921ba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Priority_INVALID</span></span></span><a class="headerlink" href="#c.GSM_ToDo_Priority.GSM_Priority_INVALID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_SubToDoEntry">
+<span class="target" id="structGSM__SubToDoEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_SubToDoEntry</span></span></span><a class="headerlink" href="#c.GSM_SubToDoEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Value of to do entry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubToDoEntry.EntryType">
+<span class="target" id="structGSM__SubToDoEntry_1a4526bca34382ede75e234887951802b4"></span><a class="reference internal" href="#c.GSM_ToDoType" title="GSM_ToDoType"><span class="n"><span class="pre">GSM_ToDoType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EntryType</span></span></span><a class="headerlink" href="#c.GSM_SubToDoEntry.EntryType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of entry. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubToDoEntry.Date">
+<span class="target" id="structGSM__SubToDoEntry_1a77c15144ba7f5f211d06e0f37c5649f7"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Date</span></span></span><a class="headerlink" href="#c.GSM_SubToDoEntry.Date" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date of value, if appropriate, see <a class="reference internal" href="#group__Todo_1ga31e4cf4f323a87b4a2117deccc41de9f"><span class="std std-ref">GSM_ToDoType</span></a>. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubToDoEntry.Number">
+<span class="target" id="structGSM__SubToDoEntry_1af88aecf4fc3cd84e5ac2d62f52439fc1"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Number</span></span></span><a class="headerlink" href="#c.GSM_SubToDoEntry.Number" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of value, if appropriate, see <a class="reference internal" href="#group__Todo_1ga31e4cf4f323a87b4a2117deccc41de9f"><span class="std std-ref">GSM_ToDoType</span></a>. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_SubToDoEntry.Text">
+<span class="target" id="structGSM__SubToDoEntry_1ac79d760d9b685fd7951e2d59bf75cca6"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_TODO_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_SubToDoEntry.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text of value, if appropriate, see <a class="reference internal" href="#group__Todo_1ga31e4cf4f323a87b4a2117deccc41de9f"><span class="std std-ref">GSM_ToDoType</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry">
+<span class="target" id="structGSM__ToDoEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ToDoEntry</span></span></span><a class="headerlink" href="#c.GSM_ToDoEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>To do entry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry.Type">
+<span class="target" id="structGSM__ToDoEntry_1a690cea56e009a9b105e892c5a3688e4c"></span><a class="reference internal" href="#c.GSM_CalendarNoteType" title="GSM_CalendarNoteType"><span class="n"><span class="pre">GSM_CalendarNoteType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#c.GSM_ToDoEntry.Type" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of todo note. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry.Priority">
+<span class="target" id="structGSM__ToDoEntry_1a310f0af2e6cbb1663e714b8113d35ce4"></span><a class="reference internal" href="#c.GSM_ToDo_Priority" title="GSM_ToDo_Priority"><span class="n"><span class="pre">GSM_ToDo_Priority</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Priority</span></span></span><a class="headerlink" href="#c.GSM_ToDoEntry.Priority" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Priority of entry. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry.Location">
+<span class="target" id="structGSM__ToDoEntry_1a019694f425f46b1e816172bf5969f924"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_ToDoEntry.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location in memory. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry.EntriesNum">
+<span class="target" id="structGSM__ToDoEntry_1a86afd341ed57226c5f3eafdff52e039f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EntriesNum</span></span></span><a class="headerlink" href="#c.GSM_ToDoEntry.EntriesNum" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Number of entries. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_ToDoEntry.Entries">
+<span class="target" id="structGSM__ToDoEntry_1a2df11eec690d83aca6d05d50221cdc94"></span><a class="reference internal" href="#c.GSM_SubToDoEntry" title="GSM_SubToDoEntry"><span class="n"><span class="pre">GSM_SubToDoEntry</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Entries</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_TODO_ENTRIES</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_ToDoEntry.Entries" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Values of current entry. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_NoteEntry">
+<span class="target" id="structGSM__NoteEntry"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_NoteEntry</span></span></span><a class="headerlink" href="#c.GSM_NoteEntry" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Note entry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NoteEntry.Location">
+<span class="target" id="structGSM__NoteEntry_1aa1bb191c690d1835c7257f2381809575"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_NoteEntry.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location in memory. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_NoteEntry.Text">
+<span class="target" id="structGSM__NoteEntry_1a6031c21d56253161bf227fd408352638"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_NOTE_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_NoteEntry.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text of note. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Alarm">
+<span class="target" id="structGSM__Alarm"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Alarm</span></span></span><a class="headerlink" href="#c.GSM_Alarm" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Alarm values. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Alarm.Location">
+<span class="target" id="structGSM__Alarm_1a524416d2dde4a940ac8e67647260e861"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Location</span></span></span><a class="headerlink" href="#c.GSM_Alarm.Location" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Location where it is stored. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Alarm.DateTime">
+<span class="target" id="structGSM__Alarm_1aa46c2d7499aa3f577414dd6bc57d346e"></span><a class="reference internal" href="datetime.html#c.GSM_DateTime" title="GSM_DateTime"><span class="n"><span class="pre">GSM_DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTime</span></span></span><a class="headerlink" href="#c.GSM_Alarm.DateTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Date and time of alarm. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Alarm.Repeating">
+<span class="target" id="structGSM__Alarm_1aa30ce510f4635f93b625b6a2901d855e"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repeating</span></span></span><a class="headerlink" href="#c.GSM_Alarm.Repeating" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether it repeats each day. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Alarm.Text">
+<span class="target" id="structGSM__Alarm_1a6dde8ea8cfe46baaebd0a3be6ff0c8e7"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Text</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">GSM_MAX_CALENDAR_TEXT_LENGTH</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Alarm.Text" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text that is shown on display. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_VToDoVersion">
+<span class="target" id="group__Todo_1gaea6a39e6ca134c35052b0caf256375ca"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_VToDoVersion</span></span></span><a class="headerlink" href="#c.GSM_VToDoVersion" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format of vTodo. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VToDoVersion.Nokia_VToDo">
+<span class="target" id="group__Todo_1ggaea6a39e6ca134c35052b0caf256375caab5e69c20abf640ce0b9aa287481b3e77"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Nokia_VToDo</span></span></span><a class="headerlink" href="#c.GSM_VToDoVersion.Nokia_VToDo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format compatible with Nokia - limited subsed of standard. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VToDoVersion.SonyEricsson_VToDo">
+<span class="target" id="group__Todo_1ggaea6a39e6ca134c35052b0caf256375caaf8c042bdb39a5b0317780c1086d3c0f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SonyEricsson_VToDo</span></span></span><a class="headerlink" href="#c.GSM_VToDoVersion.SonyEricsson_VToDo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format compatible with SonyEricsson - complete standard. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VToDoVersion.Mozilla_VToDo">
+<span class="target" id="group__Todo_1ggaea6a39e6ca134c35052b0caf256375caad8a345ae2d8436c2e80e1d0a79154d01"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mozilla_VToDo</span></span></span><a class="headerlink" href="#c.GSM_VToDoVersion.Mozilla_VToDo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format compatible with Mozilla - iCalendar based. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_VCalendarVersion">
+<span class="target" id="group__Calendar_1gaebd1fa569d37d8fa6a2098a8ec0bc874"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_VCalendarVersion</span></span></span><a class="headerlink" href="#c.GSM_VCalendarVersion" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Format of vCalendar export. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VCalendarVersion.Nokia_VCalendar">
+<span class="target" id="group__Calendar_1ggaebd1fa569d37d8fa6a2098a8ec0bc874a86fd3f4c27c6eeea3c191925c54ab3db"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Nokia_VCalendar</span></span></span><a class="headerlink" href="#c.GSM_VCalendarVersion.Nokia_VCalendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>vCalendar specially hacked for Nokia . </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VCalendarVersion.Siemens_VCalendar">
+<span class="target" id="group__Calendar_1ggaebd1fa569d37d8fa6a2098a8ec0bc874a24af7127cd2526326628ce4d798f9cb8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Siemens_VCalendar</span></span></span><a class="headerlink" href="#c.GSM_VCalendarVersion.Siemens_VCalendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>vCalendar specially hacked for Siemens. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VCalendarVersion.SonyEricsson_VCalendar">
+<span class="target" id="group__Calendar_1ggaebd1fa569d37d8fa6a2098a8ec0bc874acbfef08b4472003d0157f4bf327ea00a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SonyEricsson_VCalendar</span></span></span><a class="headerlink" href="#c.GSM_VCalendarVersion.SonyEricsson_VCalendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Standard vCalendar (which works for Sony-Ericsson phones) </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_VCalendarVersion.Mozilla_iCalendar">
+<span class="target" id="group__Calendar_1ggaebd1fa569d37d8fa6a2098a8ec0bc874a96122cfdad58a0ece2c3668f9ef3ec33"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mozilla_iCalendar</span></span></span><a class="headerlink" href="#c.GSM_VCalendarVersion.Mozilla_iCalendar" title="Permalink to this definition"></a><br /></dt>
+<dd><p>iCalendar as compatible with Mozilla. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bitmap.html" class="btn btn-neutral float-left" title="Bitmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="callback.html" class="btn btn-neutral float-right" title="Callback" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMSD Database Structure &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer documentation" href="code.html" />
+    <link rel="prev" title="Null Backend" href="null.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">SMS Daemon</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html">Program Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">SMSD Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">RunOnReceive Directive</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="backends.html">Backend services</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="files.html">Files backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html">SQL Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mysql.html">MySQL Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pgsql.html">PostgreSQL Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbi.html">DBI Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html">ODBC Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="null.html">Null Backend</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SMSD Database Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#receiving-of-messages">Receiving of messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transmitting-of-messages">Transmitting of messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description-of-tables">Description of tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#history-of-database-structure">History of database structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Developer documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">SMS Daemon</a></li>
+          <li class="breadcrumb-item"><a href="backends.html">Backend services</a></li>
+      <li class="breadcrumb-item active">SMSD Database Structure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/smsd/tables.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="smsd-database-structure">
+<span id="gammu-smsd-tables"></span><h1>SMSD Database Structure<a class="headerlink" href="#smsd-database-structure" title="Permalink to this heading"></a></h1>
+<p>The backends themselves are described in their sections, this document
+describes general database structure and required tables.</p>
+<p>More SMS daemons can share single database. If you do not specify PhoneID in
+their configuration, all are treated equally and you have no guarantee which
+one sends outgoing message. If you configure PhoneID and use it when inserting
+message to the <code class="docutils literal notranslate"><span class="pre">outbox</span></code> table (<a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a> does this), each SMS
+daemon will have separate outbox queue. See also <a class="reference internal" href="config.html#smsd-multi"><span class="std std-ref">Multiple modems</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SQL scripts to create all needed tables for most databases are included in
+Gammu documentation <a class="reference external" href="https://github.com/gammu/gammu/tree/master/docs/sql">docs/sql</a>.</p>
+</div>
+<section id="receiving-of-messages">
+<h2>Receiving of messages<a class="headerlink" href="#receiving-of-messages" title="Permalink to this heading"></a></h2>
+<p>Received messages are stored in <a class="reference internal" href="#inbox"><span class="std std-ref">inbox</span></a> table.</p>
+</section>
+<section id="transmitting-of-messages">
+<h2>Transmitting of messages<a class="headerlink" href="#transmitting-of-messages" title="Permalink to this heading"></a></h2>
+<p>Transmitted messages are read from table <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a> and possible subsequent parts
+of the same message from <a class="reference internal" href="#outbox-multipart"><span class="std std-ref">outbox_multipart</span></a>.</p>
+</section>
+<section id="description-of-tables">
+<h2>Description of tables<a class="headerlink" href="#description-of-tables" title="Permalink to this heading"></a></h2>
+<section id="gammu">
+<span id="gammu-table"></span><h3>gammu<a class="headerlink" href="#gammu" title="Permalink to this heading"></a></h3>
+<p>Table holding single field <code class="docutils literal notranslate"><span class="pre">Version</span></code> - version of a database schema. See
+<a class="reference internal" href="#smsd-tables-history"><span class="std std-ref">History of database structure</span></a> for details what has changed.</p>
+</section>
+<section id="inbox">
+<span id="id1"></span><h3>inbox<a class="headerlink" href="#inbox" title="Permalink to this heading"></a></h3>
+<p>Table where received messages will be stored.</p>
+<p>Fields description:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">UpdatedInDB</span></code> (timestamp)</dt><dd><p>when somebody (daemon, user, etc.) updated it</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ReceivingDateTime</span></code> (timestamp)</dt><dd><p>when SMS was received</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Text</span></code> (text)</dt><dd><p>encoded SMS text (for all SMS)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SenderNumber</span></code> (varchar(20))</dt><dd><p>decoded SMS sender number</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Coding</span></code> (enum(‘Default_No_Compression’, ‘Unicode_No_Compression’, ‘8bit’, ‘Default_Compression’, ‘Unicode_Compression’))</dt><dd><p>SMS text coding</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UDH</span></code> (text)</dt><dd><p>encoded User Data Header text</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SMSCNumber</span></code> (varchar(20))</dt><dd><p>decoded SMSC number</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Class</span></code> (integer)</dt><dd><p>SMS class or -1 (0 is flash SMS, 1 is normal one, 127 is USSD)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TextDecoded</span></code> (varchar(160))</dt><dd><p>decoded SMS text (for Default Alphabet/Unicode SMS)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (integer unsigned)</dt><dd><p>SMS identificator (for using with external applications)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">RecipientID</span></code> (text)</dt><dd><p>which Gammu daemon has added it</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Processed</span></code> (enum(‘false’, ‘true’))</dt><dd><p>you can use for marking, whether SMS was processed or not</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Status</span></code> (integer)</dt><dd><p>Status of incoming message. Currently only used for
+<code class="docutils literal notranslate"><span class="pre">Class</span></code> 127 (USSD) messages with following meaning:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt><dd><p>Unknown status.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">2</span></code></dt><dd><p>No action is needed, maybe network initiated USSD.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">3</span></code></dt><dd><p>Reply is expected.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">4</span></code></dt><dd><p>USSD dialog terminated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">5</span></code></dt><dd><p>Another client replied.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">6</span></code></dt><dd><p>Operation not supported.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">7</span></code></dt><dd><p>Network timeout.</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="outbox">
+<span id="id2"></span><h3>outbox<a class="headerlink" href="#outbox" title="Permalink to this heading"></a></h3>
+<p>Messages enqueued for sending should be placed in this table. If message
+is multipart, subsequent parts are stored in table <a class="reference internal" href="#outbox-multipart"><span class="std std-ref">outbox_multipart</span></a>.</p>
+<p>Fields description:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">UpdatedInDB</span></code> (timestamp)</dt><dd><p>when somebody (daemon, user, etc.) updated it</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">InsertIntoDB</span></code> (timestamp)</dt><dd><p>when message was inserted into database</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingDateTime</span></code> (timestamp)</dt><dd><p>set it to some value, when want to force sending after some planned time</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendBefore</span></code> (time)</dt><dd><p>Send message before specified time, can be used to limit messages from
+being sent in night. Default value is 23:59:59</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.29.90.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendAfter</span></code> (time)</dt><dd><p>Send message after specified time, can be used to limit messages from
+being sent in night. Default value is 00:00:00</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.29.90.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Text</span></code> (text)</dt><dd><p>SMS text encoded using hex values in proper coding. If you want to use
+TextDecoded field, keep this NULL (or empty).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DestinationNumber</span></code> (varchar(20))</dt><dd><p>recipient number</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Coding</span></code> (enum(‘Default_No_Compression’, ‘Unicode_No_Compression’, ‘8bit’, ‘Default_Compression’, ‘Unicode_Compression’))</dt><dd><p>SMS text coding</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UDH</span></code> (text)</dt><dd><p>User Data Header encoded using hex values which will be used for constructing
+the message. Without this, message will be sent as plain text.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Class</span></code> (integer)</dt><dd><p>SMS class or -1 (0 is normal SMS, 1 is flash one, 127 is USSD)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TextDecoded</span></code> (varchar(160))</dt><dd><p>SMS text in “human readable” form</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (integer unsigned)</dt><dd><p>SMS/SMS sequence ID</p>
+<p>Please note that this number has to be unique also for sentitems table, so
+reusing message IDs might not be a good idea.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MultiPart</span></code> (enum(‘false’,’true’))</dt><dd><p>info, whether there are more SMS from this sequence in outbox_multipart</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">RelativeValidity</span></code> (integer)</dt><dd><p>SMS relative validity like encoded using GSM specs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SenderID</span></code> (text)</dt><dd><p>which SMSD instance should send this one sequence, see
+<span class="target" id="index-0"></span><a class="reference internal" href="config.html#option-PhoneID"><code class="xref config config-option docutils literal notranslate"><span class="pre">PhoneID</span></code></a> and <a class="reference internal" href="config.html#smsd-multi"><span class="std std-ref">Multiple modems</span></a>. If blank, first SMSD who
+sees this message first will process it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingTimeOut</span></code> (timestamp)</dt><dd><p>used by SMSD instance for own targets</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryReport</span></code> (enum(‘default’,’yes’,’no’))</dt><dd><p>when default is used, Delivery Report is used or not according to SMSD instance settings; yes forces Delivery Report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CreatorID</span></code> (text)</dt><dd><p>identification of program created the message</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Retries</span></code> (integer)</dt><dd><p>number of attempted retries when sending this message</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Priority</span></code> (integer)</dt><dd><p>priority of message, messages with higher priority are processed first</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Status</span></code> (enum(‘SendingOK’, ‘SendingOKNoReport’, ‘SendingError’, ‘DeliveryOK’, ‘DeliveryFailed’, ‘DeliveryPending’, ‘DeliveryUnknown’, ‘Error’, ‘Reserved’))</dt><dd><p>Status of message sending. SendingError means that phone failed to send the
+message, Error indicates some other error while processing message.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOK</span></code></dt><dd><p>Message has been sent, waiting for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOKNoReport</span></code></dt><dd><p>Message has been sent without asking for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingError</span></code></dt><dd><p>Sending has failed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryOK</span></code></dt><dd><p>Delivery report arrived and reported success.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryFailed</span></code></dt><dd><p>Delivery report arrived and reports failure.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryPending</span></code></dt><dd><p>Delivery report announced pending deliver.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryUnknown</span></code></dt><dd><p>Delivery report reported unknown status.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Error</span></code></dt><dd><p>Some other error happened during sending (usually bug in SMSD).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></dt><dd><p>Initial value, meaning the status has not been set.</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">StatusCode</span></code> (integer)</dt><dd><p>GSM status code</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="outbox-multipart">
+<span id="id3"></span><h3>outbox_multipart<a class="headerlink" href="#outbox-multipart" title="Permalink to this heading"></a></h3>
+<p>Data for outgoing multipart messages.</p>
+<p>Fields description:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (integer unsigned)</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Text</span></code> (text)</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Coding</span></code> (enum(‘Default_No_Compression’, ‘Unicode_No_Compression’, ‘8bit’, ‘Default_Compression’, ‘Unicode_Compression’))</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UDH</span></code> (text)</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Class</span></code> (integer)</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TextDecoded</span></code> (varchar(160))</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (integer unsigned)</dt><dd><p>the same meaning as values in outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SequencePosition</span></code> (integer)</dt><dd><p>info, what is SMS number in SMS sequence (start at 2, first part is in <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a>
+table).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Status</span></code> (enum(‘SendingOK’, ‘SendingOKNoReport’, ‘SendingError’, ‘DeliveryOK’, ‘DeliveryFailed’, ‘DeliveryPending’, ‘DeliveryUnknown’, ‘Error’, ‘Reserved’))</dt><dd><p>Status of message sending. SendingError means that phone failed to send the
+message, Error indicates some other error while processing message.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOK</span></code></dt><dd><p>Message has been sent, waiting for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOKNoReport</span></code></dt><dd><p>Message has been sent without asking for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingError</span></code></dt><dd><p>Sending has failed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryOK</span></code></dt><dd><p>Delivery report arrived and reported success.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryFailed</span></code></dt><dd><p>Delivery report arrived and reports failure.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryPending</span></code></dt><dd><p>Delivery report announced pending deliver.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryUnknown</span></code></dt><dd><p>Delivery report reported unknown status.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Error</span></code></dt><dd><p>Some other error happened during sending (usually bug in SMSD).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></dt><dd><p>Initial value, meaning the status has not been set.</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">StatusCode</span></code> (integer)</dt><dd><p>GSM status code</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="phones">
+<span id="id4"></span><h3>phones<a class="headerlink" href="#phones" title="Permalink to this heading"></a></h3>
+<p>Information about connected phones. This table is periodically refreshed and
+you can get information such as battery or signal level from here.</p>
+<p>Fields description:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (text)</dt><dd><p>PhoneID value</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UpdatedInDB</span></code> (timestamp)</dt><dd><p>when this record has been updated</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">InsertIntoDB</span></code> (timestamp)</dt><dd><p>when this record has been created (when phone has been connected)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TimeOut</span></code> (timestamp)</dt><dd><p>when this record expires</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Send</span></code> (boolean)</dt><dd><p>indicates whether SMSD is sending messages, depends on configuration directive <span class="target" id="index-1"></span><a class="reference internal" href="config.html#option-Send"><code class="xref config config-option docutils literal notranslate"><span class="pre">Send</span></code></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Receive</span></code> (boolean)</dt><dd><p>indicates whether SMSD is receiving messages, depends on configuration directive <span class="target" id="index-2"></span><a class="reference internal" href="config.html#option-Receive"><code class="xref config config-option docutils literal notranslate"><span class="pre">Receive</span></code></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">IMEI</span></code> (text)</dt><dd><p>IMEI of phone</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">IMSI</span></code> (text)</dt><dd><p>SIM IMSI</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Client</span></code> (text)</dt><dd><p>client name, usually string Gammu with version</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Battery</span></code> (integer)</dt><dd><p>battery level in percent (or -1 if unknown)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Signal</span></code> (integer)</dt><dd><p>signal level in percent (or -1 if unknown)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Sent</span></code> (integer)</dt><dd><p>Number of sent SMS messages (SMSD does not reset this counter, so it might
+overflow).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Received</span></code> (integer)</dt><dd><p>Number of received SMS messages (SMSD does not reset this counter, so it might
+overflow).</p>
+</dd>
+</dl>
+</section>
+<section id="sentitems">
+<span id="id5"></span><h3>sentitems<a class="headerlink" href="#sentitems" title="Permalink to this heading"></a></h3>
+<p>Log of sent messages (and unsent ones with error code). Also if delivery
+reports are enabled, message state is updated after receiving delivery report.</p>
+<p>Fields description:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">UpdatedInDB</span></code> (timestamp)</dt><dd><p>when somebody (daemon, user, etc.) updated it</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">InsertIntoDB</span></code> (timestamp)</dt><dd><p>when message was inserted into database</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingDateTime</span></code> (timestamp)</dt><dd><p>when message has been sent</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryDateTime</span></code> (timestamp)</dt><dd><p>Time of receiving delivery report (if it has been enabled).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Status</span></code> (enum(‘SendingOK’, ‘SendingOKNoReport’, ‘SendingError’, ‘DeliveryOK’, ‘DeliveryFailed’, ‘DeliveryPending’, ‘DeliveryUnknown’, ‘Error’))</dt><dd><p>Status of message sending. SendingError means that phone failed to send the
+message, Error indicates some other error while processing message.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOK</span></code></dt><dd><p>Message has been sent, waiting for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingOKNoReport</span></code></dt><dd><p>Message has been sent without asking for delivery report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SendingError</span></code></dt><dd><p>Sending has failed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryOK</span></code></dt><dd><p>Delivery report arrived and reported success.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryFailed</span></code></dt><dd><p>Delivery report arrived and reports failure.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryPending</span></code></dt><dd><p>Delivery report announced pending deliver.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DeliveryUnknown</span></code></dt><dd><p>Delivery report reported unknown status.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Error</span></code></dt><dd><p>Some other error happened during sending (usually bug in SMSD).</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">StatusError</span></code> (integer)</dt><dd><p>Status of delivery from delivery report message, codes are defined in GSM
+specification 03.40 section 9.2.3.15 (TP-Status).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Text</span></code> (text)</dt><dd><p>SMS text encoded using hex values</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DestinationNumber</span></code> (varchar(20))</dt><dd><p>decoded destination number for SMS</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Coding</span></code> (enum(‘Default_No_Compression’, ‘Unicode_No_Compression’, ‘8bit’, ‘Default_Compression’, ‘Unicode_Compression’))</dt><dd><p>SMS text coding</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UDH</span></code> (text)</dt><dd><p>User Data Header encoded using hex values</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SMSCNumber</span></code> (varchar(20))</dt><dd><p>decoded number of SMSC, which sent SMS</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Class</span></code> (integer)</dt><dd><p>SMS class or -1 (0 is normal SMS, 1 is flash one, 127 is USSD)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TextDecoded</span></code> (varchar(160))</dt><dd><p>SMS text in “human readable” form</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ID</span></code> (integer unsigned)</dt><dd><p>SMS ID</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SenderID</span></code> (text)</dt><dd><p>which SMSD instance sent this one sequence, see <span class="target" id="index-3"></span><a class="reference internal" href="config.html#option-PhoneID"><code class="xref config config-option docutils literal notranslate"><span class="pre">PhoneID</span></code></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SequencePosition</span></code> (integer)</dt><dd><p>SMS number in SMS sequence</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TPMR</span></code> (integer)</dt><dd><p>Message Reference like in GSM specs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">RelativeValidity</span></code> (integer)</dt><dd><p>SMS relative validity like encoded using GSM specs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CreatorID</span></code> (text)</dt><dd><p>copied from CreatorID from outbox table</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">StatusCode</span></code> (integer)</dt><dd><p>GSM status code</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.38.5.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="history-of-database-structure">
+<span id="smsd-tables-history"></span><h2>History of database structure<a class="headerlink" href="#history-of-database-structure" title="Permalink to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Testing versions (see <a class="reference internal" href="../project/versioning.html#versioning"><span class="std std-ref">Versioning</span></a>) do not have to keep same table
+structure as final releases. Below mentioned versions are for
+informational purposes only, you should always use stable versions in
+production environment.</p>
+</div>
+<p>History of schema versions:</p>
+<p>17</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">Status</span></code> field to <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a> and <a class="reference internal" href="#outbox-multipart"><span class="std std-ref">outbox_multipart</span></a>.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">StatusCode</span></code> field to <a class="reference internal" href="#sentitems"><span class="std std-ref">sentitems</span></a>, <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a> and <a class="reference internal" href="#outbox-multipart"><span class="std std-ref">outbox_multipart</span></a>.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">Status</span></code> field to <a class="reference internal" href="#inbox"><span class="std std-ref">inbox</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.38.5.</span></p>
+</div>
+</div></blockquote>
+<p>16</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Removed unused <code class="docutils literal notranslate"><span class="pre">daemons</span></code>, <code class="docutils literal notranslate"><span class="pre">pbk</span></code> and <code class="docutils literal notranslate"><span class="pre">pbk_groups</span></code> tables.</p></li>
+<li><p>Added primary key to the <code class="docutils literal notranslate"><span class="pre">gammu</span></code> table.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">Priority</span></code> field to the <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a>.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">IMSI</span></code> field to the <a class="reference internal" href="#phones"><span class="std std-ref">phones</span></a>.</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.37.90.</span></p>
+</div>
+</div></blockquote>
+<p>15</p>
+<blockquote>
+<div><p>Added <code class="docutils literal notranslate"><span class="pre">Retries</span></code> field to the <a class="reference internal" href="#outbox"><span class="std std-ref">outbox</span></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.36.7.</span></p>
+</div>
+</div></blockquote>
+<p>14</p>
+<blockquote>
+<div><p>Added <code class="docutils literal notranslate"><span class="pre">NetCode</span></code> and <code class="docutils literal notranslate"><span class="pre">NetName</span></code> fields.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.34.0.</span></p>
+</div>
+</div></blockquote>
+<dl>
+<dt>13</dt><dd><p>Added <code class="docutils literal notranslate"><span class="pre">SendBefore</span></code> and <code class="docutils literal notranslate"><span class="pre">SendAfter</span></code> fields.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.29.90.</span></p>
+</div>
+<p>Also PostgreSQL fields are now case sensitive (same as other backends).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.29.93.</span></p>
+</div>
+</dd>
+<dt>12</dt><dd><p>the changes only affect MySQL structure changing default values for
+timestamps from <code class="docutils literal notranslate"><span class="pre">0000-00-00</span> <span class="pre">00:00:00</span></code> to <code class="docutils literal notranslate"><span class="pre">CURRENT_TIMESTAMP()</span></code> by
+using triggers, to update to this version, just execute triggers
+definition at the end of SQL file.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.28.94.</span></p>
+</div>
+</dd>
+<dt>11</dt><dd><p>all fields for storing message text are no longer limited to 160 chars,
+but are arbitrary length text fields.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.25.92.</span></p>
+</div>
+</dd>
+<dt>10</dt><dd><p><code class="docutils literal notranslate"><span class="pre">DeliveryDateTime</span></code> is now NULL when message is not delivered, added several
+indexes</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.22.95.</span></p>
+</div>
+</dd>
+<dt>9</dt><dd><p>added sent/received counters to phones table</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.22.93.</span></p>
+</div>
+</dd>
+<dt>8</dt><dd><p>Signal and battery state are now stored in database.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.20.94.</span></p>
+</div>
+</dd>
+<dt>7</dt><dd><p>Added <code class="docutils literal notranslate"><span class="pre">CreatorID</span></code> to several tables.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.07.00.</span></p>
+</div>
+</dd>
+<dt>6</dt><dd><p>Many fields in outbox can now be NULL.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.06.00.</span></p>
+</div>
+</dd>
+<dt>5</dt><dd><p>Introduced daemons table and various other changes.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.03.00.</span></p>
+</div>
+</dd>
+<dt>3</dt><dd><p>Introduced phones table and various other changes.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.98.0.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="creating-tables">
+<h3>Creating tables<a class="headerlink" href="#creating-tables" title="Permalink to this heading"></a></h3>
+<p>SQL scripts to create all needed tables for most databases are included in
+Gammu documentation <a class="reference external" href="https://github.com/gammu/gammu/tree/master/docs/sql">docs/sql</a>.</p>
+<p>For example to create SQLite tables, issue following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sqlite3<span class="w"> </span>smsd.db<span class="w"> </span>&lt;<span class="w"> </span>docs/sql/sqlite.sql
+</pre></div>
+</div>
+</section>
+<section id="injecting-a-message-using-sql">
+<h3>Injecting a message using SQL<a class="headerlink" href="#injecting-a-message-using-sql" title="Permalink to this heading"></a></h3>
+<p>To send a message, you can either use <a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a>, which does all the
+magic for you, or you can insert the message manually. The simplest example is
+short text message:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">outbox</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">DestinationNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TextDecoded</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CreatorID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Coding</span>
+<span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;800123465&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;This is a SQL test message&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Program&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Default_No_Compression&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Please note usage of <code class="docutils literal notranslate"><span class="pre">TextDecoded</span></code> field, for <code class="docutils literal notranslate"><span class="pre">Text</span></code> field, you would have
+to hex encode the unicode text:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">outbox</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">DestinationNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">Text</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CreatorID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Coding</span>
+<span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;800123465&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;005400680069007300200069007300200061002000530051004c002000740065007300740020006d006500730073006100670065&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Program&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Default_No_Compression&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="injecting-long-message-using-sql">
+<h3>Injecting long message using SQL<a class="headerlink" href="#injecting-long-message-using-sql" title="Permalink to this heading"></a></h3>
+<p>Inserting multipart messages is a bit more tricky, you need to construct also
+UDH header and store it hexadecimally written into UDH field. Unless you have a
+good reason to do this manually, use <a class="reference internal" href="inject.html#gammu-smsd-inject"><span class="std std-ref">gammu-smsd-inject</span></a>, C library
+(<code class="xref c c-func docutils literal notranslate"><span class="pre">SMSD_InjectSMS()</span></code>) or Python library
+(<a class="reference internal" href="../python/smsd.html#gammu.smsd.SMSD.InjectSMS" title="gammu.smsd.SMSD.InjectSMS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gammu.smsd.SMSD.InjectSMS()</span></code></a>).</p>
+<p>For long text message, the UDH starts with <code class="docutils literal notranslate"><span class="pre">050003</span></code> followed by byte as a
+message reference (you can put any hex value there, but it should be <strong>different
+for each message</strong>, <code class="docutils literal notranslate"><span class="pre">D3</span></code> in following example), byte for number of messages
+(<code class="docutils literal notranslate"><span class="pre">02</span></code> in example, it should be unique for each message you send to same phone
+number) and byte for number of current message (<code class="docutils literal notranslate"><span class="pre">01</span></code> for first message,
+<code class="docutils literal notranslate"><span class="pre">02</span></code> for second, etc.).</p>
+<p>In most cases, the mutltipart message has to be class 1.</p>
+<p>For example long text message of two parts could look like following:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">outbox</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">CreatorID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MultiPart</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DestinationNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UDH</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TextDecoded</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Coding</span><span class="p">,</span>
+<span class="w">    </span><span class="k">Class</span>
+<span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;Gammu 1.23.91&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;true&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;123465&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;050003D30201&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Mqukqirip ya konej eqniu rejropocejor hugiygydewl tfej nrupxujob xuemymiyliralj. Te tvyjuh qaxumur ibewfoiws zuucoz tdygu gelum L ejqigqesykl kya jdytbez&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Default_No_Compression&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">outbox_multipart</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">SequencePosition</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UDH</span><span class="p">,</span>
+<span class="w">    </span><span class="k">Class</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TextDecoded</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Coding</span><span class="p">,</span>
+<span class="w">    </span><span class="k">Class</span>
+<span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;050003D30202&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;u xewz qisubevumxyzk ufuylehyzc. Nse xobq dfolizygqysj t bvowsyhyhyemim ovutpapeaempye giuuwbib.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">ID_OF_INSERTED_RECORD_IN_OUBOX_TABLE</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Default_No_Compression&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Adding UDH means that you have less space for text, in above example you
+can use only 153 characters in single message.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="null.html" class="btn btn-neutral float-left" title="Null Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="code.html" class="btn btn-neutral float-right" title="Developer documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

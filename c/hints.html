@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hints for libGammu Novices &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="libGammu" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hints for libGammu Novices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-library-usage">Basic library usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-the-code">Compiling the code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unicode">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#waiting-for-incoming-events">Waiting for incoming events</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">libGammu C API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+      <li class="breadcrumb-item active">Hints for libGammu Novices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/hints.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hints-for-libgammu-novices">
+<h1>Hints for libGammu Novices<a class="headerlink" href="#hints-for-libgammu-novices" title="Permalink to this heading"></a></h1>
+<p>This is very short overview of libGammu usage. You will probably need to study
+<a class="reference internal" href="api.html"><span class="doc">libGammu C API</span></a> to find out what functions you want to use.</p>
+<section id="basic-library-usage">
+<h2>Basic library usage<a class="headerlink" href="#basic-library-usage" title="Permalink to this heading"></a></h2>
+<p>You need to include main header file:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+</pre></div>
+</div>
+<p>To compile you need to pass flags from pkg-config:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">gammu</span>
+</pre></div>
+</div>
+<p>To link you need to pass from pkg-config:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gammu</span>
+</pre></div>
+</div>
+<p>Gammu stores all its data in a <a class="reference internal" href="statemachine.html#c.GSM_StateMachine" title="GSM_StateMachine"><code class="xref c c-type docutils literal notranslate"><span class="pre">GSM_StateMachine</span></code></a>. This structure is not
+public, so all you can define is a pointer to it:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">state_machine</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You’ll want to check for errors from time to time.  Do it using a
+function something like this with help of <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_ErrorString()</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">check_error</span><span class="p">(</span><span class="n">GSM_Error</span><span class="w"> </span><span class="n">err</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gammu failure: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">  </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As libGammu does interact with strings in your local encoding, it is good idea
+to initialize locales subsystem first (otherwise you would get broken non
+ASCII characters) by calling <a class="reference internal" href="misc.html#c.GSM_InitLocales" title="GSM_InitLocales"><code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_InitLocales()</span></code></a>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You first need to allocate a state machine structure
+using <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_AllocStateMachine()</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">state_machine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Now think about the configuration file.  To use the default
+<code class="file docutils literal notranslate"><span class="pre">~/.gammurc</span></code>, do this:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">INI_Section</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+
+<span class="cm">/* Find it */</span>
+<span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_FindGammuRC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+
+<span class="cm">/* Read it */</span>
+<span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_ReadConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">state_machine</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+
+<span class="cm">/* Free allocated memory */</span>
+<span class="n">INI_Free</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="cm">/* We care onlu about first configuration */</span>
+<span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>OK, now initialise the connection (1 means number of replies you want to wait
+for in case of failure) by <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_InitConnection()</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now you are ready to communicate with the phone, for example you can read
+manufacturer name by <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_GetManufacturer()</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetManufacturer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When you’re finished, you need to disconnect and free allocated memory
+using <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_FreeStateMachine()</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+
+<span class="cm">/* Free up used memory */</span>
+<span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>There are also other <a class="reference internal" href="examples.html"><span class="doc">Examples</span></a>.</p>
+</section>
+<section id="compiling-the-code">
+<h2>Compiling the code<a class="headerlink" href="#compiling-the-code" title="Permalink to this heading"></a></h2>
+<p>To compile program using Gammu library, you need to pass include path to the
+compiler and library name and search path to the linker. This can be easiest
+achieved by using <strong class="program">pkg-config</strong>. See following <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for
+example:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Sample Makefile which can be used to build examples shipped with Gammu</span>
+
+<span class="nv">CFLAGS</span><span class="o">=</span><span class="k">$(</span>shell<span class="w"> </span>pkg-config<span class="w"> </span>--cflags<span class="w"> </span>--libs<span class="w"> </span>gammu-smsd<span class="k">)</span><span class="w"> </span>-Wall
+<span class="nv">LDFLAGS</span><span class="o">=</span><span class="k">$(</span>shell<span class="w"> </span>pkg-config<span class="w"> </span>--cflags<span class="w"> </span>--libs<span class="w"> </span>gammu<span class="k">)</span>
+
+<span class="nv">ALL</span><span class="o">=</span>phone-info<span class="w"> </span>sms-send<span class="w"> </span>smsd
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>
+
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">ALL</span><span class="k">)</span>
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>ALL<span class="k">)</span>
+
+<span class="nf">%</span><span class="o">:</span>%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDFLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+</pre></div>
+</div>
+</section>
+<section id="unicode">
+<h2>Unicode<a class="headerlink" href="#unicode" title="Permalink to this heading"></a></h2>
+<p>Gammu stores all strings internally in UCS-2-BE encoding (terminated by two
+zero bytes). This is used mostly for historical reasons and today the obvious
+choice would be <code class="docutils literal notranslate"><span class="pre">wchar_t</span></code>.  To work with these strings, various functions
+are provided (<code class="xref c c-func docutils literal notranslate"><span class="pre">UnicodeLength()</span></code>, <code class="xref c c-func docutils literal notranslate"><span class="pre">DecodeUnicode()</span></code>,
+<code class="xref c c-func docutils literal notranslate"><span class="pre">EncodeUnicode()</span></code>, <code class="xref c c-func docutils literal notranslate"><span class="pre">CopyUnicodeString()</span></code>, etc.).</p>
+<p>For printing on console you should use:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DecodeUnicodeConsole</span><span class="p">(</span><span class="n">unicode_string</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>For giving string to some GUI toolkit:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DecodeUnicodeString</span><span class="p">(</span><span class="n">unicode_string</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These functions differ only on platforms where console uses historically
+different character set than GUI, what effectively means only Microsoft
+Windows.</p>
+</div>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h2>
+<p>You can either enabled debug logging globally or per state machine.</p>
+<p>To enable global debugging use:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For per state machine configuration:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="waiting-for-incoming-events">
+<h2>Waiting for incoming events<a class="headerlink" href="#waiting-for-incoming-events" title="Permalink to this heading"></a></h2>
+<p>If you expect some incoming events, you need to maintain communication with the
+phone. The best way it can be <code class="xref c c-func docutils literal notranslate"><span class="pre">GSM_ReadDevice()</span></code>. For example you can use
+following busy loop:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gshutdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">GSM_ReadDevice</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="libGammu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

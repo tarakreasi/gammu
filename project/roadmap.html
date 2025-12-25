@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap for Gammu &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick starter guide" href="../quick/index.html" />
+    <link rel="prev" title="Directory structure" href="directories.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gammu project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about.html">About Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motivation.html">Motivation to fork Gnokii</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installing Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing Gammu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-style.html">Coding Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versioning.html">Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Project Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html">Directory structure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Roadmap for Gammu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#locations-handling">Locations handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unicode-strings">Unicode strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardcoded-length-for-strings">Hardcoded length for strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unsigned-char-mess">Unsigned char mess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extensibility-of-libgammu">Extensibility of libGammu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#built-time-configuration">Built time configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-file-handling">Config file handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#at-module">AT module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gammu project</a></li>
+      <li class="breadcrumb-item active">Roadmap for Gammu</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project/roadmap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="roadmap-for-gammu">
+<h1>Roadmap for Gammu<a class="headerlink" href="#roadmap-for-gammu" title="Permalink to this heading"></a></h1>
+<p>There are some major issues which should be addressed in Gammu soon. This list
+is not sorted at all, but includes bad design decisions made in Gammu past
+which we would like to fix.</p>
+<section id="locations-handling">
+<h2>Locations handling<a class="headerlink" href="#locations-handling" title="Permalink to this heading"></a></h2>
+<p>One problem is locations handling, because current scheme (using numbers)
+really does not match majority of current phones and it should be converted to
+using path based locations for messages, phonebook, calendar, etc.</p>
+</section>
+<section id="unicode-strings">
+<h2>Unicode strings<a class="headerlink" href="#unicode-strings" title="Permalink to this heading"></a></h2>
+<p>The another major obstacle which is all around Gammu code is own
+implementation of unicode (UCS-2-BE) strings. This code should be dropped and
+use some standard library for that. Note that wchar_t is probably not a good
+choice here as it’s 16-bit on Windows and thus can not store emojis and other
+supplemental plan unicode chars.</p>
+</section>
+<section id="hardcoded-length-for-strings">
+<h2>Hardcoded length for strings<a class="headerlink" href="#hardcoded-length-for-strings" title="Permalink to this heading"></a></h2>
+<p>Most of the strings have hardcoded length limits. This limitation should be
+removed and strings allocated on the fly.</p>
+</section>
+<section id="unsigned-char-mess">
+<h2>Unsigned char mess<a class="headerlink" href="#unsigned-char-mess" title="Permalink to this heading"></a></h2>
+<p>In many cases <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code> is used without any reason.</p>
+</section>
+<section id="extensibility-of-libgammu">
+<h2>Extensibility of libGammu<a class="headerlink" href="#extensibility-of-libgammu" title="Permalink to this heading"></a></h2>
+<p>Current way of adding protocol specific functionality from applications using
+libGammu is broken. Actually only application using this is Gammu utility.
+This option should be either completely removed or rewritten from scratch not
+to be dependent on libGammu internals.</p>
+</section>
+<section id="built-time-configuration">
+<h2>Built time configuration<a class="headerlink" href="#built-time-configuration" title="Permalink to this heading"></a></h2>
+<p>Avoid heavy usage of gsmstate.h header and move the
+<code class="docutils literal notranslate"><span class="pre">#ifdef...#define...#endif</span></code> blocks to <code class="docutils literal notranslate"><span class="pre">gammu-config.h</span></code>. Or rather cleanup
+them and have only single define for single compile time option.</p>
+</section>
+<section id="config-file-handling">
+<h2>Config file handling<a class="headerlink" href="#config-file-handling" title="Permalink to this heading"></a></h2>
+<p>Drop multiple configurations handling in libGammu, it should provide just API
+to read some section from Gammurc and possible fall-back logic should be in
+application.</p>
+</section>
+<section id="at-module">
+<h2>AT module<a class="headerlink" href="#at-module" title="Permalink to this heading"></a></h2>
+<p>There should be simpler way to generate AT command with proper escaping and
+charset conversion of fields. Something like reverse ATGEN_ParseReply.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="directories.html" class="btn btn-neutral float-left" title="Directory structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../quick/index.html" class="btn btn-neutral float-right" title="Quick starter guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

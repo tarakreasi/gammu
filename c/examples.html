@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="libGammu C API" href="api.html" />
+    <link rel="prev" title="Hints for libGammu Novices" href="hints.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-phone-information">Getting phone information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-sms-message">Reading SMS message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-sms-message">Sending SMS message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-long-sms-message">Sending Long SMS message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smsd-example">SMSD example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-configuration">Custom configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">libGammu C API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
+<p>All these examples are also available in docs/examples/
+directory in Gammu sources.</p>
+<section id="getting-phone-information">
+<h2>Getting phone information<a class="headerlink" href="#getting-phone-information" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">INI_Section</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+<span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+<span class="cm">/* Function to handle errors */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_IsConnected</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="w">			</span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_Debug_Info</span><span class="w"> </span><span class="o">*</span><span class="n">debug_info</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Enable global debugging to stderr */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Allocates state machine */</span>
+<span class="w">	</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Enable state machine debugging to stderr</span>
+<span class="cm">	 * Same could be achieved by just using global debug config.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Find configuration file (first command line parameter or</span>
+<span class="cm">	 * defaults)</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_FindGammuRC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Read it */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_ReadConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free config file structures */</span>
+<span class="w">	</span><span class="n">INI_Free</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We have one valid configuration */</span>
+<span class="w">	</span><span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Connect to phone */</span>
+<span class="w">	</span><span class="cm">/* 1 means number of replies you want to wait for */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Here you can do some stuff with phone... */</span>
+
+<span class="w">	</span><span class="cm">/* As an example we read some information about phone: */</span>
+
+<span class="w">	</span><span class="cm">/* Manufacturer name */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetManufacturer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Manufacturer  : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Model name */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetModel</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Model         : %s (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="n">GSM_GetModelInfo</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">model</span><span class="p">,</span>
+<span class="w">		</span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Terminate connection */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free up used memory */</span>
+<span class="w">	</span><span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Editor configuration</span>
+<span class="cm"> * vim: noexpandtab sw=8 ts=8 sts=8 tw=72:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-sms-message">
+<h2>Reading SMS message<a class="headerlink" href="#reading-sms-message" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+
+<span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">INI_Section</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+<span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">GSM_Error</span><span class="w"> </span><span class="n">sms_send_status</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">gboolean</span><span class="w"> </span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+
+<span class="cm">/* Function to handle errors */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_IsConnected</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="w">			</span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Interrupt signal handler */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">interrupt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sign</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span><span class="w"> </span><span class="n">SIG_IGN</span><span class="p">);</span>
+<span class="w">	</span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_Debug_Info</span><span class="w"> </span><span class="o">*</span><span class="n">debug_info</span><span class="p">;</span>
+<span class="w">	</span><span class="n">gboolean</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_MultiSMSMessage</span><span class="w"> 	</span><span class="n">sms</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/* Register signal handler */</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Enable global debugging to stderr */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Allocates state machine */</span>
+<span class="w">	</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Enable state machine debugging to stderr</span>
+<span class="cm">	 * Same could be achieved by just using global debug config.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Find configuration file (first command line parameter or</span>
+<span class="cm">	 * defaults)</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_FindGammuRC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Read it */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_ReadConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free config file structures */</span>
+<span class="w">	</span><span class="n">INI_Free</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We have one valid configuration */</span>
+<span class="w">	</span><span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Connect to phone */</span>
+<span class="w">	</span><span class="cm">/* 1 means number of replies you want to wait for */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Read all messages */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">;</span>
+<span class="w">	</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">Number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">gshutdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetNextSMS</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sms</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ERR_EMPTY</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">		</span><span class="n">error_handler</span><span class="p">();</span>
+<span class="w">		</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+
+<span class="w">		</span><span class="cm">/* Now we can do something with the message */</span>
+<span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sms</span><span class="p">.</span><span class="n">Number</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Location: %d, Folder: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Folder</span><span class="p">);</span>
+<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Number: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DecodeUnicodeConsole</span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Number</span><span class="p">));</span>
+<span class="w">			</span><span class="cm">/*</span>
+<span class="cm">			 * Decoding with GSM_DecodeMultiPartSMS is also an option here,</span>
+<span class="cm">			 * but for simplicity we use this approach which will handle only</span>
+<span class="cm">			 * text messages.</span>
+<span class="cm">			 */</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Coding</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SMS_Coding_8bit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;8-bit message, can not display</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">			</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Text: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DecodeUnicodeConsole</span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Text</span><span class="p">));</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="cm">/* Terminate connection */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free up used memory */</span>
+<span class="w">	</span><span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Editor configuration</span>
+<span class="cm"> * vim: noexpandtab sw=8 ts=8 sts=8 tw=72:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="sending-sms-message">
+<h2>Sending SMS message<a class="headerlink" href="#sending-sms-message" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+
+<span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">INI_Section</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+<span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">GSM_Error</span><span class="w"> </span><span class="n">sms_send_status</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">gboolean</span><span class="w"> </span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+
+<span class="cm">/* Handler for SMS send reply */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">send_sms_callback</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">sm</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MessageReference</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sent SMS on device: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Device</span><span class="p">);</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;..OK&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;..error %i&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">		</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_UNKNOWN</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;, message reference=%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MessageReference</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Function to handle errors */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_IsConnected</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="w">			</span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Interrupt signal handler */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">interrupt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sign</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span><span class="w"> </span><span class="n">SIG_IGN</span><span class="p">);</span>
+<span class="w">	</span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_SMSMessage</span><span class="w"> </span><span class="n">sms</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_SMSC</span><span class="w"> </span><span class="n">PhoneSMSC</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">recipient_number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;+1234567890&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">message_text</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sample Gammu message&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_Debug_Info</span><span class="w"> </span><span class="o">*</span><span class="n">debug_info</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/* Register signal handler */</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Enable global debugging to stderr */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Prepare message */</span>
+<span class="w">	</span><span class="cm">/* Cleanup the structure */</span>
+<span class="w">	</span><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sms</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sms</span><span class="p">));</span>
+<span class="w">	</span><span class="cm">/* Encode message text */</span>
+<span class="w">	</span><span class="n">EncodeUnicode</span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span><span class="w"> </span><span class="n">message_text</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">message_text</span><span class="p">));</span>
+<span class="w">	</span><span class="cm">/* Encode recipient number */</span>
+<span class="w">	</span><span class="n">EncodeUnicode</span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">Number</span><span class="p">,</span><span class="w"> </span><span class="n">recipient_number</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">recipient_number</span><span class="p">));</span>
+<span class="w">	</span><span class="cm">/* We want to submit message */</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">PDU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMS_Submit</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* No UDH, just a plain message */</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">UDH</span><span class="p">.</span><span class="n">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UDH_NoUDH</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* We used default coding for text */</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">Coding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMS_Coding_Default_No_Compression</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* Class 1 message (normal) */</span>
+<span class="w">	</span><span class="n">sms</span><span class="p">.</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/* Allocates state machine */</span>
+<span class="w">	</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Enable state machine debugging to stderr</span>
+<span class="cm">	 * Same could be achieved by just using global debug config.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Find configuration file (first command line parameter or</span>
+<span class="cm">	 * defaults)</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_FindGammuRC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Read it */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_ReadConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free config file structures */</span>
+<span class="w">	</span><span class="n">INI_Free</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We have one valid configuration */</span>
+<span class="w">	</span><span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Connect to phone */</span>
+<span class="w">	</span><span class="cm">/* 1 means number of replies you want to wait for */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Set callback for message sending */</span>
+<span class="w">	</span><span class="cm">/* This needs to be done after initiating connection */</span>
+<span class="w">	</span><span class="n">GSM_SetSendSMSStatusCallback</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">send_sms_callback</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We need to know SMSC number */</span>
+<span class="w">	</span><span class="n">PhoneSMSC</span><span class="p">.</span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetSMSC</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PhoneSMSC</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Set SMSC number in message */</span>
+<span class="w">	</span><span class="n">CopyUnicodeString</span><span class="p">(</span><span class="n">sms</span><span class="p">.</span><span class="n">SMSC</span><span class="p">.</span><span class="n">Number</span><span class="p">,</span><span class="w"> </span><span class="n">PhoneSMSC</span><span class="p">.</span><span class="n">Number</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Set flag before callind SendSMS, some phones might give</span>
+<span class="cm">	 * instant response</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_TIMEOUT</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/* Send message */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_SendSMS</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sms</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Wait for network reply */</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gshutdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">GSM_ReadDevice</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="cm">/* Message sent OK */</span>
+<span class="w">			</span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">			</span><span class="k">break</span><span class="p">;</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_TIMEOUT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="cm">/* Message sending failed */</span>
+<span class="w">			</span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">			</span><span class="k">break</span><span class="p">;</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="cm">/* Terminate connection */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free up used memory */</span>
+<span class="w">	</span><span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">return_value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Editor configuration</span>
+<span class="cm"> * vim: noexpandtab sw=8 ts=8 sts=8 tw=72:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="sending-long-sms-message">
+<h2>Sending Long SMS message<a class="headerlink" href="#sending-long-sms-message" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+
+<span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">INI_Section</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+<span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">GSM_Error</span><span class="w"> </span><span class="n">sms_send_status</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">gboolean</span><span class="w"> </span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+
+<span class="cm">/* Handler for SMS send reply */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">send_sms_callback</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">sm</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MessageReference</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sent SMS on device: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Device</span><span class="p">);</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;..OK&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;..error %i&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">		</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_UNKNOWN</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;, message reference=%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MessageReference</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Function to handle errors */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_IsConnected</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="w">			</span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Interrupt signal handler */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">interrupt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sign</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span><span class="w"> </span><span class="n">SIG_IGN</span><span class="p">);</span>
+<span class="w">	</span><span class="n">gshutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_MultiSMSMessage</span><span class="w"> </span><span class="n">SMS</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_MultiPartSMSInfo</span><span class="w"> </span><span class="n">SMSInfo</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_SMSC</span><span class="w"> </span><span class="n">PhoneSMSC</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">recipient_number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;+1234567890&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">message_text</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Very long example Gammu message to show how to construct concatenated messages using libGammu. Very long example Gammu message to show how to construct concatenated messages using libGammu.&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">message_unicode</span><span class="p">[(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">message_text</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span>
+<span class="w">	</span><span class="n">GSM_Debug_Info</span><span class="w"> </span><span class="o">*</span><span class="n">debug_info</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/* Register signal handler */</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+<span class="w">	</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">interrupt</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Enable global debugging to stderr */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Fill in SMS info structure which will be used to generate</span>
+<span class="cm">	 * messages.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_ClearMultiPartSMSInfo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SMSInfo</span><span class="p">);</span>
+<span class="w">	</span><span class="cm">/* Class 1 message (normal) */</span>
+<span class="w">	</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* Message will be consist of one part */</span>
+<span class="w">	</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">EntriesNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* No unicode */</span>
+<span class="w">	</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">UnicodeCoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* The part has type long text */</span>
+<span class="w">	</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">Entries</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMS_ConcatenatedTextLong</span><span class="p">;</span>
+<span class="w">	</span><span class="cm">/* Encode message text */</span>
+<span class="w">	</span><span class="n">EncodeUnicode</span><span class="p">(</span><span class="n">message_unicode</span><span class="p">,</span><span class="w"> </span><span class="n">message_text</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">message_text</span><span class="p">));</span>
+<span class="w">	</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">Entries</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message_unicode</span><span class="p">;</span>
+
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DecodeUnicodeConsole</span><span class="p">(</span><span class="n">SMSInfo</span><span class="p">.</span><span class="n">Entries</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Buffer</span><span class="p">));</span>
+
+<span class="w">	</span><span class="cm">/* Encode message into PDU parts */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_EncodeMultiPartSMS</span><span class="p">(</span><span class="n">debug_info</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SMSInfo</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SMS</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Allocates state machine */</span>
+<span class="w">	</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Enable state machine debugging to stderr</span>
+<span class="cm">	 * Same could be achieved by just using global debug config.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Find configuration file (first command line parameter or</span>
+<span class="cm">	 * defaults)</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_FindGammuRC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Read it */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_ReadConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free config file structures */</span>
+<span class="w">	</span><span class="n">INI_Free</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We have one valid configuration */</span>
+<span class="w">	</span><span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Connect to phone */</span>
+<span class="w">	</span><span class="cm">/* 1 means number of replies you want to wait for */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Set callback for message sending */</span>
+<span class="w">	</span><span class="cm">/* This needs to be done after initiating connection */</span>
+<span class="w">	</span><span class="n">GSM_SetSendSMSStatusCallback</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">send_sms_callback</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* We need to know SMSC number */</span>
+<span class="w">	</span><span class="n">PhoneSMSC</span><span class="p">.</span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetSMSC</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PhoneSMSC</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Send message parts */</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SMS</span><span class="p">.</span><span class="n">Number</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="cm">/* Set SMSC number in message */</span>
+<span class="w">		</span><span class="n">CopyUnicodeString</span><span class="p">(</span><span class="n">SMS</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">SMSC</span><span class="p">.</span><span class="n">Number</span><span class="p">,</span><span class="w"> </span><span class="n">PhoneSMSC</span><span class="p">.</span><span class="n">Number</span><span class="p">);</span>
+
+<span class="w">		</span><span class="cm">/* Prepare message */</span>
+<span class="w">		</span><span class="cm">/* Encode recipient number */</span>
+<span class="w">		</span><span class="n">EncodeUnicode</span><span class="p">(</span><span class="n">SMS</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Number</span><span class="p">,</span><span class="w"> </span><span class="n">recipient_number</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">recipient_number</span><span class="p">));</span>
+<span class="w">		</span><span class="cm">/* We want to submit message */</span>
+<span class="w">		</span><span class="n">SMS</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">PDU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMS_Submit</span><span class="p">;</span>
+
+<span class="w">		</span><span class="cm">/*</span>
+<span class="cm">		 * Set flag before callind SendSMS, some phones might give</span>
+<span class="cm">		 * instant response</span>
+<span class="cm">		 */</span>
+<span class="w">		</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ERR_TIMEOUT</span><span class="p">;</span>
+
+<span class="w">		</span><span class="cm">/* Send message */</span>
+<span class="w">		</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_SendSMS</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SMS</span><span class="p">.</span><span class="n">SMS</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">		</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">		</span><span class="cm">/* Wait for network reply */</span>
+<span class="w">		</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gshutdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="n">GSM_ReadDevice</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="cm">/* Message sent OK */</span>
+<span class="w">				</span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">				</span><span class="k">break</span><span class="p">;</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sms_send_status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_TIMEOUT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="cm">/* Message sending failed */</span>
+<span class="w">				</span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">				</span><span class="k">break</span><span class="p">;</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="cm">/* Terminate connection */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free up used memory */</span>
+<span class="w">	</span><span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">return_value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Editor configuration</span>
+<span class="cm"> * vim: noexpandtab sw=8 ts=8 sts=8 tw=72:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="smsd-example">
+<h2>SMSD example<a class="headerlink" href="#smsd-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Simple C program to start SMSD without all magic normal gammu-smsd does */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu-smsd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="n">UNUSED</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_SMSDConfig</span><span class="w"> </span><span class="o">*</span><span class="n">config</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">config_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Use default compiled in path */</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Initialize configuration with program name */</span>
+<span class="w">	</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMSD_NewConfig</span><span class="p">(</span><span class="s">&quot;smsd-example&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">assert</span><span class="p">(</span><span class="n">config</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Read configuration file */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMSD_ReadConfig</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Failed to read config!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="n">SMSD_FreeConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Start main SMSD loop which processes messages */</span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * This normally never terminates, you need to signal it</span>
+<span class="cm">     * by SMSD_Shutdown(config); (for example from signal handler)</span>
+<span class="cm">     * to make it stop.</span>
+<span class="cm">     */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMSD_MainLoop</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Failed to run SMSD!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="n">SMSD_FreeConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Free configuration structure */</span>
+<span class="w">	</span><span class="n">SMSD_FreeConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-configuration">
+<h2>Custom configuration<a class="headerlink" href="#custom-configuration" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * libGammu example to show how to set configuration manually instead</span>
+<span class="cm"> * of parsing ~/.gammurc</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gammu.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="n">GSM_StateMachine</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">GSM_Error</span><span class="w"> </span><span class="n">error</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+<span class="cm">/* Function to handle errors */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ERR_NONE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GSM_ErrorString</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GSM_IsConnected</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="w">			</span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GSM_Debug_Info</span><span class="w"> </span><span class="o">*</span><span class="n">debug_info</span><span class="p">;</span>
+<span class="w">	</span><span class="n">GSM_Config</span><span class="w"> </span><span class="o">*</span><span class="n">cfg</span><span class="p">;</span>
+
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: custom-config DEVICE CONNECTION MODEL</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * We don&#39;t need gettext, but need to set locales so that</span>
+<span class="cm">	 * charset conversion works.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">GSM_InitLocales</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Enable global debugging to stderr */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetGlobalDebug</span><span class="p">();</span>
+<span class="w">	</span><span class="n">GSM_SetDebugFileDescriptor</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugLevel</span><span class="p">(</span><span class="s">&quot;textall&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Allocates state machine */</span>
+<span class="w">	</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_AllocStateMachine</span><span class="p">();</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Enable state machine debugging to same config as global one.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">debug_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetDebug</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">GSM_SetDebugGlobal</span><span class="p">(</span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">debug_info</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Get pointer to config structure.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetConfig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/*</span>
+<span class="cm">	 * Set configuration, first freeing old values.</span>
+<span class="cm">	 */</span>
+<span class="w">	</span><span class="n">free</span><span class="p">(</span><span class="n">cfg</span><span class="o">-&gt;</span><span class="n">Device</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cfg</span><span class="o">-&gt;</span><span class="n">Device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">free</span><span class="p">(</span><span class="n">cfg</span><span class="o">-&gt;</span><span class="n">Connection</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cfg</span><span class="o">-&gt;</span><span class="n">Connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="cm">/* For historical reasons this is not a pointer */</span>
+<span class="w">	</span><span class="n">strcpy</span><span class="p">(</span><span class="n">cfg</span><span class="o">-&gt;</span><span class="n">Model</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="cm">/* We have one valid configuration */</span>
+<span class="w">	</span><span class="n">GSM_SetConfigNum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Connect to phone */</span>
+<span class="w">	</span><span class="cm">/* 1 means number of replies you want to wait for */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_InitConnection</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Here you can do some stuff with phone... */</span>
+
+<span class="w">	</span><span class="cm">/* As an example we read some information about phone: */</span>
+
+<span class="w">	</span><span class="cm">/* Manufacturer name */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetManufacturer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Manufacturer  : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Model name */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_GetModel</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Model         : %s (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="n">GSM_GetModelInfo</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">model</span><span class="p">,</span>
+<span class="w">		</span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="w">	</span><span class="cm">/* Terminate connection */</span>
+<span class="w">	</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GSM_TerminateConnection</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">	</span><span class="n">error_handler</span><span class="p">();</span>
+
+<span class="w">	</span><span class="cm">/* Free up used memory */</span>
+<span class="w">	</span><span class="n">GSM_FreeStateMachine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Editor configuration</span>
+<span class="cm"> * vim: noexpandtab sw=8 ts=8 sts=8 tw=72:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hints.html" class="btn btn-neutral float-left" title="Hints for libGammu Novices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="libGammu C API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

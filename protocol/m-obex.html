@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>m-obex protocol used by some Samsung mobiles &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Series60 Remote Protocol" href="s60.html" />
+    <link rel="prev" title="MTK AT Commands" href="mtk.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung-gt.html">SAMSUNG GT calendar AT commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">m-obex protocol used by some Samsung mobiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-obex-server">Starting the obex server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obex-commands">Obex commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contacts">Contacts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-contacts-count">Get contacts count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-all">List all</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-contact">Create a contact</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-a-contact">Update a contact</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-one-contact">Read one contact</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-contact">Delete contact</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#calendar">Calendar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-count">Get count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">List all</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create">Create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update">Update</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read">Read</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete">Delete</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-directories">List directories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-files">List files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-file">Get file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-file">Create file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-file">Delete file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sms">SMS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-sms-count">Get sms count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-all-sms">List all sms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#send-sms">Send sms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-sms">Create sms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">m-obex protocol used by some Samsung mobiles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/m-obex.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="m-obex-protocol-used-by-some-samsung-mobiles">
+<h1>m-obex protocol used by some Samsung mobiles<a class="headerlink" href="#m-obex-protocol-used-by-some-samsung-mobiles" title="Permalink to this heading"></a></h1>
+<p>This document is copied from &lt;<a class="reference external" href="http://code.google.com/p/samsyncro/wiki/mobex">http://code.google.com/p/samsyncro/wiki/mobex</a>&gt; and extended.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>This is an attempt to document the m-obex protocol. It is a obex-variation by Samsung used to exchange PIM data and files over bluetooth.</p>
+<p>This documentation is by no means complete but is only a reference for the samsyncro implementation. As I don’t know the obex protocol I can’t say in which parts it differs from the standard-obex. The only thing I found strange is the fact, that you will always get 0xA0 as a response. Which means Ok, success in obex. If there was an error you will find it’s error code in the 0x42 header. If this is a normal behavior: Why are there so many response codes defined?</p>
+<p>The information about the protocol was gained by listening to the transferred data from Samsungs New PC Studio to a SGH-F480i and B2100 mobile.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Established bluetooth connection to the serial channel of the mobile</p></li>
+<li><p>Some way to access this serial port. For example minicom.</p></li>
+</ul>
+</section>
+<section id="starting-the-obex-server">
+<h2>Starting the obex server<a class="headerlink" href="#starting-the-obex-server" title="Permalink to this heading"></a></h2>
+<p>To start the obex server you have to send this AT command first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SYNCML</span><span class="o">=</span><span class="n">MOBEXSTART</span>
+</pre></div>
+</div>
+<p>Some phones seem to start with following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT$TSSPCSW=1
+</pre></div>
+</div>
+</section>
+<section id="obex-commands">
+<h2>Obex commands<a class="headerlink" href="#obex-commands" title="Permalink to this heading"></a></h2>
+<p>In the following chapters I will describe the obex packages to read and edit data on the mobile. I think most of them are in standard-obex format and are following this structure:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package Header</p></th>
+<th class="head"><p>Session Id</p></th>
+<th class="head"><p>Obex Header(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li><p>First byte: Type of request.</p></li>
+<li><p>Second and third bytes: length of package</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>0xCB and four bytes of session id</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>First byte: Type of header.</p></li>
+<li><p>Second and third bytes: length of header.</p></li>
+<li><p>Next bytes: data.</p></li>
+<li><p>Last byte: 0x00</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For detailed information about obex, for example what types of packages and headers exists, get the official Obex documentation from Infared Data Association. But I don’t know if this is available for free.</p>
+<p>Here is a list of the most used types for the Samsung mobiles:</p>
+<p>There exists mainly two types of operations: Put (package header 0x02 and 0x82) to write data to the mobile and Get (package header 0x03 and 0x83) to retrieve data from the mobile. A put or get operation can be divided into several packages. The high-bit indicates if this is the last package of an operation. For example if you want to transfer a file to the mobile you send n-time 0x02 packages and only the last one is 0x82.</p>
+<p>Headers consists normally out of three blocks: First byte: Header type, second and third byte: length of the header (if the headers length is variable), following bytes: data. The most used header types are</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Obex description</p></th>
+<th class="head"><p>Byte</p></th>
+<th class="head"><p>following two bytes</p></th>
+<th class="head"><p>following bytes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>0x01</p></td>
+<td><p>length of header</p></td>
+<td><p>Used for filesystem operation to name a path or file</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>0x42</p></td>
+<td><p>length of header</p></td>
+<td><p>Obex command for example “m-obex/contacts/list”</p></td>
+</tr>
+<tr class="row-even"><td><p>Length</p></td>
+<td><p>0xC3</p></td>
+<td></td>
+<td><p>Used in put operations and specifies the length of the transferred data (without header bytes). The length is represented in 4 bytes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Body</p></td>
+<td><p>0x48</p></td>
+<td><p>length of header</p></td>
+<td><p>Data in a multi-package put operation</p></td>
+</tr>
+<tr class="row-even"><td><p>End of Bady</p></td>
+<td><p>0x49</p></td>
+<td><p>length of header</p></td>
+<td><p>Last data package in a put operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Session id</p></td>
+<td><p>0xCB</p></td>
+<td></td>
+<td><p>Four bytes representing the session id. Needed for multiplexing</p></td>
+</tr>
+<tr class="row-even"><td><p>Application Parameter</p></td>
+<td><p>0X4C</p></td>
+<td><p>length of header</p></td>
+<td><p>In a request: Parameters for example a contact’s id. &lt;p&gt;In an answer: The error/return code. If it is 0x00 0x00 than the operation was successful</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="contacts">
+<h2>Contacts<a class="headerlink" href="#contacts" title="Permalink to this heading"></a></h2>
+<section id="get-contacts-count">
+<h3>Get contacts count<a class="headerlink" href="#get-contacts-count" title="Permalink to this heading"></a></h3>
+<section id="request">
+<h4>Request<a class="headerlink" href="#request" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 25</dt><dd><p>Obex Get</p>
+</dd>
+<dt>CB 00 00 00 00</dt><dd><p>Session Id</p>
+</dd>
+<dt><em>42</em> 00 19 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 63 6F 75 6E 74 00</dt><dd><p>m-obex command: m-obex/contacts/count</p>
+</dd>
+<dt>4C 00 04 01</dt><dd><p>Unknown! Didn’ see PC Studio sending something other than 0x01 as parameter</p>
+</dd>
+</dl>
+</section>
+<section id="answer">
+<h4>Answer<a class="headerlink" href="#answer" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 14</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 04</dt><dd><p>Maybe the number of requests you have to send to get all contacts. See next chapter for more information</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 07 07 D0 00 18</dt><dd><p>First two data bytes: maximum number of contacts (0x07D0 = 2000). Last two data bytes: Current number of contacts</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="list-all">
+<h3>List all<a class="headerlink" href="#list-all" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h4>Request<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 26</dt><dd><p>Obex Get package</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session Id</p>
+</dd>
+<dt><em>42</em> 00 18 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 6C 6F 61 64 00</dt><dd><p>m-obex Command: m-obex/contacts/load</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 00</dt><dd><p>First Byte unknown. Last two bytes: increment until all contacts received</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h4>Answer<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<dl>
+<dt><em>A0</em> 08 C1</dt><dd><p>Obex Ok</p>
+</dd>
+<dt><em>C3</em> 00 00 08 B1</dt><dd><p>Length of sent data</p>
+</dd>
+<dt><em>4C</em> 00 05 00 02</dt><dd><p>Indicates if these are the last contacts</p>
+</dd>
+<dt><em>49</em> 07 41 01 10 01 8D ….”</dt><dd><p>The first byte is unknown but all answers have this byte, then byte 2 and 3 contains the length of the answer, bytes 4 and 5 are the ID of the first entry bytes 6 and 7 are the length of this entry.</p>
+<p>In one response more than 1 vcard can be returned in this case, entries are separated by 4 bytes with the following meaning: bytes 1 and 2 ID of the entry, bytes 3 and 4: length of the entry.</p>
+</dd>
+</dl>
+<p>To get all contacts the request have to be sent several times. The last two bytes must be incremented by every call.</p>
+<p>The end of the contacts list is reached if the header 0x4C is 0. The header will be 4C 00 05 00 00.</p>
+</section>
+</section>
+<section id="create-a-contact">
+<h3>Create a contact<a class="headerlink" href="#create-a-contact" title="Permalink to this heading"></a></h3>
+<p>Beware: This is a put operation and is performed in some obex implementations in several packages (for example 0x02, 0x02, 0x82). But I didn’t get the mobile to accept this. I had to create/update PIM data in exactly one package.</p>
+<section id="id3">
+<h4>Request<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 88</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 1A 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 63 72 65 61 74 65 00</dt><dd><p>m-obex/contacts/create</p>
+</dd>
+<dt><em>4C</em> 00 04 01</dt><dd><p>? maybe flag for internal/external memory</p>
+</dd>
+<dt>C3 00 00 00 5A</dt><dd><p>Length of the vcard string</p>
+</dd>
+<dt>49 00 5D 42 45….</dt><dd><p>Contact as vcard</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h4>Answer<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 12</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 02</dt><dd><p>?</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 05 00 21</dt><dd><p>last two bytes: the id of the newly created contact</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="update-a-contact">
+<h3>Update a contact<a class="headerlink" href="#update-a-contact" title="Permalink to this heading"></a></h3>
+<p>Beware: This is a put operation and is performed in some obex implementations in several packages (for example 0x02, 0x02, 0x82). But I didn’t get the mobile to accept this. I had to create/update PIM data in exactly one package.</p>
+<section id="id5">
+<h4>Request<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 8D</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 19 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 77 72 69 74 65 00</dt><dd><p>m-obex/contacts/write</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 20</dt><dd><p>Id of the contact which should be updated</p>
+</dd>
+<dt>C3 00 00 00 5E</dt><dd><p>Length of the vcard string</p>
+</dd>
+<dt>49 00 61 42…</dt><dd><p>Contact as vcard</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h4>Answer<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 08</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code: 0x00 0x00 means successful</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="read-one-contact">
+<h3>Read one contact<a class="headerlink" href="#read-one-contact" title="Permalink to this heading"></a></h3>
+<p>There is also the possibility to read exactly one contact.</p>
+<section id="id7">
+<h4>Request<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 26</dt><dd><p>Obex get</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 18 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 72 65 61 64 00</dt><dd><p>m-obex/contacts/read</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 20</dt><dd><p>First byte:? Last two bytes: Id of contact</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h4>Answer<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 C4</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 B4</dt><dd><p>Length of vcard (without headers, just data)</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt>49 00 B7 42 45 47 49 4E …</dt><dd><p>contact as vcard. TODO: where is id? First two bytes?</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="delete-contact">
+<h3>Delete contact<a class="headerlink" href="#delete-contact" title="Permalink to this heading"></a></h3>
+<p>To delete a contact you only have to know it’s id.</p>
+<section id="id9">
+<h4>Request<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 28</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 1A 6D 2D 6F 62 65 78 2F 63 6F 6E 74 61 63 74 73 2F 64 65 6C 65 74 65 00</dt><dd><p>m-obex/contacts/delete</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 19</dt><dd><p>First byte: ? Last two bytes: Id of contact</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h4>Answer<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 08</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="calendar">
+<h2>Calendar<a class="headerlink" href="#calendar" title="Permalink to this heading"></a></h2>
+<section id="get-count">
+<h3>Get count<a class="headerlink" href="#get-count" title="Permalink to this heading"></a></h3>
+<section id="id11">
+<h4>Request<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 25</dt><dd><p>Obex get</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 19 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 63 6F 75 6E 74 00</dt><dd><p>m-obex/calendar/count</p>
+</dd>
+<dt><em>4C</em> 00 04 FF</dt><dd><p>?</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h4>Answer<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>A0 00 1C</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 0C</dt><dd><p>length of data</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 0F 01 2C 00 06 00 64 00 00 00 64 00 00</dt><dd><p>?TODO?</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id13">
+<h3>List all<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<section id="id14">
+<h4>Request<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 20</dt><dd><p>Obex get</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session id</p>
+</dd>
+<dt><em>42</em> 00 18 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 69 6E 66 6F 00</dt><dd><p>m-obex/calendar/load</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h4>Answer<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 C0</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 B0</dt><dd><p>Session</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 B3 01 07 08 00 00 00 00 00 00 00 00 …</dt><dd><p>Calendar items in vcalendar format. TODO: where are the ids?</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="create">
+<h3>Create<a class="headerlink" href="#create" title="Permalink to this heading"></a></h3>
+<section id="id16">
+<h4>Request<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 CC</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session</p>
+</dd>
+<dt><em>42</em> 00 1A 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 63 72 65 61 74 65 00</dt><dd><p>m-obex/calendar/create</p>
+</dd>
+<dt>4C 00 04 01</dt><dd><p>?</p>
+</dd>
+<dt><em>C3</em> 00 00 00 9E</dt><dd><p>Length of vcalendar</p>
+</dd>
+<dt><em>49</em> 00 A1 42 45 47 49 4E 3A 56 43 41 4C 45 …</dt><dd><p>vcalendar</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h4>Answer<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 12</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 02</dt><dd><p>Length</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 05 00 06</dt><dd><p>Id of the created item</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="update">
+<h3>Update<a class="headerlink" href="#update" title="Permalink to this heading"></a></h3>
+<section id="id18">
+<h4>Request<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 F7</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session</p>
+</dd>
+<dt><em>42</em> 00 19 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 77 72 69 74 65 00</dt><dd><p>m-obex/calendar/write</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 05</dt><dd><p>First byte: ? Second and third byte: Id of the item</p>
+</dd>
+<dt><em>C3</em> 00 00 00 C8</dt><dd><p>Length of vcalendar</p>
+</dd>
+<dt><em>49</em> 00 CB 42 45 47 49 4E 3A 56</dt><dd><p>vcalendar item</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h4>Answer<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 08</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="read">
+<h3>Read<a class="headerlink" href="#read" title="Permalink to this heading"></a></h3>
+<section id="id20">
+<h4>Request<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>83</em> 00 26</dt><dd><p>Obex get</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session</p>
+</dd>
+<dt><em>42</em> 00 18 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 72 65 61 64 00</dt><dd><p>m-obex/calendar/read</p>
+</dd>
+<dt>4C 00 06 01 00 06</dt><dd><p>Id of calendar item</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h4>Answer<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>A0</em> 00 C0</dt><dd><p>Obex ok</p>
+</dd>
+<dt><em>C3</em> 00 00 00 B0</dt><dd><p>Length</p>
+</dd>
+<dt><em>4C</em> 00 05 00 00</dt><dd><p>Error code</p>
+</dd>
+<dt><em>49</em> 00 B3 42 45 47 49 4E 3A 56 43 41 4C 45 4E 44 41 52 0D 0A 56 45 52 53 49 4F 4E 3A 31 2E 3….</dt><dd><p>vcalendar item. TODO: Where is the id?</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="delete">
+<h3>Delete<a class="headerlink" href="#delete" title="Permalink to this heading"></a></h3>
+<section id="id22">
+<h4>Request<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt><em>82</em> 00 28</dt><dd><p>Obex put</p>
+</dd>
+<dt><em>CB</em> 00 00 00 00</dt><dd><p>Session</p>
+</dd>
+<dt><em>42</em> 00 1A 6D 2D 6F 62 65 78 2F 63 61 6C 65 6E 64 61 72 2F 64 65 6C 65 74 65 00</dt><dd><p>m-obex/calendar/delete</p>
+</dd>
+<dt><em>4C</em> 00 06 01 00 06</dt><dd><p>id of calendar item</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
+</section>
+<section id="files">
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this heading"></a></h2>
+<p>To get the file structure on the mobile, there are two commands. One that lists all subdirectories and one that lists all files.</p>
+<section id="list-directories">
+<h3>List directories<a class="headerlink" href="#list-directories" title="Permalink to this heading"></a></h3>
+</section>
+<section id="list-files">
+<h3>List files<a class="headerlink" href="#list-files" title="Permalink to this heading"></a></h3>
+</section>
+<section id="get-file">
+<h3>Get file<a class="headerlink" href="#get-file" title="Permalink to this heading"></a></h3>
+</section>
+<section id="create-file">
+<h3>Create file<a class="headerlink" href="#create-file" title="Permalink to this heading"></a></h3>
+</section>
+<section id="delete-file">
+<h3>Delete file<a class="headerlink" href="#delete-file" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="sms">
+<h2>SMS<a class="headerlink" href="#sms" title="Permalink to this heading"></a></h2>
+<p>0x01: Inbox
+0x08: Outbox</p>
+<section id="get-sms-count">
+<h3>Get sms count<a class="headerlink" href="#get-sms-count" title="Permalink to this heading"></a></h3>
+</section>
+<section id="list-all-sms">
+<h3>List all sms<a class="headerlink" href="#list-all-sms" title="Permalink to this heading"></a></h3>
+</section>
+<section id="send-sms">
+<h3>Send sms<a class="headerlink" href="#send-sms" title="Permalink to this heading"></a></h3>
+</section>
+<section id="create-sms">
+<h3>Create sms<a class="headerlink" href="#create-sms" title="Permalink to this heading"></a></h3>
+<p>I don’t think this is possible. At least I didn’t find the function in New PC Studio. So sadly there will be no backup of sms messages.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mtk.html" class="btn btn-neutral float-left" title="MTK AT Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="s60.html" class="btn btn-neutral float-right" title="Series60 Remote Protocol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

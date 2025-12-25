@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dummy Driver &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Phone Protocols" href="../protocol/index.html" />
+    <link rel="prev" title="Gammu Testsuite" href="testsuite.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing Gammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="testsuite.html">Gammu Testsuite</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dummy Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filesystem-structure">Filesystem structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phonebook">Phonebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calendar">Calendar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo">Todo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filesystem">Filesystem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-features">Other features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Testing Gammu</a></li>
+      <li class="breadcrumb-item active">Dummy Driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/testing/dummy-driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dummy-driver">
+<span id="id1"></span><h1>Dummy Driver<a class="headerlink" href="#dummy-driver" title="Permalink to this heading"></a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.22.93.</span></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">dummy</span></code> driver in Gammu emulates all operations on filesystem. It is
+used by <a class="reference internal" href="testsuite.html"><span class="doc">Gammu Testsuite</span></a>, but it is also very helpful for application
+developers, because they can test the functionality without using real phone
+and avoiding risk of corrupting data in the phone.</p>
+<section id="filesystem-structure">
+<h2>Filesystem structure<a class="headerlink" href="#filesystem-structure" title="Permalink to this heading"></a></h2>
+<p>The dummy driver emulates all phone functionality on filesystem. The
+<span class="target" id="index-0"></span><a class="reference internal" href="../config/index.html#option-Device"><code class="xref config config-option docutils literal notranslate"><span class="pre">Device</span></code></a> configuration directive sets top level directory,
+where all data are stored.</p>
+<p>This directory contains file <code class="file docutils literal notranslate"><span class="pre">operations.log</span></code>, where are logged
+operations which do not modify any data in the dummy phone (eg. sending
+message).</p>
+<section id="messages">
+<h3>Messages<a class="headerlink" href="#messages" title="Permalink to this heading"></a></h3>
+<p>Messages are stored in <code class="file docutils literal notranslate"><span class="pre">sms/&lt;FOLDER&gt;</span></code> directories (<code class="docutils literal notranslate"><span class="pre">&lt;FOLDER&gt;</span></code> is in
+range 1-5) in Gammu native smsbackup format.</p>
+</section>
+<section id="phonebook">
+<h3>Phonebook<a class="headerlink" href="#phonebook" title="Permalink to this heading"></a></h3>
+<p>Phonebook (and calls registers) are stored in <code class="file docutils literal notranslate"><span class="pre">pbk/&lt;MEMORY&gt;</span></code> (<code class="docutils literal notranslate"><span class="pre">&lt;MEMORY&gt;</span></code>
+is type of memory like <code class="docutils literal notranslate"><span class="pre">ME</span></code> or <code class="docutils literal notranslate"><span class="pre">SM</span></code>) directories in vCard format.</p>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<p>Notes are stored in <code class="file docutils literal notranslate"><span class="pre">note</span></code> directory in vNote format.</p>
+</section>
+<section id="calendar">
+<h3>Calendar<a class="headerlink" href="#calendar" title="Permalink to this heading"></a></h3>
+<p>Calendar entries are stored in <code class="file docutils literal notranslate"><span class="pre">calendar</span></code> directory in vCalendar format.</p>
+</section>
+<section id="todo">
+<h3>Todo<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h3>
+<p>Todo entries are stored in <code class="file docutils literal notranslate"><span class="pre">todo</span></code> directory in vCalendar format.</p>
+</section>
+<section id="filesystem">
+<h3>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this heading"></a></h3>
+<p>Filesystem is stored in <code class="file docutils literal notranslate"><span class="pre">fs</span></code> directory. You can create another
+subdirectories there.</p>
+</section>
+</section>
+<section id="other-features">
+<h2>Other features<a class="headerlink" href="#other-features" title="Permalink to this heading"></a></h2>
+<p>By specifying <span class="target" id="index-1"></span><a class="reference internal" href="../config/index.html#option-Features"><code class="xref config config-option docutils literal notranslate"><span class="pre">Features</span></code></a> you can configure some specific behavior:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">DISABLE_GETNEXT</span></code></dt><dd><p>Makes the dummy driver fail all GetNext* calls as not supported (with
+exception of GetNextSMS* and GetNextFile*).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DISABLE_GETNEXTSMS</span></code></dt><dd><p>Makes the dummy driver fail all GetNextSMS* calls as not supported.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>To use dummy driver, you need something like following in <code class="file docutils literal notranslate"><span class="pre">~/.gammurc</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dummy</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">none</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/path/to/directory/</span>
+</pre></div>
+</div>
+<p>For disabling GetNext* functions within dummy driver, you need something like following in <code class="file docutils literal notranslate"><span class="pre">~/.gammurc</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[gammu]</span>
+<span class="na">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dummy</span>
+<span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">none</span>
+<span class="na">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DISABLE_GETNEXT</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/path/to/directory/</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="testsuite.html" class="btn btn-neutral float-left" title="Gammu Testsuite" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../protocol/index.html" class="btn btn-neutral float-right" title="Phone Protocols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

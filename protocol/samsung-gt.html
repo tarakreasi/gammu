@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMSUNG GT calendar AT commands &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sonim AT Commands" href="sonim.html" />
+    <link rel="prev" title="SAMSUNG Organizer AT commands" href="samsung.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">libGammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Phone Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="discovering.html">Discovering protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia.html">Nokia protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nokia-s40-sms.html">Nokia S40 filesystem SMS format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6110.html">Nokia 6110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n6510.html">Nokia 6510</a></li>
+<li class="toctree-l2"><a class="reference internal" href="n7110.html">Nokia 7110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carkit.html">Nokia 6210/6310, CARC91, PC Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdma_5120.html">TDMA 5120</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samsung.html">SAMSUNG Organizer AT commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SAMSUNG GT calendar AT commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calendar-entries">Calendar Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-entries">Task Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memo-notes">Memo Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sonim.html">Sonim AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtk.html">MTK AT Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m-obex.html">m-obex protocol used by some Samsung mobiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s60.html">Series60 Remote Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnapplet.html">Gnapplet Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Phone Protocols</a></li>
+      <li class="breadcrumb-item active">SAMSUNG GT calendar AT commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/protocol/samsung-gt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="samsung-gt-calendar-at-commands">
+<h1>SAMSUNG GT calendar AT commands<a class="headerlink" href="#samsung-gt-calendar-at-commands" title="Permalink to this heading"></a></h1>
+<section id="calendar-entries">
+<h2>Calendar Entries<a class="headerlink" href="#calendar-entries" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">AT+SSHT=1</span></code> - selects the Organizer-&gt;Calendar-&gt;Appointment entries
+(Spotkania in Polish version)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AT+SSHT=2</span></code> - selects the Organizer-&gt;Calendar-&gt;Anniversary entries
+(Rocznice in Polish version)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AT+SSHT=5</span></code> - selects the Organizer-&gt;Calendar-&gt;Holiday entries (Święta
+in Polish version)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AT+SSHT=6</span></code> - selects the Organizer-&gt;Calendar-&gt;Important entries (Ważne
+in Polish version)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AT+SSHT=7</span></code> - selects the Organizer-&gt;Calendar-&gt;Private entries (Prywatne
+in Polish version)</p>
+<p>After selection of type, we can read all items:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;5,test1&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;1,x&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;9,event1234&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;7,test123&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;7,Meeting&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Or just read a single item:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;9,Event 123&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,,</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Getting status (the last number appears to be number of notes):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT+SSHR=?
++SSHR:100,15,100,15,&quot;1000000&quot;,2008,2024,5
+OK
+</pre></div>
+</div>
+<p>You can also add or modify an item:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHW</span><span class="o">=</span><span class="s2">&quot;7,event01&quot;</span><span class="p">,</span><span class="s2">&quot;16,details of event&quot;</span><span class="p">,</span><span class="s2">&quot;5,where&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">03</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">04</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">05</span><span class="p">,</span><span class="mi">31</span><span class="p">,,,</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>It seems, that the last number in the above record specifies whether
+it is addition of a new record (0), or modification of the old record
+(then the number is the position of the item, as the first number
+listed after <code class="docutils literal notranslate"><span class="pre">AT+SSHR=0</span></code>). e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHW</span><span class="o">=</span><span class="s2">&quot;13,event1234 new&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="s2">&quot;0,&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">07</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">07</span><span class="p">,</span><span class="mi">07</span><span class="p">,</span><span class="mi">00</span><span class="p">,</span><span class="mi">08</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">05</span><span class="p">,</span><span class="mi">30</span><span class="p">,,,</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Please note, that the format for writing is somehow different, than
+for reading - hour and minutes must be in two-digit form!
+The text fields (as shown above) are formatted in the following way:
+“number_of_characters_in_string,string”
+In all items above the first string is the name of event, the second
+string - details of event, the third one - place of event.
+The numeric fields encode start date (year,month,day), end date (year,
+month, day), start time (hour,minutes),
+end time (hour, minutes), four unknown to me (yet?) values, date of
+creation? (year month day) - the meaning of this date is not sure for
+me yet.</p>
+<p>To delete entries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHD</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+</section>
+<section id="task-entries">
+<h2>Task Entries<a class="headerlink" href="#task-entries" title="Permalink to this heading"></a></h2>
+<p>There is yet another type, that can be selected by <code class="docutils literal notranslate"><span class="pre">AT+SSHT=3</span></code>
+This is Organizer-&gt;Task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHT</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;10,Test event&quot;</span><span class="p">,</span><span class="s2">&quot;10,2010-06-05&quot;</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Please note, that the format of output is different, when you read the
+specific task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;10,Test event&quot;</span><span class="p">,</span><span class="s2">&quot;12,Some details&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>You can similarly add  a new task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHW</span><span class="o">=</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;10,0123456789&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">08</span><span class="p">,</span><span class="mi">07</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">+</span><span class="n">SSHW</span><span class="p">:</span><span class="mi">2</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Read it back:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;10,0123456789&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>And modify:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHW</span><span class="o">=</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;11,New details&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">06</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">08</span><span class="p">,</span><span class="mi">07</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span>
+<span class="o">+</span><span class="n">SSHW</span><span class="p">:</span><span class="mi">2</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;11,New details&quot;</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>To delete entries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">SSHT</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;10,Test</span>
+<span class="n">event</span><span class="s2">&quot;,&quot;</span><span class="mi">10</span><span class="p">,</span><span class="mi">2010</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">05</span><span class="s2">&quot;,60823,11,25,60823,11,26,0,60823,11,26,0,0,0,0,0</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;10,2010-06-30&quot;</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">SSHD</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">SSHR</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">+</span><span class="n">SSHR</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;9,New task1&quot;</span><span class="p">,</span><span class="s2">&quot;10,2010-06-30&quot;</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">60823</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+</section>
+<section id="memo-notes">
+<h2>Memo Notes<a class="headerlink" href="#memo-notes" title="Permalink to this heading"></a></h2>
+<p>The memo notes are accessible via <code class="docutils literal notranslate"><span class="pre">AT+OMM???</span></code> commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT+OMMI?
++OMMI:4,100,100
+</pre></div>
+</div>
+<p>We found, that we have 4 memos</p>
+<p>You can add a note:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">OMMW</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;This is a note&quot;</span>
+<span class="o">+</span><span class="n">OMMW</span><span class="p">:</span><span class="mi">6</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>You can read it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">OMMR</span><span class="o">=</span><span class="mi">6</span>
+<span class="o">+</span><span class="n">OMMR</span><span class="p">:</span><span class="s2">&quot;This is a note&quot;</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>You can modify it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">OMMW</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;This is a new modified note&quot;</span>
+<span class="o">+</span><span class="n">OMMW</span><span class="p">:</span><span class="mi">6</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">OMMR</span><span class="o">=</span><span class="mi">6</span>
+<span class="o">+</span><span class="n">OMMR</span><span class="p">:</span><span class="s2">&quot;This is a new modified note&quot;</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>To delete entries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">OMMR</span><span class="o">=</span><span class="mi">3</span>
+<span class="o">+</span><span class="n">OMMR</span><span class="p">:</span><span class="s2">&quot;Note number 3&quot;</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">OMMD</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">OMMW</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;New note number 3&quot;</span>
+<span class="o">+</span><span class="n">CME</span> <span class="n">ERROR</span><span class="p">:</span><span class="mi">29</span>
+
+<span class="n">ERROR</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="samsung.html" class="btn btn-neutral float-left" title="SAMSUNG Organizer AT commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sonim.html" class="btn btn-neutral float-right" title="Sonim AT Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

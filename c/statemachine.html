@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>State machine &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Types" href="types.html" />
+    <link rel="prev" title="SMSD" href="smsd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keys.html">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">State machine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/statemachine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="state-machine">
+<h1>State machine<a class="headerlink" href="#state-machine" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_InitConnection_Log” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_InitConnection” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_TerminateConnection” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AbortOperation” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_Install” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.GSM_StateMachine">
+<span class="target" id="group__StateMachine_1ga2dc354e3856ac69fc2636d2a17d73ee9"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="n"><span class="pre">_GSM_StateMachine</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_StateMachine</span></span></span><a class="headerlink" href="#c.GSM_StateMachine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Private structure holding information about phone connection. Should be allocated by GSM_AllocStateMachine and freed by GSM_FreeStateMachine. </p>
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_ConnectionType</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Connection types definitions. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_MBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a0177c9caba41c57696ded4a9e15e4ea1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_MBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_MBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222aefe806ae9b498221045f9e5f75a459fd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2DLR3">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a0480788d9296d14723662d7e74aa16ac"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2DLR3</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2DLR3" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_DKU2AT">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ac885bd26c0adb013ff859865489b86a0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_DKU2AT</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_DKU2AT" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_DKU2PHONET">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a9b8e038301a1d6db19043894ad6c09c8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_DKU2PHONET</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_DKU2PHONET" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_DKU5FBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ac6856b53f892f9c229bc53f1bdd83adf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_DKU5FBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_DKU5FBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_ARK3116FBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a1a002c68455c333728e6aa221451f85c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_ARK3116FBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_ARK3116FBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2PL2303">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a6473b4c056da13d8b7ab10905352a409"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2PL2303</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2PL2303" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2BLUE">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ad32fc6e6952f3acf5d17994a04624f6e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2BLUE</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2BLUE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2IRDA">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222aea5b70083ab427914a59b4f29d1263f2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2IRDA</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2IRDA" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PHONETBLUE">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a0f73859dac38d0a7465b8dac0b4b073e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PHONETBLUE</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PHONETBLUE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_AT">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ae941971a6f5e43a5143d88b8b4a3d548"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_AT</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_AT" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUEGNAPBUS">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ac250af8a7eb80cae4635833bb21c6cd2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUEGNAPBUS</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUEGNAPBUS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_IRDAOBEX">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a88e326dd60dd12ea822fad9836144167"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_IRDAOBEX</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_IRDAOBEX" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_IRDAGNAPBUS">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a82df580d243376ea9f256322feddb43a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_IRDAGNAPBUS</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_IRDAGNAPBUS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_IRDAAT">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a5b7756dfe8ff0c969605cdd6db3704ec"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_IRDAAT</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_IRDAAT" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_IRDAPHONET">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a8adf935fe2d0761279c82370e6d7ddcd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_IRDAPHONET</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_IRDAPHONET" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUEFBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a6108cb64333868254d76380ee57b70b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUEFBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUEFBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUEAT">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a30a3e4fa1224a4d375dfa18c89d8fd81"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUEAT</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUEAT" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUEPHONET">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222af5aa50314b5d8b892b23b6ceecf91894"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUEPHONET</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUEPHONET" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUEOBEX">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222ac1a45e0f405c15fb50885af4ebca67c0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUEOBEX</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUEOBEX" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_FBUS2USB">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a68dca2ed3ff6d7ffe38b67f1d7cec07f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_FBUS2USB</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_FBUS2USB" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_BLUES60">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a5f3c29b2fa695965d90540f6cb583b6c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_BLUES60</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_BLUES60" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYGNAPBUS">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a19f698dce5e0bc0c33e6b0ee11955576"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYGNAPBUS</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYGNAPBUS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYFBUS2">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222aece34ba57710d4df5f208ae792d4e287"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYFBUS2</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYFBUS2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYAT">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a423697469213863ab2a25e0b885032c5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYAT</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYAT" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYPHONET">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a5b073d7d254b924b30443ce5e18693d8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYPHONET</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYPHONET" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYOBEX">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222aa35c1aebd12b922d798b56a5c5122dd4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYOBEX</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYOBEX" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_PROXYS60">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a97b2d3ccf599a0847a0c45688d2ddf39"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_PROXYS60</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_PROXYS60" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_ConnectionType.GCT_NONE">
+<span class="target" id="gammu-statemachine_8h_1a00897673795913eb501f89136f782222a845a9e70dc18e64e86615f480b58dec0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GCT_NONE</span></span></span><a class="headerlink" href="#c.GSM_ConnectionType.GCT_NONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.GSM_Config">
+<span class="target" id="structGSM__Config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Config</span></span></span><a class="headerlink" href="#c.GSM_Config" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configuration of state machine. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.Model">
+<span class="target" id="structGSM__Config_1abaa22ae04bf94e6338a220b2ea258fdd"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Model</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">50</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.Model" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Model from config file </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.DebugLevel">
+<span class="target" id="structGSM__Config_1a9dee194e5a7f1a7ecb43cb4a60fab632"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugLevel</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">50</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.DebugLevel" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Debug level </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.Device">
+<span class="target" id="structGSM__Config_1a64fcfa87e957e811a787270bf6461a56"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Device</span></span></span><a class="headerlink" href="#c.GSM_Config.Device" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Device name from config file </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.Connection">
+<span class="target" id="structGSM__Config_1aa006e9ec29dba95ba69ec731fc28cf81"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Connection</span></span></span><a class="headerlink" href="#c.GSM_Config.Connection" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Connection type as string </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.SyncTime">
+<span class="target" id="structGSM__Config_1ad856156aa9b4d4d10217b7496a0b5802"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SyncTime</span></span></span><a class="headerlink" href="#c.GSM_Config.SyncTime" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Synchronize time on startup? </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.LockDevice">
+<span class="target" id="structGSM__Config_1ac15db19293922dab8034c6bcd876e4b3"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LockDevice</span></span></span><a class="headerlink" href="#c.GSM_Config.LockDevice" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Lock device ? (Unix) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.DebugFile">
+<span class="target" id="structGSM__Config_1a0b83352053ba9fa0929281cfaa25d5a9"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">DebugFile</span></span></span><a class="headerlink" href="#c.GSM_Config.DebugFile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Name of debug file </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.StartInfo">
+<span class="target" id="structGSM__Config_1a2d35e0c917be5ed2620fd9682e8320dd"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StartInfo</span></span></span><a class="headerlink" href="#c.GSM_Config.StartInfo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Display something during start ? </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.UseGlobalDebugFile">
+<span class="target" id="structGSM__Config_1a356fbb9389afb88da4aba87aee7d59db"></span><a class="reference internal" href="types.html#c.gboolean" title="gboolean"><span class="n"><span class="pre">gboolean</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UseGlobalDebugFile</span></span></span><a class="headerlink" href="#c.GSM_Config.UseGlobalDebugFile" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Should we use global debug file? </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.TextReminder">
+<span class="target" id="structGSM__Config_1a9011339a7cc95a6f68dc7e2c68596a7b"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TextReminder</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.TextReminder" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for reminder calendar entry category in local language </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.TextMeeting">
+<span class="target" id="structGSM__Config_1a730aa1eda0e3aa1eebf465726339c31d"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TextMeeting</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.TextMeeting" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for meeting calendar entry category in local language </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.TextCall">
+<span class="target" id="structGSM__Config_1a0ce562d4d1546b9bfba5b4fd53bbee7d"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TextCall</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.TextCall" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for call calendar entry category in local language </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.TextBirthday">
+<span class="target" id="structGSM__Config_1a05c995a741c12a0862976dde91edd7dc"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TextBirthday</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.TextBirthday" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for birthday calendar entry category in local language </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.TextMemo">
+<span class="target" id="structGSM__Config_1ae7de39a53c4874190567f24cfdf8b72b"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TextMemo</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.TextMemo" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Text for memo calendar entry category in local language </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.PhoneFeatures">
+<span class="target" id="structGSM__Config_1af5bba09c6001bae991dd0ad8164024c1"></span><a class="reference internal" href="info.html#c.GSM_Feature" title="GSM_Feature"><span class="n"><span class="pre">GSM_Feature</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhoneFeatures</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">GSM_MAX_PHONE_FEATURES</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.PhoneFeatures" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Phone features override. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.GSM_Config.CNMIParams">
+<span class="target" id="structGSM__Config_1a97aa573cb1d405cec569d6ef1cac11a8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CNMIParams</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">5</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.GSM_Config.CNMIParams" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Used to override default CNMI arguments for generic AT protocol. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.GSM_Log_Function">
+<span class="target" id="gammu-statemachine_8h_1a7bbb2177e37c31f495ce730e703eca2e"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GSM_Log_Function</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.GSM_Log_Function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Callback function for logging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param text<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>Text to be printed,</p>
+<p>will be also sent (as a separate message).</p>
+</p>
+</dd>
+<dt class="field-even">Param data<span class="colon">:</span></dt>
+<dd class="field-even"><p>Arbitrary logger data, as passed to GSM_InitConnection_Log. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadDevice” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_IsConnected” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FindGammuRC” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_ReadConfig” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetConfig” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetConfigNum” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_SetConfigNum” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_AllocStateMachine” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_FreeStateMachine” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_GetUsedConnection” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="smsd.html" class="btn btn-neutral float-left" title="SMSD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="types.html" class="btn btn-neutral float-right" title="Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

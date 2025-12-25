@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keys &mdash; Gammu 1.42.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Limits" href="limits.html" />
+    <link rel="prev" title="INI files" href="inifile.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gammu
+          </a>
+              <div class="version">
+                1.42.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Gammu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick/index.html">Quick starter guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">python-gammu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">libGammu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hints.html">Hints for libGammu Novices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">libGammu C API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bitmap.html">Bitmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calendar.html">Calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callback.html">Callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="category.html">Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datetime.html">Date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error.html">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html">INI files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="message.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nokia.html">Nokia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ringtone.html">Ringtone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smsd.html">SMSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statemachine.html">State machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unicode.html">Unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wap.html">WAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Porting from libGammu older than 1.12.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internal/index.html">Gammu internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/index.html">File formats used by Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Gammu Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gammu/index.html">Gammu Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smsd/index.html">SMS Daemon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Miscellaneous utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">Testing Gammu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol/index.html">Phone Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gammu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">libGammu</a></li>
+          <li class="breadcrumb-item"><a href="api.html">libGammu C API</a></li>
+      <li class="breadcrumb-item active">Keys</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c/keys.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="keys">
+<h1>Keys<a class="headerlink" href="#keys" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “MakeKeySequence” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “GSM_PressKey” in doxygen xml output for project “api” from directory: /home/runner/work/gammu/gammu/build-configure/gammu-doc/xml</p>
+</div>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.GSM_KeyCode">
+<span class="target" id="group__Keys_1ga847ae7a586bfd1d0c506a3062d013ec2"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KeyCode</span></span></span><a class="headerlink" href="#c.GSM_KeyCode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Key event identifiers. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_NONE">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a340c156a7260ddd62cd8d1998cad9040"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_NONE</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_NONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_1">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a014c70ea39fdb56eb01913333e4b50ae"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_1</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_1" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_2">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a0990febebc605da4457cbe45e5bbb4b3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_2</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_2" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_3">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a374b2da0eb1e04151df095e0e4c187de"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_3</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_3" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_4">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a2ef04c75a876dc7ed6f796e0b93e7e4f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_4</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_4" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_5">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a244222f9c62c5e055508dbc756bba43f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_5</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_5" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_6">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2abd1e8b846a828f1aeafb21dc14ab7c5f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_6</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_6" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_7">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a71d439ca6603f5002cf8ff8bd901ea9b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_7</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_7" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_8">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2abca2b7d9cada1f1c54ec850dd9aaa2db"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_8</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_8" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_9">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a8960009373db80604d99246b3af9b8df"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_9</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_9" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_0">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a6a9f66e4d1bd22f5c5809a26632970a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_0</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_0" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_HASH">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2ae933d745442d4b5d95f0570a76867c09"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_HASH</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_HASH" title="Permalink to this definition"></a><br /></dt>
+<dd><p># </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_ASTERISK">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2aa97788a9a1c5f30eba7230bbe98b64a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_ASTERISK</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_ASTERISK" title="Permalink to this definition"></a><br /></dt>
+<dd><p><ul class="simple">
+<li></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_POWER">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a7f8480763def67f32ab0ccddbde6dba6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_POWER</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_POWER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Power key. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_GREEN">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a61bc766926d4fd974d8a36da1fd251be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_GREEN</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_GREEN" title="Permalink to this definition"></a><br /></dt>
+<dd><p>in some phone ie. N5110 sometimes works identical to POWER </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_RED">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2ab49a6d2b1e0a1a19d3ba5c7e29978647"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_RED</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_RED" title="Permalink to this definition"></a><br /></dt>
+<dd><p>(c) key in some phone: ie. N5110 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_INCREASEVOLUME">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2aad01005bafab6650184dc20ccedcb566"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_INCREASEVOLUME</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_INCREASEVOLUME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Not available in some phones as separate button: ie. N5110 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_DECREASEVOLUME">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2aae6662d3edbc0554314de1c02025df63"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_DECREASEVOLUME</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_DECREASEVOLUME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Not available in some phones as separate button: ie. N5110 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_UP">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2aae124dd62124796d65753a0285c01538"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_UP</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_UP" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_DOWN">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a38def1a154ee80cf7983e0625f4f5380"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_DOWN</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_DOWN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_MENU">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a36dabfff52cb3cd3d3d8374c659074e8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_MENU</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_MENU" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_NAMES">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a2263ab1e4b324d5a886f2659112e74ce"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_NAMES</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_NAMES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Not available in some phone: ie. N5110 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_LEFT">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a40936a32a7a8276d4c3f1d12e49fb0f3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_LEFT</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_LEFT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Left arrow </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_RIGHT">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a2e419fbe8687262afbc52c24be85f009"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_RIGHT</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_RIGHT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Right arrow </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_SOFT1">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a56c1147e2b893077f81a4543ea8e6229"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_SOFT1</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_SOFT1" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Software key which has assigned mening on display. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_SOFT2">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a3b941d649890914bafe3d03abdf5af8c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_SOFT2</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_SOFT2" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Software key which has assigned mening on display. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_HEADSET">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2ab8b7dda76b51e939909f557ba605bb08"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_HEADSET</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_HEADSET" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Button on headset </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_JOYSTICK">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a8776779b685958da425d04f9256c6971"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_JOYSTICK</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_JOYSTICK" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Joystick pressed </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_CAMERA">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2ab9f0e379b7b55bbe8047060bd7fda31b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_CAMERA</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_CAMERA" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Camera button pressed </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_MEDIA">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a34b8893de6a8da76eba647de06a945ed"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_MEDIA</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_MEDIA" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Media player button </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_DESKTOP">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a358bfb83cda010b5482b9014f41733e8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_DESKTOP</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_DESKTOP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Multi function key, desktop </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_OPERATOR">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a710910293919d2c92048924f650cd648"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_OPERATOR</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_OPERATOR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator button </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_RETURN">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2ac4c158c9f6e38cd8c6aa0fa704335a7c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_RETURN</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_RETURN" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Return button </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.GSM_KeyCode.GSM_KEY_CLEAR">
+<span class="target" id="group__Keys_1gga847ae7a586bfd1d0c506a3062d013ec2a583741d65e7e0c136e24bdce87149026"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GSM_KEY_CLEAR</span></span></span><a class="headerlink" href="#c.GSM_KeyCode.GSM_KEY_CLEAR" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Clear button </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inifile.html" class="btn btn-neutral float-left" title="INI files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="limits.html" class="btn btn-neutral float-right" title="Limits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2015, Michal Čihař &lt;michal@cihar.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
